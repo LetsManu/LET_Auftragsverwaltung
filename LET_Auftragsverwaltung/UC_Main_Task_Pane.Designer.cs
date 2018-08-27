@@ -36,11 +36,12 @@
             this.exportÜbersichtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.neuerAuftragToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.soonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.neuerAuftragToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uC_Parameter1 = new LET_Auftragsverwaltung.UC_Parameter();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,7 +86,7 @@
             // neuerEintragToolStripMenuItem1
             // 
             this.neuerEintragToolStripMenuItem1.Name = "neuerEintragToolStripMenuItem1";
-            this.neuerEintragToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.neuerEintragToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
             this.neuerEintragToolStripMenuItem1.Text = "Datenbank";
             this.neuerEintragToolStripMenuItem1.Click += new System.EventHandler(this.neuerEintragToolStripMenuItem1_Click);
             // 
@@ -95,20 +96,26 @@
             this.excelToolStripMenuItem,
             this.pDFToolStripMenuItem});
             this.exportÜbersichtToolStripMenuItem.Name = "exportÜbersichtToolStripMenuItem";
-            this.exportÜbersichtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportÜbersichtToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.exportÜbersichtToolStripMenuItem.Text = "Export Übersicht";
             // 
             // excelToolStripMenuItem
             // 
             this.excelToolStripMenuItem.Name = "excelToolStripMenuItem";
-            this.excelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.excelToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.excelToolStripMenuItem.Text = "Excel";
             // 
             // pDFToolStripMenuItem
             // 
             this.pDFToolStripMenuItem.Name = "pDFToolStripMenuItem";
-            this.pDFToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pDFToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.pDFToolStripMenuItem.Text = "PDF";
+            // 
+            // neuerAuftragToolStripMenuItem
+            // 
+            this.neuerAuftragToolStripMenuItem.Name = "neuerAuftragToolStripMenuItem";
+            this.neuerAuftragToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.neuerAuftragToolStripMenuItem.Text = "Neuer Auftrag";
             // 
             // hilfeToolStripMenuItem
             // 
@@ -127,7 +134,7 @@
             // soonToolStripMenuItem
             // 
             this.soonToolStripMenuItem.Name = "soonToolStripMenuItem";
-            this.soonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.soonToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.soonToolStripMenuItem.Text = "soon";
             // 
             // testToolStripMenuItem
@@ -136,16 +143,18 @@
             this.testToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
             this.testToolStripMenuItem.Text = "test";
             // 
-            // neuerAuftragToolStripMenuItem
+            // uC_Parameter1
             // 
-            this.neuerAuftragToolStripMenuItem.Name = "neuerAuftragToolStripMenuItem";
-            this.neuerAuftragToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.neuerAuftragToolStripMenuItem.Text = "Neuer Auftrag";
+            this.uC_Parameter1.Location = new System.Drawing.Point(50, 153);
+            this.uC_Parameter1.Name = "uC_Parameter1";
+            this.uC_Parameter1.Size = new System.Drawing.Size(272, 246);
+            this.uC_Parameter1.TabIndex = 2;
             // 
             // UC_Main_Task_Pane
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.uC_Parameter1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "UC_Main_Task_Pane";
             this.Size = new System.Drawing.Size(430, 569);
@@ -171,5 +180,6 @@
         private System.Windows.Forms.ToolStripMenuItem soonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem neuerAuftragToolStripMenuItem;
+        private UC_Parameter uC_Parameter1;
     }
 }

@@ -1,0 +1,4 @@
+﻿Funktionen Hinzufügen & Abrufen:
+
+INSERT INTO funktion (Funktion) VALUES ('PlaceHolder') 
+SELECT * FROM funktion
