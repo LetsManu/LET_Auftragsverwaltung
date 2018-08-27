@@ -41,6 +41,7 @@
             this.hilfeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.soonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uC_Parameter1 = new LET_Auftragsverwaltung.UC_Parameter();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -143,10 +144,18 @@
             this.testToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
             this.testToolStripMenuItem.Text = "test";
             // 
+            // uC_Parameter1
+            // 
+            this.uC_Parameter1.Location = new System.Drawing.Point(50, 153);
+            this.uC_Parameter1.Name = "uC_Parameter1";
+            this.uC_Parameter1.Size = new System.Drawing.Size(272, 246);
+            this.uC_Parameter1.TabIndex = 2;
+            // 
             // UC_Main_Task_Pane
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.uC_Parameter1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "UC_Main_Task_Pane";
             this.Size = new System.Drawing.Size(430, 569);
@@ -172,5 +181,6 @@
         private System.Windows.Forms.ToolStripMenuItem soonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem neuerAuftragToolStripMenuItem;
+        private UC_Parameter uC_Parameter1;
     }
 }
