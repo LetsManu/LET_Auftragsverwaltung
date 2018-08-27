@@ -9,3 +9,10 @@ Adressen Hinzufügen und Letzte ID (ID der zuletzt hinzugefügten Adresse, für 
 
 	INSERT INTO adressen (Land, PLZ, Ort, Hausnummer, Strasse ) VALUES ('Land', 'PLZ', 'Ort', 'Hausnummer', 'Strasse') 
 	SELECT Adr_ID FROM adressen ORDER BY Adr_ID DESC LIMIT 1
+
+
+Lieferanten Hinzufügen Auslesne und Deaktiviere
+
+	INSERT INTO Lieferant (Lieferant, Adr_ID ) VALUES ('Name', 2)  
+	SELECT * FROM Lieferant 
+	UPDATE Lieferant SET deaktiviert=true WHERE L_ID=1
