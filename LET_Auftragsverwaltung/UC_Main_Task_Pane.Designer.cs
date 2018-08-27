@@ -33,9 +33,6 @@
             this.parameterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.neuerEintragToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.neuerEintragToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.auftragToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.händlerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.materialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportÜbersichtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,6 +40,7 @@
             this.hilfeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.soonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.neuerAuftragToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,38 +76,17 @@
             // 
             this.neuerEintragToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.neuerEintragToolStripMenuItem1,
-            this.exportÜbersichtToolStripMenuItem});
+            this.exportÜbersichtToolStripMenuItem,
+            this.neuerAuftragToolStripMenuItem});
             this.neuerEintragToolStripMenuItem.Name = "neuerEintragToolStripMenuItem";
             this.neuerEintragToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.neuerEintragToolStripMenuItem.Text = "Datei";
             // 
             // neuerEintragToolStripMenuItem1
             // 
-            this.neuerEintragToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.auftragToolStripMenuItem,
-            this.händlerToolStripMenuItem,
-            this.materialToolStripMenuItem});
             this.neuerEintragToolStripMenuItem1.Name = "neuerEintragToolStripMenuItem1";
-            this.neuerEintragToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
-            this.neuerEintragToolStripMenuItem1.Text = "Neuer Eintrag";
-            // 
-            // auftragToolStripMenuItem
-            // 
-            this.auftragToolStripMenuItem.Name = "auftragToolStripMenuItem";
-            this.auftragToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.auftragToolStripMenuItem.Text = "Auftrag";
-            // 
-            // händlerToolStripMenuItem
-            // 
-            this.händlerToolStripMenuItem.Name = "händlerToolStripMenuItem";
-            this.händlerToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.händlerToolStripMenuItem.Text = "Händler";
-            // 
-            // materialToolStripMenuItem
-            // 
-            this.materialToolStripMenuItem.Name = "materialToolStripMenuItem";
-            this.materialToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
-            this.materialToolStripMenuItem.Text = "Material";
+            this.neuerEintragToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.neuerEintragToolStripMenuItem1.Text = "Datenbank";
             // 
             // exportÜbersichtToolStripMenuItem
             // 
@@ -117,19 +94,19 @@
             this.excelToolStripMenuItem,
             this.pDFToolStripMenuItem});
             this.exportÜbersichtToolStripMenuItem.Name = "exportÜbersichtToolStripMenuItem";
-            this.exportÜbersichtToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.exportÜbersichtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exportÜbersichtToolStripMenuItem.Text = "Export Übersicht";
             // 
             // excelToolStripMenuItem
             // 
             this.excelToolStripMenuItem.Name = "excelToolStripMenuItem";
-            this.excelToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.excelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.excelToolStripMenuItem.Text = "Excel";
             // 
             // pDFToolStripMenuItem
             // 
             this.pDFToolStripMenuItem.Name = "pDFToolStripMenuItem";
-            this.pDFToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.pDFToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.pDFToolStripMenuItem.Text = "PDF";
             // 
             // hilfeToolStripMenuItem
@@ -149,7 +126,7 @@
             // soonToolStripMenuItem
             // 
             this.soonToolStripMenuItem.Name = "soonToolStripMenuItem";
-            this.soonToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.soonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.soonToolStripMenuItem.Text = "soon";
             // 
             // testToolStripMenuItem
@@ -158,12 +135,18 @@
             this.testToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
             this.testToolStripMenuItem.Text = "test";
             // 
-            // UC_Main_Task_Pain
+            // neuerAuftragToolStripMenuItem
+            // 
+            this.neuerAuftragToolStripMenuItem.Name = "neuerAuftragToolStripMenuItem";
+            this.neuerAuftragToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.neuerAuftragToolStripMenuItem.Text = "Neuer Auftrag";
+            // 
+            // UC_Main_Task_Pane
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.menuStrip1);
-            this.Name = "UC_Main_Task_Pain";
+            this.Name = "UC_Main_Task_Pane";
             this.Size = new System.Drawing.Size(430, 569);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -179,9 +162,6 @@
         private System.Windows.Forms.ToolStripMenuItem parameterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem neuerEintragToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem neuerEintragToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem auftragToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem händlerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem materialToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportÜbersichtToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem excelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pDFToolStripMenuItem;
@@ -189,5 +169,6 @@
         private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem soonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem neuerAuftragToolStripMenuItem;
     }
 }
