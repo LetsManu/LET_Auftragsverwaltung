@@ -191,6 +191,12 @@
     <Compile Include="UC_Main_Task_Pain.Designer.cs">
       <DependentUpon>UC_Main_Task_Pain.cs</DependentUpon>
     </Compile>
+    <Compile Include="UC_Parameter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_Parameter.Designer.cs">
+      <DependentUpon>UC_Parameter.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
