@@ -209,7 +209,11 @@
     <EmbeddedResource Include="UC_Main_Task_Pain.resx">
       <DependentUpon>UC_Main_Task_Pain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UC_Parameter.resx">
+      <DependentUpon>UC_Parameter.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="LET_Auftragsverwaltung_1_TemporaryKey.pfx" />
+    <None Include="LET_Auftragsverwaltung_2_TemporaryKey.pfx" />
     <None Include="LET_Auftragsverwaltung_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -238,10 +242,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>LET_Auftragsverwaltung_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>LET_Auftragsverwaltung_2_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>1820684FCF7A3C69605341A27CE206EF8EBFC891</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>18AEF6D7D0F00FE5B56DDEAE03298FDC731101F8</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
