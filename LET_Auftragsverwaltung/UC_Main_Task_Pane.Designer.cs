@@ -50,10 +50,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aufträgeToolStripMenuItem,
-            this.parameterToolStripMenuItem,
-            this.neuerEintragToolStripMenuItem,
-            this.hilfeToolStripMenuItem,
-            this.hilfeToolStripMenuItem1});
+            this.parameterToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(448, 24);
@@ -63,8 +60,8 @@
             // aufträgeToolStripMenuItem
             // 
             this.aufträgeToolStripMenuItem.Name = "aufträgeToolStripMenuItem";
-            this.aufträgeToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.aufträgeToolStripMenuItem.Text = "Übersicht";
+            this.aufträgeToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.aufträgeToolStripMenuItem.Text = "Aufträge";
             // 
             // parameterToolStripMenuItem
             // 
@@ -161,13 +158,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.menuStrip1);
             this.Name = "UC_Main_Task_Pane";
             this.Size = new System.Drawing.Size(448, 724);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
