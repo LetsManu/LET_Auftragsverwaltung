@@ -185,11 +185,11 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UC_Main_Task_Pane.cs">
+    <Compile Include="UC_Main_Task_Pain.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UC_Main_Task_Pane.Designer.cs">
-      <DependentUpon>UC_Main_Task_Pane.cs</DependentUpon>
+    <Compile Include="UC_Main_Task_Pain.Designer.cs">
+      <DependentUpon>UC_Main_Task_Pain.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -200,9 +200,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UC_Main_Task_Pane.resx">
-      <DependentUpon>UC_Main_Task_Pane.cs</DependentUpon>
+    <EmbeddedResource Include="UC_Main_Task_Pain.resx">
+      <DependentUpon>UC_Main_Task_Pain.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="LET_Auftragsverwaltung_1_TemporaryKey.pfx" />
     <None Include="LET_Auftragsverwaltung_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -231,10 +232,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>LET_Auftragsverwaltung_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>LET_Auftragsverwaltung_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>8BBB7368B82F0A6D8024AA7C1C740EF2DD56CBBC</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>1820684FCF7A3C69605341A27CE206EF8EBFC891</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -246,7 +247,7 @@
       <FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
         <ProjectProperties HostName="Outlook" HostPackage="{29A7B9D7-A7F1-4328-8EF0-6B2D1A56B2C1}" OfficeVersion="15.0" VstxVersion="4.0" ApplicationType="Outlook" Language="cs" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\16.0\Outlook\InstallRoot\Path#outlook.exe" AddItemTemplatesGuid="{A58A78EB-1C92-4DDD-80CF-E8BD872ABFC4}" />
         <Host Name="Outlook" GeneratedCodeNamespace="LET_Auftragsverwaltung" PublishedHash="69C324AB27932AA2FBF2B7EA72250886FF164DE6" IconIndex="0">
-          <HostItem Name="ThisAddIn" Code="ThisAddIn.cs" CanonicalName="AddIn" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.cs" PublishedHash="80DBCBAC824645939EF2F2A0062B2CBB3FB4FFB2" />
+          <HostItem Name="ThisAddIn" Code="ThisAddIn.cs" CanonicalName="AddIn" PublishedHash="80DBCBAC824645939EF2F2A0062B2CBB3FB4FFB2" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.cs" />
         </Host>
       </FlavorProperties>
     </VisualStudio>
