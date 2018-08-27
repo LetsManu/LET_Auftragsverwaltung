@@ -65,6 +65,7 @@
             this.aufträgeToolStripMenuItem.Name = "aufträgeToolStripMenuItem";
             this.aufträgeToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.aufträgeToolStripMenuItem.Text = "Übersicht";
+            this.aufträgeToolStripMenuItem.Click += new System.EventHandler(this.aufträgeToolStripMenuItem_Click);
             // 
             // parameterToolStripMenuItem
             // 

@@ -182,6 +182,11 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="auftragsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>auftragsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Form_Overview.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,6 +220,9 @@
     <Compile Include="UC_Parameter.Designer.cs">
       <DependentUpon>UC_Parameter.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Form_Overview.resx">
+      <DependentUpon>Form_Overview.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_Parameter.resx">
       <DependentUpon>Form_Parameter.cs</DependentUpon>
     </EmbeddedResource>
@@ -236,6 +244,20 @@
     <EmbeddedResource Include="UC_Parameter.resx">
       <DependentUpon>UC_Parameter.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="auftragsDataSet.xsc">
+      <DependentUpon>auftragsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="auftragsDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>auftragsDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="auftragsDataSet.xss">
+      <DependentUpon>auftragsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="LET_Auftragsverwaltung_2_TemporaryKey.pfx" />
+    <None Include="LET_Auftragsverwaltung_3_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -243,6 +265,7 @@
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
