@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace LET_Auftragsverwaltung
 {
-    public partial class UserControl1 : UserControl
+    public partial class UC_Main_Task_Pane : UserControl
     {
-        public UserControl1()
+        public UC_Main_Task_Pane()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Stoff Sonderteile");
         }
     }
 }
