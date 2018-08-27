@@ -1,5 +1,12 @@
 ﻿Funktionen Hinzufügen & Abrufen:
 
-INSERT INTO funktion (Funktion) VALUES ('PlaceHolder') 
-SELECT * FROM funktion
-DELETE FROM funktion WHERE Funktion="Placeholder"
+	INSERT INTO funktion (Funktion) VALUES ('PlaceHolder') 
+	SELECT * FROM funktion
+	DELETE FROM funktion WHERE Funktion="Placeholder"
+
+
+Adressen Hinzufügen Löschen und Letzte ID (ID der zuletzt hinzugefügten Adresse, für zuweisung der Adresse zur richtigen Person0)
+
+	INSERT INTO adressen (Land, PLZ, Ort, Hausnummer, Strasse ) VALUES ('Land', 'PLZ', 'Ort', 'Hausnummer', 'Strasse') 
+	SELECT Adr_ID FROM adressen ORDER BY Adr_ID DESC LIMIT 1
+	DELETE FROM adressen WHERE adr_ID=3
