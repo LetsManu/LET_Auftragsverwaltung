@@ -235,7 +235,7 @@
     <ManifestKeyFile>LET_Auftragsverwaltung_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>50A2EA9AE9BE6A1C53BF1395EFB4AB0DE85B37A0</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>8BBB7368B82F0A6D8024AA7C1C740EF2DD56CBBC</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
