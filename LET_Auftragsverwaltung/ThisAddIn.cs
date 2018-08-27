@@ -10,12 +10,12 @@ namespace LET_Auftragsverwaltung
 {
     public partial class ThisAddIn
     {
-        private UC_Main_Task_Pane uC_Main_Task_Pane;
+        private UC_Main_Task_Pain uC_Main_Task_Pane;
         private Microsoft.Office.Tools.CustomTaskPane CTP_Main;
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
-            uC_Main_Task_Pane = new UC_Main_Task_Pane();
+            uC_Main_Task_Pane = new UC_Main_Task_Pain();
             CTP_Main = this.CustomTaskPanes.Add(uC_Main_Task_Pane, "Aufträge:");
             CTP_Main.Visible = true;
             CTP_Main.Width = 400;
