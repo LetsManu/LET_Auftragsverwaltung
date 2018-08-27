@@ -1,6 +1,6 @@
 ﻿namespace LET_Auftragsverwaltung
 {
-    partial class UC_Main_Task_Pain
+    partial class UC_Main_Task_Pane
     {
         /// <summary> 
         /// Required designer variable.

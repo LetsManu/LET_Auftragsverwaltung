@@ -185,11 +185,11 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UC_Main_Task_Pain.cs">
+    <Compile Include="UC_Main_Task_Pane.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UC_Main_Task_Pain.Designer.cs">
-      <DependentUpon>UC_Main_Task_Pain.cs</DependentUpon>
+    <Compile Include="UC_Main_Task_Pane.Designer.cs">
+      <DependentUpon>UC_Main_Task_Pane.cs</DependentUpon>
     </Compile>
     <Compile Include="UC_Parameter.cs">
       <SubType>UserControl</SubType>
@@ -206,15 +206,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UC_Main_Task_Pain.resx">
-      <DependentUpon>UC_Main_Task_Pain.cs</DependentUpon>
+    <EmbeddedResource Include="UC_Main_Task_Pane.resx">
+      <DependentUpon>UC_Main_Task_Pane.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UC_Parameter.resx">
       <DependentUpon>UC_Parameter.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="LET_Auftragsverwaltung_1_TemporaryKey.pfx" />
     <None Include="LET_Auftragsverwaltung_2_TemporaryKey.pfx" />
-    <None Include="LET_Auftragsverwaltung_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

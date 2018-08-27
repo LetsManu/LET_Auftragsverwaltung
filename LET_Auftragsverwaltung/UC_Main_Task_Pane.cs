@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace LET_Auftragsverwaltung
 {
-    public partial class UC_Main_Task_Pain : UserControl
+    public partial class UC_Main_Task_Pane : UserControl
     {
-        public UC_Main_Task_Pain()
+        public UC_Main_Task_Pane()
         {
             InitializeComponent();
         }
