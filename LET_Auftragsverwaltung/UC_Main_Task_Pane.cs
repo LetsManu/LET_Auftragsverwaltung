@@ -19,7 +19,7 @@ namespace LET_Auftragsverwaltung
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Stoff Sonderteile");
+            MessageBox.Show("LOG saved, USB_09");
         }
     }
 }
