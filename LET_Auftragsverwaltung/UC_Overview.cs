@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace LET_Auftragsverwaltung
 {
-    public partial class UC_Main_Task_Pane : UserControl
+    public partial class UC_Overview : UserControl
     {
-        public UC_Main_Task_Pane()
+        public UC_Overview()
         {
             InitializeComponent();
-        }
-
-        private void neuerEintragToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            Form Form_Para = new Form_Parameter();
-            Form_Para.Show();
         }
     }
 }
