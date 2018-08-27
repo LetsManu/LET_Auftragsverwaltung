@@ -48,7 +48,7 @@
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 und x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -58,7 +58,7 @@
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.VSTORuntime.4.0">
       <Visible>False</Visible>
-      <ProductName>Microsoft Visual Studio 2010-Tools für Office-Laufzeit %28x86 und x64%29</ProductName>
+      <ProductName>Microsoft Visual Studio 2010 Tools for Office Runtime %28x86 and x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
@@ -182,6 +182,18 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="Form_Overview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Overview.Designer.cs">
+      <DependentUpon>Form_Overview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Parameter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Parameter.Designer.cs">
+      <DependentUpon>Form_Parameter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -191,12 +203,21 @@
     <Compile Include="UC_Main_Task_Pane.Designer.cs">
       <DependentUpon>UC_Main_Task_Pane.cs</DependentUpon>
     </Compile>
+    <Compile Include="UC_Overview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_Overview.Designer.cs">
+      <DependentUpon>UC_Overview.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC_Parameter.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UC_Parameter.Designer.cs">
       <DependentUpon>UC_Parameter.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Form_Parameter.resx">
+      <DependentUpon>Form_Parameter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -209,10 +230,14 @@
     <EmbeddedResource Include="UC_Main_Task_Pane.resx">
       <DependentUpon>UC_Main_Task_Pane.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UC_Overview.resx">
+      <DependentUpon>UC_Overview.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UC_Parameter.resx">
       <DependentUpon>UC_Parameter.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="LET_Auftragsverwaltung_2_TemporaryKey.pfx" />
+    <None Include="LET_Auftragsverwaltung_3_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -240,10 +265,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>LET_Auftragsverwaltung_2_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>LET_Auftragsverwaltung_3_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>18AEF6D7D0F00FE5B56DDEAE03298FDC731101F8</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>86DD9D8DE44F6FB69F24C87852B353ADBD51673C</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
