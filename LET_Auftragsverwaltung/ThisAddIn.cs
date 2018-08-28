@@ -27,7 +27,7 @@ namespace LET_Auftragsverwaltung
             //    must run when Outlook shuts down, see https://go.microsoft.com/fwlink/?LinkId=506785
         }
 
-        #region VSTO generated code
+        #region VSTO generated code                                  
 
         /// <summary>
         /// Required method for Designer support - do not modify
