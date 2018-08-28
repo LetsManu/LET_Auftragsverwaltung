@@ -81,8 +81,7 @@ namespace LET_Auftragsverwaltung
 
         private void UC_Parameter_cbx_funk_fill()
         {
-            var dict = new Dictionary<Guid, string>();
-            cbx_funk.Items.Clear();
+            
             try
             {
                 OdbcConnection connection = Connection;
