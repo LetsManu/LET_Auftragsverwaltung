@@ -2,17 +2,31 @@
 
 
 
-        private OdbcConnection connection = null;
+private OdbcConnection connection = null;
 
-        private OdbcConnection Connection
+private OdbcConnection Connection
+{
+    get
+    {
+        if (connection == null)
         {
-            get
-            {
-                if (connection == null)
-                {
-                    string constrg = "Driver={MySQL ODBC 3.51 Driver};Server=192.168.16.192;Database=auftrags;User=admin;Password=cola0815;Option=3;";
-                    connection = new OdbcConnection(constrg);
-                }
-                return connection;
-            }
+            string constrg = "Driver={MySQL ODBC 3.51 Driver};Server=192.168.16.192;Database=auftrags;User=admin;Password=cola0815;Option=3;";
+            connection = new OdbcConnection(constrg);
         }
+        return connection;
+    }
+}
+
+
+//Verbindung öffnen
+Connection.Open();
+//Daten Lesen / Schreiben
+string sql = "SELECT * FROM tab_Land ORDER BY Bezeichnung";
+OdbcCommand cmd = new OdbcCommand(sql, Connection);
+OdbcDataReader reader = cmd.ExecuteReader();
+while (reader.Read())
+{
+    lBx_Laender.Items.Add(reader["Bezeichnung"]);
+}
+//Datenbank schließen
+Connection.Close();
