@@ -1,18 +1,25 @@
 ﻿Funktionen Hinzufügen & Abrufen:
 
 	INSERT INTO funktion (Funktion) VALUES ('PlaceHolder') 
-	SELECT * FROM funktion
+	SELECT * FROM funktion WHERE deaktiviert<>true
     UPDATE funktion SET deaktiviert=true WHERE Funktion_ID=1
 
 
 Adressen Hinzufügen und Letzte ID (ID der zuletzt hinzugefügten Adresse, für zuweisung der Adresse zur richtigen Person0)
 
 	INSERT INTO adressen (Land, PLZ, Ort, Hausnummer, Strasse ) VALUES ('Land', 'PLZ', 'Ort', 'Hausnummer', 'Strasse') 
-	SELECT Adr_ID FROM adressen ORDER BY Adr_ID DESC LIMIT 1
+	SELECT Adr_ID FROM adressen WHERE Land='Austria' AND PLZ='4840' AND Ort='Vöcklabruck' AND Hausnummer='48' AND Strasse='Dörfl'  LIMIT 1
 
 
 Lieferanten Hinzufügen Auslesne und Deaktiviere
 
 	INSERT INTO Lieferant (Lieferant, Adr_ID ) VALUES ('Name', 2)  
-	SELECT * FROM Lieferant 
+	SELECT * FROM Lieferant WHERE deaktiviert<>true
 	UPDATE Lieferant SET deaktiviert=true WHERE L_ID=1
+
+
+Personal Hinzufügen, Adresse muss vorher geschrieben werden (wegen ID und so)
+	
+	INSERT INTO personal (Vorname, Nachname, Adr_ID, Funktion_ID) VALUES ('Manu', 'Whiteböckle', 3, 1)
+	SELECT * FROM personal where deaktiviert<>true
+	UPDATE personal SET deaktiviert=true WHERE P_ID=1
