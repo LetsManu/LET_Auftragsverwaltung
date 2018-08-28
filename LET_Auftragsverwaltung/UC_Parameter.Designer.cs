@@ -67,6 +67,7 @@
             this.txt_funk_new = new System.Windows.Forms.TextBox();
             this.btn_funk_new = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.box_funk_dec = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cbx_funk = new System.Windows.Forms.ComboBox();
             this.txt_funk_re = new System.Windows.Forms.TextBox();
@@ -78,13 +79,12 @@
             this.txt_auf_new = new System.Windows.Forms.TextBox();
             this.btn_auf_new = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.box_auf_dec = new System.Windows.Forms.CheckBox();
             this.label22 = new System.Windows.Forms.Label();
             this.cbx_auf = new System.Windows.Forms.ComboBox();
             this.txt_auf_re = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.btn_auf_change = new System.Windows.Forms.Button();
-            this.box_funk_dec = new System.Windows.Forms.CheckBox();
-            this.box_auf_dec = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -441,9 +441,11 @@
             this.txt_funk_new.Name = "txt_funk_new";
             this.txt_funk_new.Size = new System.Drawing.Size(109, 20);
             this.txt_funk_new.TabIndex = 4;
+            this.txt_funk_new.TextChanged += new System.EventHandler(this.txt_funk_new_TextChanged);
             // 
             // btn_funk_new
             // 
+            this.btn_funk_new.Enabled = false;
             this.btn_funk_new.Location = new System.Drawing.Point(133, 128);
             this.btn_funk_new.Name = "btn_funk_new";
             this.btn_funk_new.Size = new System.Drawing.Size(75, 23);
@@ -466,6 +468,18 @@
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Eintrag Ändern";
+            // 
+            // box_funk_dec
+            // 
+            this.box_funk_dec.AutoSize = true;
+            this.box_funk_dec.Location = new System.Drawing.Point(7, 100);
+            this.box_funk_dec.Name = "box_funk_dec";
+            this.box_funk_dec.Size = new System.Drawing.Size(92, 17);
+            this.box_funk_dec.TabIndex = 4;
+            this.box_funk_dec.Text = "Deaktivieren?";
+            this.box_funk_dec.UseVisualStyleBackColor = true;
+            this.box_funk_dec.CheckedChanged += new System.EventHandler(this.box_funk_dec_CheckedChanged);
+            this.box_funk_dec.EnabledChanged += new System.EventHandler(this.box_funk_dec_EnabledChanged);
             // 
             // label8
             // 
@@ -504,6 +518,7 @@
             // 
             // btn_funk_change
             // 
+            this.btn_funk_change.Enabled = false;
             this.btn_funk_change.Location = new System.Drawing.Point(162, 128);
             this.btn_funk_change.Name = "btn_funk_change";
             this.btn_funk_change.Size = new System.Drawing.Size(75, 23);
@@ -551,9 +566,11 @@
             this.txt_auf_new.Name = "txt_auf_new";
             this.txt_auf_new.Size = new System.Drawing.Size(109, 20);
             this.txt_auf_new.TabIndex = 3;
+            this.txt_auf_new.TextChanged += new System.EventHandler(this.txt_auf_new_TextChanged);
             // 
             // btn_auf_new
             // 
+            this.btn_auf_new.Enabled = false;
             this.btn_auf_new.Location = new System.Drawing.Point(133, 128);
             this.btn_auf_new.Name = "btn_auf_new";
             this.btn_auf_new.Size = new System.Drawing.Size(75, 23);
@@ -576,6 +593,18 @@
             this.groupBox4.TabIndex = 11;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Eintrag Ändern";
+            // 
+            // box_auf_dec
+            // 
+            this.box_auf_dec.AutoSize = true;
+            this.box_auf_dec.Location = new System.Drawing.Point(7, 100);
+            this.box_auf_dec.Name = "box_auf_dec";
+            this.box_auf_dec.Size = new System.Drawing.Size(92, 17);
+            this.box_auf_dec.TabIndex = 13;
+            this.box_auf_dec.Text = "Deaktivieren?";
+            this.box_auf_dec.UseVisualStyleBackColor = true;
+            this.box_auf_dec.CheckedChanged += new System.EventHandler(this.box_auf_dec_CheckedChanged);
+            this.box_auf_dec.EnabledChanged += new System.EventHandler(this.box_auf_dec_EnabledChanged);
             // 
             // label22
             // 
@@ -601,6 +630,7 @@
             this.txt_auf_re.Name = "txt_auf_re";
             this.txt_auf_re.Size = new System.Drawing.Size(121, 20);
             this.txt_auf_re.TabIndex = 1;
+            this.txt_auf_re.TextChanged += new System.EventHandler(this.txt_auf_re_TextChanged);
             // 
             // label23
             // 
@@ -613,6 +643,7 @@
             // 
             // btn_auf_change
             // 
+            this.btn_auf_change.Enabled = false;
             this.btn_auf_change.Location = new System.Drawing.Point(162, 128);
             this.btn_auf_change.Name = "btn_auf_change";
             this.btn_auf_change.Size = new System.Drawing.Size(75, 23);
@@ -620,26 +651,6 @@
             this.btn_auf_change.Text = "Ändern";
             this.btn_auf_change.UseVisualStyleBackColor = true;
             this.btn_auf_change.Click += new System.EventHandler(this.btn_auf_change_Click);
-            // 
-            // box_funk_dec
-            // 
-            this.box_funk_dec.AutoSize = true;
-            this.box_funk_dec.Location = new System.Drawing.Point(7, 100);
-            this.box_funk_dec.Name = "box_funk_dec";
-            this.box_funk_dec.Size = new System.Drawing.Size(92, 17);
-            this.box_funk_dec.TabIndex = 4;
-            this.box_funk_dec.Text = "Deaktivieren?";
-            this.box_funk_dec.UseVisualStyleBackColor = true;
-            // 
-            // box_auf_dec
-            // 
-            this.box_auf_dec.AutoSize = true;
-            this.box_auf_dec.Location = new System.Drawing.Point(7, 100);
-            this.box_auf_dec.Name = "box_auf_dec";
-            this.box_auf_dec.Size = new System.Drawing.Size(92, 17);
-            this.box_auf_dec.TabIndex = 13;
-            this.box_auf_dec.Text = "Deaktivieren?";
-            this.box_auf_dec.UseVisualStyleBackColor = true;
             // 
             // UC_Parameter
             // 

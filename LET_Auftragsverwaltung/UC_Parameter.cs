@@ -69,8 +69,8 @@ namespace LET_Auftragsverwaltung
                     MessageBoxIcon.Information);
             }
 
-
-
+            btn_funk_new.Enabled = false;
+            txt_funk_new.Text = "";
         }
 
         private void UC_Parameter_Load(object sender, EventArgs e)
@@ -157,7 +157,8 @@ namespace LET_Auftragsverwaltung
                     MessageBoxIcon.Information);
             }
 
-
+            btn_auf_new.Enabled = false;
+            txt_auf_new.Text = "";
         }
 
         private void cbx_funk_SelectedIndexChanged(object sender, EventArgs e)
@@ -167,7 +168,9 @@ namespace LET_Auftragsverwaltung
 
         private void txt_funk_re_TextChanged(object sender, EventArgs e)
         {
+            btn_funk_change.Enabled = true;
 
+            if (txt_funk_re.Text == "") btn_funk_change.Enabled = false;
         }
 
         private void cbx_auf_SelectedIndexChanged(object sender, EventArgs e)
@@ -202,6 +205,8 @@ namespace LET_Auftragsverwaltung
                     MessageBoxIcon.Information);
             }
 
+            txt_funk_re.Text = "";
+            btn_funk_change.Enabled = false;
         }
 
         private void btn_auf_change_Click(object sender, EventArgs e)
@@ -230,6 +235,55 @@ namespace LET_Auftragsverwaltung
                     MessageBoxIcon.Information);
             }
 
+            btn_auf_change.Enabled = false;
+            txt_auf_re.Text = "";
+        }
+
+        private void txt_auf_new_TextChanged(object sender, EventArgs e)
+        {
+            btn_auf_new.Enabled = true;
+
+            if (txt_auf_new.Text == "") btn_funk_new.Enabled = false;
+        }
+
+        private void txt_auf_re_TextChanged(object sender, EventArgs e)
+        {
+            btn_auf_change.Enabled = true;
+
+            if (txt_auf_re.Text == "") btn_auf_change.Enabled = false;
+        }
+
+        private void txt_funk_new_TextChanged(object sender, EventArgs e)
+        {
+            btn_funk_new.Enabled = true;
+
+            if (txt_funk_new.Text == "") btn_funk_new.Enabled = false;
+        }
+
+        private void box_funk_dec_EnabledChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void box_auf_dec_EnabledChanged(object sender, EventArgs e)
+        {
+            
+
+
+        }
+
+        private void box_auf_dec_CheckedChanged(object sender, EventArgs e)
+        {
+            btn_auf_change.Enabled = true;
+
+            if (box_auf_dec.Checked == false) btn_auf_change.Enabled = false;
+        }
+
+        private void box_funk_dec_CheckedChanged(object sender, EventArgs e)
+        {
+            btn_funk_change.Enabled = true;
+
+            if (box_funk_dec.Checked == false) btn_funk_change.Enabled = false;
         }
     }
 }
