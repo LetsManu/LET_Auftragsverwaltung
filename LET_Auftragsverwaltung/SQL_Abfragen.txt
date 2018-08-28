@@ -21,3 +21,4 @@ Lieferanten Hinzufügen Auslesne und Deaktiviere
 Personal Hinzufügen, Adresse muss vorher geschrieben werden (wegen ID und so)
 	
 	INSERT INTO personal (Vorname, Nachname, Adr_ID, Funktion_ID) VALUES ('Manu', 'Whiteböckle', 3, 1)
+	SELECT * FROM personal where deaktiviert<>true
