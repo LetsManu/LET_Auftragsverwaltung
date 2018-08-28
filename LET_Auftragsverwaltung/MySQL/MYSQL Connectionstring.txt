@@ -30,3 +30,13 @@ while (reader.Read())
 }
 //Datenbank schlieﬂen
 Connection.Close();
+
+
+
+sql = "SELECT LID,Bezeichnung FROM tab_Land ORDER BY Bezeichnung";
+OdbcDataAdapter da = new OdbcDataAdapter(sql, connection);
+DataTable dtLaender = new DataTable();
+da.Fill(dtLaender);
+lBx_Land_ID.DisplayMember = "Bezeichnung";
+lBx_Land_ID.ValueMember = "LID";
+lBx_Land_ID.DataSource = dtLaender;
