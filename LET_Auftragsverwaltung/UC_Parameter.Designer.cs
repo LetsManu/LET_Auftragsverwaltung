@@ -71,8 +71,7 @@
             this.cbx_funk = new System.Windows.Forms.ComboBox();
             this.txt_funk_re = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.txt_funk_change = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
+            this.btn_funk_change = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -84,7 +83,8 @@
             this.txt_auf_re = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.btn_auf_change = new System.Windows.Forms.Button();
-            this.label24 = new System.Windows.Forms.Label();
+            this.box_funk_dec = new System.Windows.Forms.CheckBox();
+            this.box_auf_dec = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -406,7 +406,6 @@
             // 
             this.tabPage2.Controls.Add(this.groupBox2);
             this.tabPage2.Controls.Add(this.groupBox1);
-            this.tabPage2.Controls.Add(this.label11);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -420,7 +419,7 @@
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.txt_funk_new);
             this.groupBox2.Controls.Add(this.btn_funk_new);
-            this.groupBox2.Location = new System.Drawing.Point(336, 38);
+            this.groupBox2.Location = new System.Drawing.Point(31, 41);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(214, 167);
             this.groupBox2.TabIndex = 9;
@@ -455,12 +454,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.box_funk_dec);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.cbx_funk);
             this.groupBox1.Controls.Add(this.txt_funk_re);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.txt_funk_change);
-            this.groupBox1.Location = new System.Drawing.Point(33, 38);
+            this.groupBox1.Controls.Add(this.btn_funk_change);
+            this.groupBox1.Location = new System.Drawing.Point(341, 41);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(243, 167);
             this.groupBox1.TabIndex = 8;
@@ -487,43 +487,35 @@
             // 
             // txt_funk_re
             // 
-            this.txt_funk_re.Location = new System.Drawing.Point(116, 74);
+            this.txt_funk_re.Location = new System.Drawing.Point(116, 61);
             this.txt_funk_re.Name = "txt_funk_re";
             this.txt_funk_re.Size = new System.Drawing.Size(121, 20);
             this.txt_funk_re.TabIndex = 1;
+            this.txt_funk_re.TextChanged += new System.EventHandler(this.txt_funk_re_TextChanged);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 81);
+            this.label9.Location = new System.Drawing.Point(6, 64);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(40, 13);
             this.label9.TabIndex = 3;
             this.label9.Text = "Eintrag";
             // 
-            // txt_funk_change
+            // btn_funk_change
             // 
-            this.txt_funk_change.Location = new System.Drawing.Point(162, 128);
-            this.txt_funk_change.Name = "txt_funk_change";
-            this.txt_funk_change.Size = new System.Drawing.Size(75, 23);
-            this.txt_funk_change.TabIndex = 3;
-            this.txt_funk_change.Text = "Ändern";
-            this.txt_funk_change.UseVisualStyleBackColor = true;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(449, 41);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(72, 13);
-            this.label11.TabIndex = 6;
-            this.label11.Text = "Neuer Eintrag";
+            this.btn_funk_change.Location = new System.Drawing.Point(162, 128);
+            this.btn_funk_change.Name = "btn_funk_change";
+            this.btn_funk_change.Size = new System.Drawing.Size(75, 23);
+            this.btn_funk_change.TabIndex = 3;
+            this.btn_funk_change.Text = "Ändern";
+            this.btn_funk_change.UseVisualStyleBackColor = true;
+            this.btn_funk_change.Click += new System.EventHandler(this.btn_funk_change_Click);
             // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.groupBox3);
             this.tabPage4.Controls.Add(this.groupBox4);
-            this.tabPage4.Controls.Add(this.label24);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
@@ -537,7 +529,7 @@
             this.groupBox3.Controls.Add(this.label21);
             this.groupBox3.Controls.Add(this.txt_auf_new);
             this.groupBox3.Controls.Add(this.btn_auf_new);
-            this.groupBox3.Location = new System.Drawing.Point(336, 38);
+            this.groupBox3.Location = new System.Drawing.Point(31, 41);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(214, 167);
             this.groupBox3.TabIndex = 12;
@@ -572,12 +564,13 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.box_auf_dec);
             this.groupBox4.Controls.Add(this.label22);
             this.groupBox4.Controls.Add(this.cbx_auf);
             this.groupBox4.Controls.Add(this.txt_auf_re);
             this.groupBox4.Controls.Add(this.label23);
             this.groupBox4.Controls.Add(this.btn_auf_change);
-            this.groupBox4.Location = new System.Drawing.Point(33, 38);
+            this.groupBox4.Location = new System.Drawing.Point(341, 41);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(243, 167);
             this.groupBox4.TabIndex = 11;
@@ -600,10 +593,11 @@
             this.cbx_auf.Name = "cbx_auf";
             this.cbx_auf.Size = new System.Drawing.Size(121, 21);
             this.cbx_auf.TabIndex = 0;
+            this.cbx_auf.SelectedIndexChanged += new System.EventHandler(this.cbx_auf_SelectedIndexChanged);
             // 
             // txt_auf_re
             // 
-            this.txt_auf_re.Location = new System.Drawing.Point(116, 74);
+            this.txt_auf_re.Location = new System.Drawing.Point(116, 61);
             this.txt_auf_re.Name = "txt_auf_re";
             this.txt_auf_re.Size = new System.Drawing.Size(121, 20);
             this.txt_auf_re.TabIndex = 1;
@@ -611,7 +605,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(6, 81);
+            this.label23.Location = new System.Drawing.Point(6, 64);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(40, 13);
             this.label23.TabIndex = 3;
@@ -625,15 +619,27 @@
             this.btn_auf_change.TabIndex = 2;
             this.btn_auf_change.Text = "Ändern";
             this.btn_auf_change.UseVisualStyleBackColor = true;
+            this.btn_auf_change.Click += new System.EventHandler(this.btn_auf_change_Click);
             // 
-            // label24
+            // box_funk_dec
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(449, 41);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(72, 13);
-            this.label24.TabIndex = 10;
-            this.label24.Text = "Neuer Eintrag";
+            this.box_funk_dec.AutoSize = true;
+            this.box_funk_dec.Location = new System.Drawing.Point(7, 100);
+            this.box_funk_dec.Name = "box_funk_dec";
+            this.box_funk_dec.Size = new System.Drawing.Size(92, 17);
+            this.box_funk_dec.TabIndex = 4;
+            this.box_funk_dec.Text = "Deaktivieren?";
+            this.box_funk_dec.UseVisualStyleBackColor = true;
+            // 
+            // box_auf_dec
+            // 
+            this.box_auf_dec.AutoSize = true;
+            this.box_auf_dec.Location = new System.Drawing.Point(7, 100);
+            this.box_auf_dec.Name = "box_auf_dec";
+            this.box_auf_dec.Size = new System.Drawing.Size(92, 17);
+            this.box_auf_dec.TabIndex = 13;
+            this.box_auf_dec.Text = "Deaktivieren?";
+            this.box_auf_dec.UseVisualStyleBackColor = true;
             // 
             // UC_Parameter
             // 
@@ -649,13 +655,11 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -686,7 +690,7 @@
         private System.Windows.Forms.TextBox txt_pers_land;
         private System.Windows.Forms.TextBox txt_pers_hnr;
         private System.Windows.Forms.TextBox txt_pers_plz;
-        private System.Windows.Forms.Button txt_funk_change;
+        private System.Windows.Forms.Button btn_funk_change;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txt_funk_re;
@@ -711,7 +715,6 @@
         private System.Windows.Forms.TextBox txt_funk_new;
         private System.Windows.Forms.Button btn_funk_new;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txt_auf_new;
@@ -722,8 +725,7 @@
         private System.Windows.Forms.TextBox txt_auf_re;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Button btn_auf_change;
-        private System.Windows.Forms.Label label24;
-
-
+        private System.Windows.Forms.CheckBox box_funk_dec;
+        private System.Windows.Forms.CheckBox box_auf_dec;
     }
 }

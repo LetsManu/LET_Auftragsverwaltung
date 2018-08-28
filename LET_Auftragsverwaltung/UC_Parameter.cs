@@ -81,24 +81,28 @@ namespace LET_Auftragsverwaltung
 
         private void UC_Parameter_cbx_funk_fill()
         {
+            var dict = new Dictionary<Guid, string>();
             cbx_funk.Items.Clear();
             try
             {
                 OdbcConnection connection = Connection;
                 connection.Open();
-                string sql = "SELECT * FROM funktion";
-                OdbcCommand cmd = new OdbcCommand(sql, connection);
-                OdbcDataReader sqlReader = cmd.ExecuteReader();
-                while (sqlReader.Read())
-                {
-                    cbx_funk.Items.Add(sqlReader["Funktion"].ToString());
-                }
+                string sql = "SELECT Funktion_ID,Funktion FROM funktion WHERE deaktiviert<>true";
+                OdbcDataAdapter da = new OdbcDataAdapter(sql, connection);
+                DataTable dtFunkt = new DataTable();
+                da.Fill(dtFunkt);
                 connection.Close();
+
+                
+                
+                cbx_funk.DataSource = dtFunkt;
+                cbx_funk.DisplayMember = "Funktion";
+                cbx_funk.ValueMember = "Funktion_ID";
                 if(cbx_funk.Items.Count>0)cbx_funk.SelectedIndex = 0;
             }
             catch (Exception f)
             {
-                MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Fehler in der SQL Abfrage(funkt): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -109,15 +113,18 @@ namespace LET_Auftragsverwaltung
             {
                 OdbcConnection connection = Connection;
                 connection.Open();
-                string sql = "SELECT * FROM auftragsart";
-                OdbcCommand cmd = new OdbcCommand(sql, connection);
-                OdbcDataReader sqlReader = cmd.ExecuteReader();
-                while (sqlReader.Read())
-                {
-                    cbx_auf.Items.Add(sqlReader["Art"].ToString());
-                }
+                string sql = "SELECT Art_ID,Art FROM auftragsart WHERE deaktiviert<>true";
+                OdbcDataAdapter da = new OdbcDataAdapter(sql, connection);
+                DataTable dtArt = new DataTable();
+                da.Fill(dtArt);
                 connection.Close();
-                if (cbx_auf.Items.Count > 0) cbx_funk.SelectedIndex = 0;
+
+
+
+                cbx_funk.DataSource = dtArt;
+                cbx_funk.DisplayMember = "Art";
+                cbx_funk.ValueMember = "Art_ID";
+                if (cbx_auf.Items.Count > 0) cbx_auf.SelectedIndex = 0;
             }
             catch (Exception f)
             {
@@ -156,7 +163,74 @@ namespace LET_Auftragsverwaltung
 
         private void cbx_funk_SelectedIndexChanged(object sender, EventArgs e)
         {
-     
+            
+        }
+
+        private void txt_funk_re_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbx_auf_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btn_funk_change_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                OdbcConnection connection = Connection;
+                connection.Open();
+                string sql = string.Format("UPDATE funktion SET deaktiviert = {0}, funktion = '{1}' WHERE Funktion_ID = {2}",box_funk_dec.Checked, txt_funk_re.Text, cbx_funk.SelectedValue);
+                OdbcCommand cmd = new OdbcCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+
+            finally
+            {
+                UC_Parameter_cbx_art_fill();
+                
+
+                MessageBox.Show("Funktion wurde geändert", "Änderung erfolgreich", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+
+        }
+
+        private void btn_auf_change_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OdbcConnection connection = Connection;
+                connection.Open();
+                string sql = string.Format("UPDATE auftragsart SET deaktiviert = {0}, art = '{1}' WHERE Funktion_ID = {2}", box_auf_dec.Checked, txt_auf_re.Text, cbx_auf.SelectedValue);
+                OdbcCommand cmd = new OdbcCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+
+            finally
+            {
+                UC_Parameter_cbx_art_fill();
+
+
+                MessageBox.Show("Funktion wurde geändert", "Änderung erfolgreich", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+
         }
     }
 }
