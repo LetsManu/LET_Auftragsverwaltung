@@ -60,7 +60,7 @@
             this.txt_lief_plz = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.txt_lief_ken = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btn_lief_save = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -86,6 +86,7 @@
             this.label23 = new System.Windows.Forms.Label();
             this.btn_auf_change = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -282,6 +283,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label14);
             this.tabPage3.Controls.Add(this.txt_lief_ort);
             this.tabPage3.Controls.Add(this.label13);
             this.tabPage3.Controls.Add(this.label15);
@@ -294,7 +296,7 @@
             this.tabPage3.Controls.Add(this.txt_lief_plz);
             this.tabPage3.Controls.Add(this.label20);
             this.tabPage3.Controls.Add(this.txt_lief_ken);
-            this.tabPage3.Controls.Add(this.button3);
+            this.tabPage3.Controls.Add(this.btn_lief_save);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -386,11 +388,11 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(26, 65);
+            this.label20.Location = new System.Drawing.Point(19, 62);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(102, 13);
+            this.label20.Size = new System.Drawing.Size(106, 13);
             this.label20.TabIndex = 20;
-            this.label20.Text = "Lieferantenkennung";
+            this.label20.Text = "Lieferantenkennung*";
             // 
             // txt_lief_ken
             // 
@@ -398,15 +400,18 @@
             this.txt_lief_ken.Name = "txt_lief_ken";
             this.txt_lief_ken.Size = new System.Drawing.Size(283, 20);
             this.txt_lief_ken.TabIndex = 1;
+            this.txt_lief_ken.TextChanged += new System.EventHandler(this.txt_lief_ken_TextChanged);
             // 
-            // button3
+            // btn_lief_save
             // 
-            this.button3.Location = new System.Drawing.Point(350, 231);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(64, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Speichern";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btn_lief_save.Enabled = false;
+            this.btn_lief_save.Location = new System.Drawing.Point(350, 231);
+            this.btn_lief_save.Name = "btn_lief_save";
+            this.btn_lief_save.Size = new System.Drawing.Size(64, 23);
+            this.btn_lief_save.TabIndex = 7;
+            this.btn_lief_save.Text = "Speichern";
+            this.btn_lief_save.UseVisualStyleBackColor = true;
+            this.btn_lief_save.Click += new System.EventHandler(this.btn_lief_save_Click);
             // 
             // tabPage2
             // 
@@ -667,6 +672,15 @@
             this.label11.TabIndex = 17;
             this.label11.Text = "* Pflichtfelder";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(39, 231);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(69, 13);
+            this.label14.TabIndex = 34;
+            this.label14.Text = "* Pflichtfelder";
+            // 
             // UC_Parameter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -735,7 +749,7 @@
         private System.Windows.Forms.TextBox txt_lief_plz;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox txt_lief_ken;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btn_lief_save;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txt_funk_new;
@@ -754,5 +768,6 @@
         private System.Windows.Forms.CheckBox box_funk_dec;
         private System.Windows.Forms.CheckBox box_auf_dec;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label14;
     }
 }

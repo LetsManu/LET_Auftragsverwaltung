@@ -70,7 +70,7 @@ namespace LET_Auftragsverwaltung
             }
             finally
             {
-                MessageBox.Show("Person wurde gespeichter", "Speicherung erfolgreich", MessageBoxButtons.OK,
+                MessageBox.Show("Person wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
 
@@ -107,7 +107,7 @@ namespace LET_Auftragsverwaltung
                 UC_Parameter_cbx_funk_fill();
                 txt_funk_new.Text = "";
 
-                MessageBox.Show("Funktion wurde gespeichter", "Speicherung erfolgreich", MessageBoxButtons.OK,
+                MessageBox.Show("Funktion wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
 
@@ -200,7 +200,7 @@ namespace LET_Auftragsverwaltung
                 UC_Parameter_cbx_art_fill();
                 txt_funk_new.Text = "";
 
-                MessageBox.Show("Funktion wurde gespeichter", "Speicherung erfolgreich", MessageBoxButtons.OK,
+                MessageBox.Show("Funktion wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
 
@@ -353,6 +353,58 @@ namespace LET_Auftragsverwaltung
         private void btn_pers_save_EnabledChanged(object sender, EventArgs e)
         {
             if (txt_pers_vor.Text == "" || txt_pers_nach.Text == "") btn_pers_save.Enabled = false;
+        }
+
+        private void txt_lief_ken_TextChanged(object sender, EventArgs e)
+        {
+            btn_lief_save.Enabled = true;
+            if (txt_lief_ken.Text == "") btn_lief_save.Enabled = false;
+        }
+
+        private void btn_lief_save_Click(object sender, EventArgs e)
+        {
+
+            try { 
+            OdbcConnection connection = Connection;
+            connection.Open();
+            string sql = string.Format("INSERT INTO adressen (Land, PLZ, Ort, Hausnummer, Strasse ) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", txt_lief_land.Text, txt_lief_plz.Text, txt_lief_ort.Text, txt_lief_hnr.Text, txt_lief_str.Text);
+            OdbcCommand cmd = new OdbcCommand(sql, connection);
+            cmd.ExecuteNonQuery();
+            string sql2 = string.Format("SELECT Adr_ID FROM adressen WHERE Land='{0}' AND PLZ='{1}' AND Ort='{2}' AND Hausnummer='{3}' AND Strasse='{4}' LIMIT 1", txt_lief_land.Text, txt_lief_plz.Text, txt_lief_ort.Text, txt_lief_hnr.Text, txt_lief_str.Text);
+            OdbcCommand cmd_read = new OdbcCommand(sql2, connection);
+            OdbcDataReader sqlReader = cmd_read.ExecuteReader();
+
+            sqlReader.Read();
+
+            int adr_id = sqlReader.GetInt32(0);
+
+            string sql3 = string.Format("INSERT INTO Lieferant (Lieferant, Adr_ID ) VALUES ('{0}', {1})", txt_lief_ken.Text, adr_id);
+
+            OdbcCommand cmd2 = new OdbcCommand(sql3, connection);
+            cmd2.ExecuteNonQuery();
+
+            connection.Close();
+            }
+            catch(Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                MessageBox.Show("Lieferant wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+
+            txt_lief_ken.Text = "";
+            txt_lief_hnr.Text = "";
+            txt_lief_land.Text = "";
+            txt_lief_ort.Text = "";
+            txt_lief_plz.Text = "";
+            txt_lief_str.Text = "";
+
+            btn_lief_save.Enabled = false;
+
         }
     }
 }
