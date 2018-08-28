@@ -113,16 +113,16 @@ namespace LET_Auftragsverwaltung
                 OdbcConnection connection = Connection;
                 connection.Open();
                 string sql = "SELECT Art_ID,Art FROM auftragsart WHERE deaktiviert<>true";
-                OdbcDataAdapter da = new OdbcDataAdapter(sql, connection);
+                OdbcDataAdapter db = new OdbcDataAdapter(sql, connection);
                 DataTable dtArt = new DataTable();
-                da.Fill(dtArt);
+                db.Fill(dtArt);
                 connection.Close();
 
 
 
-                cbx_funk.DataSource = dtArt;
-                cbx_funk.DisplayMember = "Art";
-                cbx_funk.ValueMember = "Art_ID";
+                cbx_auf.DataSource = dtArt;
+                cbx_auf.DisplayMember = "Art";
+                cbx_auf.ValueMember = "Art_ID";
                 if (cbx_auf.Items.Count > 0) cbx_auf.SelectedIndex = 0;
             }
             catch (Exception f)
@@ -195,7 +195,7 @@ namespace LET_Auftragsverwaltung
 
             finally
             {
-                UC_Parameter_cbx_art_fill();
+                UC_Parameter_cbx_funk_fill();
                 
 
                 MessageBox.Show("Funktion wurde geändert", "Änderung erfolgreich", MessageBoxButtons.OK,
