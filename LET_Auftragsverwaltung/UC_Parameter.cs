@@ -41,6 +41,48 @@ namespace LET_Auftragsverwaltung
 
         private void btn_pers_save_Click(object sender, EventArgs e)
         {
+            try
+            {
+                OdbcConnection connection = Connection;
+                connection.Open();
+                string sql = string.Format("INSERT INTO adressen (Land, PLZ, Ort, Hausnummer, Strasse ) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", txt_pers_land.Text, txt_pers_plz.Text, txt_pers_ort.Text, txt_pers_hnr.Text, txt_pers_str.Text);
+                OdbcCommand cmd = new OdbcCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+                string sql2 = string.Format("SELECT Adr_ID FROM adressen WHERE Land='{0}' AND PLZ='{1}' AND Ort='{2}' AND Hausnummer='{3}' AND Strasse='{4}' LIMIT 1", txt_pers_land.Text, txt_pers_plz.Text, txt_pers_ort.Text, txt_pers_hnr.Text, txt_pers_str.Text);
+                OdbcCommand cmd_read = new OdbcCommand(sql2, connection);
+                OdbcDataReader sqlReader = cmd_read.ExecuteReader();
+
+                sqlReader.Read();
+
+                int adr_id = sqlReader.GetInt32(0);
+
+                string sql3 = string.Format("INSERT INTO personal (Vorname, Nachname, Adr_ID, Funktion_ID) VALUES ('{0}', '{1}', {2}, {3})", txt_pers_vor.Text, txt_pers_nach.Text, adr_id, cbx_pers_funk.SelectedValue);
+
+                OdbcCommand cmd2 = new OdbcCommand(sql3, connection);
+                cmd2.ExecuteNonQuery();
+
+                connection.Close();
+            }
+            catch(Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                MessageBox.Show("Person wurde gespeichter", "Speicherung erfolgreich", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+
+            txt_pers_vor.Text = "";
+            txt_pers_nach.Text = "";
+            txt_pers_hnr.Text = "";
+            txt_pers_land.Text = "";
+            txt_pers_ort.Text = "";
+            txt_pers_str.Text = "";
+            txt_pers_plz.Text = "";
+
+            btn_pers_save.Enabled = false;
 
         }
 
@@ -92,12 +134,16 @@ namespace LET_Auftragsverwaltung
                 da.Fill(dtFunkt);
                 connection.Close();
 
-                
-                
+
+                cbx_pers_funk.DataSource = dtFunkt;
                 cbx_funk.DataSource = dtFunkt;
                 cbx_funk.DisplayMember = "Funktion";
+                cbx_pers_funk.DisplayMember = "Funktion";
                 cbx_funk.ValueMember = "Funktion_ID";
+                cbx_pers_funk.ValueMember = "Funktion_ID";
+                
                 if(cbx_funk.Items.Count>0)cbx_funk.SelectedIndex = 0;
+                if (cbx_pers_funk.Items.Count > 0) cbx_pers_funk.SelectedIndex = 0;
             }
             catch (Exception f)
             {
@@ -119,10 +165,11 @@ namespace LET_Auftragsverwaltung
                 connection.Close();
 
 
-
+                
                 cbx_auf.DataSource = dtArt;
                 cbx_auf.DisplayMember = "Art";
                 cbx_auf.ValueMember = "Art_ID";
+                
                 if (cbx_auf.Items.Count > 0) cbx_auf.SelectedIndex = 0;
             }
             catch (Exception f)
@@ -286,6 +333,26 @@ namespace LET_Auftragsverwaltung
             btn_funk_change.Enabled = true;
 
             if (box_funk_dec.Checked == false) btn_funk_change.Enabled = false;
+        }
+
+        private void txt_pers_vor_TextChanged(object sender, EventArgs e)
+        {
+            btn_pers_save.Enabled = true;
+
+            if (txt_pers_vor.Text == "") btn_pers_save.Enabled = false;
+        }
+
+        private void txt_pers_nach_TextChanged(object sender, EventArgs e)
+        {
+            btn_pers_save.Enabled = true;
+
+            if (txt_pers_nach.Text == "") btn_pers_save.Enabled = false;
+
+        }
+
+        private void btn_pers_save_EnabledChanged(object sender, EventArgs e)
+        {
+            if (txt_pers_vor.Text == "" || txt_pers_nach.Text == "") btn_pers_save.Enabled = false;
         }
     }
 }

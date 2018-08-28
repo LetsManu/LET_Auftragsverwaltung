@@ -30,7 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txt_pers_ort = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.cbx_pers_funk = new System.Windows.Forms.ComboBox();
@@ -85,6 +85,7 @@
             this.txt_auf_re = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.btn_auf_change = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -110,7 +111,8 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.textBox2);
+            this.tabPage1.Controls.Add(this.label11);
+            this.tabPage1.Controls.Add(this.txt_pers_ort);
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.cbx_pers_funk);
@@ -135,12 +137,12 @@
             this.tabPage1.Text = "Personen";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // txt_pers_ort
             // 
-            this.textBox2.Location = new System.Drawing.Point(305, 197);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(109, 20);
-            this.textBox2.TabIndex = 6;
+            this.txt_pers_ort.Location = new System.Drawing.Point(305, 197);
+            this.txt_pers_ort.Name = "txt_pers_ort";
+            this.txt_pers_ort.Size = new System.Drawing.Size(109, 20);
+            this.txt_pers_ort.TabIndex = 6;
             // 
             // label10
             // 
@@ -237,18 +239,18 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(46, 112);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 13);
+            this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Nachname";
+            this.label2.Text = "Nachname*";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(46, 65);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Vorname";
+            this.label1.Text = "Vorname*";
             // 
             // txt_pers_nach
             // 
@@ -256,6 +258,7 @@
             this.txt_pers_nach.Name = "txt_pers_nach";
             this.txt_pers_nach.Size = new System.Drawing.Size(283, 20);
             this.txt_pers_nach.TabIndex = 2;
+            this.txt_pers_nach.TextChanged += new System.EventHandler(this.txt_pers_nach_TextChanged);
             // 
             // txt_pers_vor
             // 
@@ -263,15 +266,18 @@
             this.txt_pers_vor.Name = "txt_pers_vor";
             this.txt_pers_vor.Size = new System.Drawing.Size(283, 20);
             this.txt_pers_vor.TabIndex = 1;
+            this.txt_pers_vor.TextChanged += new System.EventHandler(this.txt_pers_vor_TextChanged);
             // 
             // btn_pers_save
             // 
+            this.btn_pers_save.Enabled = false;
             this.btn_pers_save.Location = new System.Drawing.Point(350, 330);
             this.btn_pers_save.Name = "btn_pers_save";
             this.btn_pers_save.Size = new System.Drawing.Size(64, 23);
             this.btn_pers_save.TabIndex = 9;
             this.btn_pers_save.Text = "Speichern";
             this.btn_pers_save.UseVisualStyleBackColor = true;
+            this.btn_pers_save.EnabledChanged += new System.EventHandler(this.btn_pers_save_EnabledChanged);
             this.btn_pers_save.Click += new System.EventHandler(this.btn_pers_save_Click);
             // 
             // tabPage3
@@ -652,6 +658,15 @@
             this.btn_auf_change.UseVisualStyleBackColor = true;
             this.btn_auf_change.Click += new System.EventHandler(this.btn_auf_change_Click);
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(40, 340);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(69, 13);
+            this.label11.TabIndex = 17;
+            this.label11.Text = "* Pflichtfelder";
+            // 
             // UC_Parameter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -706,7 +721,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txt_funk_re;
         private System.Windows.Forms.ComboBox cbx_funk;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txt_pers_ort;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txt_lief_ort;
         private System.Windows.Forms.Label label13;
@@ -738,5 +753,6 @@
         private System.Windows.Forms.Button btn_auf_change;
         private System.Windows.Forms.CheckBox box_funk_dec;
         private System.Windows.Forms.CheckBox box_auf_dec;
+        private System.Windows.Forms.Label label11;
     }
 }
