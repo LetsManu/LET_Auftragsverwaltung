@@ -137,7 +137,7 @@ namespace LET_Auftragsverwaltung
             {
                 OdbcConnection connection = Connection;
                 connection.Open();
-                string sql = string.Format("INSERT INTO auftragsart (Art) VALUES ('{0}')", txt_funk_new.Text);
+                string sql = string.Format("INSERT INTO auftragsart (Art) VALUES ('{0}')", txt_auf_new.Text);
                 OdbcCommand cmd = new OdbcCommand(sql, connection);
                 cmd.ExecuteNonQuery();
                 connection.Close();
@@ -210,7 +210,7 @@ namespace LET_Auftragsverwaltung
             {
                 OdbcConnection connection = Connection;
                 connection.Open();
-                string sql = string.Format("UPDATE auftragsart SET deaktiviert = {0}, art = '{1}' WHERE Funktion_ID = {2}", box_auf_dec.Checked, txt_auf_re.Text, cbx_auf.SelectedValue);
+                string sql = string.Format("UPDATE auftragsart SET deaktiviert = {0}, art = '{1}' WHERE Art_ID = {2}", box_auf_dec.Checked, txt_auf_re.Text, cbx_auf.SelectedValue);
                 OdbcCommand cmd = new OdbcCommand(sql, connection);
                 cmd.ExecuteNonQuery();
                 connection.Close();
