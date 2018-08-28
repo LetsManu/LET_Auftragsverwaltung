@@ -108,7 +108,7 @@ namespace LET_Auftragsverwaltung
 
         private void UC_Parameter_cbx_art_fill()
         {
-            cbx_auf.Items.Clear();
+            
             try
             {
                 OdbcConnection connection = Connection;
