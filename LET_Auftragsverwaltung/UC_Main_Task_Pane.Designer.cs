@@ -48,8 +48,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aufträgeToolStripMenuItem,
-            this.parameterToolStripMenuItem,
             this.neuerEintragToolStripMenuItem,
+            this.parameterToolStripMenuItem,
             this.hilfeToolStripMenuItem,
             this.hilfeToolStripMenuItem1,
             this.testToolStripMenuItem});
