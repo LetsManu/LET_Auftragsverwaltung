@@ -207,6 +207,7 @@ namespace LET_Auftragsverwaltung
 
             txt_funk_re.Text = "";
             btn_funk_change.Enabled = false;
+            box_funk_dec.Checked = false;
         }
 
         private void btn_auf_change_Click(object sender, EventArgs e)
@@ -237,6 +238,7 @@ namespace LET_Auftragsverwaltung
 
             btn_auf_change.Enabled = false;
             txt_auf_re.Text = "";
+            box_auf_dec.Checked = false;
         }
 
         private void txt_auf_new_TextChanged(object sender, EventArgs e)
