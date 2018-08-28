@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LET_Auftragsverwaltung", "L
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MySQL", "MySQL", "{116EADD3-580C-4175-BA0B-B6846AC2D4F3}"
 	ProjectSection(SolutionItems) = preProject
-		LET_Auftragsverwaltung\MySQL\MYSQL Connectionstring.txt = LET_Auftragsverwaltung\MySQL\MYSQL Connectionstring.txt
+		LET_Auftragsverwaltung\MySQL\MYSQL Connectionstring.cs = LET_Auftragsverwaltung\MySQL\MYSQL Connectionstring.cs
 		LET_Auftragsverwaltung\MySQL\mysql-connector-odbc-3.51.30-winx64.msi = LET_Auftragsverwaltung\MySQL\mysql-connector-odbc-3.51.30-winx64.msi
 		LET_Auftragsverwaltung\SQL_Abfragen.txt = LET_Auftragsverwaltung\SQL_Abfragen.txt
 	EndProjectSection
