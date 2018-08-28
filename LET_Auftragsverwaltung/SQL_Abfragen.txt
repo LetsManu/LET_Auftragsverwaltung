@@ -1,7 +1,7 @@
 ﻿Funktionen Hinzufügen & Abrufen:
 
 	INSERT INTO funktion (Funktion) VALUES ('PlaceHolder') 
-	SELECT * FROM funktion
+	SELECT * FROM funktion WHERE deaktiviert<>true
     UPDATE funktion SET deaktiviert=true WHERE Funktion_ID=1
 
 
@@ -14,7 +14,7 @@ Adressen Hinzufügen und Letzte ID (ID der zuletzt hinzugefügten Adresse, für 
 Lieferanten Hinzufügen Auslesne und Deaktiviere
 
 	INSERT INTO Lieferant (Lieferant, Adr_ID ) VALUES ('Name', 2)  
-	SELECT * FROM Lieferant 
+	SELECT * FROM Lieferant WHERE deaktiviert<>true
 	UPDATE Lieferant SET deaktiviert=true WHERE L_ID=1
 
 
