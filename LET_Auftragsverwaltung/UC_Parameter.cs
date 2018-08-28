@@ -72,6 +72,7 @@ namespace LET_Auftragsverwaltung
             {
                 MessageBox.Show("Person wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+                UC_Parameter_lbx_pers_fill();
             }
 
             txt_pers_vor.Text = "";
@@ -119,6 +120,7 @@ namespace LET_Auftragsverwaltung
         {
             UC_Parameter_cbx_funk_fill();
             UC_Parameter_cbx_art_fill();
+            UC_Parameter_lbx_pers_fill();
         }
 
         private void UC_Parameter_cbx_funk_fill()
@@ -176,6 +178,39 @@ namespace LET_Auftragsverwaltung
             {
                 MessageBox.Show("Fehler in der SQL Abfrage(art): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void UC_Parameter_lbx_pers_fill()
+        {
+            
+            try
+            {
+                OdbcConnection connection = Connection;
+                connection.Open();
+                string sql = "SELECT Nachname,Vorname,P_ID FROM personal WHERE deaktiviert<>true";
+                OdbcDataAdapter dc = new OdbcDataAdapter(sql, connection);
+                DataTable dtPers = new DataTable();
+                dc.Fill(dtPers);
+                connection.Close();
+
+                List<string> personal = new List<string>();
+
+                foreach (DataRow dwPersonal in dtPers.Rows)
+                {
+                    lbx_pers.Items.Add(dwPersonal["Nachname"].ToString() + " " + dwPersonal["Vorname"].ToString() + " ID:" + dwPersonal["P_ID"].ToString());
+                }
+               
+
+                //lbv_pers.Items.AddRange(personal);
+                
+
+                //if (lbv_pers.Items.Count > 0) lbv_pers.SelectedIndices = 0;
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Personal): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void btn_auf_new_Click(object sender, EventArgs e)
@@ -406,5 +441,7 @@ namespace LET_Auftragsverwaltung
             btn_lief_save.Enabled = false;
 
         }
+
+        
     }
 }

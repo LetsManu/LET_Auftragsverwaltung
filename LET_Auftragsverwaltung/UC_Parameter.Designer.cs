@@ -87,6 +87,9 @@
             this.btn_auf_change = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.btn_lief_edit = new System.Windows.Forms.Button();
+            this.btn_pers_edit = new System.Windows.Forms.Button();
+            this.lbx_pers = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -112,6 +115,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lbx_pers);
+            this.tabPage1.Controls.Add(this.btn_pers_edit);
             this.tabPage1.Controls.Add(this.label11);
             this.tabPage1.Controls.Add(this.txt_pers_ort);
             this.tabPage1.Controls.Add(this.label10);
@@ -283,6 +288,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btn_lief_edit);
             this.tabPage3.Controls.Add(this.label14);
             this.tabPage3.Controls.Add(this.txt_lief_ort);
             this.tabPage3.Controls.Add(this.label13);
@@ -681,6 +687,33 @@
             this.label14.TabIndex = 34;
             this.label14.Text = "* Pflichtfelder";
             // 
+            // btn_lief_edit
+            // 
+            this.btn_lief_edit.Location = new System.Drawing.Point(339, 271);
+            this.btn_lief_edit.Name = "btn_lief_edit";
+            this.btn_lief_edit.Size = new System.Drawing.Size(75, 23);
+            this.btn_lief_edit.TabIndex = 35;
+            this.btn_lief_edit.Text = "Bearbeiten";
+            this.btn_lief_edit.UseVisualStyleBackColor = true;
+            // 
+            // btn_pers_edit
+            // 
+            this.btn_pers_edit.Location = new System.Drawing.Point(342, 368);
+            this.btn_pers_edit.Name = "btn_pers_edit";
+            this.btn_pers_edit.Size = new System.Drawing.Size(72, 23);
+            this.btn_pers_edit.TabIndex = 18;
+            this.btn_pers_edit.Text = "Bearbeiten";
+            this.btn_pers_edit.UseVisualStyleBackColor = true;
+            // 
+            // lbx_pers
+            // 
+            this.lbx_pers.FormattingEnabled = true;
+            this.lbx_pers.Location = new System.Drawing.Point(431, 59);
+            this.lbx_pers.Name = "lbx_pers";
+            this.lbx_pers.ScrollAlwaysVisible = true;
+            this.lbx_pers.Size = new System.Drawing.Size(212, 251);
+            this.lbx_pers.TabIndex = 20;
+            // 
             // UC_Parameter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -769,5 +802,8 @@
         private System.Windows.Forms.CheckBox box_auf_dec;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button btn_pers_edit;
+        private System.Windows.Forms.Button btn_lief_edit;
+        private System.Windows.Forms.ListBox lbx_pers;
     }
 }
