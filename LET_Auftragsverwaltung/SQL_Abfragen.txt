@@ -8,7 +8,7 @@
 Adressen Hinzufügen und Letzte ID (ID der zuletzt hinzugefügten Adresse, für zuweisung der Adresse zur richtigen Person0)
 
 	INSERT INTO adressen (Land, PLZ, Ort, Hausnummer, Strasse ) VALUES ('Land', 'PLZ', 'Ort', 'Hausnummer', 'Strasse') 
-	SELECT Adr_ID FROM adressen ORDER BY Adr_ID DESC LIMIT 1
+	SELECT Adr_ID FROM adressen WHERE Land='Austria' AND PLZ='4840' AND Ort='Vöcklabruck' AND Hausnummer='48' AND Strasse='Dörfl'  LIMIT 1
 
 
 Lieferanten Hinzufügen Auslesne und Deaktiviere
