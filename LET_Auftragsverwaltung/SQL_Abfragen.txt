@@ -16,3 +16,8 @@ Lieferanten Hinzufügen Auslesne und Deaktiviere
 	INSERT INTO Lieferant (Lieferant, Adr_ID ) VALUES ('Name', 2)  
 	SELECT * FROM Lieferant 
 	UPDATE Lieferant SET deaktiviert=true WHERE L_ID=1
+
+
+Personal Hinzufügen, Adresse muss vorher geschrieben werden (wegen ID und so)
+	
+	INSERT INTO personal (Vorname, Nachname, Adr_ID, Funktion_ID) VALUES ('Manu', 'Whiteböckle', 3, 1)
