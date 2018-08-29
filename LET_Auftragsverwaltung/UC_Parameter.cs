@@ -36,6 +36,7 @@ namespace LET_Auftragsverwaltung
         public UC_Parameter()
         {
             InitializeComponent();
+            
 
         }
 
@@ -72,7 +73,7 @@ namespace LET_Auftragsverwaltung
             {
                 MessageBox.Show("Person wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
-                UC_Parameter_lbx_pers_fill();
+                UC_Parameter_cbx_art_fill();
             }
 
             txt_pers_vor.Text = "";
@@ -187,28 +188,19 @@ namespace LET_Auftragsverwaltung
             {
                 OdbcConnection connection = Connection;
                 connection.Open();
-                string sql = "SELECT Nachname, Vorname, P_ID FROM personal WHERE deaktiviert<>true";
+                string sql = "SELECT P_ID,Nachname FROM personal WHERE deaktiviert<>true";
                 OdbcDataAdapter dc = new OdbcDataAdapter(sql, connection);
-                DataTable dtPers = new DataTable();
-                dc.Fill(dtPers);
+                DataTable dtPer = new DataTable();
+                dc.Fill(dtPer);
                 connection.Close();
 
-                //List<string> personal = new List<string>();
 
-                /*foreach (DataRow dwPersonal in dtPers.Rows)
-                {
-                    lbx_pers.Items.Add(dwPersonal["Nachname"].ToString() + " " + dwPersonal["Vorname"].ToString() + " ID:" + dwPersonal["P_ID"].ToString());
-                }*/
-
-
-                lbx_pers.DataSource = dtPers;
-                lbx_pers.DisplayMember = "Nachname";              
+                lbx_pers.DataSource = dtPer;
                 lbx_pers.ValueMember = "P_ID";
+                lbx_pers.DisplayMember = "Nachname";              
+                
 
-                //lbv_pers.Items.AddRange(personal);
-
-
-                //if (lbv_pers.Items.Count > 0) lbv_pers.SelectedIndices = 0;
+               if (lbx_pers.Items.Count > 0) lbx_pers.SelectedIndex = 0;
             }
             catch (Exception f)
             {
@@ -448,8 +440,100 @@ namespace LET_Auftragsverwaltung
         }
 
         private void lbx_pers_SelectedValueChanged(object sender, EventArgs e)
+        {           
+
+        }
+
+        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void cbx_pers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+
+        }
+
+        private void lbx_pers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void lbx_pers_DoubleClick(object sender, EventArgs e)
         {
             btn_pers_edit.Enabled = true;
+            btn_pers_delete.Enabled = true;
+            btn_pers_save.Enabled = false;
+
+            if (lbx_pers.Items.Count > 0 || lbx_pers.Items.Count != null)
+            {
+                try
+                {
+
+                    string sql = string.Format("SELECT * FROM personal WHERE P_ID = {0} LIMIT 1", lbx_pers.SelectedValue);
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    OdbcCommand cmd_read = new OdbcCommand(sql, connection);
+                    OdbcDataReader sqlReader = cmd_read.ExecuteReader();
+                    sqlReader.Read();
+                    txt_pers_vor.Text = Convert.ToString(sqlReader[1]);
+                    txt_pers_nach.Text = Convert.ToString(sqlReader[2]);
+                    int adr_ID = Convert.ToInt32(sqlReader[3]);
+                    int funk_ID = Convert.ToInt32(sqlReader[4]);
+                    cbx_pers_funk.SelectedValue = funk_ID;
+                    sqlReader.Close();
+
+                    string sql2 = string.Format("SELECT Land,PLZ,Ort,Hausnummer,Strasse FROM adressen WHERE Adr_ID = {0} LIMIT 1", adr_ID);
+                    cmd_read = new OdbcCommand(sql2, connection);
+                    sqlReader = cmd_read.ExecuteReader();
+                    sqlReader.Read();
+                    txt_pers_land.Text = sqlReader[0].ToString();
+                    txt_pers_plz.Text = sqlReader[1].ToString();
+                    txt_pers_ort.Text = sqlReader[2].ToString();
+                    txt_pers_hnr.Text = sqlReader[3].ToString();
+                    txt_pers_str.Text = sqlReader[4].ToString();
+                    sqlReader.Close();
+                    connection.Close();
+                }
+
+                catch (Exception f)
+                {
+                    connection.Close();
+                    MessageBox.Show("Fehler in der SQL Abfrage(lbx_pers): \n\n" + f.Message, "Fehler",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+
+                finally
+                {
+
+                }
+            }
+        }
+
+        private void btn_pers_delete_Click(object sender, EventArgs e)
+        {
+            string sql = string.Format("UPDATE personal SET deaktiviert=true WHERE P_ID={0}", lbx_pers.SelectedValue);
+            OdbcConnection connection = Connection;
+            connection.Open();
+            OdbcCommand cmd = new OdbcCommand(sql, connection);
+            cmd.ExecuteNonQuery();
+            connection.Close();
+
+            btn_pers_delete.Enabled = false;
+            btn_pers_edit.Enabled = false;
+
+            txt_pers_vor.Text = "";
+            txt_pers_nach.Text = "";
+            txt_pers_land.Text = "";
+            txt_pers_plz.Text = "";
+            txt_pers_ort.Text = "";
+            txt_pers_hnr.Text = "";
+            txt_pers_str.Text = "";
+
+            UC_Parameter_lbx_pers_fill();
 
         }
     }

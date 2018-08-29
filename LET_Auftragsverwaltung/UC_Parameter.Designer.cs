@@ -30,7 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.lbx_pers = new System.Windows.Forms.ListBox();
+            this.btn_pers_delete = new System.Windows.Forms.Button();
             this.btn_pers_edit = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.txt_pers_ort = new System.Windows.Forms.TextBox();
@@ -90,7 +90,7 @@
             this.txt_auf_re = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.btn_auf_change = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.lbx_pers = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -116,8 +116,8 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.lbx_pers);
+            this.tabPage1.Controls.Add(this.btn_pers_delete);
             this.tabPage1.Controls.Add(this.btn_pers_edit);
             this.tabPage1.Controls.Add(this.label11);
             this.tabPage1.Controls.Add(this.txt_pers_ort);
@@ -145,21 +145,21 @@
             this.tabPage1.Text = "Personen";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // lbx_pers
+            // btn_pers_delete
             // 
-            this.lbx_pers.FormattingEnabled = true;
-            this.lbx_pers.Location = new System.Drawing.Point(431, 59);
-            this.lbx_pers.Name = "lbx_pers";
-            this.lbx_pers.ScrollAlwaysVisible = true;
-            this.lbx_pers.Size = new System.Drawing.Size(212, 251);
-            this.lbx_pers.TabIndex = 20;
-            this.lbx_pers.SelectedValueChanged += new System.EventHandler(this.lbx_pers_SelectedValueChanged);
+            this.btn_pers_delete.Location = new System.Drawing.Point(518, 307);
+            this.btn_pers_delete.Name = "btn_pers_delete";
+            this.btn_pers_delete.Size = new System.Drawing.Size(109, 23);
+            this.btn_pers_delete.TabIndex = 21;
+            this.btn_pers_delete.Text = "Löschen";
+            this.btn_pers_delete.UseVisualStyleBackColor = true;
+            this.btn_pers_delete.Click += new System.EventHandler(this.btn_pers_delete_Click);
             // 
             // btn_pers_edit
             // 
-            this.btn_pers_edit.Location = new System.Drawing.Point(342, 368);
+            this.btn_pers_edit.Location = new System.Drawing.Point(305, 349);
             this.btn_pers_edit.Name = "btn_pers_edit";
-            this.btn_pers_edit.Size = new System.Drawing.Size(72, 23);
+            this.btn_pers_edit.Size = new System.Drawing.Size(109, 23);
             this.btn_pers_edit.TabIndex = 18;
             this.btn_pers_edit.Text = "Bearbeiten";
             this.btn_pers_edit.UseVisualStyleBackColor = true;
@@ -167,7 +167,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(40, 340);
+            this.label11.Location = new System.Drawing.Point(40, 312);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(69, 13);
             this.label11.TabIndex = 17;
@@ -175,7 +175,7 @@
             // 
             // txt_pers_ort
             // 
-            this.txt_pers_ort.Location = new System.Drawing.Point(305, 197);
+            this.txt_pers_ort.Location = new System.Drawing.Point(305, 187);
             this.txt_pers_ort.Name = "txt_pers_ort";
             this.txt_pers_ort.Size = new System.Drawing.Size(109, 20);
             this.txt_pers_ort.TabIndex = 6;
@@ -183,7 +183,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(275, 200);
+            this.label10.Location = new System.Drawing.Point(275, 190);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(21, 13);
             this.label10.TabIndex = 16;
@@ -192,7 +192,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(46, 294);
+            this.label7.Location = new System.Drawing.Point(46, 274);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(48, 13);
             this.label7.TabIndex = 15;
@@ -201,7 +201,7 @@
             // cbx_pers_funk
             // 
             this.cbx_pers_funk.FormattingEnabled = true;
-            this.cbx_pers_funk.Location = new System.Drawing.Point(131, 286);
+            this.cbx_pers_funk.Location = new System.Drawing.Point(131, 266);
             this.cbx_pers_funk.Name = "cbx_pers_funk";
             this.cbx_pers_funk.Size = new System.Drawing.Size(121, 21);
             this.cbx_pers_funk.TabIndex = 8;
@@ -209,7 +209,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(275, 157);
+            this.label6.Location = new System.Drawing.Point(275, 151);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(69, 13);
             this.label6.TabIndex = 13;
@@ -218,7 +218,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(46, 246);
+            this.label5.Location = new System.Drawing.Point(53, 230);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(31, 13);
             this.label5.TabIndex = 12;
@@ -227,7 +227,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(46, 161);
+            this.label4.Location = new System.Drawing.Point(46, 151);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(38, 13);
             this.label4.TabIndex = 11;
@@ -236,7 +236,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(46, 200);
+            this.label3.Location = new System.Drawing.Point(46, 194);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(27, 13);
             this.label3.TabIndex = 10;
@@ -244,28 +244,28 @@
             // 
             // txt_pers_str
             // 
-            this.txt_pers_str.Location = new System.Drawing.Point(131, 154);
+            this.txt_pers_str.Location = new System.Drawing.Point(131, 148);
             this.txt_pers_str.Name = "txt_pers_str";
             this.txt_pers_str.Size = new System.Drawing.Size(112, 20);
             this.txt_pers_str.TabIndex = 3;
             // 
             // txt_pers_land
             // 
-            this.txt_pers_land.Location = new System.Drawing.Point(131, 239);
+            this.txt_pers_land.Location = new System.Drawing.Point(131, 227);
             this.txt_pers_land.Name = "txt_pers_land";
             this.txt_pers_land.Size = new System.Drawing.Size(283, 20);
             this.txt_pers_land.TabIndex = 7;
             // 
             // txt_pers_hnr
             // 
-            this.txt_pers_hnr.Location = new System.Drawing.Point(350, 154);
+            this.txt_pers_hnr.Location = new System.Drawing.Point(350, 148);
             this.txt_pers_hnr.Name = "txt_pers_hnr";
             this.txt_pers_hnr.Size = new System.Drawing.Size(64, 20);
             this.txt_pers_hnr.TabIndex = 4;
             // 
             // txt_pers_plz
             // 
-            this.txt_pers_plz.Location = new System.Drawing.Point(131, 197);
+            this.txt_pers_plz.Location = new System.Drawing.Point(131, 187);
             this.txt_pers_plz.Name = "txt_pers_plz";
             this.txt_pers_plz.Size = new System.Drawing.Size(112, 20);
             this.txt_pers_plz.TabIndex = 5;
@@ -273,7 +273,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 112);
+            this.label2.Location = new System.Drawing.Point(46, 108);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 4;
@@ -282,7 +282,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(46, 65);
+            this.label1.Location = new System.Drawing.Point(46, 62);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 3;
@@ -307,11 +307,11 @@
             // btn_pers_save
             // 
             this.btn_pers_save.Enabled = false;
-            this.btn_pers_save.Location = new System.Drawing.Point(350, 330);
+            this.btn_pers_save.Location = new System.Drawing.Point(305, 307);
             this.btn_pers_save.Name = "btn_pers_save";
-            this.btn_pers_save.Size = new System.Drawing.Size(64, 23);
+            this.btn_pers_save.Size = new System.Drawing.Size(109, 23);
             this.btn_pers_save.TabIndex = 9;
-            this.btn_pers_save.Text = "Speichern";
+            this.btn_pers_save.Text = "Neu Anlegen";
             this.btn_pers_save.UseVisualStyleBackColor = true;
             this.btn_pers_save.EnabledChanged += new System.EventHandler(this.btn_pers_save_EnabledChanged);
             this.btn_pers_save.Click += new System.EventHandler(this.btn_pers_save_Click);
@@ -717,14 +717,16 @@
             this.btn_auf_change.UseVisualStyleBackColor = true;
             this.btn_auf_change.Click += new System.EventHandler(this.btn_auf_change_Click);
             // 
-            // button1
+            // lbx_pers
             // 
-            this.button1.Location = new System.Drawing.Point(568, 330);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "Löschen";
-            this.button1.UseVisualStyleBackColor = true;
+            this.lbx_pers.FormattingEnabled = true;
+            this.lbx_pers.Location = new System.Drawing.Point(449, 59);
+            this.lbx_pers.Name = "lbx_pers";
+            this.lbx_pers.ScrollAlwaysVisible = true;
+            this.lbx_pers.Size = new System.Drawing.Size(178, 238);
+            this.lbx_pers.TabIndex = 23;
+            this.lbx_pers.SelectedIndexChanged += new System.EventHandler(this.lbx_pers_SelectedIndexChanged);
+            this.lbx_pers.DoubleClick += new System.EventHandler(this.lbx_pers_DoubleClick);
             // 
             // UC_Parameter
             // 
@@ -816,7 +818,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button btn_pers_edit;
         private System.Windows.Forms.Button btn_lief_edit;
+        private System.Windows.Forms.Button btn_pers_delete;
         private System.Windows.Forms.ListBox lbx_pers;
-        private System.Windows.Forms.Button button1;
     }
 }
