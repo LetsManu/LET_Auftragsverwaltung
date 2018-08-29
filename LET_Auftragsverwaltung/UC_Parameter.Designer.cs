@@ -96,6 +96,18 @@
             this.lbx_pers_funk = new System.Windows.Forms.ListBox();
             this.btn_pers_funk_del = new System.Windows.Forms.Button();
             this.btn_pers_funk_add = new System.Windows.Forms.Button();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txt_fert_new = new System.Windows.Forms.TextBox();
+            this.btn_fert_save = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.box_fert_dis = new System.Windows.Forms.CheckBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.cbx_fert = new System.Windows.Forms.ComboBox();
+            this.txt_fert_edit = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.btn_fert_edit = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -105,6 +117,9 @@
             this.tabPage4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -113,6 +128,7 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -793,6 +809,129 @@
             this.btn_pers_funk_add.UseVisualStyleBackColor = true;
             this.btn_pers_funk_add.Click += new System.EventHandler(this.btn_pers_funk_add_Click);
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.groupBox5);
+            this.tabPage5.Controls.Add(this.groupBox6);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(844, 636);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Fertigungsstatus";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label19);
+            this.groupBox5.Controls.Add(this.txt_fert_new);
+            this.groupBox5.Controls.Add(this.btn_fert_save);
+            this.groupBox5.Location = new System.Drawing.Point(31, 41);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(214, 167);
+            this.groupBox5.TabIndex = 14;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Neuer Eintrag";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(6, 25);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(72, 13);
+            this.label19.TabIndex = 8;
+            this.label19.Text = "Neuer Eintrag";
+            // 
+            // txt_fert_new
+            // 
+            this.txt_fert_new.Location = new System.Drawing.Point(99, 17);
+            this.txt_fert_new.Name = "txt_fert_new";
+            this.txt_fert_new.Size = new System.Drawing.Size(109, 20);
+            this.txt_fert_new.TabIndex = 3;
+            this.txt_fert_new.TextChanged += new System.EventHandler(this.txt_fert_new_TextChanged);
+            // 
+            // btn_fert_save
+            // 
+            this.btn_fert_save.Enabled = false;
+            this.btn_fert_save.Location = new System.Drawing.Point(133, 128);
+            this.btn_fert_save.Name = "btn_fert_save";
+            this.btn_fert_save.Size = new System.Drawing.Size(75, 23);
+            this.btn_fert_save.TabIndex = 4;
+            this.btn_fert_save.Text = "Speichern";
+            this.btn_fert_save.UseVisualStyleBackColor = true;
+            this.btn_fert_save.Click += new System.EventHandler(this.btn_fert_save_Click);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.box_fert_dis);
+            this.groupBox6.Controls.Add(this.label24);
+            this.groupBox6.Controls.Add(this.cbx_fert);
+            this.groupBox6.Controls.Add(this.txt_fert_edit);
+            this.groupBox6.Controls.Add(this.label25);
+            this.groupBox6.Controls.Add(this.btn_fert_edit);
+            this.groupBox6.Location = new System.Drawing.Point(341, 41);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(243, 167);
+            this.groupBox6.TabIndex = 13;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Eintrag Ändern";
+            // 
+            // box_fert_dis
+            // 
+            this.box_fert_dis.AutoSize = true;
+            this.box_fert_dis.Location = new System.Drawing.Point(7, 100);
+            this.box_fert_dis.Name = "box_fert_dis";
+            this.box_fert_dis.Size = new System.Drawing.Size(92, 17);
+            this.box_fert_dis.TabIndex = 13;
+            this.box_fert_dis.Text = "Deaktivieren?";
+            this.box_fert_dis.UseVisualStyleBackColor = true;
+            this.box_fert_dis.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(6, 25);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(47, 13);
+            this.label24.TabIndex = 2;
+            this.label24.Text = "Auswahl";
+            // 
+            // cbx_fert
+            // 
+            this.cbx_fert.FormattingEnabled = true;
+            this.cbx_fert.Location = new System.Drawing.Point(116, 17);
+            this.cbx_fert.Name = "cbx_fert";
+            this.cbx_fert.Size = new System.Drawing.Size(121, 21);
+            this.cbx_fert.TabIndex = 0;
+            // 
+            // txt_fert_edit
+            // 
+            this.txt_fert_edit.Location = new System.Drawing.Point(116, 61);
+            this.txt_fert_edit.Name = "txt_fert_edit";
+            this.txt_fert_edit.Size = new System.Drawing.Size(121, 20);
+            this.txt_fert_edit.TabIndex = 1;
+            this.txt_fert_edit.TextChanged += new System.EventHandler(this.txt_fert_edit_TextChanged);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(6, 64);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(40, 13);
+            this.label25.TabIndex = 3;
+            this.label25.Text = "Eintrag";
+            // 
+            // btn_fert_edit
+            // 
+            this.btn_fert_edit.Enabled = false;
+            this.btn_fert_edit.Location = new System.Drawing.Point(162, 128);
+            this.btn_fert_edit.Name = "btn_fert_edit";
+            this.btn_fert_edit.Size = new System.Drawing.Size(75, 23);
+            this.btn_fert_edit.TabIndex = 2;
+            this.btn_fert_edit.Text = "Ändern";
+            this.btn_fert_edit.UseVisualStyleBackColor = true;
+            this.btn_fert_edit.Click += new System.EventHandler(this.btn_fert_edit_Click);
+            // 
             // UC_Parameter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -816,6 +955,11 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -890,5 +1034,17 @@
         private System.Windows.Forms.Button btn_pers_funk_add;
         private System.Windows.Forms.Button btn_pers_funk_del;
         private System.Windows.Forms.ListBox lbx_pers_funk;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox txt_fert_new;
+        private System.Windows.Forms.Button btn_fert_save;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.CheckBox box_fert_dis;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.ComboBox cbx_fert;
+        private System.Windows.Forms.TextBox txt_fert_edit;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Button btn_fert_edit;
     }
 }

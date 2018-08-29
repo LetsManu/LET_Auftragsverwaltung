@@ -121,6 +121,7 @@ namespace LET_Auftragsverwaltung
         {
             UC_Parameter_cbx_funk_fill();
             UC_Parameter_cbx_art_fill();
+            UC_Parameter_cbx_fert_fill();
             UC_Parameter_lbx_pers_fill();
             UC_Parameter_lbx_lief_fill();
             UC_Parameter_lbx_pers_funk_fill();
@@ -182,6 +183,39 @@ namespace LET_Auftragsverwaltung
                 MessageBox.Show("Fehler in der SQL Abfrage(Art Fill): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void UC_Parameter_cbx_fert_fill()
+        {
+            try
+            {
+                OdbcConnection connection = Connection;
+                connection.Open();
+                string sql = "SELECT F_ID,Status FROM fertigungsstatus WHERE deaktiviert<>true";
+                OdbcDataAdapter db = new OdbcDataAdapter(sql, connection);
+                DataTable dtArt = new DataTable();
+                db.Fill(dtArt);
+                connection.Close();
+
+
+
+                cbx_fert.DataSource = dtArt;
+                cbx_fert.DisplayMember = "Status";
+                cbx_fert.ValueMember = "F_ID";
+
+                if (cbx_fert.Items.Count > 0) cbx_fert.SelectedIndex = 0;
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Art Fill): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+
+            finally
+            {
+
+            }
+        }
+        
 
         private void UC_Parameter_lbx_pers_fill()
         {
@@ -862,6 +896,82 @@ namespace LET_Auftragsverwaltung
         private void lbx_pers_funk_SelectedValueChanged(object sender, EventArgs e)
         {
             btn_pers_funk_del.Enabled = true;
+        }
+
+        private void btn_fert_save_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OdbcConnection connection = Connection;
+                connection.Open();
+                string sql = string.Format("INSERT INTO fertigungsstatus (Status) VALUES ('{0}')", txt_fert_new.Text);
+                OdbcCommand cmd = new OdbcCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                UC_Parameter_cbx_fert_fill();
+                txt_fert_new.Text = "";
+
+                MessageBox.Show("Fertigungsstatus wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+
+            btn_fert_save.Enabled = false;
+        }
+
+        private void txt_fert_new_TextChanged(object sender, EventArgs e)
+        {
+            btn_fert_save.Enabled = true;
+            if (txt_fert_new.Text == "") btn_fert_save.Enabled = false;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            btn_fert_edit.Enabled = !btn_fert_edit.Enabled;
+        }
+
+        private void txt_fert_edit_TextChanged(object sender, EventArgs e)
+        {
+            btn_fert_edit.Enabled = true;
+            if (txt_fert_edit.Text == "") btn_fert_edit.Enabled = false;
+        }
+
+        private void btn_fert_edit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OdbcConnection connection = Connection;
+                connection.Open();
+                string sql = string.Format("UPDATE fertigungsstatus SET deaktiviert = {0}, status = '{1}' WHERE F_ID = {2}", box_fert_dis.Checked, txt_fert_edit.Text, cbx_fert.SelectedValue);
+                OdbcCommand cmd = new OdbcCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+
+            finally
+            {
+                UC_Parameter_cbx_fert_fill();
+
+
+                MessageBox.Show("Fertigungsstatus wurde geändert", "Änderung erfolgreich", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+
+            txt_fert_edit.Text = "";
+            btn_fert_edit.Enabled = false;
+            box_fert_dis.Checked = false;
         }
     }
 }
