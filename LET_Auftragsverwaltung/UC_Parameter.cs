@@ -515,26 +515,99 @@ namespace LET_Auftragsverwaltung
 
         private void btn_pers_delete_Click(object sender, EventArgs e)
         {
-            string sql = string.Format("UPDATE personal SET deaktiviert=true WHERE P_ID={0}", lbx_pers.SelectedValue);
-            OdbcConnection connection = Connection;
-            connection.Open();
-            OdbcCommand cmd = new OdbcCommand(sql, connection);
-            cmd.ExecuteNonQuery();
-            connection.Close();
+            try
+            {
+                string sql = string.Format("UPDATE personal SET deaktiviert=true WHERE P_ID={0}",
+                    lbx_pers.SelectedValue);
+                OdbcConnection connection = Connection;
+                connection.Open();
+                OdbcCommand cmd = new OdbcCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+                connection.Close();
 
-            btn_pers_delete.Enabled = false;
-            btn_pers_edit.Enabled = false;
+                
+            }
+            catch(Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Personal Delete): \n\n" + f.Message, "Fehler",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                btn_pers_delete.Enabled = false;
+                btn_pers_edit.Enabled = false;
 
-            txt_pers_vor.Text = "";
-            txt_pers_nach.Text = "";
-            txt_pers_land.Text = "";
-            txt_pers_plz.Text = "";
-            txt_pers_ort.Text = "";
-            txt_pers_hnr.Text = "";
-            txt_pers_str.Text = "";
+                txt_pers_vor.Text = "";
+                txt_pers_nach.Text = "";
+                txt_pers_land.Text = "";
+                txt_pers_plz.Text = "";
+                txt_pers_ort.Text = "";
+                txt_pers_hnr.Text = "";
+                txt_pers_str.Text = "";
 
-            UC_Parameter_lbx_pers_fill();
+                UC_Parameter_lbx_pers_fill();
+            }
+        }
 
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_pers_edit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OdbcConnection connection = Connection;
+                connection.Open();
+                string sql3 =
+                    string.Format(
+                        "UPDATE personal SET Vorname = '{0}', Nachname = '{1}', Funktion_ID = {2} WHERE P_ID = {3}",
+                        txt_pers_vor.Text, txt_pers_nach.Text, cbx_pers_funk.SelectedValue, lbx_pers.SelectedValue);
+
+                OdbcCommand cmd = new OdbcCommand(sql3, connection);
+                cmd.ExecuteNonQuery();
+                string sql2 = string.Format("SELECT Adr_ID FROM personal WHERE P_ID = {0}", lbx_pers.SelectedValue);
+                OdbcCommand cmd_read = new OdbcCommand(sql2, connection);
+                OdbcDataReader sqlReader = cmd_read.ExecuteReader();
+
+                sqlReader.Read();
+
+                int adr_id = sqlReader.GetInt32(0);
+
+                string sql = string.Format(
+                    "UPDATE adressen SET Land = '{0}', PLZ = '{1}', Ort = '{2}', Hausnummer = '{3}', Strasse = '{4}' WHERE Adr_ID = {5}",
+                    txt_pers_land.Text, txt_pers_plz.Text, txt_pers_ort.Text, txt_pers_hnr.Text, txt_pers_str.Text,
+                    adr_id);
+                OdbcCommand cmd2 = new OdbcCommand(sql, connection);
+                cmd2.ExecuteNonQuery();
+
+                connection.Close();
+            }
+            catch (Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Personal Update): \n\n" + f.Message, "Fehler",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                btn_pers_delete.Enabled = false;
+                btn_pers_edit.Enabled = false;
+
+                txt_pers_vor.Text = "";
+                txt_pers_nach.Text = "";
+                txt_pers_land.Text = "";
+                txt_pers_plz.Text = "";
+                txt_pers_ort.Text = "";
+                txt_pers_hnr.Text = "";
+                txt_pers_str.Text = "";
+
+                UC_Parameter_lbx_pers_fill();
+            }
         }
     }
 }

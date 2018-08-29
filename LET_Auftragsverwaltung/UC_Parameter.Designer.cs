@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lbx_pers = new System.Windows.Forms.ListBox();
             this.btn_pers_delete = new System.Windows.Forms.Button();
             this.btn_pers_edit = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -90,7 +91,8 @@
             this.txt_auf_re = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.btn_auf_change = new System.Windows.Forms.Button();
-            this.lbx_pers = new System.Windows.Forms.ListBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.btn_lief_delete = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -145,6 +147,17 @@
             this.tabPage1.Text = "Personen";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // lbx_pers
+            // 
+            this.lbx_pers.FormattingEnabled = true;
+            this.lbx_pers.Location = new System.Drawing.Point(449, 59);
+            this.lbx_pers.Name = "lbx_pers";
+            this.lbx_pers.ScrollAlwaysVisible = true;
+            this.lbx_pers.Size = new System.Drawing.Size(178, 238);
+            this.lbx_pers.TabIndex = 23;
+            this.lbx_pers.SelectedIndexChanged += new System.EventHandler(this.lbx_pers_SelectedIndexChanged);
+            this.lbx_pers.DoubleClick += new System.EventHandler(this.lbx_pers_DoubleClick);
+            // 
             // btn_pers_delete
             // 
             this.btn_pers_delete.Location = new System.Drawing.Point(518, 307);
@@ -163,6 +176,7 @@
             this.btn_pers_edit.TabIndex = 18;
             this.btn_pers_edit.Text = "Bearbeiten";
             this.btn_pers_edit.UseVisualStyleBackColor = true;
+            this.btn_pers_edit.Click += new System.EventHandler(this.btn_pers_edit_Click);
             // 
             // label11
             // 
@@ -318,6 +332,8 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btn_lief_delete);
+            this.tabPage3.Controls.Add(this.listBox1);
             this.tabPage3.Controls.Add(this.btn_lief_edit);
             this.tabPage3.Controls.Add(this.label14);
             this.tabPage3.Controls.Add(this.txt_lief_ort);
@@ -343,9 +359,9 @@
             // 
             // btn_lief_edit
             // 
-            this.btn_lief_edit.Location = new System.Drawing.Point(339, 271);
+            this.btn_lief_edit.Location = new System.Drawing.Point(305, 271);
             this.btn_lief_edit.Name = "btn_lief_edit";
-            this.btn_lief_edit.Size = new System.Drawing.Size(75, 23);
+            this.btn_lief_edit.Size = new System.Drawing.Size(109, 23);
             this.btn_lief_edit.TabIndex = 35;
             this.btn_lief_edit.Text = "Bearbeiten";
             this.btn_lief_edit.UseVisualStyleBackColor = true;
@@ -361,7 +377,7 @@
             // 
             // txt_lief_ort
             // 
-            this.txt_lief_ort.Location = new System.Drawing.Point(305, 148);
+            this.txt_lief_ort.Location = new System.Drawing.Point(305, 161);
             this.txt_lief_ort.Name = "txt_lief_ort";
             this.txt_lief_ort.Size = new System.Drawing.Size(109, 20);
             this.txt_lief_ort.TabIndex = 5;
@@ -369,7 +385,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(275, 151);
+            this.label13.Location = new System.Drawing.Point(275, 164);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(21, 13);
             this.label13.TabIndex = 33;
@@ -378,7 +394,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(275, 108);
+            this.label15.Location = new System.Drawing.Point(275, 115);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(69, 13);
             this.label15.TabIndex = 31;
@@ -396,7 +412,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(58, 112);
+            this.label17.Location = new System.Drawing.Point(58, 115);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(38, 13);
             this.label17.TabIndex = 29;
@@ -405,7 +421,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(58, 151);
+            this.label18.Location = new System.Drawing.Point(58, 164);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(27, 13);
             this.label18.TabIndex = 28;
@@ -413,28 +429,28 @@
             // 
             // txt_lief_str
             // 
-            this.txt_lief_str.Location = new System.Drawing.Point(131, 105);
+            this.txt_lief_str.Location = new System.Drawing.Point(131, 112);
             this.txt_lief_str.Name = "txt_lief_str";
             this.txt_lief_str.Size = new System.Drawing.Size(112, 20);
             this.txt_lief_str.TabIndex = 2;
             // 
             // txt_lief_land
             // 
-            this.txt_lief_land.Location = new System.Drawing.Point(131, 190);
+            this.txt_lief_land.Location = new System.Drawing.Point(131, 199);
             this.txt_lief_land.Name = "txt_lief_land";
             this.txt_lief_land.Size = new System.Drawing.Size(283, 20);
             this.txt_lief_land.TabIndex = 6;
             // 
             // txt_lief_hnr
             // 
-            this.txt_lief_hnr.Location = new System.Drawing.Point(350, 105);
+            this.txt_lief_hnr.Location = new System.Drawing.Point(350, 112);
             this.txt_lief_hnr.Name = "txt_lief_hnr";
             this.txt_lief_hnr.Size = new System.Drawing.Size(64, 20);
             this.txt_lief_hnr.TabIndex = 3;
             // 
             // txt_lief_plz
             // 
-            this.txt_lief_plz.Location = new System.Drawing.Point(131, 148);
+            this.txt_lief_plz.Location = new System.Drawing.Point(131, 161);
             this.txt_lief_plz.Name = "txt_lief_plz";
             this.txt_lief_plz.Size = new System.Drawing.Size(112, 20);
             this.txt_lief_plz.TabIndex = 4;
@@ -459,11 +475,11 @@
             // btn_lief_save
             // 
             this.btn_lief_save.Enabled = false;
-            this.btn_lief_save.Location = new System.Drawing.Point(350, 231);
+            this.btn_lief_save.Location = new System.Drawing.Point(305, 231);
             this.btn_lief_save.Name = "btn_lief_save";
-            this.btn_lief_save.Size = new System.Drawing.Size(64, 23);
+            this.btn_lief_save.Size = new System.Drawing.Size(109, 23);
             this.btn_lief_save.TabIndex = 7;
-            this.btn_lief_save.Text = "Speichern";
+            this.btn_lief_save.Text = "Neu Anlegen";
             this.btn_lief_save.UseVisualStyleBackColor = true;
             this.btn_lief_save.Click += new System.EventHandler(this.btn_lief_save_Click);
             // 
@@ -717,16 +733,23 @@
             this.btn_auf_change.UseVisualStyleBackColor = true;
             this.btn_auf_change.Click += new System.EventHandler(this.btn_auf_change_Click);
             // 
-            // lbx_pers
+            // listBox1
             // 
-            this.lbx_pers.FormattingEnabled = true;
-            this.lbx_pers.Location = new System.Drawing.Point(449, 59);
-            this.lbx_pers.Name = "lbx_pers";
-            this.lbx_pers.ScrollAlwaysVisible = true;
-            this.lbx_pers.Size = new System.Drawing.Size(178, 238);
-            this.lbx_pers.TabIndex = 23;
-            this.lbx_pers.SelectedIndexChanged += new System.EventHandler(this.lbx_pers_SelectedIndexChanged);
-            this.lbx_pers.DoubleClick += new System.EventHandler(this.lbx_pers_DoubleClick);
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(437, 59);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(224, 160);
+            this.listBox1.TabIndex = 36;
+            this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
+            // 
+            // btn_lief_delete
+            // 
+            this.btn_lief_delete.Location = new System.Drawing.Point(552, 231);
+            this.btn_lief_delete.Name = "btn_lief_delete";
+            this.btn_lief_delete.Size = new System.Drawing.Size(109, 23);
+            this.btn_lief_delete.TabIndex = 37;
+            this.btn_lief_delete.Text = "Löschen";
+            this.btn_lief_delete.UseVisualStyleBackColor = true;
             // 
             // UC_Parameter
             // 
@@ -820,5 +843,7 @@
         private System.Windows.Forms.Button btn_lief_edit;
         private System.Windows.Forms.Button btn_pers_delete;
         private System.Windows.Forms.ListBox lbx_pers;
+        private System.Windows.Forms.Button btn_lief_delete;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
