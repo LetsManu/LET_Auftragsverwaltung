@@ -166,6 +166,7 @@
             // 
             // btn_pers_delete
             // 
+            this.btn_pers_delete.Enabled = false;
             this.btn_pers_delete.Location = new System.Drawing.Point(729, 312);
             this.btn_pers_delete.Name = "btn_pers_delete";
             this.btn_pers_delete.Size = new System.Drawing.Size(109, 23);
@@ -176,6 +177,7 @@
             // 
             // btn_pers_edit
             // 
+            this.btn_pers_edit.Enabled = false;
             this.btn_pers_edit.Location = new System.Drawing.Point(279, 349);
             this.btn_pers_edit.Name = "btn_pers_edit";
             this.btn_pers_edit.Size = new System.Drawing.Size(109, 23);
@@ -365,6 +367,7 @@
             // 
             // btn_lief_delete
             // 
+            this.btn_lief_delete.Enabled = false;
             this.btn_lief_delete.Location = new System.Drawing.Point(552, 231);
             this.btn_lief_delete.Name = "btn_lief_delete";
             this.btn_lief_delete.Size = new System.Drawing.Size(109, 23);
@@ -383,6 +386,7 @@
             // 
             // btn_lief_edit
             // 
+            this.btn_lief_edit.Enabled = false;
             this.btn_lief_edit.Location = new System.Drawing.Point(305, 271);
             this.btn_lief_edit.Name = "btn_lief_edit";
             this.btn_lief_edit.Size = new System.Drawing.Size(109, 23);
@@ -765,24 +769,29 @@
             this.lbx_pers_funk.Name = "lbx_pers_funk";
             this.lbx_pers_funk.Size = new System.Drawing.Size(209, 238);
             this.lbx_pers_funk.TabIndex = 24;
+            this.lbx_pers_funk.SelectedValueChanged += new System.EventHandler(this.lbx_pers_funk_SelectedValueChanged);
             // 
             // btn_pers_funk_del
             // 
+            this.btn_pers_funk_del.Enabled = false;
             this.btn_pers_funk_del.Location = new System.Drawing.Point(525, 30);
             this.btn_pers_funk_del.Name = "btn_pers_funk_del";
             this.btn_pers_funk_del.Size = new System.Drawing.Size(109, 23);
             this.btn_pers_funk_del.TabIndex = 25;
             this.btn_pers_funk_del.Text = "Löschen";
             this.btn_pers_funk_del.UseVisualStyleBackColor = true;
+            this.btn_pers_funk_del.Click += new System.EventHandler(this.btn_pers_funk_del_Click);
             // 
             // btn_pers_funk_add
             // 
+            this.btn_pers_funk_add.Enabled = false;
             this.btn_pers_funk_add.Location = new System.Drawing.Point(525, 312);
             this.btn_pers_funk_add.Name = "btn_pers_funk_add";
             this.btn_pers_funk_add.Size = new System.Drawing.Size(109, 23);
             this.btn_pers_funk_add.TabIndex = 26;
             this.btn_pers_funk_add.Text = "Hinzufügen";
             this.btn_pers_funk_add.UseVisualStyleBackColor = true;
+            this.btn_pers_funk_add.Click += new System.EventHandler(this.btn_pers_funk_add_Click);
             // 
             // UC_Parameter
             // 

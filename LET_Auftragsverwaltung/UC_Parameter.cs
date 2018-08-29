@@ -57,7 +57,7 @@ namespace LET_Auftragsverwaltung
 
                 int adr_id = sqlReader.GetInt32(0);
 
-                string sql3 = string.Format("INSERT INTO personal (Vorname, Nachname, Adr_ID, Funktion_ID) VALUES ('{0}', '{1}', {2}, {3})", txt_pers_vor.Text, txt_pers_nach.Text, adr_id, cbx_pers_funk.SelectedValue);
+                string sql3 = string.Format("INSERT INTO personal (Vorname, Nachname, Adr_ID) VALUES ('{0}', '{1}', {2})", txt_pers_vor.Text, txt_pers_nach.Text, adr_id);
 
                 OdbcCommand cmd2 = new OdbcCommand(sql3, connection);
                 cmd2.ExecuteNonQuery();
@@ -73,7 +73,7 @@ namespace LET_Auftragsverwaltung
             {
                 MessageBox.Show("Person wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
-                UC_Parameter_cbx_art_fill();
+                UC_Parameter_lbx_pers_fill();
             }
 
             txt_pers_vor.Text = "";
@@ -123,6 +123,7 @@ namespace LET_Auftragsverwaltung
             UC_Parameter_cbx_art_fill();
             UC_Parameter_lbx_pers_fill();
             UC_Parameter_lbx_lief_fill();
+            UC_Parameter_lbx_pers_funk_fill();
         }
 
         private void UC_Parameter_cbx_funk_fill()
@@ -151,7 +152,7 @@ namespace LET_Auftragsverwaltung
             }
             catch (Exception f)
             {
-                MessageBox.Show("Fehler in der SQL Abfrage(funkt): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Fehler in der SQL Abfrage(Funtkion Fill): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -178,7 +179,7 @@ namespace LET_Auftragsverwaltung
             }
             catch (Exception f)
             {
-                MessageBox.Show("Fehler in der SQL Abfrage(art): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Fehler in der SQL Abfrage(Art Fill): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -205,7 +206,7 @@ namespace LET_Auftragsverwaltung
             }
             catch (Exception f)
             {
-                MessageBox.Show("Fehler in der SQL Abfrage(Personal): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Fehler in der SQL Abfrage(Personal Fill): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -235,7 +236,58 @@ namespace LET_Auftragsverwaltung
             catch (Exception f)
             {
                 connection.Close();
-                MessageBox.Show("Fehler in der SQL Abfrage(Lieferant): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Fehler in der SQL Abfrage(Lieferant Fill): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void UC_Parameter_lbx_pers_funk_fill()
+        {
+
+            try
+            {
+                OdbcConnection connection = Connection;
+
+                string sql_read = string.Format("SELECT Funktion_ID FROM personal_funktion WHERE P_ID = {0}", lbx_pers.SelectedValue);
+                string sql = "";
+                OdbcCommand cmd_read = new OdbcCommand(sql_read, connection);
+                OdbcCommand cmd;
+                connection.Open();
+                OdbcDataReader sqlReader_pers = cmd_read.ExecuteReader();
+                DataTable dt = new DataTable("Funktionen");
+                dt.Columns.Add("Funktion", typeof(string));
+                dt.Columns.Add("ID", typeof(int));
+                OdbcDataReader sqlReader_funkt;
+                DataRow funk_row;
+
+                while (sqlReader_pers.Read())
+                {
+                    sql = string.Format("SELECT Funktion,Funktion_ID FROM funktion WHERE Funktion_ID = {0}", sqlReader_pers[0]);
+                    
+                    cmd = new OdbcCommand(sql, connection);
+                    sqlReader_funkt = cmd.ExecuteReader();
+                    sqlReader_funkt.Read();
+                    funk_row = dt.NewRow();
+                    funk_row["Funktion"] = sqlReader_funkt[0];
+                    funk_row["ID"] = sqlReader_funkt[1];
+                    dt.Rows.Add(funk_row);
+                    sqlReader_funkt.Close();
+                }
+                sqlReader_pers.Close();
+                connection.Close();
+
+
+                lbx_pers_funk.DataSource = dt;
+                lbx_pers_funk.ValueMember = "ID";
+                lbx_pers_funk.DisplayMember = "Funktion";
+
+
+                if (lbx_pers_funk.Items.Count > 0) lbx_pers_funk.SelectedIndex = 0;
+            }
+            catch (Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Personal Funktion Fill): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -422,6 +474,7 @@ namespace LET_Auftragsverwaltung
         {
             btn_lief_save.Enabled = true;
             if (txt_lief_ken.Text == "") btn_lief_save.Enabled = false;
+            if(btn_lief_edit.Enabled || btn_lief_delete.Enabled) btn_lief_save.Enabled = false;
         }
 
         private void btn_lief_save_Click(object sender, EventArgs e)
@@ -498,6 +551,8 @@ namespace LET_Auftragsverwaltung
             btn_pers_edit.Enabled = true;
             btn_pers_delete.Enabled = true;
             btn_pers_save.Enabled = false;
+            btn_pers_funk_add.Enabled = true;
+            btn_pers_funk_del.Enabled = true;
 
             if (lbx_pers.Items.Count > 0 || lbx_pers.Items.Count != null)
             {
@@ -540,7 +595,7 @@ namespace LET_Auftragsverwaltung
 
                 finally
                 {
-
+                    UC_Parameter_lbx_pers_funk_fill();
                 }
             }
         }
@@ -585,9 +640,9 @@ namespace LET_Auftragsverwaltung
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
-            btn_pers_edit.Enabled = true;
-            btn_pers_delete.Enabled = true;
-            btn_pers_save.Enabled = false;
+            btn_lief_edit.Enabled = true;
+            btn_lief_delete.Enabled = true;
+            btn_lief_save.Enabled = false;
 
             if (lbx_pers.Items.Count > 0 || lbx_pers.Items.Count != null)
             {
@@ -639,9 +694,7 @@ namespace LET_Auftragsverwaltung
                 OdbcConnection connection = Connection;
                 connection.Open();
                 string sql3 =
-                    string.Format(
-                        "UPDATE personal SET Vorname= '{0}', Nachname = '{1}', Funktion_ID = {2}  WHERE P_ID = {3}",
-                        txt_pers_vor.Text, txt_pers_nach.Text, cbx_pers_funk.SelectedValue, lbx_pers.SelectedValue);
+                    string.Format("UPDATE personal SET Vorname= '{0}', Nachname = '{1}' WHERE P_ID = {2}", txt_pers_vor.Text, txt_pers_nach.Text, lbx_pers.SelectedValue);
 
                 OdbcCommand cmd = new OdbcCommand(sql3, connection);
                 cmd.ExecuteNonQuery();
@@ -665,21 +718,22 @@ namespace LET_Auftragsverwaltung
             catch (Exception f)
             {
                 connection.Close();
-                MessageBox.Show("Fehler in der SQL Abfrage(Lieferant Update): \n\n" + f.Message, "Fehler",
+                MessageBox.Show("Fehler in der SQL Abfrage(Personal Update): \n\n" + f.Message, "Fehler",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
             finally
             {
-                btn_lief_delete.Enabled = false;
-                btn_lief_edit.Enabled = false;
+                btn_pers_delete.Enabled = false;
+                btn_pers_edit.Enabled = false;
 
-                txt_lief_ken.Text = "";
-                txt_lief_land.Text = "";
-                txt_lief_plz.Text = "";
-                txt_lief_ort.Text = "";
-                txt_lief_hnr.Text = "";
-                txt_lief_str.Text = "";
+                txt_pers_vor.Text = "";
+                txt_pers_nach.Text = "";
+                txt_pers_land.Text = "";
+                txt_pers_plz.Text = "";
+                txt_pers_ort.Text = "";
+                txt_pers_hnr.Text = "";
+                txt_pers_str.Text = "";
 
                 UC_Parameter_lbx_pers_fill();
             }
@@ -737,6 +791,77 @@ namespace LET_Auftragsverwaltung
                 UC_Parameter_lbx_lief_fill();
             }
 
+        }
+
+        private void btn_pers_funk_add_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OdbcConnection connection = Connection;
+                string sql_controll = string.Format("SELECT COUNT(*) FROM personal_funktion WHERE P_ID = {0} AND Funktion_ID = {1}", lbx_pers.SelectedValue, cbx_pers_funk.SelectedValue);
+                
+                string sql = string.Format("INSERT INTO personal_funktion (P_ID,Funktion_ID) VALUES ({0},{1})",
+                    lbx_pers.SelectedValue, cbx_pers_funk.SelectedValue);
+                OdbcCommand cmd = new OdbcCommand(sql, connection);
+                OdbcCommand cmd_check = new OdbcCommand(sql_controll, connection);
+                connection.Open();
+                int pers_funk_ext = Convert.ToInt32(cmd_check.ExecuteScalar().ToString());
+                if (pers_funk_ext > 0)
+                {
+                    MessageBox.Show("Person hat Funktion schon", "Infomation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    cmd.ExecuteNonQuery();
+                }         
+                connection.Close();
+            }
+
+            catch (Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Personal Funktion): \n\n" + f.Message, "Fehler",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+
+            finally
+            {
+                UC_Parameter_lbx_pers_funk_fill();
+            }
+        }
+
+        private void btn_pers_funk_del_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OdbcConnection connection = Connection;
+                string sql = string.Format("DELETE FROM personal_funktion WHERE P_ID = {0} AND Funktion_ID = {1}",
+                    lbx_pers.SelectedValue, lbx_pers_funk.SelectedValue);
+                OdbcCommand cmd = new OdbcCommand(sql, connection);
+                connection.Open();
+                cmd.ExecuteNonQuery();
+                connection.Close();
+
+            }
+            catch (Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Personal Funktion): \n\n" + f.Message, "Fehler",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+
+            finally
+            {
+                btn_pers_funk_del.Enabled = false;
+                UC_Parameter_lbx_pers_funk_fill();
+            }
+        }
+
+        private void lbx_pers_funk_SelectedValueChanged(object sender, EventArgs e)
+        {
+            btn_pers_funk_del.Enabled = true;
         }
     }
 }
