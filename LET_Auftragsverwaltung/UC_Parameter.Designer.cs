@@ -30,6 +30,9 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lbx_pers = new System.Windows.Forms.ListBox();
+            this.btn_pers_edit = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             this.txt_pers_ort = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -48,6 +51,8 @@
             this.txt_pers_vor = new System.Windows.Forms.TextBox();
             this.btn_pers_save = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btn_lief_edit = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
             this.txt_lief_ort = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -85,11 +90,7 @@
             this.txt_auf_re = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.btn_auf_change = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.btn_lief_edit = new System.Windows.Forms.Button();
-            this.btn_pers_edit = new System.Windows.Forms.Button();
-            this.lbx_pers = new System.Windows.Forms.ListBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -115,6 +116,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.lbx_pers);
             this.tabPage1.Controls.Add(this.btn_pers_edit);
             this.tabPage1.Controls.Add(this.label11);
@@ -142,6 +144,34 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Personen";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // lbx_pers
+            // 
+            this.lbx_pers.FormattingEnabled = true;
+            this.lbx_pers.Location = new System.Drawing.Point(431, 59);
+            this.lbx_pers.Name = "lbx_pers";
+            this.lbx_pers.ScrollAlwaysVisible = true;
+            this.lbx_pers.Size = new System.Drawing.Size(212, 251);
+            this.lbx_pers.TabIndex = 20;
+            this.lbx_pers.SelectedValueChanged += new System.EventHandler(this.lbx_pers_SelectedValueChanged);
+            // 
+            // btn_pers_edit
+            // 
+            this.btn_pers_edit.Location = new System.Drawing.Point(342, 368);
+            this.btn_pers_edit.Name = "btn_pers_edit";
+            this.btn_pers_edit.Size = new System.Drawing.Size(72, 23);
+            this.btn_pers_edit.TabIndex = 18;
+            this.btn_pers_edit.Text = "Bearbeiten";
+            this.btn_pers_edit.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(40, 340);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(69, 13);
+            this.label11.TabIndex = 17;
+            this.label11.Text = "* Pflichtfelder";
             // 
             // txt_pers_ort
             // 
@@ -310,6 +340,24 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Lieferant";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btn_lief_edit
+            // 
+            this.btn_lief_edit.Location = new System.Drawing.Point(339, 271);
+            this.btn_lief_edit.Name = "btn_lief_edit";
+            this.btn_lief_edit.Size = new System.Drawing.Size(75, 23);
+            this.btn_lief_edit.TabIndex = 35;
+            this.btn_lief_edit.Text = "Bearbeiten";
+            this.btn_lief_edit.UseVisualStyleBackColor = true;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(39, 231);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(69, 13);
+            this.label14.TabIndex = 34;
+            this.label14.Text = "* Pflichtfelder";
             // 
             // txt_lief_ort
             // 
@@ -669,50 +717,14 @@
             this.btn_auf_change.UseVisualStyleBackColor = true;
             this.btn_auf_change.Click += new System.EventHandler(this.btn_auf_change_Click);
             // 
-            // label11
+            // button1
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(40, 340);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(69, 13);
-            this.label11.TabIndex = 17;
-            this.label11.Text = "* Pflichtfelder";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(39, 231);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(69, 13);
-            this.label14.TabIndex = 34;
-            this.label14.Text = "* Pflichtfelder";
-            // 
-            // btn_lief_edit
-            // 
-            this.btn_lief_edit.Location = new System.Drawing.Point(339, 271);
-            this.btn_lief_edit.Name = "btn_lief_edit";
-            this.btn_lief_edit.Size = new System.Drawing.Size(75, 23);
-            this.btn_lief_edit.TabIndex = 35;
-            this.btn_lief_edit.Text = "Bearbeiten";
-            this.btn_lief_edit.UseVisualStyleBackColor = true;
-            // 
-            // btn_pers_edit
-            // 
-            this.btn_pers_edit.Location = new System.Drawing.Point(342, 368);
-            this.btn_pers_edit.Name = "btn_pers_edit";
-            this.btn_pers_edit.Size = new System.Drawing.Size(72, 23);
-            this.btn_pers_edit.TabIndex = 18;
-            this.btn_pers_edit.Text = "Bearbeiten";
-            this.btn_pers_edit.UseVisualStyleBackColor = true;
-            // 
-            // lbx_pers
-            // 
-            this.lbx_pers.FormattingEnabled = true;
-            this.lbx_pers.Location = new System.Drawing.Point(431, 59);
-            this.lbx_pers.Name = "lbx_pers";
-            this.lbx_pers.ScrollAlwaysVisible = true;
-            this.lbx_pers.Size = new System.Drawing.Size(212, 251);
-            this.lbx_pers.TabIndex = 20;
+            this.button1.Location = new System.Drawing.Point(568, 330);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "Löschen";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // UC_Parameter
             // 
@@ -805,5 +817,6 @@
         private System.Windows.Forms.Button btn_pers_edit;
         private System.Windows.Forms.Button btn_lief_edit;
         private System.Windows.Forms.ListBox lbx_pers;
+        private System.Windows.Forms.Button button1;
     }
 }
