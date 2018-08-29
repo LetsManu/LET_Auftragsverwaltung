@@ -187,22 +187,26 @@ namespace LET_Auftragsverwaltung
             {
                 OdbcConnection connection = Connection;
                 connection.Open();
-                string sql = "SELECT Nachname,Vorname,P_ID FROM personal WHERE deaktiviert<>true";
+                string sql = "SELECT Nachname, Vorname, P_ID FROM personal WHERE deaktiviert<>true";
                 OdbcDataAdapter dc = new OdbcDataAdapter(sql, connection);
                 DataTable dtPers = new DataTable();
                 dc.Fill(dtPers);
                 connection.Close();
 
-                List<string> personal = new List<string>();
+                //List<string> personal = new List<string>();
 
-                foreach (DataRow dwPersonal in dtPers.Rows)
+                /*foreach (DataRow dwPersonal in dtPers.Rows)
                 {
                     lbx_pers.Items.Add(dwPersonal["Nachname"].ToString() + " " + dwPersonal["Vorname"].ToString() + " ID:" + dwPersonal["P_ID"].ToString());
-                }
-               
+                }*/
+
+
+                lbx_pers.DataSource = dtPers;
+                lbx_pers.DisplayMember = "Nachname";              
+                lbx_pers.ValueMember = "P_ID";
 
                 //lbv_pers.Items.AddRange(personal);
-                
+
 
                 //if (lbv_pers.Items.Count > 0) lbv_pers.SelectedIndices = 0;
             }
@@ -375,6 +379,7 @@ namespace LET_Auftragsverwaltung
             btn_pers_save.Enabled = true;
 
             if (txt_pers_vor.Text == "") btn_pers_save.Enabled = false;
+            if (btn_pers_edit.Enabled) btn_pers_save.Enabled = false;
         }
 
         private void txt_pers_nach_TextChanged(object sender, EventArgs e)
@@ -382,7 +387,7 @@ namespace LET_Auftragsverwaltung
             btn_pers_save.Enabled = true;
 
             if (txt_pers_nach.Text == "") btn_pers_save.Enabled = false;
-
+            if (btn_pers_edit.Enabled) btn_pers_save.Enabled = false;
         }
 
         private void btn_pers_save_EnabledChanged(object sender, EventArgs e)
@@ -442,6 +447,10 @@ namespace LET_Auftragsverwaltung
 
         }
 
-        
+        private void lbx_pers_SelectedValueChanged(object sender, EventArgs e)
+        {
+            btn_pers_edit.Enabled = true;
+
+        }
     }
 }
