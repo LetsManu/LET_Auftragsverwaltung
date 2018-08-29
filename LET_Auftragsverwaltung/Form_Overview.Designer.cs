@@ -35,14 +35,14 @@
             // 
             this.uC_Overview1.Location = new System.Drawing.Point(1, 1);
             this.uC_Overview1.Name = "uC_Overview1";
-            this.uC_Overview1.Size = new System.Drawing.Size(837, 464);
+            this.uC_Overview1.Size = new System.Drawing.Size(1920, 1080);
             this.uC_Overview1.TabIndex = 0;
             // 
             // Form_Overview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.uC_Overview1);
             this.Name = "Form_Overview";
             this.Text = "Form_Overview";
