@@ -52,6 +52,8 @@
             this.txt_pers_vor = new System.Windows.Forms.TextBox();
             this.btn_pers_save = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btn_lief_delete = new System.Windows.Forms.Button();
+            this.lbx_lief = new System.Windows.Forms.ListBox();
             this.btn_lief_edit = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.txt_lief_ort = new System.Windows.Forms.TextBox();
@@ -91,8 +93,9 @@
             this.txt_auf_re = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.btn_auf_change = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.btn_lief_delete = new System.Windows.Forms.Button();
+            this.lbx_pers_funk = new System.Windows.Forms.ListBox();
+            this.btn_pers_funk_del = new System.Windows.Forms.Button();
+            this.btn_pers_funk_add = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -118,6 +121,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btn_pers_funk_add);
+            this.tabPage1.Controls.Add(this.btn_pers_funk_del);
+            this.tabPage1.Controls.Add(this.lbx_pers_funk);
             this.tabPage1.Controls.Add(this.lbx_pers);
             this.tabPage1.Controls.Add(this.btn_pers_delete);
             this.tabPage1.Controls.Add(this.btn_pers_edit);
@@ -150,7 +156,7 @@
             // lbx_pers
             // 
             this.lbx_pers.FormattingEnabled = true;
-            this.lbx_pers.Location = new System.Drawing.Point(449, 59);
+            this.lbx_pers.Location = new System.Drawing.Point(660, 58);
             this.lbx_pers.Name = "lbx_pers";
             this.lbx_pers.ScrollAlwaysVisible = true;
             this.lbx_pers.Size = new System.Drawing.Size(178, 238);
@@ -160,7 +166,7 @@
             // 
             // btn_pers_delete
             // 
-            this.btn_pers_delete.Location = new System.Drawing.Point(518, 307);
+            this.btn_pers_delete.Location = new System.Drawing.Point(729, 312);
             this.btn_pers_delete.Name = "btn_pers_delete";
             this.btn_pers_delete.Size = new System.Drawing.Size(109, 23);
             this.btn_pers_delete.TabIndex = 21;
@@ -170,7 +176,7 @@
             // 
             // btn_pers_edit
             // 
-            this.btn_pers_edit.Location = new System.Drawing.Point(305, 349);
+            this.btn_pers_edit.Location = new System.Drawing.Point(279, 349);
             this.btn_pers_edit.Name = "btn_pers_edit";
             this.btn_pers_edit.Size = new System.Drawing.Size(109, 23);
             this.btn_pers_edit.TabIndex = 18;
@@ -181,7 +187,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(40, 312);
+            this.label11.Location = new System.Drawing.Point(14, 312);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(69, 13);
             this.label11.TabIndex = 17;
@@ -189,7 +195,7 @@
             // 
             // txt_pers_ort
             // 
-            this.txt_pers_ort.Location = new System.Drawing.Point(305, 187);
+            this.txt_pers_ort.Location = new System.Drawing.Point(279, 187);
             this.txt_pers_ort.Name = "txt_pers_ort";
             this.txt_pers_ort.Size = new System.Drawing.Size(109, 20);
             this.txt_pers_ort.TabIndex = 6;
@@ -197,7 +203,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(275, 190);
+            this.label10.Location = new System.Drawing.Point(249, 190);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(21, 13);
             this.label10.TabIndex = 16;
@@ -206,7 +212,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(46, 274);
+            this.label7.Location = new System.Drawing.Point(441, 32);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(48, 13);
             this.label7.TabIndex = 15;
@@ -215,15 +221,15 @@
             // cbx_pers_funk
             // 
             this.cbx_pers_funk.FormattingEnabled = true;
-            this.cbx_pers_funk.Location = new System.Drawing.Point(131, 266);
+            this.cbx_pers_funk.Location = new System.Drawing.Point(425, 314);
             this.cbx_pers_funk.Name = "cbx_pers_funk";
-            this.cbx_pers_funk.Size = new System.Drawing.Size(121, 21);
+            this.cbx_pers_funk.Size = new System.Drawing.Size(94, 21);
             this.cbx_pers_funk.TabIndex = 8;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(275, 151);
+            this.label6.Location = new System.Drawing.Point(249, 151);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(69, 13);
             this.label6.TabIndex = 13;
@@ -232,7 +238,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(53, 230);
+            this.label5.Location = new System.Drawing.Point(27, 230);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(31, 13);
             this.label5.TabIndex = 12;
@@ -241,7 +247,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(46, 151);
+            this.label4.Location = new System.Drawing.Point(20, 151);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(38, 13);
             this.label4.TabIndex = 11;
@@ -250,7 +256,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(46, 194);
+            this.label3.Location = new System.Drawing.Point(20, 194);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(27, 13);
             this.label3.TabIndex = 10;
@@ -258,28 +264,28 @@
             // 
             // txt_pers_str
             // 
-            this.txt_pers_str.Location = new System.Drawing.Point(131, 148);
+            this.txt_pers_str.Location = new System.Drawing.Point(105, 148);
             this.txt_pers_str.Name = "txt_pers_str";
             this.txt_pers_str.Size = new System.Drawing.Size(112, 20);
             this.txt_pers_str.TabIndex = 3;
             // 
             // txt_pers_land
             // 
-            this.txt_pers_land.Location = new System.Drawing.Point(131, 227);
+            this.txt_pers_land.Location = new System.Drawing.Point(105, 227);
             this.txt_pers_land.Name = "txt_pers_land";
             this.txt_pers_land.Size = new System.Drawing.Size(283, 20);
             this.txt_pers_land.TabIndex = 7;
             // 
             // txt_pers_hnr
             // 
-            this.txt_pers_hnr.Location = new System.Drawing.Point(350, 148);
+            this.txt_pers_hnr.Location = new System.Drawing.Point(324, 148);
             this.txt_pers_hnr.Name = "txt_pers_hnr";
             this.txt_pers_hnr.Size = new System.Drawing.Size(64, 20);
             this.txt_pers_hnr.TabIndex = 4;
             // 
             // txt_pers_plz
             // 
-            this.txt_pers_plz.Location = new System.Drawing.Point(131, 187);
+            this.txt_pers_plz.Location = new System.Drawing.Point(105, 187);
             this.txt_pers_plz.Name = "txt_pers_plz";
             this.txt_pers_plz.Size = new System.Drawing.Size(112, 20);
             this.txt_pers_plz.TabIndex = 5;
@@ -287,7 +293,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 108);
+            this.label2.Location = new System.Drawing.Point(20, 108);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 4;
@@ -296,7 +302,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(46, 62);
+            this.label1.Location = new System.Drawing.Point(20, 62);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 3;
@@ -304,7 +310,7 @@
             // 
             // txt_pers_nach
             // 
-            this.txt_pers_nach.Location = new System.Drawing.Point(131, 105);
+            this.txt_pers_nach.Location = new System.Drawing.Point(105, 105);
             this.txt_pers_nach.Name = "txt_pers_nach";
             this.txt_pers_nach.Size = new System.Drawing.Size(283, 20);
             this.txt_pers_nach.TabIndex = 2;
@@ -312,7 +318,7 @@
             // 
             // txt_pers_vor
             // 
-            this.txt_pers_vor.Location = new System.Drawing.Point(131, 59);
+            this.txt_pers_vor.Location = new System.Drawing.Point(105, 59);
             this.txt_pers_vor.Name = "txt_pers_vor";
             this.txt_pers_vor.Size = new System.Drawing.Size(283, 20);
             this.txt_pers_vor.TabIndex = 1;
@@ -321,7 +327,7 @@
             // btn_pers_save
             // 
             this.btn_pers_save.Enabled = false;
-            this.btn_pers_save.Location = new System.Drawing.Point(305, 307);
+            this.btn_pers_save.Location = new System.Drawing.Point(279, 307);
             this.btn_pers_save.Name = "btn_pers_save";
             this.btn_pers_save.Size = new System.Drawing.Size(109, 23);
             this.btn_pers_save.TabIndex = 9;
@@ -333,7 +339,7 @@
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.btn_lief_delete);
-            this.tabPage3.Controls.Add(this.listBox1);
+            this.tabPage3.Controls.Add(this.lbx_lief);
             this.tabPage3.Controls.Add(this.btn_lief_edit);
             this.tabPage3.Controls.Add(this.label14);
             this.tabPage3.Controls.Add(this.txt_lief_ort);
@@ -357,6 +363,24 @@
             this.tabPage3.Text = "Lieferant";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // btn_lief_delete
+            // 
+            this.btn_lief_delete.Location = new System.Drawing.Point(552, 231);
+            this.btn_lief_delete.Name = "btn_lief_delete";
+            this.btn_lief_delete.Size = new System.Drawing.Size(109, 23);
+            this.btn_lief_delete.TabIndex = 37;
+            this.btn_lief_delete.Text = "Löschen";
+            this.btn_lief_delete.UseVisualStyleBackColor = true;
+            // 
+            // lbx_lief
+            // 
+            this.lbx_lief.FormattingEnabled = true;
+            this.lbx_lief.Location = new System.Drawing.Point(437, 59);
+            this.lbx_lief.Name = "lbx_lief";
+            this.lbx_lief.Size = new System.Drawing.Size(224, 160);
+            this.lbx_lief.TabIndex = 36;
+            this.lbx_lief.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
+            // 
             // btn_lief_edit
             // 
             this.btn_lief_edit.Location = new System.Drawing.Point(305, 271);
@@ -365,6 +389,7 @@
             this.btn_lief_edit.TabIndex = 35;
             this.btn_lief_edit.Text = "Bearbeiten";
             this.btn_lief_edit.UseVisualStyleBackColor = true;
+            this.btn_lief_edit.Click += new System.EventHandler(this.btn_lief_edit_Click);
             // 
             // label14
             // 
@@ -733,23 +758,31 @@
             this.btn_auf_change.UseVisualStyleBackColor = true;
             this.btn_auf_change.Click += new System.EventHandler(this.btn_auf_change_Click);
             // 
-            // listBox1
+            // lbx_pers_funk
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(437, 59);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(224, 160);
-            this.listBox1.TabIndex = 36;
-            this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
+            this.lbx_pers_funk.FormattingEnabled = true;
+            this.lbx_pers_funk.Location = new System.Drawing.Point(425, 59);
+            this.lbx_pers_funk.Name = "lbx_pers_funk";
+            this.lbx_pers_funk.Size = new System.Drawing.Size(209, 238);
+            this.lbx_pers_funk.TabIndex = 24;
             // 
-            // btn_lief_delete
+            // btn_pers_funk_del
             // 
-            this.btn_lief_delete.Location = new System.Drawing.Point(552, 231);
-            this.btn_lief_delete.Name = "btn_lief_delete";
-            this.btn_lief_delete.Size = new System.Drawing.Size(109, 23);
-            this.btn_lief_delete.TabIndex = 37;
-            this.btn_lief_delete.Text = "Löschen";
-            this.btn_lief_delete.UseVisualStyleBackColor = true;
+            this.btn_pers_funk_del.Location = new System.Drawing.Point(525, 30);
+            this.btn_pers_funk_del.Name = "btn_pers_funk_del";
+            this.btn_pers_funk_del.Size = new System.Drawing.Size(109, 23);
+            this.btn_pers_funk_del.TabIndex = 25;
+            this.btn_pers_funk_del.Text = "Löschen";
+            this.btn_pers_funk_del.UseVisualStyleBackColor = true;
+            // 
+            // btn_pers_funk_add
+            // 
+            this.btn_pers_funk_add.Location = new System.Drawing.Point(525, 312);
+            this.btn_pers_funk_add.Name = "btn_pers_funk_add";
+            this.btn_pers_funk_add.Size = new System.Drawing.Size(109, 23);
+            this.btn_pers_funk_add.TabIndex = 26;
+            this.btn_pers_funk_add.Text = "Hinzufügen";
+            this.btn_pers_funk_add.UseVisualStyleBackColor = true;
             // 
             // UC_Parameter
             // 
@@ -844,6 +877,9 @@
         private System.Windows.Forms.Button btn_pers_delete;
         private System.Windows.Forms.ListBox lbx_pers;
         private System.Windows.Forms.Button btn_lief_delete;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lbx_lief;
+        private System.Windows.Forms.Button btn_pers_funk_add;
+        private System.Windows.Forms.Button btn_pers_funk_del;
+        private System.Windows.Forms.ListBox lbx_pers_funk;
     }
 }

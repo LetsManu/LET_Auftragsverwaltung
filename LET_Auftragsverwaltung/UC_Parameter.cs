@@ -26,7 +26,7 @@ namespace LET_Auftragsverwaltung
             {
                 if (connection == null)
                 {
-                    string constrg = "Driver={MySQL ODBC 3.51 Driver};Server=192.168.16.192;Database=auftrags;User=admin;Password=cola0815;Option=3;";
+                    string constrg = "Driver={MySQL ODBC 5.3 Unicode Driver};Server=192.168.16.192;Database=auftrags;User=admin;Password=cola0815;Option=3;";
                     connection = new OdbcConnection(constrg);
                 }
                 return connection;
@@ -122,6 +122,7 @@ namespace LET_Auftragsverwaltung
             UC_Parameter_cbx_funk_fill();
             UC_Parameter_cbx_art_fill();
             UC_Parameter_lbx_pers_fill();
+            UC_Parameter_lbx_lief_fill();
         }
 
         private void UC_Parameter_cbx_funk_fill()
@@ -205,6 +206,36 @@ namespace LET_Auftragsverwaltung
             catch (Exception f)
             {
                 MessageBox.Show("Fehler in der SQL Abfrage(Personal): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void UC_Parameter_lbx_lief_fill()
+        {
+
+            try
+            {
+                OdbcConnection connection2 = Connection;
+                
+                string sql2 = "SELECT Lieferant,L_ID FROM lieferant WHERE deaktiviert<>true";
+                OdbcDataAdapter da = new OdbcDataAdapter(sql2, connection2);
+                DataTable dt = new DataTable();
+                connection2.Open();
+                da.Fill(dt);
+                connection2.Close();
+
+
+                lbx_lief.DataSource = dt;
+                lbx_lief.ValueMember = "L_ID";
+                lbx_lief.DisplayMember = "Lieferant";
+
+
+                if (lbx_lief.Items.Count > 0) lbx_lief.SelectedIndex = 0;
+            }
+            catch (Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Lieferant): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -416,6 +447,7 @@ namespace LET_Auftragsverwaltung
             cmd2.ExecuteNonQuery();
 
             connection.Close();
+
             }
             catch(Exception f)
             {
@@ -553,7 +585,51 @@ namespace LET_Auftragsverwaltung
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
+            btn_pers_edit.Enabled = true;
+            btn_pers_delete.Enabled = true;
+            btn_pers_save.Enabled = false;
 
+            if (lbx_pers.Items.Count > 0 || lbx_pers.Items.Count != null)
+            {
+                try
+                {
+
+                    string sql = string.Format("SELECT * FROM lieferant WHERE L_ID = {0} LIMIT 1", lbx_lief.SelectedValue);
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    OdbcCommand cmd_read = new OdbcCommand(sql, connection);
+                    OdbcDataReader sqlReader = cmd_read.ExecuteReader();
+                    sqlReader.Read();
+                    txt_lief_ken.Text = Convert.ToString(sqlReader[1]);
+                    int adr_ID = Convert.ToInt32(sqlReader[2]);
+                    sqlReader.Close();
+
+                    string sql2 = string.Format("SELECT Land,PLZ,Ort,Hausnummer,Strasse FROM adressen WHERE Adr_ID = {0} LIMIT 1", adr_ID);
+                    cmd_read = new OdbcCommand(sql2, connection);
+                    sqlReader = cmd_read.ExecuteReader();
+                    sqlReader.Read();
+                    txt_lief_land.Text = sqlReader[0].ToString();
+                    txt_lief_plz.Text = sqlReader[1].ToString();
+                    txt_lief_ort.Text = sqlReader[2].ToString();
+                    txt_lief_hnr.Text = sqlReader[3].ToString();
+                    txt_lief_str.Text = sqlReader[4].ToString();
+                    sqlReader.Close();
+                    connection.Close();
+                }
+
+                catch (Exception f)
+                {
+                    connection.Close();
+                    MessageBox.Show("Fehler in der SQL Abfrage(lbx_pers): \n\n" + f.Message, "Fehler",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+
+                finally
+                {
+
+                }
+            }
         }
 
         private void btn_pers_edit_Click(object sender, EventArgs e)
@@ -564,7 +640,7 @@ namespace LET_Auftragsverwaltung
                 connection.Open();
                 string sql3 =
                     string.Format(
-                        "UPDATE personal SET Vorname = '{0}', Nachname = '{1}', Funktion_ID = {2} WHERE P_ID = {3}",
+                        "UPDATE personal SET Vorname= '{0}', Nachname = '{1}', Funktion_ID = {2}  WHERE P_ID = {3}",
                         txt_pers_vor.Text, txt_pers_nach.Text, cbx_pers_funk.SelectedValue, lbx_pers.SelectedValue);
 
                 OdbcCommand cmd = new OdbcCommand(sql3, connection);
@@ -589,25 +665,78 @@ namespace LET_Auftragsverwaltung
             catch (Exception f)
             {
                 connection.Close();
-                MessageBox.Show("Fehler in der SQL Abfrage(Personal Update): \n\n" + f.Message, "Fehler",
+                MessageBox.Show("Fehler in der SQL Abfrage(Lieferant Update): \n\n" + f.Message, "Fehler",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
             finally
             {
-                btn_pers_delete.Enabled = false;
-                btn_pers_edit.Enabled = false;
+                btn_lief_delete.Enabled = false;
+                btn_lief_edit.Enabled = false;
 
-                txt_pers_vor.Text = "";
-                txt_pers_nach.Text = "";
-                txt_pers_land.Text = "";
-                txt_pers_plz.Text = "";
-                txt_pers_ort.Text = "";
-                txt_pers_hnr.Text = "";
-                txt_pers_str.Text = "";
+                txt_lief_ken.Text = "";
+                txt_lief_land.Text = "";
+                txt_lief_plz.Text = "";
+                txt_lief_ort.Text = "";
+                txt_lief_hnr.Text = "";
+                txt_lief_str.Text = "";
 
                 UC_Parameter_lbx_pers_fill();
             }
+        }
+
+        private void btn_lief_edit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OdbcConnection connection = Connection;
+                connection.Open();
+                string sql3 =
+                    string.Format(
+                        "UPDATE lieferant SET lieferant= '{0}' WHERE L_ID = {1}",
+                        txt_lief_ken.Text, lbx_lief.SelectedValue);
+
+                OdbcCommand cmd = new OdbcCommand(sql3, connection);
+                cmd.ExecuteNonQuery();
+                string sql2 = string.Format("SELECT Adr_ID FROM lieferant WHERE L_ID = {0}", lbx_lief.SelectedValue);
+                OdbcCommand cmd_read = new OdbcCommand(sql2, connection);
+                OdbcDataReader sqlReader = cmd_read.ExecuteReader();
+
+                sqlReader.Read();
+
+                int adr_id = sqlReader.GetInt32(0);
+
+                string sql = string.Format(
+                    "UPDATE adressen SET Land = '{0}', PLZ = '{1}', Ort = '{2}', Hausnummer = '{3}', Strasse = '{4}' WHERE Adr_ID = {5}",
+                    txt_lief_land.Text, txt_lief_plz.Text, txt_lief_ort.Text, txt_lief_hnr.Text, txt_lief_str.Text,
+                    adr_id);
+                OdbcCommand cmd2 = new OdbcCommand(sql, connection);
+                cmd2.ExecuteNonQuery();
+
+                connection.Close();
+            }
+            catch (Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Lieferant Update): \n\n" + f.Message, "Fehler",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                btn_lief_delete.Enabled = false;
+                btn_lief_edit.Enabled = false;
+
+                txt_lief_ken.Text = "";
+                txt_lief_land.Text = "";
+                txt_lief_plz.Text = "";
+                txt_lief_ort.Text = "";
+                txt_lief_hnr.Text = "";
+                txt_lief_str.Text = "";
+
+                UC_Parameter_lbx_lief_fill();
+            }
+
         }
     }
 }
