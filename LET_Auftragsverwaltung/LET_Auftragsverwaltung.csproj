@@ -192,6 +192,12 @@
       <DependentUpon>auftragsDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="CS_Auftrag_Data.cs" />
+    <Compile Include="Form_New_Auftrag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_New_Auftrag.Designer.cs">
+      <DependentUpon>Form_New_Auftrag.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Overview.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -231,6 +237,9 @@
     <Compile Include="UC_Parameter.Designer.cs">
       <DependentUpon>UC_Parameter.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Form_New_Auftrag.resx">
+      <DependentUpon>Form_New_Auftrag.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_Overview.resx">
       <DependentUpon>Form_Overview.cs</DependentUpon>
     </EmbeddedResource>

@@ -28,5 +28,11 @@ namespace LET_Auftragsverwaltung
             Form Form_Over = new Form_Overview();
             Form_Over.Show();
         }
+
+        private void neuerAuftragToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form Form_NEW = new Form_New_Auftrag();
+            Form_NEW.Show();
+        }
     }
 }

@@ -30,13 +30,13 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.aufträgeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.parameterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.neuerEintragToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.neuerEintragToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.exportÜbersichtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.neuerAuftragToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.parameterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.soonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,13 +66,6 @@
             this.aufträgeToolStripMenuItem.Text = "Übersicht";
             this.aufträgeToolStripMenuItem.Click += new System.EventHandler(this.aufträgeToolStripMenuItem_Click);
             // 
-            // parameterToolStripMenuItem
-            // 
-            this.parameterToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.parameterToolStripMenuItem.Name = "parameterToolStripMenuItem";
-            this.parameterToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
-            this.parameterToolStripMenuItem.Text = "Parameter";
-            // 
             // neuerEintragToolStripMenuItem
             // 
             this.neuerEintragToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -86,7 +79,7 @@
             // neuerEintragToolStripMenuItem1
             // 
             this.neuerEintragToolStripMenuItem1.Name = "neuerEintragToolStripMenuItem1";
-            this.neuerEintragToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
+            this.neuerEintragToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.neuerEintragToolStripMenuItem1.Text = "Datenbank";
             this.neuerEintragToolStripMenuItem1.Click += new System.EventHandler(this.neuerEintragToolStripMenuItem1_Click);
             // 
@@ -96,7 +89,7 @@
             this.excelToolStripMenuItem,
             this.pDFToolStripMenuItem});
             this.exportÜbersichtToolStripMenuItem.Name = "exportÜbersichtToolStripMenuItem";
-            this.exportÜbersichtToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.exportÜbersichtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exportÜbersichtToolStripMenuItem.Text = "Export Übersicht";
             // 
             // excelToolStripMenuItem
@@ -114,8 +107,16 @@
             // neuerAuftragToolStripMenuItem
             // 
             this.neuerAuftragToolStripMenuItem.Name = "neuerAuftragToolStripMenuItem";
-            this.neuerAuftragToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.neuerAuftragToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.neuerAuftragToolStripMenuItem.Text = "Neuer Auftrag";
+            this.neuerAuftragToolStripMenuItem.Click += new System.EventHandler(this.neuerAuftragToolStripMenuItem_Click);
+            // 
+            // parameterToolStripMenuItem
+            // 
+            this.parameterToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.parameterToolStripMenuItem.Name = "parameterToolStripMenuItem";
+            this.parameterToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
+            this.parameterToolStripMenuItem.Text = "Parameter";
             // 
             // hilfeToolStripMenuItem
             // 
