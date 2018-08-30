@@ -13,18 +13,14 @@ namespace LET_Auftragsverwaltung
         public string Auftrags_Nr { get; set; }
         public string Fertigungsstatus { get; set; }
         public DateTime Erstell_Datum { get; set; }
-        /// <summary>
-        /// Auftragsbestätigung & Anzahlung
-        /// </summary>
-        public DateTime AB_AZ_Datum { get; set; }
+        public DateTime Anzahlung_Datum { get; set; }
+        public DateTime AZ_bestaetigt_Datum { get; set; }
         public DateTime Schlussrechnung_Date { get; set; }
-        public string Haendler_Name { get; set; }
         public string Projektverantwortlicher_Name { get; set; }
         public string Planner_Name { get; set; }
         public string Projektbezeichnung { get; set; }
         public string Auftrags_Art { get; set; }
         public string Stoff_Kennzahl { get; set; }
-        public Image Stoff_Image { get; set; }
         public DateTime Schatten_Datum { get; set; }
         public DateTime Stoff_bestell_Datum { get; set; }
         public DateTime Stoff_liefer_Datum { get; set; }
