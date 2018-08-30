@@ -93,6 +93,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <!--
     This section defines properties that are set when the "Release" configuration is selected.
@@ -212,6 +213,12 @@
     <Compile Include="UC_Main_Task_Pane.Designer.cs">
       <DependentUpon>UC_Main_Task_Pane.cs</DependentUpon>
     </Compile>
+    <Compile Include="UC_New_auftrag.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_New_auftrag.Designer.cs">
+      <DependentUpon>UC_New_auftrag.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC_Overview.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -241,6 +248,9 @@
     </Compile>
     <EmbeddedResource Include="UC_Main_Task_Pane.resx">
       <DependentUpon>UC_Main_Task_Pane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_New_auftrag.resx">
+      <DependentUpon>UC_New_auftrag.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UC_Overview.resx">
       <DependentUpon>UC_Overview.cs</DependentUpon>
@@ -293,7 +303,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>0599E173ACA0E5DAC246E327BA32DDB70EFA6283</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>08603D84A332A3EFFBB985418F8D151518825EA5</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>

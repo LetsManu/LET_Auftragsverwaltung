@@ -45,7 +45,7 @@
             this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.uC_Overview1);
             this.Name = "Form_Overview";
-            this.Text = "Form_Overview";
+            this.Text = "Übersicht";
             this.ResumeLayout(false);
 
         }

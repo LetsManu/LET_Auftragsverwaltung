@@ -26,7 +26,7 @@ namespace LET_Auftragsverwaltung
             {
                 if (connection == null)
                 {
-                    string constrg = "Driver={MySQL ODBC 3.51 Driver};Server=192.168.16.192;Database=auftrags;User=admin;Password=cola0815;Option=3;";
+                    string constrg = "Driver={MySQL ODBC 5.3 Unicode Driver};Server=192.168.16.192;Database=auftrags;User=admin;Password=cola0815;Option=3;";
                     connection = new OdbcConnection(constrg);
                 }
                 return connection;
@@ -36,6 +36,7 @@ namespace LET_Auftragsverwaltung
         public UC_Parameter()
         {
             InitializeComponent();
+            
 
         }
 
@@ -56,7 +57,7 @@ namespace LET_Auftragsverwaltung
 
                 int adr_id = sqlReader.GetInt32(0);
 
-                string sql3 = string.Format("INSERT INTO personal (Vorname, Nachname, Adr_ID, Funktion_ID) VALUES ('{0}', '{1}', {2}, {3})", txt_pers_vor.Text, txt_pers_nach.Text, adr_id, cbx_pers_funk.SelectedValue);
+                string sql3 = string.Format("INSERT INTO personal (Vorname, Nachname, Adr_ID) VALUES ('{0}', '{1}', {2})", txt_pers_vor.Text, txt_pers_nach.Text, adr_id);
 
                 OdbcCommand cmd2 = new OdbcCommand(sql3, connection);
                 cmd2.ExecuteNonQuery();
@@ -120,7 +121,10 @@ namespace LET_Auftragsverwaltung
         {
             UC_Parameter_cbx_funk_fill();
             UC_Parameter_cbx_art_fill();
+            UC_Parameter_cbx_fert_fill();
             UC_Parameter_lbx_pers_fill();
+            UC_Parameter_lbx_lief_fill();
+            //UC_Parameter_lbx_pers_funk_fill();
         }
 
         private void UC_Parameter_cbx_funk_fill()
@@ -149,7 +153,7 @@ namespace LET_Auftragsverwaltung
             }
             catch (Exception f)
             {
-                MessageBox.Show("Fehler in der SQL Abfrage(funkt): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Fehler in der SQL Abfrage(Funtkion Fill): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -176,9 +180,42 @@ namespace LET_Auftragsverwaltung
             }
             catch (Exception f)
             {
-                MessageBox.Show("Fehler in der SQL Abfrage(art): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Fehler in der SQL Abfrage(Art Fill): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void UC_Parameter_cbx_fert_fill()
+        {
+            try
+            {
+                OdbcConnection connection = Connection;
+                connection.Open();
+                string sql = "SELECT F_ID,Status FROM fertigungsstatus WHERE deaktiviert<>true";
+                OdbcDataAdapter db = new OdbcDataAdapter(sql, connection);
+                DataTable dtArt = new DataTable();
+                db.Fill(dtArt);
+                connection.Close();
+
+
+
+                cbx_fert.DataSource = dtArt;
+                cbx_fert.DisplayMember = "Status";
+                cbx_fert.ValueMember = "F_ID";
+
+                if (cbx_fert.Items.Count > 0) cbx_fert.SelectedIndex = 0;
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Art Fill): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+
+            finally
+            {
+
+            }
+        }
+        
 
         private void UC_Parameter_lbx_pers_fill()
         {
@@ -187,32 +224,104 @@ namespace LET_Auftragsverwaltung
             {
                 OdbcConnection connection = Connection;
                 connection.Open();
-                string sql = "SELECT Nachname, Vorname, P_ID FROM personal WHERE deaktiviert<>true";
+                string sql = "SELECT P_ID,Nachname FROM personal WHERE deaktiviert<>true";
                 OdbcDataAdapter dc = new OdbcDataAdapter(sql, connection);
-                DataTable dtPers = new DataTable();
-                dc.Fill(dtPers);
+                DataTable dtPer = new DataTable();
+                dc.Fill(dtPer);
                 connection.Close();
 
-                //List<string> personal = new List<string>();
 
-                /*foreach (DataRow dwPersonal in dtPers.Rows)
-                {
-                    lbx_pers.Items.Add(dwPersonal["Nachname"].ToString() + " " + dwPersonal["Vorname"].ToString() + " ID:" + dwPersonal["P_ID"].ToString());
-                }*/
-
-
-                lbx_pers.DataSource = dtPers;
-                lbx_pers.DisplayMember = "Nachname";              
+                lbx_pers.DataSource = dtPer;
                 lbx_pers.ValueMember = "P_ID";
+                lbx_pers.DisplayMember = "Nachname";              
+                
 
-                //lbv_pers.Items.AddRange(personal);
-
-
-                //if (lbv_pers.Items.Count > 0) lbv_pers.SelectedIndices = 0;
+               if (lbx_pers.Items.Count > 0) lbx_pers.SelectedIndex = 0;
             }
             catch (Exception f)
             {
-                MessageBox.Show("Fehler in der SQL Abfrage(Personal): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Fehler in der SQL Abfrage(Personal Fill): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void UC_Parameter_lbx_lief_fill()
+        {
+
+            try
+            {
+                OdbcConnection connection2 = Connection;
+                
+                string sql2 = "SELECT Lieferant,L_ID FROM lieferant WHERE deaktiviert<>true";
+                OdbcDataAdapter da = new OdbcDataAdapter(sql2, connection2);
+                DataTable dt = new DataTable();
+                connection2.Open();
+                da.Fill(dt);
+                connection2.Close();
+
+
+                lbx_lief.DataSource = dt;
+                lbx_lief.ValueMember = "L_ID";
+                lbx_lief.DisplayMember = "Lieferant";
+
+
+                if (lbx_lief.Items.Count > 0) lbx_lief.SelectedIndex = 0;
+            }
+            catch (Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Lieferant Fill): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void UC_Parameter_lbx_pers_funk_fill()
+        {
+
+            try
+            {
+                OdbcConnection connection = Connection;
+
+                string sql_read = string.Format("SELECT Funktion_ID FROM personal_funktion WHERE P_ID = {0}", lbx_pers.SelectedValue);
+                string sql = "";
+                OdbcCommand cmd_read = new OdbcCommand(sql_read, connection);
+                OdbcCommand cmd;
+                connection.Open();
+                OdbcDataReader sqlReader_pers = cmd_read.ExecuteReader();
+                DataTable dt = new DataTable("Funktionen");
+                dt.Columns.Add("Funktion", typeof(string));
+                dt.Columns.Add("ID", typeof(int));
+                OdbcDataReader sqlReader_funkt;
+                DataRow funk_row;
+
+                while (sqlReader_pers.Read())
+                {
+                    sql = string.Format("SELECT Funktion,Funktion_ID FROM funktion WHERE Funktion_ID = {0}", sqlReader_pers[0]);
+                    
+                    cmd = new OdbcCommand(sql, connection);
+                    sqlReader_funkt = cmd.ExecuteReader();
+                    sqlReader_funkt.Read();
+                    funk_row = dt.NewRow();
+                    funk_row["Funktion"] = sqlReader_funkt[0];
+                    funk_row["ID"] = sqlReader_funkt[1];
+                    dt.Rows.Add(funk_row);
+                    sqlReader_funkt.Close();
+                }
+                sqlReader_pers.Close();
+                connection.Close();
+
+
+                lbx_pers_funk.DataSource = dt;
+                lbx_pers_funk.ValueMember = "ID";
+                lbx_pers_funk.DisplayMember = "Funktion";
+
+
+                if (lbx_pers_funk.Items.Count > 0) lbx_pers_funk.SelectedIndex = 0;
+            }
+            catch (Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Personal Funktion Fill): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -399,6 +508,7 @@ namespace LET_Auftragsverwaltung
         {
             btn_lief_save.Enabled = true;
             if (txt_lief_ken.Text == "") btn_lief_save.Enabled = false;
+            if(btn_lief_edit.Enabled || btn_lief_delete.Enabled) btn_lief_save.Enabled = false;
         }
 
         private void btn_lief_save_Click(object sender, EventArgs e)
@@ -424,6 +534,7 @@ namespace LET_Auftragsverwaltung
             cmd2.ExecuteNonQuery();
 
             connection.Close();
+
             }
             catch(Exception f)
             {
@@ -448,9 +559,456 @@ namespace LET_Auftragsverwaltung
         }
 
         private void lbx_pers_SelectedValueChanged(object sender, EventArgs e)
+        {           
+
+        }
+
+        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void cbx_pers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+
+        }
+
+        private void lbx_pers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void lbx_pers_DoubleClick(object sender, EventArgs e)
         {
             btn_pers_edit.Enabled = true;
+            btn_pers_delete.Enabled = true;
+            btn_pers_save.Enabled = false;
+            btn_pers_funk_add.Enabled = true;
+            btn_pers_funk_del.Enabled = true;
 
+            if (lbx_pers.Items.Count > 0 || lbx_pers.Items.Count != null)
+            {
+                try
+                {
+
+                    string sql = string.Format("SELECT * FROM personal WHERE P_ID = {0} LIMIT 1", lbx_pers.SelectedValue);
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    OdbcCommand cmd_read = new OdbcCommand(sql, connection);
+                    OdbcDataReader sqlReader = cmd_read.ExecuteReader();
+                    sqlReader.Read();
+                    txt_pers_vor.Text = Convert.ToString(sqlReader[1]);
+                    txt_pers_nach.Text = Convert.ToString(sqlReader[2]);
+                    int adr_ID = Convert.ToInt32(sqlReader[3]);
+                    int funk_ID = Convert.ToInt32(sqlReader[4]);
+                    cbx_pers_funk.SelectedValue = funk_ID;
+                    sqlReader.Close();
+
+                    string sql2 = string.Format("SELECT Land,PLZ,Ort,Hausnummer,Strasse FROM adressen WHERE Adr_ID = {0} LIMIT 1", adr_ID);
+                    cmd_read = new OdbcCommand(sql2, connection);
+                    sqlReader = cmd_read.ExecuteReader();
+                    sqlReader.Read();
+                    txt_pers_land.Text = sqlReader[0].ToString();
+                    txt_pers_plz.Text = sqlReader[1].ToString();
+                    txt_pers_ort.Text = sqlReader[2].ToString();
+                    txt_pers_hnr.Text = sqlReader[3].ToString();
+                    txt_pers_str.Text = sqlReader[4].ToString();
+                    sqlReader.Close();
+                    connection.Close();
+                }
+
+                catch (Exception f)
+                {
+                    connection.Close();
+                    MessageBox.Show("Fehler in der SQL Abfrage(lbx_pers): \n\n" + f.Message, "Fehler",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+
+                finally
+                {
+                    UC_Parameter_lbx_pers_funk_fill();
+                }
+            }
+        }
+
+        private void btn_pers_delete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string sql = string.Format("UPDATE personal SET deaktiviert=true WHERE P_ID={0}",
+                    lbx_pers.SelectedValue);
+                OdbcConnection connection = Connection;
+                connection.Open();
+                OdbcCommand cmd = new OdbcCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+
+                
+            }
+            catch(Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Personal Delete): \n\n" + f.Message, "Fehler",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                btn_pers_delete.Enabled = false;
+                btn_pers_edit.Enabled = false;
+
+                txt_pers_vor.Text = "";
+                txt_pers_nach.Text = "";
+                txt_pers_land.Text = "";
+                txt_pers_plz.Text = "";
+                txt_pers_ort.Text = "";
+                txt_pers_hnr.Text = "";
+                txt_pers_str.Text = "";
+
+                UC_Parameter_lbx_pers_fill();
+            }
+        }
+
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+            btn_lief_edit.Enabled = true;
+            btn_lief_delete.Enabled = true;
+            btn_lief_save.Enabled = false;
+
+            if (lbx_pers.Items.Count > 0 || lbx_pers.Items.Count != null)
+            {
+                try
+                {
+
+                    string sql = string.Format("SELECT * FROM lieferant WHERE L_ID = {0} LIMIT 1", lbx_lief.SelectedValue);
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    OdbcCommand cmd_read = new OdbcCommand(sql, connection);
+                    OdbcDataReader sqlReader = cmd_read.ExecuteReader();
+                    sqlReader.Read();
+                    txt_lief_ken.Text = Convert.ToString(sqlReader[1]);
+                    int adr_ID = Convert.ToInt32(sqlReader[2]);
+                    sqlReader.Close();
+
+                    string sql2 = string.Format("SELECT Land,PLZ,Ort,Hausnummer,Strasse FROM adressen WHERE Adr_ID = {0} LIMIT 1", adr_ID);
+                    cmd_read = new OdbcCommand(sql2, connection);
+                    sqlReader = cmd_read.ExecuteReader();
+                    sqlReader.Read();
+                    txt_lief_land.Text = sqlReader[0].ToString();
+                    txt_lief_plz.Text = sqlReader[1].ToString();
+                    txt_lief_ort.Text = sqlReader[2].ToString();
+                    txt_lief_hnr.Text = sqlReader[3].ToString();
+                    txt_lief_str.Text = sqlReader[4].ToString();
+                    sqlReader.Close();
+                    connection.Close();
+                }
+
+                catch (Exception f)
+                {
+                    connection.Close();
+                    MessageBox.Show("Fehler in der SQL Abfrage(lbx_pers): \n\n" + f.Message, "Fehler",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+
+                finally
+                {
+
+                }
+            }
+        }
+
+        private void btn_pers_edit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OdbcConnection connection = Connection;
+                connection.Open();
+                string sql3 =
+                    string.Format("UPDATE personal SET Vorname= '{0}', Nachname = '{1}' WHERE P_ID = {2}", txt_pers_vor.Text, txt_pers_nach.Text, lbx_pers.SelectedValue);
+
+                OdbcCommand cmd = new OdbcCommand(sql3, connection);
+                cmd.ExecuteNonQuery();
+                string sql2 = string.Format("SELECT Adr_ID FROM personal WHERE P_ID = {0}", lbx_pers.SelectedValue);
+                OdbcCommand cmd_read = new OdbcCommand(sql2, connection);
+                OdbcDataReader sqlReader = cmd_read.ExecuteReader();
+
+                sqlReader.Read();
+
+                int adr_id = sqlReader.GetInt32(0);
+
+                string sql = string.Format(
+                    "UPDATE adressen SET Land = '{0}', PLZ = '{1}', Ort = '{2}', Hausnummer = '{3}', Strasse = '{4}' WHERE Adr_ID = {5}",
+                    txt_pers_land.Text, txt_pers_plz.Text, txt_pers_ort.Text, txt_pers_hnr.Text, txt_pers_str.Text,
+                    adr_id);
+                OdbcCommand cmd2 = new OdbcCommand(sql, connection);
+                cmd2.ExecuteNonQuery();
+
+                connection.Close();
+            }
+            catch (Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Personal Update): \n\n" + f.Message, "Fehler",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                btn_pers_delete.Enabled = false;
+                btn_pers_edit.Enabled = false;
+
+                txt_pers_vor.Text = "";
+                txt_pers_nach.Text = "";
+                txt_pers_land.Text = "";
+                txt_pers_plz.Text = "";
+                txt_pers_ort.Text = "";
+                txt_pers_hnr.Text = "";
+                txt_pers_str.Text = "";
+
+                UC_Parameter_lbx_pers_fill();
+            }
+        }
+
+        private void btn_lief_edit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OdbcConnection connection = Connection;
+                connection.Open();
+                string sql3 =
+                    string.Format(
+                        "UPDATE lieferant SET lieferant= '{0}' WHERE L_ID = {1}",
+                        txt_lief_ken.Text, lbx_lief.SelectedValue);
+
+                OdbcCommand cmd = new OdbcCommand(sql3, connection);
+                cmd.ExecuteNonQuery();
+                string sql2 = string.Format("SELECT Adr_ID FROM lieferant WHERE L_ID = {0}", lbx_lief.SelectedValue);
+                OdbcCommand cmd_read = new OdbcCommand(sql2, connection);
+                OdbcDataReader sqlReader = cmd_read.ExecuteReader();
+
+                sqlReader.Read();
+
+                int adr_id = sqlReader.GetInt32(0);
+
+                string sql = string.Format(
+                    "UPDATE adressen SET Land = '{0}', PLZ = '{1}', Ort = '{2}', Hausnummer = '{3}', Strasse = '{4}' WHERE Adr_ID = {5}",
+                    txt_lief_land.Text, txt_lief_plz.Text, txt_lief_ort.Text, txt_lief_hnr.Text, txt_lief_str.Text,
+                    adr_id);
+                OdbcCommand cmd2 = new OdbcCommand(sql, connection);
+                cmd2.ExecuteNonQuery();
+
+                connection.Close();
+            }
+            catch (Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Lieferant Update): \n\n" + f.Message, "Fehler",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                btn_lief_delete.Enabled = false;
+                btn_lief_edit.Enabled = false;
+
+                txt_lief_ken.Text = "";
+                txt_lief_land.Text = "";
+                txt_lief_plz.Text = "";
+                txt_lief_ort.Text = "";
+                txt_lief_hnr.Text = "";
+                txt_lief_str.Text = "";
+
+                UC_Parameter_lbx_lief_fill();
+            }
+
+        }
+
+        private void btn_pers_funk_add_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OdbcConnection connection = Connection;
+                string sql_controll = string.Format("SELECT COUNT(*) FROM personal_funktion WHERE P_ID = {0} AND Funktion_ID = {1}", lbx_pers.SelectedValue, cbx_pers_funk.SelectedValue);
+                
+                string sql = string.Format("INSERT INTO personal_funktion (P_ID,Funktion_ID) VALUES ({0},{1})",
+                    lbx_pers.SelectedValue, cbx_pers_funk.SelectedValue);
+                OdbcCommand cmd = new OdbcCommand(sql, connection);
+                OdbcCommand cmd_check = new OdbcCommand(sql_controll, connection);
+                connection.Open();
+                int pers_funk_ext = Convert.ToInt32(cmd_check.ExecuteScalar().ToString());
+                if (pers_funk_ext > 0)
+                {
+                    MessageBox.Show("Person hat Funktion schon", "Infomation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    cmd.ExecuteNonQuery();
+                }         
+                connection.Close();
+            }
+
+            catch (Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Personal Funktion): \n\n" + f.Message, "Fehler",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+
+            finally
+            {
+                UC_Parameter_lbx_pers_funk_fill();
+            }
+        }
+
+        private void btn_pers_funk_del_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OdbcConnection connection = Connection;
+                string sql = string.Format("DELETE FROM personal_funktion WHERE P_ID = {0} AND Funktion_ID = {1}",
+                    lbx_pers.SelectedValue, lbx_pers_funk.SelectedValue);
+                OdbcCommand cmd = new OdbcCommand(sql, connection);
+                connection.Open();
+                cmd.ExecuteNonQuery();
+                connection.Close();
+
+            }
+            catch (Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Personal Funktion): \n\n" + f.Message, "Fehler",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+
+            finally
+            {
+                btn_pers_funk_del.Enabled = false;
+                UC_Parameter_lbx_pers_funk_fill();
+            }
+        }
+
+        private void lbx_pers_funk_SelectedValueChanged(object sender, EventArgs e)
+        {
+            btn_pers_funk_del.Enabled = true;
+        }
+
+        private void btn_fert_save_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OdbcConnection connection = Connection;
+                connection.Open();
+                string sql = string.Format("INSERT INTO fertigungsstatus (Status) VALUES ('{0}')", txt_fert_new.Text);
+                OdbcCommand cmd = new OdbcCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                UC_Parameter_cbx_fert_fill();
+                txt_fert_new.Text = "";
+
+                MessageBox.Show("Fertigungsstatus wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+
+            btn_fert_save.Enabled = false;
+        }
+
+        private void txt_fert_new_TextChanged(object sender, EventArgs e)
+        {
+            btn_fert_save.Enabled = true;
+            if (txt_fert_new.Text == "") btn_fert_save.Enabled = false;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            btn_fert_edit.Enabled = !btn_fert_edit.Enabled;
+        }
+
+        private void txt_fert_edit_TextChanged(object sender, EventArgs e)
+        {
+            btn_fert_edit.Enabled = true;
+            if (txt_fert_edit.Text == "") btn_fert_edit.Enabled = false;
+        }
+
+        private void btn_fert_edit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OdbcConnection connection = Connection;
+                connection.Open();
+                string sql = string.Format("UPDATE fertigungsstatus SET deaktiviert = {0}, status = '{1}' WHERE F_ID = {2}", box_fert_dis.Checked, txt_fert_edit.Text, cbx_fert.SelectedValue);
+                OdbcCommand cmd = new OdbcCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+
+            finally
+            {
+                UC_Parameter_cbx_fert_fill();
+
+
+                MessageBox.Show("Fertigungsstatus wurde geändert", "Änderung erfolgreich", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+
+            txt_fert_edit.Text = "";
+            btn_fert_edit.Enabled = false;
+            box_fert_dis.Checked = false;
+        }
+
+        private void btn_lief_delete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string sql = string.Format("UPDATE lieferant SET deaktiviert=true WHERE L_ID={0}",
+                    lbx_lief.SelectedValue);
+                OdbcConnection connection = Connection;
+                connection.Open();
+                OdbcCommand cmd = new OdbcCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+
+
+            }
+            catch (Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Lieferant Delete): \n\n" + f.Message, "Fehler",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                btn_lief_delete.Enabled = false;
+                btn_lief_edit.Enabled = false;
+
+                txt_lief_ken.Text = "";
+                txt_lief_land.Text = "";
+                txt_lief_plz.Text = "";
+                txt_lief_ort.Text = "";
+                txt_lief_hnr.Text = "";
+                txt_lief_str.Text = "";
+
+                UC_Parameter_lbx_lief_fill();
+            }
         }
     }
 }
