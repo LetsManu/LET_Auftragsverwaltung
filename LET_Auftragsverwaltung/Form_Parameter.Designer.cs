@@ -45,7 +45,7 @@
             this.ClientSize = new System.Drawing.Size(855, 450);
             this.Controls.Add(this.uC_Parameter1);
             this.Name = "Form_Parameter";
-            this.Text = "Form_Parameter";
+            this.Text = "Parameter";
             this.ResumeLayout(false);
 
         }

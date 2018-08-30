@@ -30,6 +30,9 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_pers_funk_add = new System.Windows.Forms.Button();
+            this.btn_pers_funk_del = new System.Windows.Forms.Button();
+            this.lbx_pers_funk = new System.Windows.Forms.ListBox();
             this.lbx_pers = new System.Windows.Forms.ListBox();
             this.btn_pers_delete = new System.Windows.Forms.Button();
             this.btn_pers_edit = new System.Windows.Forms.Button();
@@ -93,9 +96,6 @@
             this.txt_auf_re = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.btn_auf_change = new System.Windows.Forms.Button();
-            this.lbx_pers_funk = new System.Windows.Forms.ListBox();
-            this.btn_pers_funk_del = new System.Windows.Forms.Button();
-            this.btn_pers_funk_add = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -168,6 +168,37 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Personen";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btn_pers_funk_add
+            // 
+            this.btn_pers_funk_add.Enabled = false;
+            this.btn_pers_funk_add.Location = new System.Drawing.Point(525, 312);
+            this.btn_pers_funk_add.Name = "btn_pers_funk_add";
+            this.btn_pers_funk_add.Size = new System.Drawing.Size(109, 23);
+            this.btn_pers_funk_add.TabIndex = 26;
+            this.btn_pers_funk_add.Text = "Hinzufügen";
+            this.btn_pers_funk_add.UseVisualStyleBackColor = true;
+            this.btn_pers_funk_add.Click += new System.EventHandler(this.btn_pers_funk_add_Click);
+            // 
+            // btn_pers_funk_del
+            // 
+            this.btn_pers_funk_del.Enabled = false;
+            this.btn_pers_funk_del.Location = new System.Drawing.Point(525, 30);
+            this.btn_pers_funk_del.Name = "btn_pers_funk_del";
+            this.btn_pers_funk_del.Size = new System.Drawing.Size(109, 23);
+            this.btn_pers_funk_del.TabIndex = 25;
+            this.btn_pers_funk_del.Text = "Löschen";
+            this.btn_pers_funk_del.UseVisualStyleBackColor = true;
+            this.btn_pers_funk_del.Click += new System.EventHandler(this.btn_pers_funk_del_Click);
+            // 
+            // lbx_pers_funk
+            // 
+            this.lbx_pers_funk.FormattingEnabled = true;
+            this.lbx_pers_funk.Location = new System.Drawing.Point(425, 59);
+            this.lbx_pers_funk.Name = "lbx_pers_funk";
+            this.lbx_pers_funk.Size = new System.Drawing.Size(209, 238);
+            this.lbx_pers_funk.TabIndex = 24;
+            this.lbx_pers_funk.SelectedValueChanged += new System.EventHandler(this.lbx_pers_funk_SelectedValueChanged);
             // 
             // lbx_pers
             // 
@@ -390,6 +421,7 @@
             this.btn_lief_delete.TabIndex = 37;
             this.btn_lief_delete.Text = "Löschen";
             this.btn_lief_delete.UseVisualStyleBackColor = true;
+            this.btn_lief_delete.Click += new System.EventHandler(this.btn_lief_delete_Click);
             // 
             // lbx_lief
             // 
@@ -777,37 +809,6 @@
             this.btn_auf_change.Text = "Ändern";
             this.btn_auf_change.UseVisualStyleBackColor = true;
             this.btn_auf_change.Click += new System.EventHandler(this.btn_auf_change_Click);
-            // 
-            // lbx_pers_funk
-            // 
-            this.lbx_pers_funk.FormattingEnabled = true;
-            this.lbx_pers_funk.Location = new System.Drawing.Point(425, 59);
-            this.lbx_pers_funk.Name = "lbx_pers_funk";
-            this.lbx_pers_funk.Size = new System.Drawing.Size(209, 238);
-            this.lbx_pers_funk.TabIndex = 24;
-            this.lbx_pers_funk.SelectedValueChanged += new System.EventHandler(this.lbx_pers_funk_SelectedValueChanged);
-            // 
-            // btn_pers_funk_del
-            // 
-            this.btn_pers_funk_del.Enabled = false;
-            this.btn_pers_funk_del.Location = new System.Drawing.Point(525, 30);
-            this.btn_pers_funk_del.Name = "btn_pers_funk_del";
-            this.btn_pers_funk_del.Size = new System.Drawing.Size(109, 23);
-            this.btn_pers_funk_del.TabIndex = 25;
-            this.btn_pers_funk_del.Text = "Löschen";
-            this.btn_pers_funk_del.UseVisualStyleBackColor = true;
-            this.btn_pers_funk_del.Click += new System.EventHandler(this.btn_pers_funk_del_Click);
-            // 
-            // btn_pers_funk_add
-            // 
-            this.btn_pers_funk_add.Enabled = false;
-            this.btn_pers_funk_add.Location = new System.Drawing.Point(525, 312);
-            this.btn_pers_funk_add.Name = "btn_pers_funk_add";
-            this.btn_pers_funk_add.Size = new System.Drawing.Size(109, 23);
-            this.btn_pers_funk_add.TabIndex = 26;
-            this.btn_pers_funk_add.Text = "Hinzufügen";
-            this.btn_pers_funk_add.UseVisualStyleBackColor = true;
-            this.btn_pers_funk_add.Click += new System.EventHandler(this.btn_pers_funk_add_Click);
             // 
             // tabPage5
             // 

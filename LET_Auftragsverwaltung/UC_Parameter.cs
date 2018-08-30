@@ -124,7 +124,7 @@ namespace LET_Auftragsverwaltung
             UC_Parameter_cbx_fert_fill();
             UC_Parameter_lbx_pers_fill();
             UC_Parameter_lbx_lief_fill();
-            UC_Parameter_lbx_pers_funk_fill();
+            //UC_Parameter_lbx_pers_funk_fill();
         }
 
         private void UC_Parameter_cbx_funk_fill()
@@ -972,6 +972,43 @@ namespace LET_Auftragsverwaltung
             txt_fert_edit.Text = "";
             btn_fert_edit.Enabled = false;
             box_fert_dis.Checked = false;
+        }
+
+        private void btn_lief_delete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string sql = string.Format("UPDATE lieferant SET deaktiviert=true WHERE L_ID={0}",
+                    lbx_lief.SelectedValue);
+                OdbcConnection connection = Connection;
+                connection.Open();
+                OdbcCommand cmd = new OdbcCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+
+
+            }
+            catch (Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Lieferant Delete): \n\n" + f.Message, "Fehler",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                btn_lief_delete.Enabled = false;
+                btn_lief_edit.Enabled = false;
+
+                txt_lief_ken.Text = "";
+                txt_lief_land.Text = "";
+                txt_lief_plz.Text = "";
+                txt_lief_ort.Text = "";
+                txt_lief_hnr.Text = "";
+                txt_lief_str.Text = "";
+
+                UC_Parameter_lbx_lief_fill();
+            }
         }
     }
 }
