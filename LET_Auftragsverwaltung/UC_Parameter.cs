@@ -279,40 +279,17 @@ namespace LET_Auftragsverwaltung
         {
 
             try
-            {
+            { 
                 OdbcConnection connection = Connection;
-
-                string sql_read = string.Format("SELECT Funktion_ID FROM personal_funktion WHERE P_ID = {0}", lbx_pers.SelectedValue);
-                string sql = "";
-                OdbcCommand cmd_read = new OdbcCommand(sql_read, connection);
-                OdbcCommand cmd;
                 connection.Open();
-                OdbcDataReader sqlReader_pers = cmd_read.ExecuteReader();
-                DataTable dt = new DataTable("Funktionen");
-                dt.Columns.Add("Funktion", typeof(string));
-                dt.Columns.Add("ID", typeof(int));
-                OdbcDataReader sqlReader_funkt;
-                DataRow funk_row;
-
-                while (sqlReader_pers.Read())
-                {
-                    sql = string.Format("SELECT Funktion,Funktion_ID FROM funktion WHERE Funktion_ID = {0}", sqlReader_pers[0]);
-                    
-                    cmd = new OdbcCommand(sql, connection);
-                    sqlReader_funkt = cmd.ExecuteReader();
-                    sqlReader_funkt.Read();
-                    funk_row = dt.NewRow();
-                    funk_row["Funktion"] = sqlReader_funkt[0];
-                    funk_row["ID"] = sqlReader_funkt[1];
-                    dt.Rows.Add(funk_row);
-                    sqlReader_funkt.Close();
-                }
-                sqlReader_pers.Close();
+                string sql = string.Format("SELECT DISTINCT funktion.`Funktion`, funktion.`Funktion_ID` FROM personal LEFT JOIN personal_funktion ON personal.`P_ID` = personal_funktion.`P_ID` LEFT JOIN funktion ON personal_funktion.`Funktion_ID` = funktion.`Funktion_ID` WHERE personal.`P_ID` = {0} ORDER BY funktion.`Funktion`", lbx_pers.SelectedValue);
+                OdbcDataAdapter db = new OdbcDataAdapter(sql, connection);
+                DataTable dt = new DataTable();
+                db.Fill(dt);
                 connection.Close();
 
-
                 lbx_pers_funk.DataSource = dt;
-                lbx_pers_funk.ValueMember = "ID";
+                lbx_pers_funk.ValueMember = "Funktion_ID";
                 lbx_pers_funk.DisplayMember = "Funktion";
 
 
@@ -588,7 +565,7 @@ namespace LET_Auftragsverwaltung
             btn_pers_funk_add.Enabled = true;
             btn_pers_funk_del.Enabled = true;
 
-            if (lbx_pers.Items.Count > 0 || lbx_pers.Items.Count != null)
+            if (lbx_pers.Items.Count > 0)
             {
                 try
                 {
@@ -678,7 +655,7 @@ namespace LET_Auftragsverwaltung
             btn_lief_delete.Enabled = true;
             btn_lief_save.Enabled = false;
 
-            if (lbx_pers.Items.Count > 0 || lbx_pers.Items.Count != null)
+            if (lbx_pers.Items.Count > 0)
             {
                 try
                 {
