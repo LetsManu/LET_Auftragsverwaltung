@@ -35,7 +35,7 @@
             // 
             this.uC_New_auftrag1.Location = new System.Drawing.Point(-3, -2);
             this.uC_New_auftrag1.Name = "uC_New_auftrag1";
-            this.uC_New_auftrag1.Size = new System.Drawing.Size(800, 414);
+            this.uC_New_auftrag1.Size = new System.Drawing.Size(800, 452);
             this.uC_New_auftrag1.TabIndex = 0;
             // 
             // Form_New_Auftrag

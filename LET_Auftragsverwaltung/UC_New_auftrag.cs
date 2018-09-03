@@ -37,6 +37,7 @@ namespace LET_Auftragsverwaltung
         {
             UC_New_auftrag_fill_cbx_verant();
             UC_New_auftrag_fill_cbx_tech();
+            UC_New_auftrag_fill_cbx_auf();
         }
 
         private void UC_New_auftrag_fill_cbx_verant()
@@ -45,7 +46,7 @@ namespace LET_Auftragsverwaltung
             {
                 OdbcConnection connection = Connection;
                 connection.Open();
-                string sql = "SELECT P_ID,Nachname FROM personal WHERE deaktiviert<>true";
+                string sql = "SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 4";
                 OdbcDataAdapter dc = new OdbcDataAdapter(sql, connection);
                 DataTable dtPer = new DataTable();
                 dc.Fill(dtPer);
@@ -54,7 +55,7 @@ namespace LET_Auftragsverwaltung
 
                 cbx_verant.DataSource = dtPer;
                 cbx_verant.ValueMember = "P_ID";
-                cbx_verant.DisplayMember = "Nachname";
+                cbx_verant.DisplayMember = "Name";
 
 
                 if (cbx_verant.Items.Count > 0) cbx_verant.SelectedIndex = 0;
@@ -70,94 +71,16 @@ namespace LET_Auftragsverwaltung
             try
             {
                 OdbcConnection connection = Connection;
-                
-                string sql_funk = "SELECT Funktion_ID FROM funktion WHERE Funktion='Planer' OR Funktion='Techniker'";
-                
-                OdbcCommand cmd = new OdbcCommand(sql_funk, connection);
-                OdbcCommand cmd_pers_funk;
-                OdbcCommand cmd_pers;
                 connection.Open();
-                OdbcDataReader sqlReader = cmd.ExecuteReader();
-                OdbcDataReader sqlReader_pers_funk;
-                OdbcDataReader sqlReader_pers;
-
-                DataTable dt = new DataTable("personal");
-                dt.Columns.Add("Nachname", typeof(string));
-                dt.Columns.Add("P_ID", typeof(int));
-                DataRow pers_row;
-                List<int> funk = new List<int>();
-                List<int> pers= new List<int>();
-                int controll_list = 0;
-
-                while (sqlReader.Read())
-                {
-                    funk.Add((int)sqlReader[0]);
-                }
-                sqlReader.Close();
-
-                for (int i = 0; i<=funk.Count-1; i++)
-                {
-                    string sql_pers_funk =
-                        string.Format(
-                            "SELECT P_ID FROM personal_funktion WHERE Funktion_ID = {0}",funk[i]);
-                    cmd_pers_funk = new OdbcCommand(sql_pers_funk, connection);
-                    sqlReader_pers_funk = cmd_pers_funk.ExecuteReader();
-                    sqlReader_pers_funk.Read();
-                    pers.Add((int)sqlReader_pers_funk[0]);
-                    while (sqlReader_pers_funk.Read())
-                    {
-                        for (int j = 0; j <= pers.Count - 1; j++)
-                        {
-                            if ((int)sqlReader_pers_funk[0] != pers[j])
-                            {
-                                pers.Add((int)sqlReader_pers_funk[0]);
-                            }
-                        }
-                    }
-
-                    for (int j = 0; j <= pers.Count - 1; j++)
-                    {
-                        string sql_pers = string.Format("SELECT P_ID,Nachname FROM personal WHERE P_ID = {0}",
-                            (int) pers[j]);
-                        cmd_pers = new OdbcCommand(sql_pers, connection);
-                        sqlReader_pers = cmd_pers.ExecuteReader();
-                        
-                        if (dt.Rows.Count == 0)
-                        {
-                            sqlReader_pers.Read();
-                            pers_row = dt.NewRow();
-                            pers_row["Nachname"] = sqlReader_pers[1];
-                            pers_row["P_ID"] = sqlReader_pers[0];
-                            dt.Rows.Add(pers_row);
-                        }
-                        else
-                        {
-                            sqlReader_pers.Read();
-                            controll_list = 1;
-                        }
-
-                        if (controll_list == 1)
-                        {
-                            
-                                    pers_row = dt.NewRow();
-                                    pers_row["Nachname"] = sqlReader_pers[1];
-                                    pers_row["P_ID"] = sqlReader_pers[0];
-                                    dt.Rows.Add(pers_row);
-                                
-                            }
-                        
-
-                        sqlReader_pers.Close();
-                    }
-                }
-                
-
+                string sql = "SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 1 OR pf.Funktion_ID = 2";
+                OdbcDataAdapter db = new OdbcDataAdapter(sql, connection);
+                DataTable dt = new DataTable();
+                db.Fill(dt);
                 connection.Close();
-
 
                 cbx_tech.DataSource = dt;
                 cbx_tech.ValueMember = "P_ID";
-                cbx_tech.DisplayMember = "Nachname";
+                cbx_tech.DisplayMember = "Name";
 
 
                 if (cbx_verant.Items.Count > 0) cbx_verant.SelectedIndex = 0;
@@ -166,6 +89,55 @@ namespace LET_Auftragsverwaltung
             {
                 MessageBox.Show("Fehler in der SQL Abfrage(Neue Auftrag: Fill CBX Techniker): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
+        }
+
+        private void UC_New_auftrag_fill_cbx_auf()
+        {
+            try
+            {
+                OdbcConnection connection = Connection;
+                connection.Open();
+                string sql = "SELECT Art_ID,Art FROM auftragsart WHERE deaktiviert<>true";
+                OdbcDataAdapter db = new OdbcDataAdapter(sql, connection);
+                DataTable dtArt = new DataTable();
+                db.Fill(dtArt);
+                connection.Close();
+
+
+
+                cbx_auftrag.DataSource = dtArt;
+                cbx_auftrag.DisplayMember = "Art";
+                cbx_auftrag.ValueMember = "Art_ID";
+
+                if (cbx_auftrag.Items.Count > 0) cbx_auftrag.SelectedIndex = 0;
+            }
+
+            catch(Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Neue Auftrag: Fill CBX Auftragsart): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+
+            }
+        }
+
+        private void txt_info_kauf_TextChanged(object sender, EventArgs e)
+        {
+            btn_new_auf_save.Enabled = true;
+            if (txt_info_tech.Text == "" && txt_info_kauf.Text == "") btn_new_auf_save.Enabled = false;
+        }
+
+        private void txt_info_tech_TextChanged(object sender, EventArgs e)
+        {
+            btn_new_auf_save.Enabled = true;
+            if (txt_info_tech.Text == "" && txt_info_kauf.Text == "") btn_new_auf_save.Enabled = false;
+        }
+
+        private void btn_auftrag_add_Click(object sender, EventArgs e)
+        {
+            lbx_auftrag.Items.Add(cbx_auftrag.SelectedItem);
         }
     }
 }

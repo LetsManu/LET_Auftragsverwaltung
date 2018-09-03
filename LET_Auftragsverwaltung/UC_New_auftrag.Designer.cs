@@ -74,13 +74,14 @@
             this.txt_info_kauf.Size = new System.Drawing.Size(257, 66);
             this.txt_info_kauf.TabIndex = 5;
             this.txt_info_kauf.Text = "";
+            this.txt_info_kauf.TextChanged += new System.EventHandler(this.txt_info_kauf_TextChanged);
             // 
             // lbx_auftrag
             // 
             this.lbx_auftrag.FormattingEnabled = true;
-            this.lbx_auftrag.Location = new System.Drawing.Point(6, 19);
+            this.lbx_auftrag.Location = new System.Drawing.Point(6, 68);
             this.lbx_auftrag.Name = "lbx_auftrag";
-            this.lbx_auftrag.Size = new System.Drawing.Size(120, 95);
+            this.lbx_auftrag.Size = new System.Drawing.Size(188, 95);
             this.lbx_auftrag.TabIndex = 6;
             // 
             // txt_auftrag_nr
@@ -111,25 +112,26 @@
             // cbx_auftrag
             // 
             this.cbx_auftrag.FormattingEnabled = true;
-            this.cbx_auftrag.Location = new System.Drawing.Point(6, 130);
+            this.cbx_auftrag.Location = new System.Drawing.Point(6, 174);
             this.cbx_auftrag.Name = "cbx_auftrag";
-            this.cbx_auftrag.Size = new System.Drawing.Size(120, 21);
+            this.cbx_auftrag.Size = new System.Drawing.Size(188, 21);
             this.cbx_auftrag.TabIndex = 13;
             // 
             // btn_auftrag_add
             // 
-            this.btn_auftrag_add.Location = new System.Drawing.Point(6, 157);
+            this.btn_auftrag_add.Location = new System.Drawing.Point(6, 201);
             this.btn_auftrag_add.Name = "btn_auftrag_add";
-            this.btn_auftrag_add.Size = new System.Drawing.Size(120, 23);
+            this.btn_auftrag_add.Size = new System.Drawing.Size(188, 23);
             this.btn_auftrag_add.TabIndex = 14;
             this.btn_auftrag_add.Text = "Hinzufügen";
             this.btn_auftrag_add.UseVisualStyleBackColor = true;
+            this.btn_auftrag_add.Click += new System.EventHandler(this.btn_auftrag_add_Click);
             // 
             // btn_auftag_delete
             // 
-            this.btn_auftag_delete.Location = new System.Drawing.Point(6, 184);
+            this.btn_auftag_delete.Location = new System.Drawing.Point(6, 23);
             this.btn_auftag_delete.Name = "btn_auftag_delete";
-            this.btn_auftag_delete.Size = new System.Drawing.Size(120, 23);
+            this.btn_auftag_delete.Size = new System.Drawing.Size(188, 23);
             this.btn_auftag_delete.TabIndex = 15;
             this.btn_auftag_delete.Text = "Löschen";
             this.btn_auftag_delete.UseVisualStyleBackColor = true;
@@ -152,6 +154,7 @@
             // 
             // btn_new_auf_save
             // 
+            this.btn_new_auf_save.Enabled = false;
             this.btn_new_auf_save.Location = new System.Drawing.Point(551, 397);
             this.btn_new_auf_save.Name = "btn_new_auf_save";
             this.btn_new_auf_save.Size = new System.Drawing.Size(192, 23);
@@ -220,11 +223,12 @@
             // 
             // txt_info_tech
             // 
-            this.txt_info_tech.Location = new System.Drawing.Point(501, 177);
+            this.txt_info_tech.Location = new System.Drawing.Point(501, 185);
             this.txt_info_tech.Name = "txt_info_tech";
             this.txt_info_tech.Size = new System.Drawing.Size(257, 66);
             this.txt_info_tech.TabIndex = 24;
             this.txt_info_tech.Text = "";
+            this.txt_info_tech.TextChanged += new System.EventHandler(this.txt_info_tech_TextChanged);
             // 
             // label1
             // 
