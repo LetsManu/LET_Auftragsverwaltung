@@ -124,7 +124,8 @@ namespace LET_Auftragsverwaltung
             UC_Parameter_cbx_fert_fill();
             UC_Parameter_lbx_pers_fill();
             UC_Parameter_lbx_lief_fill();
-            //UC_Parameter_lbx_pers_funk_fill();
+            UC_Parameter_lbx_pers_funk_fill();
+            UC_Parameter_lbx_stoff_fill();
         }
 
         private void UC_Parameter_cbx_funk_fill()
@@ -271,6 +272,42 @@ namespace LET_Auftragsverwaltung
             {
                 connection.Close();
                 MessageBox.Show("Fehler in der SQL Abfrage(Lieferant Fill): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void UC_Parameter_lbx_stoff_fill()
+        {
+
+            try
+            {
+                OdbcConnection connection2 = Connection;
+
+                string sql2 = "SELECT Stoff,ST_ID FROM stoff WHERE deaktiviert<>true";
+                OdbcDataAdapter da = new OdbcDataAdapter(sql2, connection2);
+                DataTable dt = new DataTable();
+                connection2.Open();
+                da.Fill(dt);
+                connection2.Close();
+
+
+                cbx_stoff_edit.DataSource = dt;
+                cbx_stoff_zu_stoff.DataSource = dt;
+                cbx_stoff_up.DataSource = dt;
+                cbx_stoff_edit.ValueMember = "ST_ID";
+                cbx_stoff_zu_stoff.ValueMember = "ST_ID";
+                cbx_stoff_up.ValueMember = "ST_ID";
+                cbx_stoff_edit.DisplayMember = "Stoff";
+                cbx_stoff_zu_stoff.DisplayMember = "Stoff";
+                cbx_stoff_up.DisplayMember = "Stoff";
+
+
+                if (cbx_stoff_edit.Items.Count > 0) cbx_stoff_edit.SelectedIndex = 0;
+            }
+            catch (Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Stoff Fill): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
