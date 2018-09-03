@@ -12,7 +12,7 @@ namespace LET_Auftragsverwaltung
 {
     public partial class Form_Overview : Form
     {
-        public Form_Overview()
+        public Form_Overview( )
         {
             InitializeComponent();
         }

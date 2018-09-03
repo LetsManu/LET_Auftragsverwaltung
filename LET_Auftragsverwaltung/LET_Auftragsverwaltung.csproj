@@ -186,11 +186,6 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="auftragsDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>auftragsDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="CS_Auftrag_Data.cs" />
     <Compile Include="Form_New_Auftrag.cs">
       <SubType>Form</SubType>
@@ -268,17 +263,6 @@
       <DependentUpon>UC_Parameter.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="auftragsDataSet.xsc">
-      <DependentUpon>auftragsDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="auftragsDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>auftragsDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="auftragsDataSet.xss">
-      <DependentUpon>auftragsDataSet.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -312,7 +296,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>08603D84A332A3EFFBB985418F8D151518825EA5</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>0599E173ACA0E5DAC246E327BA32DDB70EFA6283</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
