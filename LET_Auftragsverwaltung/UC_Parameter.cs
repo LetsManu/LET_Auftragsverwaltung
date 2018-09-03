@@ -126,6 +126,7 @@ namespace LET_Auftragsverwaltung
             UC_Parameter_lbx_lief_fill();
             UC_Parameter_lbx_pers_funk_fill();
             UC_Parameter_lbx_stoff_fill();
+            UC_Parameter_cbx_stoff_lief_fill();
         }
 
         private void UC_Parameter_cbx_funk_fill()
@@ -272,6 +273,36 @@ namespace LET_Auftragsverwaltung
             {
                 connection.Close();
                 MessageBox.Show("Fehler in der SQL Abfrage(Lieferant Fill): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void UC_Parameter_cbx_stoff_lief_fill()
+        {
+
+            try
+            {
+                OdbcConnection connection2 = Connection;
+
+                string sql2 = "SELECT Lieferant,L_ID FROM lieferant WHERE deaktiviert<>true";
+                OdbcDataAdapter da = new OdbcDataAdapter(sql2, connection2);
+                DataTable dt = new DataTable();
+                connection2.Open();
+                da.Fill(dt);
+                connection2.Close();
+
+
+                cbx_stoff_lief.DataSource = dt;
+                cbx_stoff_lief.ValueMember = "L_ID";
+                cbx_stoff_lief.DisplayMember = "Lieferant";
+
+
+                if (cbx_stoff_lief.Items.Count > 0) cbx_stoff_lief.SelectedIndex = 0;
+            }
+            catch (Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Stoff Lieferant Fill): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

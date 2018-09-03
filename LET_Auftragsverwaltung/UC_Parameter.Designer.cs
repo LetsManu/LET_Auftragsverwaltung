@@ -109,6 +109,16 @@
             this.label25 = new System.Windows.Forms.Label();
             this.btn_fert_edit = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.btn_stoff_up = new System.Windows.Forms.Button();
+            this.label31 = new System.Windows.Forms.Label();
+            this.cbx_stoff_up = new System.Windows.Forms.ComboBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.cbx_stoff_lief = new System.Windows.Forms.ComboBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.cbx_stoff_zu_stoff = new System.Windows.Forms.ComboBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.label26 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -120,17 +130,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.cbx_stoff_zu_stoff = new System.Windows.Forms.ComboBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.cbx_stoff_up = new System.Windows.Forms.ComboBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btn_stoff_up = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -144,10 +144,10 @@
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
-            this.groupBox9.SuspendLayout();
-            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -976,6 +976,102 @@
             this.tabPage6.Text = "Stoff";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.btn_stoff_up);
+            this.groupBox10.Controls.Add(this.label31);
+            this.groupBox10.Controls.Add(this.cbx_stoff_up);
+            this.groupBox10.Location = new System.Drawing.Point(316, 232);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(243, 85);
+            this.groupBox10.TabIndex = 18;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Bild hochladen";
+            // 
+            // btn_stoff_up
+            // 
+            this.btn_stoff_up.Location = new System.Drawing.Point(128, 54);
+            this.btn_stoff_up.Name = "btn_stoff_up";
+            this.btn_stoff_up.Size = new System.Drawing.Size(109, 23);
+            this.btn_stoff_up.TabIndex = 5;
+            this.btn_stoff_up.Text = "Datei auswählen";
+            this.btn_stoff_up.UseVisualStyleBackColor = true;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(6, 22);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(72, 13);
+            this.label31.TabIndex = 4;
+            this.label31.Text = "Auswahl Stoff";
+            // 
+            // cbx_stoff_up
+            // 
+            this.cbx_stoff_up.FormattingEnabled = true;
+            this.cbx_stoff_up.Location = new System.Drawing.Point(128, 19);
+            this.cbx_stoff_up.Name = "cbx_stoff_up";
+            this.cbx_stoff_up.Size = new System.Drawing.Size(109, 21);
+            this.cbx_stoff_up.TabIndex = 3;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.cbx_stoff_lief);
+            this.groupBox9.Controls.Add(this.label29);
+            this.groupBox9.Controls.Add(this.cbx_stoff_zu_stoff);
+            this.groupBox9.Controls.Add(this.label30);
+            this.groupBox9.Controls.Add(this.button3);
+            this.groupBox9.Location = new System.Drawing.Point(6, 232);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(214, 146);
+            this.groupBox9.TabIndex = 17;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Stoff zuteilen";
+            // 
+            // cbx_stoff_lief
+            // 
+            this.cbx_stoff_lief.FormattingEnabled = true;
+            this.cbx_stoff_lief.Location = new System.Drawing.Point(99, 64);
+            this.cbx_stoff_lief.Name = "cbx_stoff_lief";
+            this.cbx_stoff_lief.Size = new System.Drawing.Size(109, 21);
+            this.cbx_stoff_lief.TabIndex = 4;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(6, 25);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(72, 13);
+            this.label29.TabIndex = 2;
+            this.label29.Text = "Auswahl Stoff";
+            // 
+            // cbx_stoff_zu_stoff
+            // 
+            this.cbx_stoff_zu_stoff.FormattingEnabled = true;
+            this.cbx_stoff_zu_stoff.Location = new System.Drawing.Point(99, 19);
+            this.cbx_stoff_zu_stoff.Name = "cbx_stoff_zu_stoff";
+            this.cbx_stoff_zu_stoff.Size = new System.Drawing.Size(109, 21);
+            this.cbx_stoff_zu_stoff.TabIndex = 0;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(6, 64);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(91, 13);
+            this.label30.TabIndex = 3;
+            this.label30.Text = "Auswahl Lieferant";
+            // 
+            // button3
+            // 
+            this.button3.Enabled = false;
+            this.button3.Location = new System.Drawing.Point(133, 106);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "Ändern";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.label26);
@@ -1082,105 +1178,9 @@
             this.button2.Text = "Ändern";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.comboBox3);
-            this.groupBox9.Controls.Add(this.label29);
-            this.groupBox9.Controls.Add(this.cbx_stoff_zu_stoff);
-            this.groupBox9.Controls.Add(this.label30);
-            this.groupBox9.Controls.Add(this.button3);
-            this.groupBox9.Location = new System.Drawing.Point(6, 232);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(214, 146);
-            this.groupBox9.TabIndex = 17;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Stoff zuteilen";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(6, 25);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(72, 13);
-            this.label29.TabIndex = 2;
-            this.label29.Text = "Auswahl Stoff";
-            // 
-            // cbx_stoff_zu_stoff
-            // 
-            this.cbx_stoff_zu_stoff.FormattingEnabled = true;
-            this.cbx_stoff_zu_stoff.Location = new System.Drawing.Point(99, 19);
-            this.cbx_stoff_zu_stoff.Name = "cbx_stoff_zu_stoff";
-            this.cbx_stoff_zu_stoff.Size = new System.Drawing.Size(109, 21);
-            this.cbx_stoff_zu_stoff.TabIndex = 0;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(6, 64);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(91, 13);
-            this.label30.TabIndex = 3;
-            this.label30.Text = "Auswahl Lieferant";
-            // 
-            // button3
-            // 
-            this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(133, 106);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Ändern";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(99, 64);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(109, 21);
-            this.comboBox3.TabIndex = 4;
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.Controls.Add(this.btn_stoff_up);
-            this.groupBox10.Controls.Add(this.label31);
-            this.groupBox10.Controls.Add(this.cbx_stoff_up);
-            this.groupBox10.Location = new System.Drawing.Point(316, 232);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(243, 85);
-            this.groupBox10.TabIndex = 18;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Bild hochladen";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(6, 22);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(72, 13);
-            this.label31.TabIndex = 4;
-            this.label31.Text = "Auswahl Stoff";
-            // 
-            // cbx_stoff_up
-            // 
-            this.cbx_stoff_up.FormattingEnabled = true;
-            this.cbx_stoff_up.Location = new System.Drawing.Point(128, 19);
-            this.cbx_stoff_up.Name = "cbx_stoff_up";
-            this.cbx_stoff_up.Size = new System.Drawing.Size(109, 21);
-            this.cbx_stoff_up.TabIndex = 3;
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // btn_stoff_up
-            // 
-            this.btn_stoff_up.Location = new System.Drawing.Point(128, 54);
-            this.btn_stoff_up.Name = "btn_stoff_up";
-            this.btn_stoff_up.Size = new System.Drawing.Size(109, 23);
-            this.btn_stoff_up.TabIndex = 5;
-            this.btn_stoff_up.Text = "Datei auswählen";
-            this.btn_stoff_up.UseVisualStyleBackColor = true;
             // 
             // UC_Parameter
             // 
@@ -1211,14 +1211,14 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.tabPage6.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
-            this.groupBox10.ResumeLayout(false);
-            this.groupBox10.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1311,7 +1311,7 @@
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.ComboBox cbx_stoff_up;
         private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cbx_stoff_lief;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.ComboBox cbx_stoff_zu_stoff;
         private System.Windows.Forms.Label label30;
