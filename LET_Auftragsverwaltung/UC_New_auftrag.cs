@@ -290,5 +290,10 @@ namespace LET_Auftragsverwaltung
             lbx_auftrag.Items.Remove(lbx_auftrag.Items[lbx_auftrag.SelectedIndex]);
 
         }
+
+        private void Btn_new_auf_save_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
