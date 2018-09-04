@@ -10,12 +10,13 @@ using System.Windows.Forms;
 using System.Data.Odbc;
 using System.Data.SqlClient;
 using System.Runtime.Remoting.Channels;
+using System.IO;
 
 namespace LET_Auftragsverwaltung
 {
     public partial class UC_Parameter : UserControl
     {
-        
+        private string[] extensions = new string[] {"PNG", "JPG", "TIFF", "GIF"};
 
 
         private OdbcConnection connection = null;
@@ -126,6 +127,7 @@ namespace LET_Auftragsverwaltung
             UC_Parameter_lbx_lief_fill();
             UC_Parameter_lbx_pers_funk_fill();
             UC_Parameter_lbx_stoff_fill();
+            UC_Parameter_cbx_stoff_lief_fill();
         }
 
         private void UC_Parameter_cbx_funk_fill()
@@ -272,6 +274,36 @@ namespace LET_Auftragsverwaltung
             {
                 connection.Close();
                 MessageBox.Show("Fehler in der SQL Abfrage(Lieferant Fill): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void UC_Parameter_cbx_stoff_lief_fill()
+        {
+
+            try
+            {
+                OdbcConnection connection2 = Connection;
+
+                string sql2 = "SELECT Lieferant,L_ID FROM lieferant WHERE deaktiviert<>true";
+                OdbcDataAdapter da = new OdbcDataAdapter(sql2, connection2);
+                DataTable dt = new DataTable();
+                connection2.Open();
+                da.Fill(dt);
+                connection2.Close();
+
+
+                cbx_stoff_lief.DataSource = dt;
+                cbx_stoff_lief.ValueMember = "L_ID";
+                cbx_stoff_lief.DisplayMember = "Lieferant";
+
+
+                if (cbx_stoff_lief.Items.Count > 0) cbx_stoff_lief.SelectedIndex = 0;
+            }
+            catch (Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Stoff Lieferant Fill): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -1023,6 +1055,89 @@ namespace LET_Auftragsverwaltung
 
                 UC_Parameter_lbx_lief_fill();
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OdbcConnection connection = Connection;
+                string sql_controll = string.Format("SELECT COUNT(*) FROM stoff_lieferant WHERE L_ID = {0} AND ST_ID = {1}", cbx_stoff_lief.SelectedValue, cbx_stoff_zu_stoff.SelectedIndex);
+                
+                string sql = string.Format("INSERT INTO stoff_lieferant (L_ID,ST_ID) VALUES ({0},{1})",
+                    cbx_stoff_lief.SelectedValue, cbx_stoff_zu_stoff.SelectedIndex);
+                OdbcCommand cmd = new OdbcCommand(sql, connection);
+                OdbcCommand cmd_check = new OdbcCommand(sql_controll, connection);
+                connection.Open();
+                int stoff_lieferant_ext = Convert.ToInt32(cmd_check.ExecuteScalar().ToString());
+                if (stoff_lieferant_ext > 0)
+                {
+                    MessageBox.Show("Verbindung zwischen Lieferant und Stoff besteht schon", "Infomation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    cmd.ExecuteNonQuery();
+                }         
+                connection.Close();
+            }
+
+            catch (Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Stoff Lieferant Verbindung): \n\n" + f.Message, "Fehler",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+
+            finally
+            {
+                UC_Parameter_lbx_pers_funk_fill();
+            }
+        }
+
+        private void btn_stoff_up_Click(object sender, EventArgs e)
+        {
+            if (ofd_stoff_up.ShowDialog() == DialogResult.OK)
+            {
+                Stream s = new FileStream(ofd_stoff_up.FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                StreamReader sr = new StreamReader(s);
+                pbx_stoff.Image = Image.FromStream(s);
+                pbx_stoff.SizeMode = PictureBoxSizeMode.Zoom;
+
+
+                if (s.Length <= 16000000)
+                {
+                    byte[] file;
+                    
+                        using (var reader = new BinaryReader(s))
+                        {
+                            file = reader.ReadBytes((int)s.Length);
+                        }
+
+
+                    /* string sql = String.Format("INSERT INTO stoff (Bild) VALUE ('{0}') WHERE ST_ID = {1}",
+                         Convert.ToBase64String(file), cbx_stoff_up.SelectedValue);
+                     OdbcConnection con = Connection;
+                     OdbcCommand cmd = new OdbcCommand(sql, con);
+                     con.Open();
+                     cmd.ExecuteNonQuery();
+                     con.Close();*/
+
+                    OdbcConnection con = Connection;
+
+                    string query = "INSERT INTO stoff (Bild) VALUES (@File)";
+                    /*using (OdbcCommand cmd = new OdbcCommand(query))
+                    {
+                        cmd.Connection = con;
+                        cmd.Parameters.Add("@Photo", OdbcType.Image, file.Length).Value = file;
+                        //cmd.Parameters.AddWithValue("@ID", cbx_stoff_up.SelectedValue);
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                    }*/
+                }
+            }
+            pbx_stoff.Refresh();
         }
     }
 }

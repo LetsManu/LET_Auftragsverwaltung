@@ -179,6 +179,32 @@ namespace LET_Auftragsverwaltung
             }
         }
 
+        private void UC_New_auftrag_fill_cbx_lief()
+        {
+            try
+            {
+                OdbcConnection connection = Connection;
+                connection.Open();
+                string sql = "SELECT L_ID, Lieferant FROM Lieferant WHERE deaktiviert<>true";
+                OdbcDataAdapter dc = new OdbcDataAdapter(sql, connection);
+                DataTable dtLief = new DataTable();
+                dc.Fill(dtLief);
+                connection.Close();
+
+
+                cbx_new_auf_lief.DataSource = dtLief;
+                cbx_new_auf_lief.ValueMember = "L_ID";
+                cbx_new_auf_lief.DisplayMember = "Lieferant";
+
+
+                if (cbx_new_auf_lief.Items.Count > 0) cbx_new_auf_lief.SelectedIndex = 0;
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Neue Auftrag: Fill CBX Lief): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void txt_info_kauf_TextChanged(object sender, EventArgs e)
         {
             btn_new_auf_save.Enabled = true;

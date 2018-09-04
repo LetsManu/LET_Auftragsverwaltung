@@ -56,11 +56,14 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.cbx_new_auf_lief = new System.Windows.Forms.ComboBox();
+            this.pbx_new_auf = new System.Windows.Forms.PictureBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbx_new_auf_lief = new System.Windows.Forms.ComboBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbx_new_auf)).BeginInit();
             this.SuspendLayout();
             // 
             // date_erstell
@@ -293,7 +296,7 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.pictureBox1);
+            this.groupBox4.Controls.Add(this.pbx_new_auf);
             this.groupBox4.Controls.Add(this.comboBox2);
             this.groupBox4.Controls.Add(this.cbx_new_auf_lief);
             this.groupBox4.Location = new System.Drawing.Point(280, 285);
@@ -303,8 +306,13 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Stoffauswahl";
             // 
-            // pictureBox1
+            // pbx_new_auf
             // 
+            this.pbx_new_auf.Location = new System.Drawing.Point(308, 12);
+            this.pbx_new_auf.Name = "pbx_new_auf";
+            this.pbx_new_auf.Size = new System.Drawing.Size(173, 44);
+            this.pbx_new_auf.TabIndex = 2;
+            this.pbx_new_auf.TabStop = false;
             this.pictureBox1.Location = new System.Drawing.Point(308, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(173, 44);
@@ -345,7 +353,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbx_new_auf)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -376,7 +384,7 @@
         private System.Windows.Forms.TextBox txt_auf_proj_ken;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbx_new_auf;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ComboBox cbx_new_auf_lief;
     }
