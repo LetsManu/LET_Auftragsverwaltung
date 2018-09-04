@@ -1125,7 +1125,7 @@ namespace LET_Auftragsverwaltung
 
                     OdbcConnection con = Connection;
 
-                    string query = "INSERT INTO stoff (Bild) VALUES (@File)";
+                    //string query = "INSERT INTO stoff (Bild) VALUES (@File)";
                     /*using (OdbcCommand cmd = new OdbcCommand(query))
                     {
                         cmd.Connection = con;

@@ -53,11 +53,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.cbx_new_auf_lief = new System.Windows.Forms.ComboBox();
             this.pbx_new_auf = new System.Windows.Forms.PictureBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbx_new_auf_stoff = new System.Windows.Forms.ComboBox();
             this.cbx_new_auf_lief = new System.Windows.Forms.ComboBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -183,7 +180,7 @@
             this.groupBox2.Controls.Add(this.cbx_auftrag);
             this.groupBox2.Controls.Add(this.btn_auftrag_add);
             this.groupBox2.Controls.Add(this.btn_auftag_delete);
-            this.groupBox2.Location = new System.Drawing.Point(279, 48);
+            this.groupBox2.Location = new System.Drawing.Point(279, 49);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 230);
             this.groupBox2.TabIndex = 22;
@@ -297,7 +294,7 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.pbx_new_auf);
-            this.groupBox4.Controls.Add(this.comboBox2);
+            this.groupBox4.Controls.Add(this.cbx_new_auf_stoff);
             this.groupBox4.Controls.Add(this.cbx_new_auf_lief);
             this.groupBox4.Location = new System.Drawing.Point(280, 285);
             this.groupBox4.Name = "groupBox4";
@@ -313,19 +310,14 @@
             this.pbx_new_auf.Size = new System.Drawing.Size(173, 44);
             this.pbx_new_auf.TabIndex = 2;
             this.pbx_new_auf.TabStop = false;
-            this.pictureBox1.Location = new System.Drawing.Point(308, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(173, 44);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
             // 
-            // comboBox2
+            // cbx_new_auf_stoff
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(167, 35);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 1;
+            this.cbx_new_auf_stoff.FormattingEnabled = true;
+            this.cbx_new_auf_stoff.Location = new System.Drawing.Point(167, 35);
+            this.cbx_new_auf_stoff.Name = "cbx_new_auf_stoff";
+            this.cbx_new_auf_stoff.Size = new System.Drawing.Size(121, 21);
+            this.cbx_new_auf_stoff.TabIndex = 1;
             // 
             // cbx_new_auf_lief
             // 
@@ -385,7 +377,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.PictureBox pbx_new_auf;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbx_new_auf_stoff;
         private System.Windows.Forms.ComboBox cbx_new_auf_lief;
     }
 }
