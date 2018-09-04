@@ -40,6 +40,7 @@ namespace LET_Auftragsverwaltung
             UC_New_auftrag_fill_cbx_tech();
             UC_New_auftrag_fill_cbx_auf();
             UC_New_auftrag_fill_cbx_lief();
+            UC_New_auftrag_fill_cbx_stoff_lief();
             date_erstell.Value = DateTime.Today;
             date_mont.Value = DateTime.Today.AddDays(28);
         }
@@ -179,7 +180,7 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-        private void UC_New_auftrag_fill_cbx_lief()
+        private void UC_New_auftrag_fill_cbx_stoff_lief()
         {
             try
             {
