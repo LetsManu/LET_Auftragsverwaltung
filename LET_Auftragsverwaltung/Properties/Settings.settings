@@ -5,10 +5,10 @@
     <Setting Name="auftragsConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Driver={MySQL ODBC 3.51 Driver};server=192.168.16.192;database=auftrags;user=admin;pwd=cola0815;option=3;uid=admin;password=cola0815&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Driver={MySQL ODBC 5.3 Unicode Driver};Server=192.168.16.192;Database=auftrags;User=admin;Password=cola0815;Option=3;&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.Odbc&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Driver={MySQL ODBC 3.51 Driver};server=192.168.16.192;database=auftrags;user=admin;pwd=cola0815;option=3;uid=admin;password=cola0815</Value>
+      <Value Profile="(Default)">Driver={MySQL ODBC 5.3 Unicode Driver};Server=192.168.16.192;Database=auftrags;User=admin;Password=cola0815;Option=3;</Value>
     </Setting>
   </Settings>
 </SettingsFile>
