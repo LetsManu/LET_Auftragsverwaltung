@@ -30,3 +30,8 @@ Auftraege Hinzufügen
 	INSERT INTO auftraege a (a.Auftrags_NR, a.Planer_Techniker, a.Erstelldatum, a.Montage_Datum, a.Projektbezeichnung, a.Notitz_Kauf, a.Notitz_Tech) VALUES ('Auftrags_Nr','Planner_Techniker','ERstelldatum','Motage Datum','Projektbezeichnung','Notiz Kauf','Notiz Tech') 
 	SELECT a.ID FROM auftraege a WHERE a.Auftrags_Nr = 'Auftrags_Nr' AND  a.Planer_Techniker = 'Planner_Techniker' AND a.Erstelldatum = 'ERstelldatum' AND a.Montage_Datum = 'Motage Datum' AND a.Projektbezeichnung = 'Projektbezeichnung' AND a.Notitz_Kauf = 'Notiz Kauf' AND a.Notitz_Tech = 'Notiz Tech'
 	UPDATE auftraege a SET a.`Auftragsart`='Auftragsart' WHERE a.ID='ID'
+
+
+Stoff dingens un co kg 
+	
+	SELECT stoff.ST_ID,stoff.`Stoff` FROM stoff INNER JOIN stoff_lieferant ON stoff.ST_ID = stoff_lieferant.ST_ID WHERE stoff_lieferant.L_ID = 3
