@@ -130,7 +130,8 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.ofd_stoff_up = new System.Windows.Forms.OpenFileDialog();
+            this.pbx_stoff = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -148,6 +149,7 @@
             this.groupBox9.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbx_stoff)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -964,6 +966,7 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.pbx_stoff);
             this.tabPage6.Controls.Add(this.groupBox10);
             this.tabPage6.Controls.Add(this.groupBox9);
             this.tabPage6.Controls.Add(this.groupBox7);
@@ -996,6 +999,7 @@
             this.btn_stoff_up.TabIndex = 5;
             this.btn_stoff_up.Text = "Datei auswählen";
             this.btn_stoff_up.UseVisualStyleBackColor = true;
+            this.btn_stoff_up.Click += new System.EventHandler(this.btn_stoff_up_Click);
             // 
             // label31
             // 
@@ -1064,13 +1068,13 @@
             // 
             // button3
             // 
-            this.button3.Enabled = false;
             this.button3.Location = new System.Drawing.Point(133, 106);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 2;
             this.button3.Text = "Ändern";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // groupBox7
             // 
@@ -1178,9 +1182,17 @@
             this.button2.Text = "Ändern";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // openFileDialog1
+            // ofd_stoff_up
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.ofd_stoff_up.FileName = "openFileDialog1";
+            // 
+            // pbx_stoff
+            // 
+            this.pbx_stoff.Location = new System.Drawing.Point(585, 232);
+            this.pbx_stoff.Name = "pbx_stoff";
+            this.pbx_stoff.Size = new System.Drawing.Size(228, 85);
+            this.pbx_stoff.TabIndex = 19;
+            this.pbx_stoff.TabStop = false;
             // 
             // UC_Parameter
             // 
@@ -1219,6 +1231,7 @@
             this.groupBox7.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbx_stoff)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1327,6 +1340,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog ofd_stoff_up;
+        private System.Windows.Forms.PictureBox pbx_stoff;
     }
 }
