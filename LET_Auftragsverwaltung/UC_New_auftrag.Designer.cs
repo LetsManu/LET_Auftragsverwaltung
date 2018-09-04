@@ -43,19 +43,19 @@
             this.btn_new_auf_save = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.Projektbezeichnung = new System.Windows.Forms.Label();
+            this.txt_auf_proj_ken = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txt_info_tech = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.Projektbezeichnung = new System.Windows.Forms.Label();
-            this.txt_auf_proj_ken = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.cbx_new_auf_lief = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbx_new_auf_lief = new System.Windows.Forms.ComboBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -172,6 +172,7 @@
             this.btn_new_auf_save.TabIndex = 19;
             this.btn_new_auf_save.Text = "Speichern";
             this.btn_new_auf_save.UseVisualStyleBackColor = true;
+            this.btn_new_auf_save.Click += new System.EventHandler(this.Btn_new_auf_save_Click);
             // 
             // groupBox2
             // 
@@ -206,6 +207,22 @@
             this.groupBox3.TabIndex = 23;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Allgemein";
+            // 
+            // Projektbezeichnung
+            // 
+            this.Projektbezeichnung.AutoSize = true;
+            this.Projektbezeichnung.Location = new System.Drawing.Point(6, 72);
+            this.Projektbezeichnung.Name = "Projektbezeichnung";
+            this.Projektbezeichnung.Size = new System.Drawing.Size(101, 13);
+            this.Projektbezeichnung.TabIndex = 22;
+            this.Projektbezeichnung.Text = "Projektbezeichnung";
+            // 
+            // txt_auf_proj_ken
+            // 
+            this.txt_auf_proj_ken.Location = new System.Drawing.Point(124, 65);
+            this.txt_auf_proj_ken.Name = "txt_auf_proj_ken";
+            this.txt_auf_proj_ken.Size = new System.Drawing.Size(124, 20);
+            this.txt_auf_proj_ken.TabIndex = 21;
             // 
             // label8
             // 
@@ -261,22 +278,6 @@
             this.label4.TabIndex = 26;
             this.label4.Text = "Techniker";
             // 
-            // Projektbezeichnung
-            // 
-            this.Projektbezeichnung.AutoSize = true;
-            this.Projektbezeichnung.Location = new System.Drawing.Point(6, 72);
-            this.Projektbezeichnung.Name = "Projektbezeichnung";
-            this.Projektbezeichnung.Size = new System.Drawing.Size(101, 13);
-            this.Projektbezeichnung.TabIndex = 22;
-            this.Projektbezeichnung.Text = "Projektbezeichnung";
-            // 
-            // txt_auf_proj_ken
-            // 
-            this.txt_auf_proj_ken.Location = new System.Drawing.Point(124, 65);
-            this.txt_auf_proj_ken.Name = "txt_auf_proj_ken";
-            this.txt_auf_proj_ken.Size = new System.Drawing.Size(124, 20);
-            this.txt_auf_proj_ken.TabIndex = 21;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txt_info_kauf);
@@ -302,13 +303,13 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Stoffauswahl";
             // 
-            // cbx_new_auf_lief
+            // pictureBox1
             // 
-            this.cbx_new_auf_lief.FormattingEnabled = true;
-            this.cbx_new_auf_lief.Location = new System.Drawing.Point(6, 35);
-            this.cbx_new_auf_lief.Name = "cbx_new_auf_lief";
-            this.cbx_new_auf_lief.Size = new System.Drawing.Size(121, 21);
-            this.cbx_new_auf_lief.TabIndex = 0;
+            this.pictureBox1.Location = new System.Drawing.Point(308, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(173, 44);
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
             // 
             // comboBox2
             // 
@@ -318,13 +319,13 @@
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 1;
             // 
-            // pictureBox1
+            // cbx_new_auf_lief
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(308, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(173, 44);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.cbx_new_auf_lief.FormattingEnabled = true;
+            this.cbx_new_auf_lief.Location = new System.Drawing.Point(6, 35);
+            this.cbx_new_auf_lief.Name = "cbx_new_auf_lief";
+            this.cbx_new_auf_lief.Size = new System.Drawing.Size(121, 21);
+            this.cbx_new_auf_lief.TabIndex = 0;
             // 
             // UC_New_auftrag
             // 
