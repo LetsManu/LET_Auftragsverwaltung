@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,12 @@ namespace LET_Auftragsverwaltung
                 }
                 return connection;
             }
+        }
+
+        //! Replace all the Messageboxes for information and Error with this Method and passe diese Method an damit sie damit umgehen kan alter flater.....
+        private void SQL_Fehler(Exception f)
+        {
+            MessageBox.Show("Fehler in der SQL Abfrage(Stoff Lieferant Verbindung): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public UC_Parameter( )
@@ -317,6 +324,11 @@ namespace LET_Auftragsverwaltung
                 cbx_stoff_lief.DisplayMember = "Lieferant";
 
 
+                cBx_stoff_lief_02.DataSource = dt;
+                cBx_stoff_lief_02.ValueMember = "L_ID";
+                cBx_stoff_lief_02.DisplayMember = "Lieferant";
+
+
                 if (cbx_stoff_lief.Items.Count > 0)
                 {
                     cbx_stoff_lief.SelectedIndex = 0;
@@ -346,14 +358,8 @@ namespace LET_Auftragsverwaltung
 
 
                 cbx_stoff_edit.DataSource = dt;
-                cbx_stoff_zu_stoff.DataSource = dt;
-                cbx_stoff_up.DataSource = dt;
                 cbx_stoff_edit.ValueMember = "ST_ID";
-                cbx_stoff_zu_stoff.ValueMember = "ST_ID";
-                cbx_stoff_up.ValueMember = "ST_ID";
                 cbx_stoff_edit.DisplayMember = "Stoff";
-                cbx_stoff_zu_stoff.DisplayMember = "Stoff";
-                cbx_stoff_up.DisplayMember = "Stoff";
 
 
                 if (cbx_stoff_edit.Items.Count > 0)
@@ -1135,17 +1141,18 @@ namespace LET_Auftragsverwaltung
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {
+        {/*
             try
             {
-                OdbcConnection connection = Connection;
                 string sql_controll = string.Format("SELECT COUNT(*) FROM stoff_lieferant WHERE L_ID = {0} AND ST_ID = {1}", cbx_stoff_lief.SelectedValue, cbx_stoff_zu_stoff.SelectedIndex);
 
-                string sql = string.Format("INSERT INTO stoff_lieferant (L_ID,ST_ID) VALUES ({0},{1})",
-                    cbx_stoff_lief.SelectedValue, cbx_stoff_zu_stoff.SelectedIndex);
-                OdbcCommand cmd = new OdbcCommand(sql, connection);
-                OdbcCommand cmd_check = new OdbcCommand(sql_controll, connection);
+                string sql = string.Format("INSERT INTO stoff_lieferant (L_ID,ST_ID) VALUES ({0},{1})", cbx_stoff_lief.SelectedValue, cbx_stoff_zu_stoff.SelectedIndex);
+
+
                 connection.Open();
+
+
+                OdbcCommand cmd_check = new OdbcCommand(sql_controll, connection);
                 int stoff_lieferant_ext = Convert.ToInt32(cmd_check.ExecuteScalar().ToString());
                 if (stoff_lieferant_ext > 0)
                 {
@@ -1153,6 +1160,7 @@ namespace LET_Auftragsverwaltung
                 }
                 else
                 {
+                    OdbcCommand cmd = new OdbcCommand(sql, connection);
                     cmd.ExecuteNonQuery();
                 }
                 connection.Close();
@@ -1161,68 +1169,131 @@ namespace LET_Auftragsverwaltung
             catch (Exception f)
             {
                 connection.Close();
-                MessageBox.Show("Fehler in der SQL Abfrage(Stoff Lieferant Verbindung): \n\n" + f.Message, "Fehler",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                SQL_Fehler(f);
             }
 
             finally
             {
                 UC_Parameter_lbx_pers_funk_fill();
-            }
+            }*/
         }
 
+        private String File_Path_FTP = "";
         private void btn_stoff_up_Click(object sender, EventArgs e)
+        {
+            Search_Picture(pbx_stoff);
+        }
+
+        private void Search_Picture(PictureBox pbx)
         {
             if (ofd_stoff_up.ShowDialog() == DialogResult.OK)
             {
-                Stream s = new FileStream(ofd_stoff_up.FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                StreamReader sr = new StreamReader(s);
-                pbx_stoff.Image = Image.FromStream(s);
-                pbx_stoff.SizeMode = PictureBoxSizeMode.Zoom;
-
-
-                if (s.Length <= 16000000)
+                if (extensions.Contains(ofd_stoff_up.FileName.Substring(ofd_stoff_up.FileName.LastIndexOf('.') + 1).ToUpper()))
                 {
-                    byte[ ] BLOB;
-                    BinaryReader reader = new BinaryReader(s);
-                    FileInfo file = new FileInfo(ofd_stoff_up.FileName);
-                    BLOB = reader.ReadBytes(( int ) ( file.Length ));
-                    s.Close();
-                    reader.Close();
-
-
-                    OdbcConnection con = Connection;
-                   // OdbcCommand OdbcCom = new OdbcCommand("INSERT INTO image_table set byteLen = " + file.Length + ", image = ?", con);
-                    OdbcCommand OdbcCom = new OdbcCommand("INSERT INTO stoff SET Bild = ?", con);
-                    OdbcCom.Parameters.Add(new OdbcParameter("ParameterName", BLOB));
-                    OdbcCom.Prepare();
-                    OdbcCom.ExecuteNonQuery();
-                    MessageBox.Show(file.FullName + " saved to database");
-
-
-                    /* string sql = String.Format("INSERT INTO stoff (Bild) VALUE ('{0}') WHERE ST_ID = {1}",
-                         Convert.ToBase64String(file), cbx_stoff_up.SelectedValue);
-                     OdbcConnection con = Connection;
-                     OdbcCommand cmd = new OdbcCommand(sql, con);
-                     con.Open();
-                     cmd.ExecuteNonQuery();
-                     con.Close();*/
-
-
-                    //string query = "INSERT INTO stoff (Bild) VALUES (@File)";
-                    /*using (OdbcCommand cmd = new OdbcCommand(query))
-                    {
-                        cmd.Connection = con;
-                        cmd.Parameters.Add("@Photo", OdbcType.Image, file.Length).Value = file;
-                        //cmd.Parameters.AddWithValue("@ID", cbx_stoff_up.SelectedValue);
-                        con.Open();
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-                    }*/
+                    pbx.Image = Image.FromFile(ofd_stoff_up.FileName);
+                    pbx.SizeMode = PictureBoxSizeMode.Zoom;
+                    File_Path_FTP = ofd_stoff_up.FileName.Substring(ofd_stoff_up.FileName.LastIndexOf('\\') + 1);
+                }
+                else
+                {
+                    MessageBox.Show("Bitte ein Bild mit den Endungen png, jpg, tiff, gif verwenden", "Information",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            pbx_stoff.Refresh();
+        }
+
+        private void btn_Save_Stoff_Click(object sender, EventArgs e)
+        {
+            string sql = string.Format("SELECT COUNT(*) FROM Stoff WHERE Bild = '{0}'", File_Path_FTP);
+            OdbcCommand cmd = new OdbcCommand(sql, connection);
+
+            connection.Open();
+            if (Convert.ToInt32(cmd.ExecuteScalar().ToString()) <= 0)
+            {
+                using (WebClient client = new WebClient())
+                {
+                    client.Credentials = new NetworkCredential("admin", "cola0815");
+                    client.UploadFile("ftp://192.168.16.192/" + File_Path_FTP, WebRequestMethods.Ftp.UploadFile, ofd_stoff_up.FileName);
+                }
+                sql = string.Format("INSERT INTO Stoff (`Stoff`,`Bild`) VALUES ('{0}','{1}')", tBx_new_stoff.Text, File_Path_FTP);
+                cmd = new OdbcCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+                sql = string.Format("SELECT stoff.ST_ID FROM stoff ORDER BY stoff.ST_ID DESC LIMIT 1");
+                cmd = new OdbcCommand(sql, connection);
+                sql = string.Format("INSERT INTO stoff_lieferant (`ST_ID`,`L_ID`) VALUES ({0},{1})", cmd.ExecuteScalar().ToString(), cbx_stoff_lief.SelectedValue.ToString());
+                cmd = new OdbcCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Bild ist in der DB schon vorhanden, bitte ein anderes Bild (oder das Bild mit einem anderen Namen) verwenden.",
+                    "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            connection.Close();
+        }
+
+        private void btn_Change_Stoff_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbx_stoff_edit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cBx_stoff_lief_02.SelectedValue != null)
+            {
+                Connection.Open();
+                string sql = $"SELECT * FROM stoff WHERE stoff.ST_ID = {cbx_stoff_edit.SelectedValue.ToString()}";
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                OdbcDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    tBx_change_Stoff.Text = reader["Stoff"].ToString();
+                    sql = $"SELECT L_ID FROM stoff_lieferant WHERE stoff_lieferant.ST_ID = {cbx_stoff_edit.SelectedValue.ToString()} LIMIT 1";
+                    cmd = new OdbcCommand(sql, Connection);
+
+                    object l_ID;
+                    if ((l_ID = cmd.ExecuteScalar()) != null )
+                    {
+                        cBx_stoff_lief_02.SelectedValue = l_ID;
+                    }
+                    else
+                    {
+                        cBx_stoff_lief_02.Text = "";
+                    }
+
+                    
+                    if (reader["Bild"].ToString() != "")
+                    {
+                        try
+                        {
+                            WebClient client = new WebClient();
+                            client.Credentials = new NetworkCredential("admin", "cola0815");
+                            using (MemoryStream stream = new MemoryStream(client.DownloadData("ftp://192.168.16.192/" + reader["Bild"].ToString())))
+                            {
+                                MemoryStream ms = new MemoryStream();
+                                stream.CopyTo(ms);      //Because of some funnnny stuff that could happen (if you do not do this like this (copto an other memorystream) it could probably maybe be that not all data gets their....... I know, wired
+                                pBx_Stoff_02.Image = ByteToImage(ms.ToArray());
+                                pBx_Stoff_02.SizeMode = PictureBoxSizeMode.Zoom;
+                            }
+                        }
+                        catch (Exception exception)
+                        {
+                            MessageBox.Show("Wahrscheinlich wurde das Bild nicht auf dem FTP gefunden oder Bild kaput Be Happy (;"+exception.Message);
+                        }
+                    }
+                }
+                Connection.Close();
+            }
+        }
+
+        public static Bitmap ByteToImage(byte[ ] blob)
+        {
+            MemoryStream mStream = new MemoryStream();
+            mStream.Write(blob, 0, Convert.ToInt32(blob.Length));
+            Bitmap bm = new Bitmap(mStream, false);
+            mStream.Dispose();
+            return bm;
         }
     }
 }
