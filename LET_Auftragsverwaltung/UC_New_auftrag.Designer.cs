@@ -313,6 +313,7 @@
             // 
             // cbx_new_auf_stoff
             // 
+            this.cbx_new_auf_stoff.Enabled = false;
             this.cbx_new_auf_stoff.FormattingEnabled = true;
             this.cbx_new_auf_stoff.Location = new System.Drawing.Point(167, 35);
             this.cbx_new_auf_stoff.Name = "cbx_new_auf_stoff";
@@ -326,6 +327,11 @@
             this.cbx_new_auf_lief.Name = "cbx_new_auf_lief";
             this.cbx_new_auf_lief.Size = new System.Drawing.Size(121, 21);
             this.cbx_new_auf_lief.TabIndex = 0;
+            this.cbx_new_auf_lief.SelectedIndexChanged += new System.EventHandler(this.cbx_new_auf_lief_SelectedIndexChanged);
+            this.cbx_new_auf_lief.DropDownClosed += new System.EventHandler(this.cbx_new_auf_lief_DropDownClosed);
+            this.cbx_new_auf_lief.SelectedValueChanged += new System.EventHandler(this.cbx_new_auf_lief_SelectedValueChanged);
+            this.cbx_new_auf_lief.Click += new System.EventHandler(this.cbx_new_auf_lief_Click);
+            this.cbx_new_auf_lief.Validated += new System.EventHandler(this.cbx_new_auf_lief_Validated);
             // 
             // UC_New_auftrag
             // 
