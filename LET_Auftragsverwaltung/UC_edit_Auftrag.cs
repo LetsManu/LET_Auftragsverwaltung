@@ -48,6 +48,7 @@ namespace LET_Auftragsverwaltung
             UC_edit_Auftrag_fill_cbx_status();
             UC_Edit_Auftrag_fill_cbx_verant();
             UC_Editt_auftrag_fill_cbx_tech();
+            UC_Edit_Auftrag_fill_lbx_auftrag();
 
             #endregion
 
@@ -63,6 +64,10 @@ namespace LET_Auftragsverwaltung
             date_erstell.Value = Convert.ToDateTime(sqlReader[3]);
             cbx_verant.SelectedValue = sqlReader[6];
             cbx_tech.SelectedValue = sqlReader[7];
+            txt_auf_proj_ken.Text = (string) sqlReader[8];
+            date_mont.Value = Convert.ToDateTime(sqlReader[10]);
+            txt_info_kauf.Text = (string) sqlReader[11];
+            txt_info_tech.Text = (string)sqlReader[12];
 
             Connection.Close();
             
@@ -148,12 +153,80 @@ namespace LET_Auftragsverwaltung
 
         }
 
+        private void UC_Edit_Auftrag_fill_lbx_auftrag()
+        {
+
+            try
+            {
+                OdbcConnection connection = Connection;
+                connection.Open();
+                string sql = string.Format("SELECT auftragsart.Art_ID, auftragsart.`Art` FROM auftraege Inner JOIN auftraege_auftragsart ON auftraege.ID = auftraege_auftragsart.ID Inner JOIN auftragsart ON auftraege_auftragsart.Art_ID=auftragsart.Art_ID WHERE auftraege.ID = {0}", test_ID);
+                OdbcDataAdapter db = new OdbcDataAdapter(sql, connection);
+                DataTable dt = new DataTable();
+                db.Fill(dt);
+                connection.Close();
+
+                lbx_auftrag.DataSource = dt;
+                lbx_auftrag.ValueMember = "Art_ID";
+                lbx_auftrag.DisplayMember = "Art";
+
+
+                if (lbx_auftrag.Items.Count > 0)
+                {
+                    lbx_auftrag.SelectedIndex = 0;
+                }
+            }
+            catch (Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Fill LBX Auftrag): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void UC_Edit_Auftrag_fill_cbx_art()
+        {
+            try
+            {
+                OdbcConnection connection = Connection;
+                connection.Open();
+                string sql = "SELECT Art_ID,Art FROM auftragsart WHERE deaktiviert<>true";
+                OdbcDataAdapter db = new OdbcDataAdapter(sql, connection);
+                DataTable dtArt = new DataTable();
+                db.Fill(dtArt);
+                connection.Close();
+
+
+
+                cbx_auftrag.DataSource = dtArt;
+                cbx_auftrag.DisplayMember = "Art";
+                cbx_auftrag.ValueMember = "Art_ID";
+
+                if (cbx_auftrag.Items.Count > 0) cbx_auftrag.SelectedIndex = 0;
+            }
+
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Fill CBX Auftragsart): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+
+            }
+        }
+
+
+
         #endregion
 
         private void btn_edit_infos_Click(object sender, EventArgs e)
         {
 
         }
-        
+
+        private void tab_Allgemein_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

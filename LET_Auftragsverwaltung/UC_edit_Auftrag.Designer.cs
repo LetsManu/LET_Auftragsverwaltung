@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btn_edit_stoff = new System.Windows.Forms.Button();
+            this.btn_del_stoff = new System.Windows.Forms.Button();
+            this.btn_add_stoff = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.pbx_new_auf = new System.Windows.Forms.PictureBox();
             this.cbx_new_auf_stoff = new System.Windows.Forms.ComboBox();
             this.cbx_new_auf_lief = new System.Windows.Forms.ComboBox();
@@ -51,19 +55,15 @@
             this.cbx_tech = new System.Windows.Forms.ComboBox();
             this.cbx_verant = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn_edit_art = new System.Windows.Forms.Button();
             this.lbx_auftrag = new System.Windows.Forms.ListBox();
             this.cbx_auftrag = new System.Windows.Forms.ComboBox();
             this.btn_auftrag_add = new System.Windows.Forms.Button();
             this.btn_auftag_delete = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.btn_edit_art = new System.Windows.Forms.Button();
-            this.btn_add_stoff = new System.Windows.Forms.Button();
-            this.btn_del_stoff = new System.Windows.Forms.Button();
-            this.btn_edit_stoff = new System.Windows.Forms.Button();
             this.Auftraginfos = new System.Windows.Forms.GroupBox();
-            this.btn_edit_infos = new System.Windows.Forms.Button();
-            this.cbx_auftragsstatus = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.cbx_auftragsstatus = new System.Windows.Forms.ComboBox();
+            this.btn_edit_infos = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tab_Allgemein = new System.Windows.Forms.TabPage();
             this.tab_ab_az = new System.Windows.Forms.TabPage();
@@ -93,6 +93,41 @@
             this.groupBox4.TabIndex = 33;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Stoffauswahl";
+            // 
+            // btn_edit_stoff
+            // 
+            this.btn_edit_stoff.Location = new System.Drawing.Point(159, 254);
+            this.btn_edit_stoff.Name = "btn_edit_stoff";
+            this.btn_edit_stoff.Size = new System.Drawing.Size(173, 23);
+            this.btn_edit_stoff.TabIndex = 17;
+            this.btn_edit_stoff.Text = "Ändern";
+            this.btn_edit_stoff.UseVisualStyleBackColor = true;
+            // 
+            // btn_del_stoff
+            // 
+            this.btn_del_stoff.Location = new System.Drawing.Point(6, 254);
+            this.btn_del_stoff.Name = "btn_del_stoff";
+            this.btn_del_stoff.Size = new System.Drawing.Size(121, 23);
+            this.btn_del_stoff.TabIndex = 5;
+            this.btn_del_stoff.Text = "Löschen";
+            this.btn_del_stoff.UseVisualStyleBackColor = true;
+            // 
+            // btn_add_stoff
+            // 
+            this.btn_add_stoff.Location = new System.Drawing.Point(6, 85);
+            this.btn_add_stoff.Name = "btn_add_stoff";
+            this.btn_add_stoff.Size = new System.Drawing.Size(121, 23);
+            this.btn_add_stoff.TabIndex = 4;
+            this.btn_add_stoff.Text = "Hinzufügen";
+            this.btn_add_stoff.UseVisualStyleBackColor = true;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(6, 117);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 121);
+            this.listBox1.TabIndex = 3;
             // 
             // pbx_new_auf
             // 
@@ -303,6 +338,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Auftragsart";
             // 
+            // btn_edit_art
+            // 
+            this.btn_edit_art.Location = new System.Drawing.Point(7, 254);
+            this.btn_edit_art.Name = "btn_edit_art";
+            this.btn_edit_art.Size = new System.Drawing.Size(188, 23);
+            this.btn_edit_art.TabIndex = 16;
+            this.btn_edit_art.Text = "Ändern";
+            this.btn_edit_art.UseVisualStyleBackColor = true;
+            // 
             // lbx_auftrag
             // 
             this.lbx_auftrag.FormattingEnabled = true;
@@ -337,50 +381,6 @@
             this.btn_auftag_delete.Text = "Löschen";
             this.btn_auftag_delete.UseVisualStyleBackColor = true;
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(6, 117);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 121);
-            this.listBox1.TabIndex = 3;
-            // 
-            // btn_edit_art
-            // 
-            this.btn_edit_art.Location = new System.Drawing.Point(7, 254);
-            this.btn_edit_art.Name = "btn_edit_art";
-            this.btn_edit_art.Size = new System.Drawing.Size(188, 23);
-            this.btn_edit_art.TabIndex = 16;
-            this.btn_edit_art.Text = "Ändern";
-            this.btn_edit_art.UseVisualStyleBackColor = true;
-            // 
-            // btn_add_stoff
-            // 
-            this.btn_add_stoff.Location = new System.Drawing.Point(6, 85);
-            this.btn_add_stoff.Name = "btn_add_stoff";
-            this.btn_add_stoff.Size = new System.Drawing.Size(121, 23);
-            this.btn_add_stoff.TabIndex = 4;
-            this.btn_add_stoff.Text = "Hinzufügen";
-            this.btn_add_stoff.UseVisualStyleBackColor = true;
-            // 
-            // btn_del_stoff
-            // 
-            this.btn_del_stoff.Location = new System.Drawing.Point(6, 254);
-            this.btn_del_stoff.Name = "btn_del_stoff";
-            this.btn_del_stoff.Size = new System.Drawing.Size(121, 23);
-            this.btn_del_stoff.TabIndex = 5;
-            this.btn_del_stoff.Text = "Löschen";
-            this.btn_del_stoff.UseVisualStyleBackColor = true;
-            // 
-            // btn_edit_stoff
-            // 
-            this.btn_edit_stoff.Location = new System.Drawing.Point(159, 254);
-            this.btn_edit_stoff.Name = "btn_edit_stoff";
-            this.btn_edit_stoff.Size = new System.Drawing.Size(173, 23);
-            this.btn_edit_stoff.TabIndex = 17;
-            this.btn_edit_stoff.Text = "Ändern";
-            this.btn_edit_stoff.UseVisualStyleBackColor = true;
-            // 
             // Auftraginfos
             // 
             this.Auftraginfos.Controls.Add(this.label5);
@@ -395,15 +395,14 @@
             this.Auftraginfos.TabStop = false;
             this.Auftraginfos.Text = "Auftraginfos";
             // 
-            // btn_edit_infos
+            // label5
             // 
-            this.btn_edit_infos.Location = new System.Drawing.Point(394, 323);
-            this.btn_edit_infos.Name = "btn_edit_infos";
-            this.btn_edit_infos.Size = new System.Drawing.Size(173, 23);
-            this.btn_edit_infos.TabIndex = 18;
-            this.btn_edit_infos.Text = "Ändern";
-            this.btn_edit_infos.UseVisualStyleBackColor = true;
-            this.btn_edit_infos.Click += new System.EventHandler(this.btn_edit_infos_Click);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 328);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(74, 13);
+            this.label5.TabIndex = 34;
+            this.label5.Text = "Auftragsstatus";
             // 
             // cbx_auftragsstatus
             // 
@@ -413,14 +412,15 @@
             this.cbx_auftragsstatus.Size = new System.Drawing.Size(124, 21);
             this.cbx_auftragsstatus.TabIndex = 33;
             // 
-            // label5
+            // btn_edit_infos
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 328);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 13);
-            this.label5.TabIndex = 34;
-            this.label5.Text = "Auftragsstatus";
+            this.btn_edit_infos.Location = new System.Drawing.Point(394, 323);
+            this.btn_edit_infos.Name = "btn_edit_infos";
+            this.btn_edit_infos.Size = new System.Drawing.Size(173, 23);
+            this.btn_edit_infos.TabIndex = 18;
+            this.btn_edit_infos.Text = "Ändern";
+            this.btn_edit_infos.UseVisualStyleBackColor = true;
+            this.btn_edit_infos.Click += new System.EventHandler(this.btn_edit_infos_Click);
             // 
             // tabControl1
             // 
@@ -445,6 +445,7 @@
             this.tab_Allgemein.TabIndex = 0;
             this.tab_Allgemein.Text = "Allgemein";
             this.tab_Allgemein.UseVisualStyleBackColor = true;
+            this.tab_Allgemein.Click += new System.EventHandler(this.tab_Allgemein_Click);
             // 
             // tab_ab_az
             // 
