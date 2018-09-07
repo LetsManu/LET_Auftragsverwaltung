@@ -123,16 +123,19 @@
             // Anzahlung_Datum
             // 
             this.Anzahlung_Datum.AspectName = "Anzahlung_Datum";
+            this.Anzahlung_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
             this.Anzahlung_Datum.Text = "Anzahlung_Datum";
             // 
             // AZ_bestaetigt_Datum
             // 
             this.AZ_bestaetigt_Datum.AspectName = "AZ_bestaetigt_Datum";
+            this.AZ_bestaetigt_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
             this.AZ_bestaetigt_Datum.Text = "AZ_bestaetigt_Datum";
             // 
             // Schlussrechnung_Date
             // 
             this.Schlussrechnung_Date.AspectName = "Schlussrechnung_Date";
+            this.Schlussrechnung_Date.AspectToStringFormat = "{0:dd.MM.yyyy}";
             this.Schlussrechnung_Date.Text = "Schlussrechnung_Date";
             // 
             // Projektverantwortlicher_Name
@@ -163,36 +166,43 @@
             // Schatten_Datum
             // 
             this.Schatten_Datum.AspectName = "Schatten_Datum";
+            this.Schatten_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
             this.Schatten_Datum.Text = "Schatten_Datum";
             // 
             // Stoff_bestell_Datum
             // 
             this.Stoff_bestell_Datum.AspectName = "Stoff_bestell_Datum";
+            this.Stoff_bestell_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
             this.Stoff_bestell_Datum.Text = "Stoff_bestell_Datum";
             // 
             // Stoff_liefer_Datum
             // 
             this.Stoff_liefer_Datum.AspectName = "Stoff_liefer_Datum";
+            this.Stoff_liefer_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
             this.Stoff_liefer_Datum.Text = "Stoff_liefer_Datum";
             // 
             // Sonderteile_bestell_Datum
             // 
             this.Sonderteile_bestell_Datum.AspectName = "Sonderteile_bestell_Datum";
+            this.Sonderteile_bestell_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
             this.Sonderteile_bestell_Datum.Text = "Sonderteile_bestell_Datum";
             // 
             // Sonderteile_liefer_Datum
             // 
             this.Sonderteile_liefer_Datum.AspectName = "Sonderteile_liefer_Datum";
+            this.Sonderteile_liefer_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
             this.Sonderteile_liefer_Datum.Text = "Sonderteile_liefer_Datum";
             // 
             // Persenning_bestell_Datum
             // 
             this.Persenning_bestell_Datum.AspectName = "Persenning_bestell_Datum";
+            this.Persenning_bestell_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
             this.Persenning_bestell_Datum.Text = "Persenning_bestell_Datum";
             // 
             // Persenning_liefer_Datum
             // 
             this.Persenning_liefer_Datum.AspectName = "Persenning_liefer_Datum";
+            this.Persenning_liefer_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
             this.Persenning_liefer_Datum.Text = "Persenning_liefer_Datum";
             // 
             // UC_Overview
