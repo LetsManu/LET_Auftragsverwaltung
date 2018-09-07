@@ -291,18 +291,30 @@ namespace LET_Auftragsverwaltung
                 cmd = new OdbcCommand(sql, connection);
                 OdbcDataReader sqlReader = cmd.ExecuteReader();
                 sqlReader.Read();
-                int schatten_ID = Convert.ToInt32(sqlReader.ToString());
+                int schatten_ID = Convert.ToInt32(sqlReader[0]);
+                sql = String.Format("INSERT INTO auftrags.teile_stoff (teile_stoff.ST_ID) VALUES ({0})",cbx_new_auf_stoff.SelectedValue);
+                cmd = new OdbcCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+                sql = "SELECT * FROM teile_stoff ORDER BY teile_stoff.T_ST_ID DESC LIMIT 1";
+                cmd = new OdbcCommand(sql, connection);
+                sqlReader = cmd.ExecuteReader();
+                sqlReader.Read();
+                int teile_stoff_ID = Convert.ToInt32(sqlReader[0]);
+            
+                
+
                 sql = string.Format(
-                    "INSERT INTO auftraege a (a.Auftrags_NR, a.Fertigungsstatus a.Projektverantwortlicher, a.Planer_Techniker, a.Erstelldatum, a.Montage_Datum, a.Projektbezeichnung, a.Schatten,  a.Notitz_Kauf, a.Notitz_Tech) VALUES ('{0}', 6, {1}, {2}, '{3}', '{4}', '{5}', '{6}', '{7}')",
-                    txt_auftrag_nr.Text, cbx_verant.SelectedValue, cbx_tech.SelectedValue, date_erstell.Text, date_mont.Text, txt_auf_proj_ken.Text, schatten_ID, txt_info_kauf.Text, txt_info_tech.Text);
+                    "INSERT INTO auftraege (auftraege.`Auftrags_NR`, auftraege.`Fertigungsstatus`, auftraege.Projektverantwortlicher, auftraege.Planer_Techniker, auftraege.Erstelldatum, auftraege.Montage_Datum, auftraege.Projektbezeichnung, auftraege.`Schatten`,  auftraege.Notitz_Kauf, auftraege.Notitz_Tech) VALUES ('{0}', 6, {1}, {2}, '{3}', '{4}', '{5}', {6}, '{7}', '{8}')",
+                    txt_auftrag_nr.Text, cbx_verant.SelectedValue, cbx_tech.SelectedValue, date_erstell.Value.ToString("yyyy-MM-dd"), date_mont.Value.ToString("yyyy-MM-dd"), txt_auf_proj_ken.Text, schatten_ID, txt_info_kauf.Text, txt_info_tech.Text);
 
                 cmd = new OdbcCommand(sql, connection);
                 cmd.ExecuteNonQuery();
 
-                string sql2 = string.Format(
-                    "SELECT a.ID FROM auftraege a WHERE a.Auftrags_Nr = '{0}' AND a.Projektverantwortlicher = {1} AND a.Planer_Techniker = {2} AND a.Erstelldatum = '{3}' AND a.Montage_Datum = '{4]' AND a.Projektbezeichnung = '{5}' AND a.Notitz_Kauf = '{6}' AND a.Notitz_Tech = '{7}'",
-                    txt_auftrag_nr.Text, cbx_verant.SelectedValue, cbx_tech.SelectedValue, date_erstell.Text,
-                    date_mont.Text, txt_auf_proj_ken.Text, txt_info_kauf.Text, txt_info_tech.Text);
+            string sql2 = string.Format(
+                "SELECT ID FROM auftraege WHERE auftraege.`Auftrags_NR` = '{0}' AND auftraege.`Fertigungsstatus` = {1} AND auftraege.Projektverantwortlicher = {2} AND auftraege.Planer_Techniker = {3} AND auftraege.Erstelldatum = '{4}' AND auftraege.Montage_Datum = '{5}' AND auftraege.Projektbezeichnung = '{6}' AND auftraege.`Schatten` = {7} AND auftraege.Notitz_Kauf = '{8}' AND auftraege.Notitz_Tech = '{9}'",
+                txt_auftrag_nr.Text, 6, cbx_verant.SelectedValue, cbx_tech.SelectedValue,
+                date_erstell.Value.ToString("yyyy-MM-dd"), date_mont.Value.ToString("yyyy-MM-dd"),
+                txt_auf_proj_ken.Text, schatten_ID, txt_info_kauf.Text, txt_info_tech.Text);
 
                 OdbcCommand cmd_read = new OdbcCommand(sql2, connection);
                 sqlReader = cmd_read.ExecuteReader();
@@ -310,13 +322,16 @@ namespace LET_Auftragsverwaltung
                 sqlReader.Read();
 
                 int auf_id = sqlReader.GetInt32(0);
+                sql = string.Format("INSERT INTO auftrags.teile (teile.ID, teile.T_St_ID) VALUES ({0}, {1})", auf_id, teile_stoff_ID);
+                cmd = new OdbcCommand(sql, connection);
+                cmd.ExecuteNonQuery();
 
                 for (int i = 0; i < lbx_auftrag.Items.Count; i++)
                 {
                     int art_ID = (lbx_auftrag.Items[i] as Object_auf).ID;
 
 
-                    string sql3 = string.Format("INSERT INTO auftraege_auftragsart a (a.ID, a.Art_ID) VALUES ({0}, {1})",
+                    string sql3 = string.Format("INSERT INTO auftraege_auftragsart (ID, Art_ID) VALUES ({0}, {1})",
                         auf_id, art_ID);
                     OdbcCommand cmd2 = new OdbcCommand(sql3, connection);
                     cmd2.ExecuteNonQuery();

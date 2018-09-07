@@ -65,13 +65,16 @@
             // 
             // date_erstell
             // 
+            this.date_erstell.CustomFormat = "dd-mm-yyyy";
             this.date_erstell.Location = new System.Drawing.Point(124, 209);
             this.date_erstell.Name = "date_erstell";
             this.date_erstell.Size = new System.Drawing.Size(124, 20);
             this.date_erstell.TabIndex = 1;
+            this.date_erstell.Value = new System.DateTime(2018, 9, 5, 14, 26, 25, 0);
             // 
             // date_mont
             // 
+            this.date_mont.CustomFormat = "dd-mm-yyyy";
             this.date_mont.Location = new System.Drawing.Point(124, 259);
             this.date_mont.Name = "date_mont";
             this.date_mont.Size = new System.Drawing.Size(124, 20);
