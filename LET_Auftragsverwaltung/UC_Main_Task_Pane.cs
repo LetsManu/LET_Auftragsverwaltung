@@ -34,5 +34,11 @@ namespace LET_Auftragsverwaltung
             Form Form_NEW = new Form_New_Auftrag();
             Form_NEW.Show();
         }
+
+        private void eDITAUFTRAGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form Form_EDIT = new Form_Edit_Auftrag();
+            Form_EDIT.Show();
+        }
     }
 }
