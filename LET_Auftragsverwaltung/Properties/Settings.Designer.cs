@@ -22,16 +22,5 @@ namespace LET_Auftragsverwaltung.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Driver={MySQL ODBC 5.3 Unicode Driver};Server=192.168.16.192;Database=auftrags;Us" +
-            "er=admin;Password=cola0815;Option=3;")]
-        public string auftragsConnectionString {
-            get {
-                return ((string)(this["auftragsConnectionString"]));
-            }
-        }
     }
 }
