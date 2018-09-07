@@ -35,7 +35,7 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.pbx_new_auf = new System.Windows.Forms.PictureBox();
             this.cbx_new_auf_stoff = new System.Windows.Forms.ComboBox();
-            this.cbx_new_auf_lief = new System.Windows.Forms.ComboBox();
+            this.cbx_edit_auf_lief = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txt_info_kauf = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -55,7 +55,6 @@
             this.cbx_tech = new System.Windows.Forms.ComboBox();
             this.cbx_verant = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btn_edit_art = new System.Windows.Forms.Button();
             this.lbx_auftrag = new System.Windows.Forms.ListBox();
             this.cbx_auftrag = new System.Windows.Forms.ComboBox();
             this.btn_auftrag_add = new System.Windows.Forms.Button();
@@ -86,7 +85,7 @@
             this.groupBox4.Controls.Add(this.listBox1);
             this.groupBox4.Controls.Add(this.pbx_new_auf);
             this.groupBox4.Controls.Add(this.cbx_new_auf_stoff);
-            this.groupBox4.Controls.Add(this.cbx_new_auf_lief);
+            this.groupBox4.Controls.Add(this.cbx_edit_auf_lief);
             this.groupBox4.Location = new System.Drawing.Point(807, 3);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(338, 298);
@@ -146,13 +145,13 @@
             this.cbx_new_auf_stoff.Size = new System.Drawing.Size(121, 21);
             this.cbx_new_auf_stoff.TabIndex = 1;
             // 
-            // cbx_new_auf_lief
+            // cbx_edit_auf_lief
             // 
-            this.cbx_new_auf_lief.FormattingEnabled = true;
-            this.cbx_new_auf_lief.Location = new System.Drawing.Point(6, 26);
-            this.cbx_new_auf_lief.Name = "cbx_new_auf_lief";
-            this.cbx_new_auf_lief.Size = new System.Drawing.Size(121, 21);
-            this.cbx_new_auf_lief.TabIndex = 0;
+            this.cbx_edit_auf_lief.FormattingEnabled = true;
+            this.cbx_edit_auf_lief.Location = new System.Drawing.Point(6, 26);
+            this.cbx_edit_auf_lief.Name = "cbx_edit_auf_lief";
+            this.cbx_edit_auf_lief.Size = new System.Drawing.Size(121, 21);
+            this.cbx_edit_auf_lief.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -326,26 +325,16 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.btn_edit_art);
             this.groupBox2.Controls.Add(this.lbx_auftrag);
             this.groupBox2.Controls.Add(this.cbx_auftrag);
             this.groupBox2.Controls.Add(this.btn_auftrag_add);
             this.groupBox2.Controls.Add(this.btn_auftag_delete);
-            this.groupBox2.Location = new System.Drawing.Point(585, 3);
+            this.groupBox2.Location = new System.Drawing.Point(590, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(206, 298);
+            this.groupBox2.Size = new System.Drawing.Size(206, 192);
             this.groupBox2.TabIndex = 30;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Auftragsart";
-            // 
-            // btn_edit_art
-            // 
-            this.btn_edit_art.Location = new System.Drawing.Point(7, 254);
-            this.btn_edit_art.Name = "btn_edit_art";
-            this.btn_edit_art.Size = new System.Drawing.Size(188, 23);
-            this.btn_edit_art.TabIndex = 16;
-            this.btn_edit_art.Text = "Ändern";
-            this.btn_edit_art.UseVisualStyleBackColor = true;
             // 
             // lbx_auftrag
             // 
@@ -371,6 +360,7 @@
             this.btn_auftrag_add.TabIndex = 14;
             this.btn_auftrag_add.Text = "Hinzufügen";
             this.btn_auftrag_add.UseVisualStyleBackColor = true;
+            this.btn_auftrag_add.Click += new System.EventHandler(this.btn_auftrag_add_Click);
             // 
             // btn_auftag_delete
             // 
@@ -380,6 +370,7 @@
             this.btn_auftag_delete.TabIndex = 15;
             this.btn_auftag_delete.Text = "Löschen";
             this.btn_auftag_delete.UseVisualStyleBackColor = true;
+            this.btn_auftag_delete.Click += new System.EventHandler(this.btn_auftag_delete_Click);
             // 
             // Auftraginfos
             // 
@@ -495,7 +486,7 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.PictureBox pbx_new_auf;
         private System.Windows.Forms.ComboBox cbx_new_auf_stoff;
-        private System.Windows.Forms.ComboBox cbx_new_auf_lief;
+        private System.Windows.Forms.ComboBox cbx_edit_auf_lief;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RichTextBox txt_info_kauf;
         private System.Windows.Forms.Label label1;
@@ -522,7 +513,6 @@
         private System.Windows.Forms.Button btn_edit_stoff;
         private System.Windows.Forms.Button btn_del_stoff;
         private System.Windows.Forms.Button btn_add_stoff;
-        private System.Windows.Forms.Button btn_edit_art;
         private System.Windows.Forms.GroupBox Auftraginfos;
         private System.Windows.Forms.Button btn_edit_infos;
         private System.Windows.Forms.Label label5;

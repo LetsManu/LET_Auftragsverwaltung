@@ -49,6 +49,8 @@ namespace LET_Auftragsverwaltung
             UC_Edit_Auftrag_fill_cbx_verant();
             UC_Editt_auftrag_fill_cbx_tech();
             UC_Edit_Auftrag_fill_lbx_auftrag();
+            UC_Edit_Auftrag_fill_cbx_art();
+            UC_edit_auftrag_fill_cbx_lief();
 
             #endregion
 
@@ -68,6 +70,8 @@ namespace LET_Auftragsverwaltung
             date_mont.Value = Convert.ToDateTime(sqlReader[10]);
             txt_info_kauf.Text = (string) sqlReader[11];
             txt_info_tech.Text = (string)sqlReader[12];
+
+
 
             Connection.Close();
             
@@ -215,9 +219,40 @@ namespace LET_Auftragsverwaltung
             }
         }
 
+        private void UC_edit_auftrag_fill_cbx_lief()
+        {
+            try
+            {
+                OdbcConnection connection = Connection;
+                connection.Open();
+                string sql = "SELECT L_ID, Lieferant FROM Lieferant WHERE deaktiviert<>true";
+                OdbcDataAdapter dc = new OdbcDataAdapter(sql, connection);
+                DataTable dtLief = new DataTable();
+                dc.Fill(dtLief);
+                connection.Close();
+
+
+                cbx_edit_auf_lief.DataSource = dtLief;
+                cbx_edit_auf_lief.ValueMember = "L_ID";
+                cbx_edit_auf_lief.DisplayMember = "Lieferant";
+
+
+                if (cbx_edit_auf_lief.Items.Count > 0) cbx_edit_auf_lief.SelectedIndex = 0;
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Neue Auftrag: Fill CBX Lief): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
 
         #endregion
+
+        #region Button Methoden
+
+
+
 
         private void btn_edit_infos_Click(object sender, EventArgs e)
         {
@@ -228,5 +263,44 @@ namespace LET_Auftragsverwaltung
         {
 
         }
+
+        private void btn_auftag_delete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string sql = string.Format("DELETE FROM  auftraege_auftragsart WHERE ID = {0} AND Art_ID = {1}",
+                    test_ID,
+                    (int) lbx_auftrag.SelectedValue);
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                Connection.Open();
+                cmd.ExecuteNonQuery();
+                Connection.Close();
+                UC_Edit_Auftrag_fill_lbx_auftrag();
+            }
+            catch(Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Delete LBX Auftrag Auftragsart): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_auftrag_add_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string sql = string.Format("INSERT INTO auftraege_auftragsart (ID, Art_ID) VALUES ({0}, {1})",
+                    test_ID,
+                    (int)cbx_auftrag.SelectedValue);
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                Connection.Open();
+                cmd.ExecuteNonQuery();
+                Connection.Close();
+                UC_Edit_Auftrag_fill_lbx_auftrag();
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT LBX Auftrag Auftragsart): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+#endregion
     }
 }
