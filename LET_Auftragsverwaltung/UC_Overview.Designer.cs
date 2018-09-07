@@ -117,7 +117,7 @@
             // Erstell_Datum
             // 
             this.Erstell_Datum.AspectName = "Erstell_Datum";
-            this.Erstell_Datum.AspectToStringFormat = "\"MMMM dd, yyyy\"";
+            this.Erstell_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
             this.Erstell_Datum.Text = "Erstell_Datum";
             // 
             // Anzahlung_Datum
