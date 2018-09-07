@@ -41,6 +41,7 @@
             this.hilfeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.soonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eDITAUFTRAGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,7 +72,8 @@
             this.neuerEintragToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.neuerEintragToolStripMenuItem1,
             this.exportÜbersichtToolStripMenuItem,
-            this.neuerAuftragToolStripMenuItem});
+            this.neuerAuftragToolStripMenuItem,
+            this.eDITAUFTRAGToolStripMenuItem});
             this.neuerEintragToolStripMenuItem.Name = "neuerEintragToolStripMenuItem";
             this.neuerEintragToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.neuerEintragToolStripMenuItem.Text = "Datei";
@@ -144,6 +146,13 @@
             this.testToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
             this.testToolStripMenuItem.Text = "test";
             // 
+            // eDITAUFTRAGToolStripMenuItem
+            // 
+            this.eDITAUFTRAGToolStripMenuItem.Name = "eDITAUFTRAGToolStripMenuItem";
+            this.eDITAUFTRAGToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eDITAUFTRAGToolStripMenuItem.Text = "EDIT AUFTRAG";
+            this.eDITAUFTRAGToolStripMenuItem.Click += new System.EventHandler(this.eDITAUFTRAGToolStripMenuItem_Click);
+            // 
             // UC_Main_Task_Pane
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -173,5 +182,6 @@
         private System.Windows.Forms.ToolStripMenuItem soonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem neuerAuftragToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eDITAUFTRAGToolStripMenuItem;
     }
 }
