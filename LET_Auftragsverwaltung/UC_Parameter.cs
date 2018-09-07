@@ -8,20 +8,25 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.Design;
 
 namespace LET_Auftragsverwaltung
 {
     public partial class UC_Parameter : UserControl
     {
+
+
+
         private string[] extensions = new string[] {"PNG", "JPG", "TIFF", "GIF"};
         private string user = "admin";
         private string pw = "cola0815";
         private string server = "ftp://192.168.16.192/";
-
+        
 
         private OdbcConnection connection = null;
 
@@ -35,6 +40,7 @@ namespace LET_Auftragsverwaltung
                     connection = new OdbcConnection(constrg);
                 }
                 return connection;
+                
             }
         }
 

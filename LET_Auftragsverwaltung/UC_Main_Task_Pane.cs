@@ -38,6 +38,7 @@ namespace LET_Auftragsverwaltung
         private void eDITAUFTRAGToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form Form_EDIT = new Form_Edit_Auftrag();
+            Form_EDIT.ForeColor = Color.Blue;
             Form_EDIT.Show();
         }
     }
