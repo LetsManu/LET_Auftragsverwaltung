@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.Odbc;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +17,7 @@ namespace LET_Auftragsverwaltung
     {
         LinkedList<CS_Auftrag_Data> datar = new LinkedList<CS_Auftrag_Data>();
         private OdbcConnection connection = null;
+        private static bool reload;
 
         private OdbcConnection Connection
         {
@@ -134,7 +136,8 @@ namespace LET_Auftragsverwaltung
 
         public static void Update_Overview( )
         {
-            throw new NotImplementedException();
+            reload = true;
         }
+
     }
 }
