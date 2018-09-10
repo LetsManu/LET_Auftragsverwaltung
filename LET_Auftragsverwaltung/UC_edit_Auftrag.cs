@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Odbc;
+using System.Security.Cryptography;
 
 namespace LET_Auftragsverwaltung
 {
@@ -35,11 +36,16 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-        private int test_ID = 18;
-        public UC_edit_Auftrag()
+        private int test_ID;
+
+        public UC_edit_Auftrag(int id)
         {
             InitializeComponent();
+            test_ID = id;
+
         }
+
+        
 
         private void UC_edit_Auftrag_Load(object sender, EventArgs e)
         {
@@ -51,6 +57,7 @@ namespace LET_Auftragsverwaltung
             UC_Edit_Auftrag_fill_lbx_auftrag();
             UC_Edit_Auftrag_fill_cbx_art();
             UC_edit_auftrag_fill_cbx_lief();
+            UC_Edit_Auftrag_fill_lbx_stoff();
 
             #endregion
 
@@ -245,6 +252,69 @@ namespace LET_Auftragsverwaltung
             }
         }
 
+        private void UC_Edit_Auftrag_fill_lbx_stoff()
+        {
+
+            try
+            {
+                OdbcConnection connection = Connection;
+                connection.Open();
+                string sql = string.Format("SELECT stoff.`ST_ID`,stoff.`Stoff` FROM auftraege INNER JOIN teile ON auftraege.`ID` = teile.`ID` INNER JOIN teile_stoff ON teile.`T_St_ID` = teile_stoff.`T_St_ID` INNER JOIN stoff ON teile_stoff.`ST_ID` = stoff.`ST_ID` WHERE auftraege.ID = 1", test_ID);
+                OdbcDataAdapter db = new OdbcDataAdapter(sql, connection);
+                DataTable dt = new DataTable();
+                db.Fill(dt);
+                connection.Close();
+
+                lbx_stoff.DataSource = dt;
+                lbx_stoff.ValueMember = "ST_ID";
+                lbx_stoff.DisplayMember = "Stoff";
+
+
+                if (lbx_auftrag.Items.Count > 0)
+                {
+                    lbx_auftrag.SelectedIndex = 0;
+                }
+            }
+            catch (Exception f)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Fill LBX Auftrag): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+       private void UC_New_auftrag_fill_cbx_stoff_lief()
+        {
+            if (cbx_edit_auf_lief.Items.Count > 0)
+            {
+                try
+                {
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    string sql =
+                        string.Format("SELECT stoff.ST_ID,stoff.`Stoff` FROM stoff INNER JOIN stoff_lieferant ON stoff.ST_ID = stoff_lieferant.ST_ID WHERE stoff_lieferant.L_ID = {0}", cbx_edit_auf_lief.SelectedValue);
+                    OdbcDataAdapter dc = new OdbcDataAdapter(sql, connection);
+                    DataTable dtStoff = new DataTable();
+                    dc.Fill(dtStoff);
+                    connection.Close();
+
+
+                    cbx_edit_auf_stoff.DataSource = dtStoff;
+                    cbx_edit_auf_stoff.ValueMember = "ST_ID";
+                    cbx_edit_auf_stoff.DisplayMember = "Stoff";
+
+
+                    if (cbx_edit_auf_stoff.Items.Count > 0) cbx_edit_auf_stoff.SelectedIndex = 0;
+                }
+                catch (Exception f)
+                {
+                    MessageBox.Show("Fehler in der SQL Abfrage(EDIT Auftrag: Fill CBX Stoff): \n\n" + f.Message,
+                        "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    connection.Close();
+                }
+            }
+        }
+
 
 
         #endregion
@@ -256,7 +326,30 @@ namespace LET_Auftragsverwaltung
 
         private void btn_edit_infos_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string sql = string.Format(
+                    "UPDATE auftraege SET Auftrags_NR = '{0}', Fertigungsstatus = {1}, Projektverantwortlicher = {2}, Planer_Techniker = {3}, Projektbezeichnung = '{4}', Montage_Datum  = '{5}', Notitz_Kauf = '{6}', Notitz_Tech = '{7}', Erstelldatum = '{8}' WHERE ID = {9}",
+                    txt_auftrag_nr.Text, cbx_auftragsstatus.SelectedValue, cbx_verant.SelectedValue,
+                    cbx_tech.SelectedValue,
+                    txt_auf_proj_ken.Text, date_mont.Value.ToString("yyyy-MM-dd"), txt_info_kauf.Text,
+                    txt_info_tech.Text, date_erstell.Value.ToString("yyyy-MM-dd"), test_ID);
+                Connection.Open();
+                OdbcCommand cmd = new OdbcCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+                Connection.Close();
+            }
+            catch (Exception f)
+            {
 
+                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: EDIT): \n\n" + f.Message, "Fehler",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            finally
+            {
+                UC_edit_Auftrag_Load(sender, e);
+            }
         }
 
         private void tab_Allgemein_Click(object sender, EventArgs e)
@@ -301,6 +394,33 @@ namespace LET_Auftragsverwaltung
                 MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT LBX Auftrag Auftragsart): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-#endregion
+
+        private void cbx_edit_auf_lief_DropDownClosed(object sender, EventArgs e)
+        {
+            cbx_edit_auf_stoff.Enabled = true;
+            UC_New_auftrag_fill_cbx_stoff_lief();
+        }
+
+
+        #endregion
+
+        private void btn_add_stoff_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string sql = string.Format("INSERT INTO auftraege_auftragsart (ID, Art_ID) VALUES ({0}, {1})",
+                    test_ID,
+                    (int)cbx_edit_auf_stoff.SelectedValue);
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                Connection.Open();
+                cmd.ExecuteNonQuery();
+                Connection.Close();
+                UC_Edit_Auftrag_fill_lbx_auftrag();
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT LBX Auftrag Auftragsart): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

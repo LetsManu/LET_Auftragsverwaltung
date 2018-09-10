@@ -12,8 +12,10 @@ namespace LET_Auftragsverwaltung
 {
     public partial class Form_Edit_Auftrag : Form
     {
-        public Form_Edit_Auftrag()
+        private int test_id;
+        public Form_Edit_Auftrag(int id)
         {
+            test_id = id;
             InitializeComponent();
         }
     }

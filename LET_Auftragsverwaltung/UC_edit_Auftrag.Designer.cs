@@ -29,12 +29,11 @@
         private void InitializeComponent()
         {
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btn_edit_stoff = new System.Windows.Forms.Button();
             this.btn_del_stoff = new System.Windows.Forms.Button();
             this.btn_add_stoff = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lbx_stoff = new System.Windows.Forms.ListBox();
             this.pbx_new_auf = new System.Windows.Forms.PictureBox();
-            this.cbx_new_auf_stoff = new System.Windows.Forms.ComboBox();
+            this.cbx_edit_auf_stoff = new System.Windows.Forms.ComboBox();
             this.cbx_edit_auf_lief = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txt_info_kauf = new System.Windows.Forms.RichTextBox();
@@ -66,7 +65,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tab_Allgemein = new System.Windows.Forms.TabPage();
             this.tab_ab_az = new System.Windows.Forms.TabPage();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tab_persennning = new System.Windows.Forms.TabPage();
+            this.tab_schatten = new System.Windows.Forms.TabPage();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_new_auf)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -79,34 +79,24 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.btn_edit_stoff);
             this.groupBox4.Controls.Add(this.btn_del_stoff);
             this.groupBox4.Controls.Add(this.btn_add_stoff);
-            this.groupBox4.Controls.Add(this.listBox1);
+            this.groupBox4.Controls.Add(this.lbx_stoff);
             this.groupBox4.Controls.Add(this.pbx_new_auf);
-            this.groupBox4.Controls.Add(this.cbx_new_auf_stoff);
+            this.groupBox4.Controls.Add(this.cbx_edit_auf_stoff);
             this.groupBox4.Controls.Add(this.cbx_edit_auf_lief);
             this.groupBox4.Location = new System.Drawing.Point(807, 3);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(338, 298);
+            this.groupBox4.Size = new System.Drawing.Size(338, 275);
             this.groupBox4.TabIndex = 33;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Stoffauswahl";
             // 
-            // btn_edit_stoff
-            // 
-            this.btn_edit_stoff.Location = new System.Drawing.Point(159, 254);
-            this.btn_edit_stoff.Name = "btn_edit_stoff";
-            this.btn_edit_stoff.Size = new System.Drawing.Size(173, 23);
-            this.btn_edit_stoff.TabIndex = 17;
-            this.btn_edit_stoff.Text = "Ändern";
-            this.btn_edit_stoff.UseVisualStyleBackColor = true;
-            // 
             // btn_del_stoff
             // 
-            this.btn_del_stoff.Location = new System.Drawing.Point(6, 254);
+            this.btn_del_stoff.Location = new System.Drawing.Point(6, 244);
             this.btn_del_stoff.Name = "btn_del_stoff";
-            this.btn_del_stoff.Size = new System.Drawing.Size(121, 23);
+            this.btn_del_stoff.Size = new System.Drawing.Size(187, 23);
             this.btn_del_stoff.TabIndex = 5;
             this.btn_del_stoff.Text = "Löschen";
             this.btn_del_stoff.UseVisualStyleBackColor = true;
@@ -115,43 +105,46 @@
             // 
             this.btn_add_stoff.Location = new System.Drawing.Point(6, 85);
             this.btn_add_stoff.Name = "btn_add_stoff";
-            this.btn_add_stoff.Size = new System.Drawing.Size(121, 23);
+            this.btn_add_stoff.Size = new System.Drawing.Size(187, 23);
             this.btn_add_stoff.TabIndex = 4;
             this.btn_add_stoff.Text = "Hinzufügen";
             this.btn_add_stoff.UseVisualStyleBackColor = true;
+            this.btn_add_stoff.Click += new System.EventHandler(this.btn_add_stoff_Click);
             // 
-            // listBox1
+            // lbx_stoff
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(6, 117);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 121);
-            this.listBox1.TabIndex = 3;
+            this.lbx_stoff.FormattingEnabled = true;
+            this.lbx_stoff.Location = new System.Drawing.Point(6, 117);
+            this.lbx_stoff.Name = "lbx_stoff";
+            this.lbx_stoff.Size = new System.Drawing.Size(187, 121);
+            this.lbx_stoff.TabIndex = 3;
             // 
             // pbx_new_auf
             // 
-            this.pbx_new_auf.Location = new System.Drawing.Point(159, 26);
+            this.pbx_new_auf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbx_new_auf.Location = new System.Drawing.Point(209, 26);
             this.pbx_new_auf.Name = "pbx_new_auf";
-            this.pbx_new_auf.Size = new System.Drawing.Size(173, 95);
+            this.pbx_new_auf.Size = new System.Drawing.Size(123, 95);
             this.pbx_new_auf.TabIndex = 2;
             this.pbx_new_auf.TabStop = false;
             // 
-            // cbx_new_auf_stoff
+            // cbx_edit_auf_stoff
             // 
-            this.cbx_new_auf_stoff.Enabled = false;
-            this.cbx_new_auf_stoff.FormattingEnabled = true;
-            this.cbx_new_auf_stoff.Location = new System.Drawing.Point(6, 58);
-            this.cbx_new_auf_stoff.Name = "cbx_new_auf_stoff";
-            this.cbx_new_auf_stoff.Size = new System.Drawing.Size(121, 21);
-            this.cbx_new_auf_stoff.TabIndex = 1;
+            this.cbx_edit_auf_stoff.Enabled = false;
+            this.cbx_edit_auf_stoff.FormattingEnabled = true;
+            this.cbx_edit_auf_stoff.Location = new System.Drawing.Point(6, 58);
+            this.cbx_edit_auf_stoff.Name = "cbx_edit_auf_stoff";
+            this.cbx_edit_auf_stoff.Size = new System.Drawing.Size(187, 21);
+            this.cbx_edit_auf_stoff.TabIndex = 1;
             // 
             // cbx_edit_auf_lief
             // 
             this.cbx_edit_auf_lief.FormattingEnabled = true;
             this.cbx_edit_auf_lief.Location = new System.Drawing.Point(6, 26);
             this.cbx_edit_auf_lief.Name = "cbx_edit_auf_lief";
-            this.cbx_edit_auf_lief.Size = new System.Drawing.Size(121, 21);
+            this.cbx_edit_auf_lief.Size = new System.Drawing.Size(187, 21);
             this.cbx_edit_auf_lief.TabIndex = 0;
+            this.cbx_edit_auf_lief.DropDownClosed += new System.EventHandler(this.cbx_edit_auf_lief_DropDownClosed);
             // 
             // groupBox1
             // 
@@ -274,6 +267,7 @@
             // date_erstell
             // 
             this.date_erstell.CustomFormat = "dd-mm-yyyy";
+            this.date_erstell.Enabled = false;
             this.date_erstell.Location = new System.Drawing.Point(124, 209);
             this.date_erstell.Name = "date_erstell";
             this.date_erstell.Size = new System.Drawing.Size(124, 20);
@@ -417,7 +411,8 @@
             // 
             this.tabControl1.Controls.Add(this.tab_Allgemein);
             this.tabControl1.Controls.Add(this.tab_ab_az);
-            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tab_persennning);
+            this.tabControl1.Controls.Add(this.tab_schatten);
             this.tabControl1.Location = new System.Drawing.Point(2, 5);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -448,14 +443,23 @@
             this.tab_ab_az.Text = "AB-AZ";
             this.tab_ab_az.UseVisualStyleBackColor = true;
             // 
-            // tabPage1
+            // tab_persennning
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(1225, 374);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tab_persennning.Location = new System.Drawing.Point(4, 22);
+            this.tab_persennning.Name = "tab_persennning";
+            this.tab_persennning.Size = new System.Drawing.Size(1225, 374);
+            this.tab_persennning.TabIndex = 2;
+            this.tab_persennning.Text = "Persenning";
+            this.tab_persennning.UseVisualStyleBackColor = true;
+            // 
+            // tab_schatten
+            // 
+            this.tab_schatten.Location = new System.Drawing.Point(4, 22);
+            this.tab_schatten.Name = "tab_schatten";
+            this.tab_schatten.Size = new System.Drawing.Size(1225, 374);
+            this.tab_schatten.TabIndex = 3;
+            this.tab_schatten.Text = "Schatten";
+            this.tab_schatten.UseVisualStyleBackColor = true;
             // 
             // UC_edit_Auftrag
             // 
@@ -483,9 +487,9 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lbx_stoff;
         private System.Windows.Forms.PictureBox pbx_new_auf;
-        private System.Windows.Forms.ComboBox cbx_new_auf_stoff;
+        private System.Windows.Forms.ComboBox cbx_edit_auf_stoff;
         private System.Windows.Forms.ComboBox cbx_edit_auf_lief;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RichTextBox txt_info_kauf;
@@ -510,7 +514,6 @@
         private System.Windows.Forms.ComboBox cbx_auftrag;
         private System.Windows.Forms.Button btn_auftrag_add;
         private System.Windows.Forms.Button btn_auftag_delete;
-        private System.Windows.Forms.Button btn_edit_stoff;
         private System.Windows.Forms.Button btn_del_stoff;
         private System.Windows.Forms.Button btn_add_stoff;
         private System.Windows.Forms.GroupBox Auftraginfos;
@@ -520,6 +523,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tab_Allgemein;
         private System.Windows.Forms.TabPage tab_ab_az;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tab_persennning;
+        private System.Windows.Forms.TabPage tab_schatten;
     }
 }
