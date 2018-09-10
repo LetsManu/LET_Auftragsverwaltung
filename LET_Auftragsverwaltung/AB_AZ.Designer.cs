@@ -1,13 +1,13 @@
 ﻿namespace LET_Auftragsverwaltung
 {
-    partial class Form_Edit_Auftrag
+    partial class AB_AZ
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -20,40 +20,39 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.uC_edit_Auftrag2 = new LET_Auftragsverwaltung.UC_edit_Auftrag();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
             // 
-            // uC_edit_Auftrag2
+            // groupBox1
             // 
-            this.uC_edit_Auftrag2.Location = new System.Drawing.Point(-1, -2);
-            this.uC_edit_Auftrag2.Name = "uC_edit_Auftrag2";
-            this.uC_edit_Auftrag2.Size = new System.Drawing.Size(1190, 398);
-            this.uC_edit_Auftrag2.TabIndex = 0;
+            this.groupBox1.Location = new System.Drawing.Point(18, 40);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(201, 183);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Ver";
             // 
-            // Form_Edit_Auftrag
+            // AB_AZ
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1189, 396);
-            this.Controls.Add(this.uC_edit_Auftrag2);
-            this.Name = "Form_Edit_Auftrag";
-            this.Text = "Form_Edit_Auftrag";
-            this.Leave += new System.EventHandler(this.Form_Edit_Auftrag_Leave);
+            this.Controls.Add(this.groupBox1);
+            this.Name = "AB_AZ";
+            this.Size = new System.Drawing.Size(1036, 537);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private UC_edit_Auftrag uC_edit_Auftrag1;
-        private UC_edit_Auftrag uC_edit_Auftrag2;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
