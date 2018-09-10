@@ -28,25 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
             this.oLV_Cl_Auftrags_Nr = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.oLV_Cl_Projektbezeichnung = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.oLV_Cl_Fertigungsstatus = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.oLV_Cl_Projektverantwortlicher_Name = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.oLV_Cl_Erstell_Datum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.oLV_Cl_Anzahlung_Datum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.oLV_Cl_AZ_bestaetigt_Datum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.oLV_Cl_Schlussrechnung_Date = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.oLV_Cl_Projektverantwortlicher_Name = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.oLV_Cl_Planner_Name = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.oLV_Cl_Projektbezeichnung = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.oLV_Cl_Auftrags_Art = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.oLV_Cl_Stoff_Kennzahl = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.oLV_Cl_Schatten_Datum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.oLV_Cl_Stoff_bestell_Datum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.oLV_Cl_Stoff_liefer_Datum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.oLV_Cl_Sonderteile_bestell_Datum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.oLV_Cl_Sonderteile_liefer_Datum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.oLV_Cl_Persenning_bestell_Datum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.oLV_Cl_Sonderteile_bestell_Datum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.oLV_Cl_Stoff_liefer_Datum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.oLV_Cl_Sonderteile_liefer_Datum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.oLV_Cl_Persenning_liefer_Datum = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.tmr_250ms = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,11 +110,23 @@
             this.oLV_Cl_Auftrags_Nr.AspectName = "Auftrags_Nr";
             this.oLV_Cl_Auftrags_Nr.Text = "Auftrags_Nr";
             // 
+            // oLV_Cl_Projektbezeichnung
+            // 
+            this.oLV_Cl_Projektbezeichnung.AspectName = "Projektbezeichnung";
+            this.oLV_Cl_Projektbezeichnung.DisplayIndex = 8;
+            this.oLV_Cl_Projektbezeichnung.Text = "Projektbezeichnung";
+            // 
             // oLV_Cl_Fertigungsstatus
             // 
             this.oLV_Cl_Fertigungsstatus.AspectName = "Fertigungsstatus";
             this.oLV_Cl_Fertigungsstatus.DisplayIndex = 1;
             this.oLV_Cl_Fertigungsstatus.Text = "Fertigungsstatus";
+            // 
+            // oLV_Cl_Projektverantwortlicher_Name
+            // 
+            this.oLV_Cl_Projektverantwortlicher_Name.AspectName = "Projektverantwortlicher_Name";
+            this.oLV_Cl_Projektverantwortlicher_Name.DisplayIndex = 6;
+            this.oLV_Cl_Projektverantwortlicher_Name.Text = "Projektverantwortlicher_Name";
             // 
             // oLV_Cl_Erstell_Datum
             // 
@@ -142,23 +156,11 @@
             this.oLV_Cl_Schlussrechnung_Date.DisplayIndex = 5;
             this.oLV_Cl_Schlussrechnung_Date.Text = "Schlussrechnung_Date";
             // 
-            // oLV_Cl_Projektverantwortlicher_Name
-            // 
-            this.oLV_Cl_Projektverantwortlicher_Name.AspectName = "Projektverantwortlicher_Name";
-            this.oLV_Cl_Projektverantwortlicher_Name.DisplayIndex = 6;
-            this.oLV_Cl_Projektverantwortlicher_Name.Text = "Projektverantwortlicher_Name";
-            // 
             // oLV_Cl_Planner_Name
             // 
             this.oLV_Cl_Planner_Name.AspectName = "Planner_Name";
             this.oLV_Cl_Planner_Name.DisplayIndex = 7;
             this.oLV_Cl_Planner_Name.Text = "Planner_Name";
-            // 
-            // oLV_Cl_Projektbezeichnung
-            // 
-            this.oLV_Cl_Projektbezeichnung.AspectName = "Projektbezeichnung";
-            this.oLV_Cl_Projektbezeichnung.DisplayIndex = 8;
-            this.oLV_Cl_Projektbezeichnung.Text = "Projektbezeichnung";
             // 
             // oLV_Cl_Auftrags_Art
             // 
@@ -182,18 +184,25 @@
             this.oLV_Cl_Stoff_bestell_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
             this.oLV_Cl_Stoff_bestell_Datum.Text = "Stoff_bestell_Datum";
             // 
-            // oLV_Cl_Stoff_liefer_Datum
+            // oLV_Cl_Persenning_bestell_Datum
             // 
-            this.oLV_Cl_Stoff_liefer_Datum.AspectName = "Stoff_liefer_Datum";
-            this.oLV_Cl_Stoff_liefer_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
-            this.oLV_Cl_Stoff_liefer_Datum.DisplayIndex = 13;
-            this.oLV_Cl_Stoff_liefer_Datum.Text = "Stoff_liefer_Datum";
+            this.oLV_Cl_Persenning_bestell_Datum.AspectName = "Persenning_bestell_Datum";
+            this.oLV_Cl_Persenning_bestell_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
+            this.oLV_Cl_Persenning_bestell_Datum.DisplayIndex = 16;
+            this.oLV_Cl_Persenning_bestell_Datum.Text = "Persenning_bestell_Datum";
             // 
             // oLV_Cl_Sonderteile_bestell_Datum
             // 
             this.oLV_Cl_Sonderteile_bestell_Datum.AspectName = "Sonderteile_bestell_Datum";
             this.oLV_Cl_Sonderteile_bestell_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
             this.oLV_Cl_Sonderteile_bestell_Datum.Text = "Sonderteile_bestell_Datum";
+            // 
+            // oLV_Cl_Stoff_liefer_Datum
+            // 
+            this.oLV_Cl_Stoff_liefer_Datum.AspectName = "Stoff_liefer_Datum";
+            this.oLV_Cl_Stoff_liefer_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
+            this.oLV_Cl_Stoff_liefer_Datum.DisplayIndex = 13;
+            this.oLV_Cl_Stoff_liefer_Datum.Text = "Stoff_liefer_Datum";
             // 
             // oLV_Cl_Sonderteile_liefer_Datum
             // 
@@ -202,18 +211,17 @@
             this.oLV_Cl_Sonderteile_liefer_Datum.DisplayIndex = 15;
             this.oLV_Cl_Sonderteile_liefer_Datum.Text = "Sonderteile_liefer_Datum";
             // 
-            // oLV_Cl_Persenning_bestell_Datum
-            // 
-            this.oLV_Cl_Persenning_bestell_Datum.AspectName = "Persenning_bestell_Datum";
-            this.oLV_Cl_Persenning_bestell_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
-            this.oLV_Cl_Persenning_bestell_Datum.DisplayIndex = 16;
-            this.oLV_Cl_Persenning_bestell_Datum.Text = "Persenning_bestell_Datum";
-            // 
             // oLV_Cl_Persenning_liefer_Datum
             // 
             this.oLV_Cl_Persenning_liefer_Datum.AspectName = "Persenning_liefer_Datum";
             this.oLV_Cl_Persenning_liefer_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
             this.oLV_Cl_Persenning_liefer_Datum.Text = "Persenning_liefer_Datum";
+            // 
+            // tmr_250ms
+            // 
+            this.tmr_250ms.Enabled = true;
+            this.tmr_250ms.Interval = 250;
+            this.tmr_250ms.Tick += new System.EventHandler(this.tmr_250ms_Tick);
             // 
             // UC_Overview
             // 
@@ -247,5 +255,6 @@
         private BrightIdeasSoftware.OLVColumn oLV_Cl_Sonderteile_liefer_Datum;
         private BrightIdeasSoftware.OLVColumn oLV_Cl_Persenning_bestell_Datum;
         private BrightIdeasSoftware.OLVColumn oLV_Cl_Persenning_liefer_Datum;
+        private System.Windows.Forms.Timer tmr_250ms;
     }
 }
