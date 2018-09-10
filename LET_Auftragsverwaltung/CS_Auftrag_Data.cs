@@ -10,6 +10,7 @@ namespace LET_Auftragsverwaltung
 {
     class CS_Auftrag_Data
     {
+        public int ID { get; set; }
         public string Auftrags_Nr { get; set; }
         public string Fertigungsstatus { get; set; }
         public DateTime Erstell_Datum { get; set; }
