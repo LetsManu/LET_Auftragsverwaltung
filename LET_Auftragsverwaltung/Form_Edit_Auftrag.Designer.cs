@@ -28,24 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.uC_edit_Auftrag1 = new LET_Auftragsverwaltung.UC_edit_Auftrag(this.test_id);
             this.SuspendLayout();
-            // 
-            // uC_edit_Auftrag1
-            // 
-            this.uC_edit_Auftrag1.Location = new System.Drawing.Point(1, -1);
-            this.uC_edit_Auftrag1.Name = "uC_edit_Auftrag1";
-            this.uC_edit_Auftrag1.Size = new System.Drawing.Size(1233, 411);
-            this.uC_edit_Auftrag1.TabIndex = 0;
             // 
             // Form_Edit_Auftrag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1171, 397);
-            this.Controls.Add(this.uC_edit_Auftrag1);
             this.Name = "Form_Edit_Auftrag";
             this.Text = "Form_Edit_Auftrag";
+            this.Leave += new System.EventHandler(this.Form_Edit_Auftrag_Leave);
             this.ResumeLayout(false);
 
         }

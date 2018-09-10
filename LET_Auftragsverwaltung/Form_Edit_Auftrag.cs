@@ -18,5 +18,10 @@ namespace LET_Auftragsverwaltung
             test_id = id;
             InitializeComponent();
         }
+
+        private void Form_Edit_Auftrag_Leave(object sender, EventArgs e)
+        {
+            UC_Overview.Update_Overview();
+        }
     }
 }

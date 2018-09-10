@@ -104,7 +104,10 @@ namespace LET_Auftragsverwaltung
 
         private void objectListView1_DoubleClick(object sender, EventArgs e)
         {
-            ( ( sender as ObjectListView ).SelectedItem.RowObject as CS_Auftrag_Data ).ID
+            
+            Form Form_EDIT = new Form_Edit_Auftrag(((sender as ObjectListView).SelectedItem.RowObject as CS_Auftrag_Data).ID);
+            Form_EDIT.Show();
+            
         }
 
         private void objectListView1_FormatCell(object sender, BrightIdeasSoftware.FormatCellEventArgs e)
@@ -126,6 +129,11 @@ namespace LET_Auftragsverwaltung
                 cbd.CornerRounding = 4.0f;
                 e.SubItem.Decorations.Add(cbd); // N.B. Adds to Decorations}
             }
+        }
+
+        public static void Update_Overview()
+        {
+            throw new NotImplementedException();
         }
     }
 }
