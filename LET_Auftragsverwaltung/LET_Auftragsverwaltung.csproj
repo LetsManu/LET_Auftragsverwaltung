@@ -187,6 +187,12 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="AB_AZ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AB_AZ.Designer.cs">
+      <DependentUpon>AB_AZ.cs</DependentUpon>
+    </Compile>
     <Compile Include="CS_Auftrag_Data.cs" />
     <Compile Include="Form_Edit_Auftrag.cs">
       <SubType>Form</SubType>
@@ -245,6 +251,9 @@
     <Compile Include="UC_Parameter.Designer.cs">
       <DependentUpon>UC_Parameter.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AB_AZ.resx">
+      <DependentUpon>AB_AZ.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_Edit_Auftrag.resx">
       <DependentUpon>Form_Edit_Auftrag.cs</DependentUpon>
     </EmbeddedResource>

@@ -45,10 +45,19 @@ namespace LET_Auftragsverwaltung
 
         }
 
-        
+        public UC_edit_Auftrag()
+        {
+            InitializeComponent();
+            
+
+        }
+
+
+
 
         private void UC_edit_Auftrag_Load(object sender, EventArgs e)
         {
+            
             #region FillKlassen
 
             UC_edit_Auftrag_fill_cbx_status();
@@ -83,9 +92,9 @@ namespace LET_Auftragsverwaltung
             Connection.Close();
             
         }
-
+        
         #region Definition Fill Klassen
-
+        
         private void UC_edit_Auftrag_fill_cbx_status()
         {
 
@@ -316,7 +325,6 @@ namespace LET_Auftragsverwaltung
         }
 
 
-
         #endregion
 
         #region Button Methoden
@@ -326,6 +334,7 @@ namespace LET_Auftragsverwaltung
 
         private void btn_edit_infos_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 string sql = string.Format(
@@ -350,6 +359,7 @@ namespace LET_Auftragsverwaltung
             {
                 UC_edit_Auftrag_Load(sender, e);
             }
+            
         }
 
         private void tab_Allgemein_Click(object sender, EventArgs e)
@@ -359,6 +369,7 @@ namespace LET_Auftragsverwaltung
 
         private void btn_auftag_delete_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 string sql = string.Format("DELETE FROM  auftraege_auftragsart WHERE ID = {0} AND Art_ID = {1}",
@@ -374,10 +385,12 @@ namespace LET_Auftragsverwaltung
             {
                 MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Delete LBX Auftrag Auftragsart): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
         }
 
         private void btn_auftrag_add_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 string sql = string.Format("INSERT INTO auftraege_auftragsart (ID, Art_ID) VALUES ({0}, {1})",
@@ -393,12 +406,15 @@ namespace LET_Auftragsverwaltung
             {
                 MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT LBX Auftrag Auftragsart): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
         }
 
         private void cbx_edit_auf_lief_DropDownClosed(object sender, EventArgs e)
         {
+            
             cbx_edit_auf_stoff.Enabled = true;
             UC_New_auftrag_fill_cbx_stoff_lief();
+            
         }
 
 
@@ -406,6 +422,7 @@ namespace LET_Auftragsverwaltung
 
         private void btn_add_stoff_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 string sql = string.Format("INSERT INTO auftraege_auftragsart (ID, Art_ID) VALUES ({0}, {1})",
@@ -421,6 +438,8 @@ namespace LET_Auftragsverwaltung
             {
                 MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT LBX Auftrag Auftragsart): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+             
         }
+        
     }
 }
