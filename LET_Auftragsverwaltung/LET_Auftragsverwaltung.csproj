@@ -131,6 +131,12 @@
     <Reference Include="System.Data" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Management.4.0.0\lib\System.Management.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management.Instrumentation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Management.4.0.0\lib\System.Management.Instrumentation.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -222,6 +228,13 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Ribbon_Home.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ribbon_Home.Designer.cs">
+      <DependentUpon>Ribbon_Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon_Start.cs" />
     <Compile Include="UC_edit_Auftrag.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -276,6 +289,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Ribbon_Home.resx">
+      <DependentUpon>Ribbon_Home.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UC_edit_Auftrag.resx">
       <DependentUpon>UC_edit_Auftrag.cs</DependentUpon>
     </EmbeddedResource>
@@ -312,6 +328,9 @@
       <DependentUpon>ThisAddIn.Designer.xml</DependentUpon>
     </Compile>
     <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ribbon_Start.xml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
