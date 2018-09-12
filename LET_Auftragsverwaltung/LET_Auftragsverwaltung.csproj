@@ -194,6 +194,7 @@
       <DependentUpon>AB_AZ.cs</DependentUpon>
     </Compile>
     <Compile Include="CS_Auftrag_Data.cs" />
+    <Compile Include="CS_DB.cs" />
     <Compile Include="Form_Edit_Auftrag.cs">
       <SubType>Form</SubType>
     </Compile>

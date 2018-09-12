@@ -14,18 +14,12 @@ namespace LET_Auftragsverwaltung
 {
     public partial class UC_New_auftrag : UserControl
     {
-        private OdbcConnection connection = null;
-
         private OdbcConnection Connection
         {
             get
             {
-                if (connection == null)
-                {
-                    string constrg = "Driver={MySQL ODBC 5.3 Unicode Driver};Server=192.168.16.192;Database=auftrags;User=admin;Password=cola0815;Option=3;";
-                    connection = new OdbcConnection(constrg);
-                }
-                return connection;
+                return CS_DB.Connection;
+
             }
         }
 
@@ -185,14 +179,13 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
-                    OdbcConnection connection = Connection;
-                    connection.Open();
+                    Connection.Open();
                     string sql =
                         string.Format("SELECT stoff.ST_ID,stoff.`Stoff` FROM stoff INNER JOIN stoff_lieferant ON stoff.ST_ID = stoff_lieferant.ST_ID WHERE stoff_lieferant.L_ID = {0}", cbx_new_auf_lief.SelectedValue);
-                    OdbcDataAdapter dc = new OdbcDataAdapter(sql, connection);
+                    OdbcDataAdapter dc = new OdbcDataAdapter(sql, Connection);
                     DataTable dtStoff = new DataTable();
                     dc.Fill(dtStoff);
-                    connection.Close();
+                    Connection.Close();
 
 
                     cbx_new_auf_stoff.DataSource = dtStoff;
@@ -206,7 +199,7 @@ namespace LET_Auftragsverwaltung
                 {
                     MessageBox.Show("Fehler in der SQL Abfrage(Neue Auftrag: Fill CBX Stoff): \n\n" + f.Message,
                         "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    connection.Close();
+                    Connection.Close();
                 }
             }
         }
@@ -230,34 +223,34 @@ namespace LET_Auftragsverwaltung
         {
             try
             {
-            OdbcConnection connection = Connection;
-            connection.Open();
-            string sql = string.Format("SELECT Art_ID,Art FROM auftragsart WHERE Art_ID = {0}", cbx_auftrag.SelectedValue);
-            OdbcCommand cmd = new OdbcCommand(sql, connection);
-            OdbcDataReader sqlReader = cmd.ExecuteReader();
-            sqlReader.Read();
-            Object_auf item = new Object_auf((int)sqlReader[0], (string)sqlReader[1]);
-            bool added = false;
-            connection.Close();
+                OdbcConnection connection = Connection;
+                connection.Open();
+                string sql = string.Format("SELECT Art_ID,Art FROM auftragsart WHERE Art_ID = {0}", cbx_auftrag.SelectedValue);
+                OdbcCommand cmd = new OdbcCommand(sql, connection);
+                OdbcDataReader sqlReader = cmd.ExecuteReader();
+                sqlReader.Read();
+                Object_auf item = new Object_auf((int)sqlReader[0], (string)sqlReader[1]);
+                bool added = false;
+                connection.Close();
 
-            if (lbx_auftrag.Items.Count != 0)
-            {
-                for (int i = 0; i < lbx_auftrag.Items.Count; i++)
+                if (lbx_auftrag.Items.Count != 0)
                 {
-                    if (lbx_auftrag.Items[i].ToString() == item.ToString())
+                    for (int i = 0; i < lbx_auftrag.Items.Count; i++)
                     {
-                        MessageBox.Show("Auswahl ist schon vorhanden", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        added = true;
+                        if (lbx_auftrag.Items[i].ToString() == item.ToString())
+                        {
+                            MessageBox.Show("Auswahl ist schon vorhanden", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            added = true;
+                        }
                     }
+                    if (!added) lbx_auftrag.Items.Add(item);
                 }
-                if(!added) lbx_auftrag.Items.Add(item);
-            }
-            else
-            {
-                lbx_auftrag.Items.Add(item);
-            }
+                else
+                {
+                    lbx_auftrag.Items.Add(item);
+                }
 
-            if (lbx_auftrag.Items.Count > 0) lbx_auftrag.SelectedIndex = 0;
+                if (lbx_auftrag.Items.Count > 0) lbx_auftrag.SelectedIndex = 0;
             }
 
             catch (Exception f)
@@ -292,7 +285,7 @@ namespace LET_Auftragsverwaltung
                 OdbcDataReader sqlReader = cmd.ExecuteReader();
                 sqlReader.Read();
                 int schatten_ID = Convert.ToInt32(sqlReader[0]);
-                sql = String.Format("INSERT INTO auftrags.teile_stoff (teile_stoff.ST_ID) VALUES ({0})",cbx_new_auf_stoff.SelectedValue);
+                sql = String.Format("INSERT INTO auftrags.teile_stoff (teile_stoff.ST_ID) VALUES ({0})", cbx_new_auf_stoff.SelectedValue);
                 cmd = new OdbcCommand(sql, connection);
                 cmd.ExecuteNonQuery();
                 sql = "SELECT * FROM teile_stoff ORDER BY teile_stoff.T_ST_ID DESC LIMIT 1";
@@ -300,8 +293,8 @@ namespace LET_Auftragsverwaltung
                 sqlReader = cmd.ExecuteReader();
                 sqlReader.Read();
                 int teile_stoff_ID = Convert.ToInt32(sqlReader[0]);
-            
-                
+
+
 
                 sql = string.Format(
                     "INSERT INTO auftraege (auftraege.`Auftrags_NR`, auftraege.`Fertigungsstatus`, auftraege.Projektverantwortlicher, auftraege.Planer_Techniker, auftraege.Erstelldatum, auftraege.Montage_Datum, auftraege.Projektbezeichnung, auftraege.`Schatten`,  auftraege.Notitz_Kauf, auftraege.Notitz_Tech) VALUES ('{0}', 6, {1}, {2}, '{3}', '{4}', '{5}', {6}, '{7}', '{8}')",
@@ -310,11 +303,11 @@ namespace LET_Auftragsverwaltung
                 cmd = new OdbcCommand(sql, connection);
                 cmd.ExecuteNonQuery();
 
-            string sql2 = string.Format(
-                "SELECT ID FROM auftraege WHERE auftraege.`Auftrags_NR` = '{0}' AND auftraege.`Fertigungsstatus` = {1} AND auftraege.Projektverantwortlicher = {2} AND auftraege.Planer_Techniker = {3} AND auftraege.Erstelldatum = '{4}' AND auftraege.Montage_Datum = '{5}' AND auftraege.Projektbezeichnung = '{6}' AND auftraege.`Schatten` = {7} AND auftraege.Notitz_Kauf = '{8}' AND auftraege.Notitz_Tech = '{9}'",
-                txt_auftrag_nr.Text, 6, cbx_verant.SelectedValue, cbx_tech.SelectedValue,
-                date_erstell.Value.ToString("yyyy-MM-dd"), date_mont.Value.ToString("yyyy-MM-dd"),
-                txt_auf_proj_ken.Text, schatten_ID, txt_info_kauf.Text, txt_info_tech.Text);
+                string sql2 = string.Format(
+                    "SELECT ID FROM auftraege WHERE auftraege.`Auftrags_NR` = '{0}' AND auftraege.`Fertigungsstatus` = {1} AND auftraege.Projektverantwortlicher = {2} AND auftraege.Planer_Techniker = {3} AND auftraege.Erstelldatum = '{4}' AND auftraege.Montage_Datum = '{5}' AND auftraege.Projektbezeichnung = '{6}' AND auftraege.`Schatten` = {7} AND auftraege.Notitz_Kauf = '{8}' AND auftraege.Notitz_Tech = '{9}'",
+                    txt_auftrag_nr.Text, 6, cbx_verant.SelectedValue, cbx_tech.SelectedValue,
+                    date_erstell.Value.ToString("yyyy-MM-dd"), date_mont.Value.ToString("yyyy-MM-dd"),
+                    txt_auf_proj_ken.Text, schatten_ID, txt_info_kauf.Text, txt_info_tech.Text);
 
                 OdbcCommand cmd_read = new OdbcCommand(sql2, connection);
                 sqlReader = cmd_read.ExecuteReader();
@@ -357,18 +350,18 @@ namespace LET_Auftragsverwaltung
 
         private void cbx_new_auf_lief_SelectedValueChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void cbx_new_auf_lief_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void cbx_new_auf_lief_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            
+
 
 
 
@@ -376,7 +369,7 @@ namespace LET_Auftragsverwaltung
 
         private void cbx_new_auf_lief_Validated(object sender, EventArgs e)
         {
-            
+
         }
 
         private void cbx_new_auf_lief_DropDownClosed(object sender, EventArgs e)

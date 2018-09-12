@@ -16,19 +16,14 @@ namespace LET_Auftragsverwaltung
     public partial class UC_Overview : UserControl
     {
         LinkedList<CS_Auftrag_Data> datar = new LinkedList<CS_Auftrag_Data>();
-        private OdbcConnection connection = null;
         private static bool reload = true;
 
         private OdbcConnection Connection
         {
             get
             {
-                if (connection == null)
-                {
-                    string constrg = "Driver={MySQL ODBC 5.3 Unicode Driver};Server=192.168.16.192;Database=auftrags;User=admin;Password=cola0815;Option=3;";
-                    connection = new OdbcConnection(constrg);
-                }
-                return connection;
+                return CS_DB.Connection;
+
             }
         }
         public UC_Overview( )
