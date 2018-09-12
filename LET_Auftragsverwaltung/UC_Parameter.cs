@@ -26,7 +26,7 @@ namespace LET_Auftragsverwaltung
         private string user = "admin";
         private string pw = "cola0815";
         private string server = "ftp://192.168.16.192/";
-        
+
 
 
         private OdbcConnection Connection
@@ -53,22 +53,24 @@ namespace LET_Auftragsverwaltung
 
         private void btn_pers_save_Click(object sender, EventArgs e)
         {
-            try
+            if (!this.DesignMode)
             {
-                
-                Connection.Open();
-                string sql = string.Format("INSERT INTO adressen (Land, PLZ, Ort, Hausnummer, Strasse ) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", txt_pers_land.Text, txt_pers_plz.Text, txt_pers_ort.Text, txt_pers_hnr.Text, txt_pers_str.Text);
-                OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                cmd.ExecuteNonQuery();
-                string sql2 = string.Format("SELECT Adr_ID FROM adressen WHERE Land='{0}' AND PLZ='{1}' AND Ort='{2}' AND Hausnummer='{3}' AND Strasse='{4}' LIMIT 1", txt_pers_land.Text, txt_pers_plz.Text, txt_pers_ort.Text, txt_pers_hnr.Text, txt_pers_str.Text);
-                OdbcCommand cmd_read = new OdbcCommand(sql2, Connection);
-                OdbcDataReader sqlReader = cmd_read.ExecuteReader();
+                try
+                {
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    string sql = string.Format("INSERT INTO adressen (Land, PLZ, Ort, Hausnummer, Strasse ) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", txt_pers_land.Text, txt_pers_plz.Text, txt_pers_ort.Text, txt_pers_hnr.Text, txt_pers_str.Text);
+                    OdbcCommand cmd = new OdbcCommand(sql, connection);
+                    cmd.ExecuteNonQuery();
+                    string sql2 = string.Format("SELECT Adr_ID FROM adressen WHERE Land='{0}' AND PLZ='{1}' AND Ort='{2}' AND Hausnummer='{3}' AND Strasse='{4}' LIMIT 1", txt_pers_land.Text, txt_pers_plz.Text, txt_pers_ort.Text, txt_pers_hnr.Text, txt_pers_str.Text);
+                    OdbcCommand cmd_read = new OdbcCommand(sql2, connection);
+                    OdbcDataReader sqlReader = cmd_read.ExecuteReader();
 
-                sqlReader.Read();
+                    sqlReader.Read();
 
-                int adr_id = sqlReader.GetInt32(0);
+                    int adr_id = sqlReader.GetInt32(0);
 
-                string sql3 = string.Format("INSERT INTO personal (Vorname, Nachname, Adr_ID) VALUES ('{0}', '{1}', {2})", txt_pers_vor.Text, txt_pers_nach.Text, adr_id);
+                    string sql3 = string.Format("INSERT INTO personal (Vorname, Nachname, Adr_ID) VALUES ('{0}', '{1}', {2})", txt_pers_vor.Text, txt_pers_nach.Text, adr_id);
 
                 OdbcCommand cmd2 = new OdbcCommand(sql3, Connection);
                 cmd2.ExecuteNonQuery();
@@ -87,45 +89,49 @@ namespace LET_Auftragsverwaltung
                 UC_Parameter_lbx_pers_fill();
             }
 
-            txt_pers_vor.Text = "";
-            txt_pers_nach.Text = "";
-            txt_pers_hnr.Text = "";
-            txt_pers_land.Text = "";
-            txt_pers_ort.Text = "";
-            txt_pers_str.Text = "";
-            txt_pers_plz.Text = "";
+                txt_pers_vor.Text = "";
+                txt_pers_nach.Text = "";
+                txt_pers_hnr.Text = "";
+                txt_pers_land.Text = "";
+                txt_pers_ort.Text = "";
+                txt_pers_str.Text = "";
+                txt_pers_plz.Text = "";
 
-            btn_pers_save.Enabled = false;
+                btn_pers_save.Enabled = false;
 
+            }
         }
 
         private void btn_funk_new_Click(object sender, EventArgs e)
         {
-            try
+            if (!this.DesignMode)
             {
-                
-                Connection.Open();
-                string sql = string.Format("INSERT INTO funktion (Funktion) VALUES ('{0}')", txt_funk_new.Text);
-                OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                cmd.ExecuteNonQuery();
-                Connection.Close();
-            }
-            catch (Exception f)
-            {
-                MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-            finally
-            {
-                UC_Parameter_cbx_funk_fill();
+                try
+                {
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    string sql = string.Format("INSERT INTO funktion (Funktion) VALUES ('{0}')", txt_funk_new.Text);
+                    OdbcCommand cmd = new OdbcCommand(sql, connection);
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                }
+                catch (Exception f)
+                {
+                    MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    UC_Parameter_cbx_funk_fill();
+                    txt_funk_new.Text = "";
+
+                    MessageBox.Show("Funktion wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+
+                btn_funk_new.Enabled = false;
                 txt_funk_new.Text = "";
-
-                MessageBox.Show("Funktion wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
             }
-
-            btn_funk_new.Enabled = false;
-            txt_funk_new.Text = "";
         }
 
         private void UC_Parameter_Load(object sender, EventArgs e)
@@ -142,175 +148,187 @@ namespace LET_Auftragsverwaltung
 
         private void UC_Parameter_cbx_funk_fill( )
         {
-
-            try
+            if (!this.DesignMode)
             {
-                
-                Connection.Open();
-                string sql = "SELECT Funktion_ID,Funktion FROM funktion WHERE deaktiviert<>true";
-                OdbcDataAdapter da = new OdbcDataAdapter(sql, Connection);
-                DataTable dtFunkt = new DataTable();
-                da.Fill(dtFunkt);
-                Connection.Close();
-
-
-                cbx_pers_funk.DataSource = dtFunkt;
-                cbx_funk.DataSource = dtFunkt;
-                cbx_funk.DisplayMember = "Funktion";
-                cbx_pers_funk.DisplayMember = "Funktion";
-                cbx_funk.ValueMember = "Funktion_ID";
-                cbx_pers_funk.ValueMember = "Funktion_ID";
-
-                if (cbx_funk.Items.Count > 0)
+                try
                 {
-                    cbx_funk.SelectedIndex = 0;
-                }
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    string sql = "SELECT Funktion_ID,Funktion FROM funktion WHERE deaktiviert<>true";
+                    OdbcDataAdapter da = new OdbcDataAdapter(sql, connection);
+                    DataTable dtFunkt = new DataTable();
+                    da.Fill(dtFunkt);
+                    connection.Close();
 
-                if (cbx_pers_funk.Items.Count > 0)
-                {
-                    cbx_pers_funk.SelectedIndex = 0;
+
+                    cbx_pers_funk.DataSource = dtFunkt;
+                    cbx_funk.DataSource = dtFunkt;
+                    cbx_funk.DisplayMember = "Funktion";
+                    cbx_pers_funk.DisplayMember = "Funktion";
+                    cbx_funk.ValueMember = "Funktion_ID";
+                    cbx_pers_funk.ValueMember = "Funktion_ID";
+
+                    if (cbx_funk.Items.Count > 0)
+                    {
+                        cbx_funk.SelectedIndex = 0;
+                    }
+
+                    if (cbx_pers_funk.Items.Count > 0)
+                    {
+                        cbx_pers_funk.SelectedIndex = 0;
+                    }
                 }
-            }
-            catch (Exception f)
-            {
-                MessageBox.Show("Fehler in der SQL Abfrage(Funtkion Fill): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                catch (Exception f)
+                {
+                    MessageBox.Show("Fehler in der SQL Abfrage(Funtkion Fill): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         private void UC_Parameter_cbx_art_fill( )
         {
-
-            try
+            if (!this.DesignMode)
             {
-                
-                Connection.Open();
-                string sql = "SELECT Art_ID,Art FROM auftragsart WHERE deaktiviert<>true";
-                OdbcDataAdapter db = new OdbcDataAdapter(sql, Connection);
-                DataTable dtArt = new DataTable();
-                db.Fill(dtArt);
-                Connection.Close();
-
-
-
-                cbx_auf.DataSource = dtArt;
-                cbx_auf.DisplayMember = "Art";
-                cbx_auf.ValueMember = "Art_ID";
-
-                if (cbx_auf.Items.Count > 0)
+                try
                 {
-                    cbx_auf.SelectedIndex = 0;
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    string sql = "SELECT Art_ID,Art FROM auftragsart WHERE deaktiviert<>true";
+                    OdbcDataAdapter db = new OdbcDataAdapter(sql, connection);
+                    DataTable dtArt = new DataTable();
+                    db.Fill(dtArt);
+                    connection.Close();
+
+
+
+                    cbx_auf.DataSource = dtArt;
+                    cbx_auf.DisplayMember = "Art";
+                    cbx_auf.ValueMember = "Art_ID";
+
+                    if (cbx_auf.Items.Count > 0)
+                    {
+                        cbx_auf.SelectedIndex = 0;
+                    }
                 }
-            }
-            catch (Exception f)
-            {
-                MessageBox.Show("Fehler in der SQL Abfrage(Art Fill): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                catch (Exception f)
+                {
+                    MessageBox.Show("Fehler in der SQL Abfrage(Art Fill): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         private void UC_Parameter_cbx_fert_fill( )
         {
-            try
+            if (!this.DesignMode)
             {
-                
-                Connection.Open();
-                string sql = "SELECT F_ID,Status FROM fertigungsstatus WHERE deaktiviert<>true";
-                OdbcDataAdapter db = new OdbcDataAdapter(sql, Connection);
-                DataTable dtArt = new DataTable();
-                db.Fill(dtArt);
-                Connection.Close();
-
-
-
-                cbx_fert.DataSource = dtArt;
-                cbx_fert.DisplayMember = "Status";
-                cbx_fert.ValueMember = "F_ID";
-
-                if (cbx_fert.Items.Count > 0)
+                try
                 {
-                    cbx_fert.SelectedIndex = 0;
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    string sql = "SELECT F_ID,Status FROM fertigungsstatus WHERE deaktiviert<>true";
+                    OdbcDataAdapter db = new OdbcDataAdapter(sql, connection);
+                    DataTable dtArt = new DataTable();
+                    db.Fill(dtArt);
+                    connection.Close();
+
+
+
+                    cbx_fert.DataSource = dtArt;
+                    cbx_fert.DisplayMember = "Status";
+                    cbx_fert.ValueMember = "F_ID";
+
+                    if (cbx_fert.Items.Count > 0)
+                    {
+                        cbx_fert.SelectedIndex = 0;
+                    }
                 }
-            }
-            catch (Exception f)
-            {
-                MessageBox.Show("Fehler in der SQL Abfrage(Art Fill): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
+                catch (Exception f)
+                {
+                    MessageBox.Show("Fehler in der SQL Abfrage(Art Fill): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
 
-            finally
-            {
+                finally
+                {
 
+                }
             }
         }
 
 
         private void UC_Parameter_lbx_pers_fill( )
         {
-
-            try
+            if (!this.DesignMode)
             {
-                
-                Connection.Open();
-                string sql = "SELECT P_ID,Nachname FROM personal WHERE deaktiviert<>true";
-                OdbcDataAdapter dc = new OdbcDataAdapter(sql, Connection);
-                DataTable dtPer = new DataTable();
-                dc.Fill(dtPer);
-                Connection.Close();
-
-
-                lbx_pers.DataSource = dtPer;
-                lbx_pers.ValueMember = "P_ID";
-                lbx_pers.DisplayMember = "Nachname";
-
-
-                if (lbx_pers.Items.Count > 0)
+                try
                 {
-                    lbx_pers.SelectedIndex = 0;
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    string sql = "SELECT P_ID,Nachname FROM personal WHERE deaktiviert<>true";
+                    OdbcDataAdapter dc = new OdbcDataAdapter(sql, connection);
+                    DataTable dtPer = new DataTable();
+                    dc.Fill(dtPer);
+                    connection.Close();
+
+
+                    lbx_pers.DataSource = dtPer;
+                    lbx_pers.ValueMember = "P_ID";
+                    lbx_pers.DisplayMember = "Nachname";
+
+
+                    if (lbx_pers.Items.Count > 0)
+                    {
+                        lbx_pers.SelectedIndex = 0;
+                    }
+                }
+                catch (Exception f)
+                {
+                    MessageBox.Show("Fehler in der SQL Abfrage(Personal Fill): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception f)
-            {
-                MessageBox.Show("Fehler in der SQL Abfrage(Personal Fill): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
         }
 
         private void UC_Parameter_lbx_lief_fill( )
         {
-
-            try
+            if (!this.DesignMode)
             {
-                string sql2 = "SELECT Lieferant,L_ID FROM lieferant WHERE deaktiviert<>true";
-                OdbcDataAdapter da = new OdbcDataAdapter(sql2, Connection);
-                DataTable dt = new DataTable();
-                Connection.Open();
-                da.Fill(dt);
-                Connection.Close();
-
-
-                lbx_lief.DataSource = dt;
-                lbx_lief.ValueMember = "L_ID";
-                lbx_lief.DisplayMember = "Lieferant";
-
-
-                if (lbx_lief.Items.Count > 0)
+                try
                 {
-                    lbx_lief.SelectedIndex = 0;
+                    OdbcConnection connection2 = Connection;
+
+                    string sql2 = "SELECT Lieferant,L_ID FROM lieferant WHERE deaktiviert<>true";
+                    OdbcDataAdapter da = new OdbcDataAdapter(sql2, connection2);
+                    DataTable dt = new DataTable();
+                    connection2.Open();
+                    da.Fill(dt);
+                    connection2.Close();
+
+
+                    lbx_lief.DataSource = dt;
+                    lbx_lief.ValueMember = "L_ID";
+                    lbx_lief.DisplayMember = "Lieferant";
+
+
+                    if (lbx_lief.Items.Count > 0)
+                    {
+                        lbx_lief.SelectedIndex = 0;
+                    }
+                }
+                catch (Exception f)
+                {
+                    connection.Close();
+                    MessageBox.Show("Fehler in der SQL Abfrage(Lieferant Fill): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception f)
-            {
-                Connection.Close();
-                MessageBox.Show("Fehler in der SQL Abfrage(Lieferant Fill): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
         }
 
         private void UC_Parameter_cbx_stoff_lief_fill( )
         {
-
-            try
+            if (!this.DesignMode)
             {
-                OdbcConnection Connection2 = Connection;
+                try
+                {
+                    OdbcConnection connection2 = Connection;
 
                 string sql2 = "SELECT Lieferant,L_ID FROM lieferant WHERE deaktiviert<>true";
                 OdbcDataAdapter da = new OdbcDataAdapter(sql2, Connection2);
@@ -320,14 +338,14 @@ namespace LET_Auftragsverwaltung
                 Connection2.Close();
 
 
-                cbx_stoff_lief.DataSource = dt;
-                cbx_stoff_lief.ValueMember = "L_ID";
-                cbx_stoff_lief.DisplayMember = "Lieferant";
+                    cbx_stoff_lief.DataSource = dt;
+                    cbx_stoff_lief.ValueMember = "L_ID";
+                    cbx_stoff_lief.DisplayMember = "Lieferant";
 
 
-                cBx_stoff_lief_02.DataSource = dt.Copy();
-                cBx_stoff_lief_02.ValueMember = "L_ID";
-                cBx_stoff_lief_02.DisplayMember = "Lieferant";
+                    cBx_stoff_lief_02.DataSource = dt.Copy();
+                    cBx_stoff_lief_02.ValueMember = "L_ID";
+                    cBx_stoff_lief_02.DisplayMember = "Lieferant";
 
 
                 if (cbx_stoff_lief.Items.Count > 0)
@@ -337,7 +355,7 @@ namespace LET_Auftragsverwaltung
             }
             catch (Exception f)
             {
-                Connection.Close();
+                connection.Close();
                 MessageBox.Show("Fehler in der SQL Abfrage(Stoff Lieferant Fill): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
@@ -345,10 +363,11 @@ namespace LET_Auftragsverwaltung
 
         private void UC_Parameter_lbx_stoff_fill( )
         {
-
-            try
+            if (!this.DesignMode)
             {
-                OdbcConnection Connection2 = Connection;
+                try
+                {
+                    OdbcConnection connection2 = Connection;
 
                 string sql2 = "SELECT Stoff,ST_ID FROM stoff WHERE deaktiviert<>true";
                 OdbcDataAdapter da = new OdbcDataAdapter(sql2, Connection2);
@@ -358,83 +377,88 @@ namespace LET_Auftragsverwaltung
                 Connection2.Close();
 
 
-                cbx_stoff_edit.DataSource = dt;
-                cbx_stoff_edit.ValueMember = "ST_ID";
-                cbx_stoff_edit.DisplayMember = "Stoff";
+                    cbx_stoff_edit.DataSource = dt;
+                    cbx_stoff_edit.ValueMember = "ST_ID";
+                    cbx_stoff_edit.DisplayMember = "Stoff";
 
 
-                if (cbx_stoff_edit.Items.Count > 0)
+                    if (cbx_stoff_edit.Items.Count > 0)
+                    {
+                        cbx_stoff_edit.SelectedIndex = 0;
+                    }
+                }
+                catch (Exception f)
                 {
-                    cbx_stoff_edit.SelectedIndex = 0;
+                    connection.Close();
+                    MessageBox.Show("Fehler in der SQL Abfrage(Stoff Fill): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception f)
-            {
-                Connection.Close();
-                MessageBox.Show("Fehler in der SQL Abfrage(Stoff Fill): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
         }
 
         private void UC_Parameter_lbx_pers_funk_fill( )
         {
-
-            try
+            if (!this.DesignMode)
             {
-                
-                Connection.Open();
-                string sql = string.Format("SELECT DISTINCT funktion.`Funktion`, funktion.`Funktion_ID` FROM personal LEFT JOIN personal_funktion ON personal.`P_ID` = personal_funktion.`P_ID` LEFT JOIN funktion ON personal_funktion.`Funktion_ID` = funktion.`Funktion_ID` WHERE personal.`P_ID` = {0} ORDER BY funktion.`Funktion`", lbx_pers.SelectedValue);
-                OdbcDataAdapter db = new OdbcDataAdapter(sql, Connection);
-                DataTable dt = new DataTable();
-                db.Fill(dt);
-                Connection.Close();
-
-                lbx_pers_funk.DataSource = dt;
-                lbx_pers_funk.ValueMember = "Funktion_ID";
-                lbx_pers_funk.DisplayMember = "Funktion";
-
-
-                if (lbx_pers_funk.Items.Count > 0)
+                try
                 {
-                    lbx_pers_funk.SelectedIndex = 0;
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    string sql = string.Format("SELECT DISTINCT funktion.`Funktion`, funktion.`Funktion_ID` FROM personal LEFT JOIN personal_funktion ON personal.`P_ID` = personal_funktion.`P_ID` LEFT JOIN funktion ON personal_funktion.`Funktion_ID` = funktion.`Funktion_ID` WHERE personal.`P_ID` = {0} ORDER BY funktion.`Funktion`", lbx_pers.SelectedValue);
+                    OdbcDataAdapter db = new OdbcDataAdapter(sql, connection);
+                    DataTable dt = new DataTable();
+                    db.Fill(dt);
+                    connection.Close();
+
+                    lbx_pers_funk.DataSource = dt;
+                    lbx_pers_funk.ValueMember = "Funktion_ID";
+                    lbx_pers_funk.DisplayMember = "Funktion";
+
+
+                    if (lbx_pers_funk.Items.Count > 0)
+                    {
+                        lbx_pers_funk.SelectedIndex = 0;
+                    }
                 }
-            }
-            catch (Exception f)
-            {
-                Connection.Close();
-                MessageBox.Show("Fehler in der SQL Abfrage(Personal Funktion Fill): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                catch (Exception f)
+                {
+                    connection.Close();
+                    MessageBox.Show("Fehler in der SQL Abfrage(Personal Funktion Fill): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
         }
 
         private void btn_auf_new_Click(object sender, EventArgs e)
         {
-            try
+            if (!this.DesignMode)
             {
-                
-                Connection.Open();
-                string sql = string.Format("INSERT INTO auftragsart (Art) VALUES ('{0}')", txt_auf_new.Text);
-                OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                cmd.ExecuteNonQuery();
-                Connection.Close();
-            }
-            catch (Exception f)
-            {
-                MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
+                try
+                {
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    string sql = string.Format("INSERT INTO auftragsart (Art) VALUES ('{0}')", txt_auf_new.Text);
+                    OdbcCommand cmd = new OdbcCommand(sql, connection);
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                }
+                catch (Exception f)
+                {
+                    MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
 
-            finally
-            {
-                UC_Parameter_cbx_art_fill();
-                txt_funk_new.Text = "";
+                finally
+                {
+                    UC_Parameter_cbx_art_fill();
+                    txt_funk_new.Text = "";
 
-                MessageBox.Show("Funktion wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                    MessageBox.Show("Funktion wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+
+                btn_auf_new.Enabled = false;
+                txt_auf_new.Text = "";
             }
-
-            btn_auf_new.Enabled = false;
-            txt_auf_new.Text = "";
         }
 
         private void cbx_funk_SelectedIndexChanged(object sender, EventArgs e)
@@ -459,65 +483,70 @@ namespace LET_Auftragsverwaltung
 
         private void btn_funk_change_Click(object sender, EventArgs e)
         {
-
-            try
+            if (!this.DesignMode)
             {
-                
-                Connection.Open();
-                string sql = string.Format("UPDATE funktion SET deaktiviert = {0}, funktion = '{1}' WHERE Funktion_ID = {2}", box_funk_dec.Checked, txt_funk_re.Text, cbx_funk.SelectedValue);
-                OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                cmd.ExecuteNonQuery();
-                Connection.Close();
+                try
+                {
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    string sql = string.Format("UPDATE funktion SET deaktiviert = {0}, funktion = '{1}' WHERE Funktion_ID = {2}", box_funk_dec.Checked, txt_funk_re.Text, cbx_funk.SelectedValue);
+                    OdbcCommand cmd = new OdbcCommand(sql, connection);
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                }
+                catch (Exception f)
+                {
+                    MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+
+                finally
+                {
+                    UC_Parameter_cbx_funk_fill();
+
+
+                    MessageBox.Show("Funktion wurde geändert", "Änderung erfolgreich", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+
+                txt_funk_re.Text = "";
+                btn_funk_change.Enabled = false;
+                box_funk_dec.Checked = false;
             }
-            catch (Exception f)
-            {
-                MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-
-            finally
-            {
-                UC_Parameter_cbx_funk_fill();
-
-
-                MessageBox.Show("Funktion wurde geändert", "Änderung erfolgreich", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-
-            txt_funk_re.Text = "";
-            btn_funk_change.Enabled = false;
-            box_funk_dec.Checked = false;
         }
 
         private void btn_auf_change_Click(object sender, EventArgs e)
         {
-            try
+            if (!this.DesignMode)
             {
-                
-                Connection.Open();
-                string sql = string.Format("UPDATE auftragsart SET deaktiviert = {0}, art = '{1}' WHERE Art_ID = {2}", box_auf_dec.Checked, txt_auf_re.Text, cbx_auf.SelectedValue);
-                OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                cmd.ExecuteNonQuery();
-                Connection.Close();
+                try
+                {
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    string sql = string.Format("UPDATE auftragsart SET deaktiviert = {0}, art = '{1}' WHERE Art_ID = {2}", box_auf_dec.Checked, txt_auf_re.Text, cbx_auf.SelectedValue);
+                    OdbcCommand cmd = new OdbcCommand(sql, connection);
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                }
+                catch (Exception f)
+                {
+                    MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+
+                finally
+                {
+                    UC_Parameter_cbx_art_fill();
+
+
+                    MessageBox.Show("Funktion wurde geändert", "Änderung erfolgreich", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+
+                btn_auf_change.Enabled = false;
+                txt_auf_re.Text = "";
+                box_auf_dec.Checked = false;
             }
-            catch (Exception f)
-            {
-                MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-
-            finally
-            {
-                UC_Parameter_cbx_art_fill();
-
-
-                MessageBox.Show("Funktion wurde geändert", "Änderung erfolgreich", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-
-            btn_auf_change.Enabled = false;
-            txt_auf_re.Text = "";
-            box_auf_dec.Checked = false;
         }
 
         private void txt_auf_new_TextChanged(object sender, EventArgs e)
@@ -636,50 +665,51 @@ namespace LET_Auftragsverwaltung
 
         private void btn_lief_save_Click(object sender, EventArgs e)
         {
-
-            try
+            if (!this.DesignMode)
             {
-                
-                Connection.Open();
-                string sql = string.Format("INSERT INTO adressen (Land, PLZ, Ort, Hausnummer, Strasse ) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", txt_lief_land.Text, txt_lief_plz.Text, txt_lief_ort.Text, txt_lief_hnr.Text, txt_lief_str.Text);
-                OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                cmd.ExecuteNonQuery();
-                string sql2 = string.Format("SELECT Adr_ID FROM adressen WHERE Land='{0}' AND PLZ='{1}' AND Ort='{2}' AND Hausnummer='{3}' AND Strasse='{4}' LIMIT 1", txt_lief_land.Text, txt_lief_plz.Text, txt_lief_ort.Text, txt_lief_hnr.Text, txt_lief_str.Text);
-                OdbcCommand cmd_read = new OdbcCommand(sql2, Connection);
-                OdbcDataReader sqlReader = cmd_read.ExecuteReader();
+                try
+                {
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    string sql = string.Format("INSERT INTO adressen (Land, PLZ, Ort, Hausnummer, Strasse ) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')", txt_lief_land.Text, txt_lief_plz.Text, txt_lief_ort.Text, txt_lief_hnr.Text, txt_lief_str.Text);
+                    OdbcCommand cmd = new OdbcCommand(sql, connection);
+                    cmd.ExecuteNonQuery();
+                    string sql2 = string.Format("SELECT Adr_ID FROM adressen WHERE Land='{0}' AND PLZ='{1}' AND Ort='{2}' AND Hausnummer='{3}' AND Strasse='{4}' LIMIT 1", txt_lief_land.Text, txt_lief_plz.Text, txt_lief_ort.Text, txt_lief_hnr.Text, txt_lief_str.Text);
+                    OdbcCommand cmd_read = new OdbcCommand(sql2, connection);
+                    OdbcDataReader sqlReader = cmd_read.ExecuteReader();
 
-                sqlReader.Read();
+                    sqlReader.Read();
 
-                int adr_id = sqlReader.GetInt32(0);
+                    int adr_id = sqlReader.GetInt32(0);
 
-                string sql3 = string.Format("INSERT INTO Lieferant (Lieferant, Adr_ID ) VALUES ('{0}', {1})", txt_lief_ken.Text, adr_id);
+                    string sql3 = string.Format("INSERT INTO Lieferant (Lieferant, Adr_ID ) VALUES ('{0}', {1})", txt_lief_ken.Text, adr_id);
 
                 OdbcCommand cmd2 = new OdbcCommand(sql3, Connection);
                 cmd2.ExecuteNonQuery();
 
                 Connection.Close();
 
-            }
-            catch (Exception f)
-            {
-                MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-            finally
-            {
-                MessageBox.Show("Lieferant wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
+                }
+                catch (Exception f)
+                {
+                    MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    MessageBox.Show("Lieferant wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
 
-            txt_lief_ken.Text = "";
-            txt_lief_hnr.Text = "";
-            txt_lief_land.Text = "";
-            txt_lief_ort.Text = "";
-            txt_lief_plz.Text = "";
-            txt_lief_str.Text = "";
+                txt_lief_ken.Text = "";
+                txt_lief_hnr.Text = "";
+                txt_lief_land.Text = "";
+                txt_lief_ort.Text = "";
+                txt_lief_plz.Text = "";
+                txt_lief_str.Text = "";
 
-            btn_lief_save.Enabled = false;
-
+                btn_lief_save.Enabled = false;
+            }
         }
 
         private void lbx_pers_SelectedValueChanged(object sender, EventArgs e)
@@ -706,16 +736,18 @@ namespace LET_Auftragsverwaltung
 
         private void lbx_pers_DoubleClick(object sender, EventArgs e)
         {
-            btn_pers_edit.Enabled = true;
-            btn_pers_delete.Enabled = true;
-            btn_pers_save.Enabled = false;
-            btn_pers_funk_add.Enabled = true;
-            btn_pers_funk_del.Enabled = true;
-
-            if (lbx_pers.Items.Count > 0)
+            if (!this.DesignMode)
             {
-                try
+                btn_pers_edit.Enabled = true;
+                btn_pers_delete.Enabled = true;
+                btn_pers_save.Enabled = false;
+                btn_pers_funk_add.Enabled = true;
+                btn_pers_funk_del.Enabled = true;
+
+                if (lbx_pers.Items.Count > 0)
                 {
+                    try
+                    {
 
                     string sql = string.Format("SELECT * FROM personal WHERE P_ID = {0} LIMIT 1", lbx_pers.SelectedValue);
                     
@@ -751,24 +783,27 @@ namespace LET_Auftragsverwaltung
                         MessageBoxIcon.Error);
                 }
 
-                finally
-                {
-                    UC_Parameter_lbx_pers_funk_fill();
+                    finally
+                    {
+                        UC_Parameter_lbx_pers_funk_fill();
+                    }
                 }
             }
         }
 
         private void btn_pers_delete_Click(object sender, EventArgs e)
         {
-            try
+            if (!this.DesignMode)
             {
-                string sql = string.Format("UPDATE personal SET deaktiviert=true WHERE P_ID={0}",
-                    lbx_pers.SelectedValue);
-                
-                Connection.Open();
-                OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                cmd.ExecuteNonQuery();
-                Connection.Close();
+                try
+                {
+                    string sql = string.Format("UPDATE personal SET deaktiviert=true WHERE P_ID={0}",
+                        lbx_pers.SelectedValue);
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    OdbcCommand cmd = new OdbcCommand(sql, connection);
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
 
 
             }
@@ -784,28 +819,31 @@ namespace LET_Auftragsverwaltung
                 btn_pers_delete.Enabled = false;
                 btn_pers_edit.Enabled = false;
 
-                txt_pers_vor.Text = "";
-                txt_pers_nach.Text = "";
-                txt_pers_land.Text = "";
-                txt_pers_plz.Text = "";
-                txt_pers_ort.Text = "";
-                txt_pers_hnr.Text = "";
-                txt_pers_str.Text = "";
+                    txt_pers_vor.Text = "";
+                    txt_pers_nach.Text = "";
+                    txt_pers_land.Text = "";
+                    txt_pers_plz.Text = "";
+                    txt_pers_ort.Text = "";
+                    txt_pers_hnr.Text = "";
+                    txt_pers_str.Text = "";
 
-                UC_Parameter_lbx_pers_fill();
+                    UC_Parameter_lbx_pers_fill();
+                }
             }
         }
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
-            btn_lief_edit.Enabled = true;
-            btn_lief_delete.Enabled = true;
-            btn_lief_save.Enabled = false;
-
-            if (lbx_pers.Items.Count > 0)
+            if (!this.DesignMode)
             {
-                try
+                btn_lief_edit.Enabled = true;
+                btn_lief_delete.Enabled = true;
+                btn_lief_save.Enabled = false;
+
+                if (lbx_pers.Items.Count > 0)
                 {
+                    try
+                    {
 
                     string sql = string.Format("SELECT * FROM lieferant WHERE L_ID = {0} LIMIT 1", lbx_lief.SelectedValue);
                     
@@ -838,21 +876,24 @@ namespace LET_Auftragsverwaltung
                         MessageBoxIcon.Error);
                 }
 
-                finally
-                {
+                    finally
+                    {
 
+                    }
                 }
             }
         }
 
         private void btn_pers_edit_Click(object sender, EventArgs e)
         {
-            try
+            if (!this.DesignMode)
             {
-                
-                Connection.Open();
-                string sql3 =
-                    string.Format("UPDATE personal SET Vorname= '{0}', Nachname = '{1}' WHERE P_ID = {2}", txt_pers_vor.Text, txt_pers_nach.Text, lbx_pers.SelectedValue);
+                try
+                {
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    string sql3 =
+                        string.Format("UPDATE personal SET Vorname= '{0}', Nachname = '{1}' WHERE P_ID = {2}", txt_pers_vor.Text, txt_pers_nach.Text, lbx_pers.SelectedValue);
 
                 OdbcCommand cmd = new OdbcCommand(sql3, Connection);
                 cmd.ExecuteNonQuery();
@@ -860,9 +901,9 @@ namespace LET_Auftragsverwaltung
                 OdbcCommand cmd_read = new OdbcCommand(sql2, Connection);
                 OdbcDataReader sqlReader = cmd_read.ExecuteReader();
 
-                sqlReader.Read();
+                    sqlReader.Read();
 
-                int adr_id = sqlReader.GetInt32(0);
+                    int adr_id = sqlReader.GetInt32(0);
 
                 string sql = string.Format(
                     "UPDATE adressen SET Land = '{0}', PLZ = '{1}', Ort = '{2}', Hausnummer = '{3}', Strasse = '{4}' WHERE Adr_ID = {5}",
@@ -885,28 +926,31 @@ namespace LET_Auftragsverwaltung
                 btn_pers_delete.Enabled = false;
                 btn_pers_edit.Enabled = false;
 
-                txt_pers_vor.Text = "";
-                txt_pers_nach.Text = "";
-                txt_pers_land.Text = "";
-                txt_pers_plz.Text = "";
-                txt_pers_ort.Text = "";
-                txt_pers_hnr.Text = "";
-                txt_pers_str.Text = "";
+                    txt_pers_vor.Text = "";
+                    txt_pers_nach.Text = "";
+                    txt_pers_land.Text = "";
+                    txt_pers_plz.Text = "";
+                    txt_pers_ort.Text = "";
+                    txt_pers_hnr.Text = "";
+                    txt_pers_str.Text = "";
 
-                UC_Parameter_lbx_pers_fill();
+                    UC_Parameter_lbx_pers_fill();
+                }
             }
         }
 
         private void btn_lief_edit_Click(object sender, EventArgs e)
         {
-            try
+            if (!this.DesignMode)
             {
-                
-                Connection.Open();
-                string sql3 =
-                    string.Format(
-                        "UPDATE lieferant SET lieferant= '{0}' WHERE L_ID = {1}",
-                        txt_lief_ken.Text, lbx_lief.SelectedValue);
+                try
+                {
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    string sql3 =
+                        string.Format(
+                            "UPDATE lieferant SET lieferant= '{0}' WHERE L_ID = {1}",
+                            txt_lief_ken.Text, lbx_lief.SelectedValue);
 
                 OdbcCommand cmd = new OdbcCommand(sql3, Connection);
                 cmd.ExecuteNonQuery();
@@ -914,9 +958,9 @@ namespace LET_Auftragsverwaltung
                 OdbcCommand cmd_read = new OdbcCommand(sql2, Connection);
                 OdbcDataReader sqlReader = cmd_read.ExecuteReader();
 
-                sqlReader.Read();
+                    sqlReader.Read();
 
-                int adr_id = sqlReader.GetInt32(0);
+                    int adr_id = sqlReader.GetInt32(0);
 
                 string sql = string.Format(
                     "UPDATE adressen SET Land = '{0}', PLZ = '{1}', Ort = '{2}', Hausnummer = '{3}', Strasse = '{4}' WHERE Adr_ID = {5}",
@@ -939,24 +983,26 @@ namespace LET_Auftragsverwaltung
                 btn_lief_delete.Enabled = false;
                 btn_lief_edit.Enabled = false;
 
-                txt_lief_ken.Text = "";
-                txt_lief_land.Text = "";
-                txt_lief_plz.Text = "";
-                txt_lief_ort.Text = "";
-                txt_lief_hnr.Text = "";
-                txt_lief_str.Text = "";
+                    txt_lief_ken.Text = "";
+                    txt_lief_land.Text = "";
+                    txt_lief_plz.Text = "";
+                    txt_lief_ort.Text = "";
+                    txt_lief_hnr.Text = "";
+                    txt_lief_str.Text = "";
 
-                UC_Parameter_lbx_lief_fill();
+                    UC_Parameter_lbx_lief_fill();
+                }
             }
-
         }
 
         private void btn_pers_funk_add_Click(object sender, EventArgs e)
         {
-            try
+            if (!this.DesignMode)
             {
-                
-                string sql_controll = string.Format("SELECT COUNT(*) FROM personal_funktion WHERE P_ID = {0} AND Funktion_ID = {1}", lbx_pers.SelectedValue, cbx_pers_funk.SelectedValue);
+                try
+                {
+                    OdbcConnection connection = Connection;
+                    string sql_controll = string.Format("SELECT COUNT(*) FROM personal_funktion WHERE P_ID = {0} AND Funktion_ID = {1}", lbx_pers.SelectedValue, cbx_pers_funk.SelectedValue);
 
                 string sql = string.Format("INSERT INTO personal_funktion (P_ID,Funktion_ID) VALUES ({0},{1})",
                     lbx_pers.SelectedValue, cbx_pers_funk.SelectedValue);
@@ -983,37 +1029,41 @@ namespace LET_Auftragsverwaltung
                     MessageBoxIcon.Error);
             }
 
-            finally
-            {
-                UC_Parameter_lbx_pers_funk_fill();
+                finally
+                {
+                    UC_Parameter_lbx_pers_funk_fill();
+                }
             }
         }
 
         private void btn_pers_funk_del_Click(object sender, EventArgs e)
         {
-            try
+            if (!this.DesignMode)
             {
-                
-                string sql = string.Format("DELETE FROM personal_funktion WHERE P_ID = {0} AND Funktion_ID = {1}",
-                    lbx_pers.SelectedValue, lbx_pers_funk.SelectedValue);
-                OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                Connection.Open();
-                cmd.ExecuteNonQuery();
-                Connection.Close();
+                try
+                {
+                    OdbcConnection connection = Connection;
+                    string sql = string.Format("DELETE FROM personal_funktion WHERE P_ID = {0} AND Funktion_ID = {1}",
+                        lbx_pers.SelectedValue, lbx_pers_funk.SelectedValue);
+                    OdbcCommand cmd = new OdbcCommand(sql, connection);
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
 
-            }
-            catch (Exception f)
-            {
-                Connection.Close();
-                MessageBox.Show("Fehler in der SQL Abfrage(Personal Funktion): \n\n" + f.Message, "Fehler",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
+                }
+                catch (Exception f)
+                {
+                    connection.Close();
+                    MessageBox.Show("Fehler in der SQL Abfrage(Personal Funktion): \n\n" + f.Message, "Fehler",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
 
-            finally
-            {
-                btn_pers_funk_del.Enabled = false;
-                UC_Parameter_lbx_pers_funk_fill();
+                finally
+                {
+                    btn_pers_funk_del.Enabled = false;
+                    UC_Parameter_lbx_pers_funk_fill();
+                }
             }
         }
 
@@ -1024,30 +1074,33 @@ namespace LET_Auftragsverwaltung
 
         private void btn_fert_save_Click(object sender, EventArgs e)
         {
-            try
+            if (!this.DesignMode)
             {
-                
-                Connection.Open();
-                string sql = string.Format("INSERT INTO fertigungsstatus (Status) VALUES ('{0}')", txt_fert_new.Text);
-                OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                cmd.ExecuteNonQuery();
-                Connection.Close();
-            }
-            catch (Exception f)
-            {
-                MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-            finally
-            {
-                UC_Parameter_cbx_fert_fill();
-                txt_fert_new.Text = "";
+                try
+                {
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    string sql = string.Format("INSERT INTO fertigungsstatus (Status) VALUES ('{0}')", txt_fert_new.Text);
+                    OdbcCommand cmd = new OdbcCommand(sql, connection);
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                }
+                catch (Exception f)
+                {
+                    MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    UC_Parameter_cbx_fert_fill();
+                    txt_fert_new.Text = "";
 
-                MessageBox.Show("Fertigungsstatus wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
+                    MessageBox.Show("Fertigungsstatus wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
 
-            btn_fert_save.Enabled = false;
+                btn_fert_save.Enabled = false;
+            }
         }
 
         private void txt_fert_new_TextChanged(object sender, EventArgs e)
@@ -1075,46 +1128,51 @@ namespace LET_Auftragsverwaltung
 
         private void btn_fert_edit_Click(object sender, EventArgs e)
         {
-            try
+            if (!this.DesignMode)
             {
-                
-                Connection.Open();
-                string sql = string.Format("UPDATE fertigungsstatus SET deaktiviert = {0}, status = '{1}' WHERE F_ID = {2}", box_fert_dis.Checked, txt_fert_edit.Text, cbx_fert.SelectedValue);
-                OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                cmd.ExecuteNonQuery();
-                Connection.Close();
+                try
+                {
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    string sql = string.Format("UPDATE fertigungsstatus SET deaktiviert = {0}, status = '{1}' WHERE F_ID = {2}", box_fert_dis.Checked, txt_fert_edit.Text, cbx_fert.SelectedValue);
+                    OdbcCommand cmd = new OdbcCommand(sql, connection);
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                }
+                catch (Exception f)
+                {
+                    MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+
+                finally
+                {
+                    UC_Parameter_cbx_fert_fill();
+
+
+                    MessageBox.Show("Fertigungsstatus wurde geändert", "Änderung erfolgreich", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+
+                txt_fert_edit.Text = "";
+                btn_fert_edit.Enabled = false;
+                box_fert_dis.Checked = false;
             }
-            catch (Exception f)
-            {
-                MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-
-            finally
-            {
-                UC_Parameter_cbx_fert_fill();
-
-
-                MessageBox.Show("Fertigungsstatus wurde geändert", "Änderung erfolgreich", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-
-            txt_fert_edit.Text = "";
-            btn_fert_edit.Enabled = false;
-            box_fert_dis.Checked = false;
         }
 
         private void btn_lief_delete_Click(object sender, EventArgs e)
         {
-            try
+            if (!this.DesignMode)
             {
-                string sql = string.Format("UPDATE lieferant SET deaktiviert=true WHERE L_ID={0}",
-                    lbx_lief.SelectedValue);
-                
-                Connection.Open();
-                OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                cmd.ExecuteNonQuery();
-                Connection.Close();
+                try
+                {
+                    string sql = string.Format("UPDATE lieferant SET deaktiviert=true WHERE L_ID={0}",
+                        lbx_lief.SelectedValue);
+                    OdbcConnection connection = Connection;
+                    connection.Open();
+                    OdbcCommand cmd = new OdbcCommand(sql, connection);
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
 
 
             }
@@ -1130,14 +1188,15 @@ namespace LET_Auftragsverwaltung
                 btn_lief_delete.Enabled = false;
                 btn_lief_edit.Enabled = false;
 
-                txt_lief_ken.Text = "";
-                txt_lief_land.Text = "";
-                txt_lief_plz.Text = "";
-                txt_lief_ort.Text = "";
-                txt_lief_hnr.Text = "";
-                txt_lief_str.Text = "";
+                    txt_lief_ken.Text = "";
+                    txt_lief_land.Text = "";
+                    txt_lief_plz.Text = "";
+                    txt_lief_ort.Text = "";
+                    txt_lief_hnr.Text = "";
+                    txt_lief_str.Text = "";
 
-                UC_Parameter_lbx_lief_fill();
+                    UC_Parameter_lbx_lief_fill();
+                }
             }
         }
 
@@ -1212,8 +1271,10 @@ namespace LET_Auftragsverwaltung
 
         private void btn_Save_Stoff_Click(object sender, EventArgs e)
         {
-            string sql = string.Format("SELECT COUNT(*) FROM Stoff WHERE Bild = '{0}'", pbx_stoff.Image.Tag as string);
-            OdbcCommand cmd = new OdbcCommand(sql, Connection);
+            if (!this.DesignMode)
+            {
+                string sql = string.Format("SELECT COUNT(*) FROM Stoff WHERE Bild = '{0}'", pbx_stoff.Image.Tag as string);
+                OdbcCommand cmd = new OdbcCommand(sql, connection);
 
             Connection.Open();
             if (Convert.ToInt32(cmd.ExecuteScalar().ToString()) <= 0)
@@ -1241,28 +1302,30 @@ namespace LET_Auftragsverwaltung
 
         private void btn_Change_Stoff_Click(object sender, EventArgs e)
         {
-            if (pBx_Stoff_02?.Image?.Tag?.GetType() == typeof(string)) //Überprüfung ob Klasse string ist
+            if (!this.DesignMode)
             {
-                var request = ( FtpWebRequest ) WebRequest.Create(server + pBx_Stoff_02.Image.Tag);
-                request.Credentials = new NetworkCredential(user, pw);
-                request.Method = WebRequestMethods.Ftp.GetFileSize;
-                try
+                if (pBx_Stoff_02?.Image?.Tag?.GetType() == typeof(string)) //Überprüfung ob Klasse string ist
                 {
-                    FtpWebResponse response = ( FtpWebResponse ) request.GetResponse();
-                }
-                catch (WebException ex)
-                {
-                    FtpWebResponse response = ( FtpWebResponse ) ex.Response;
-                    if (response.StatusCode != FtpStatusCode.ActionNotTakenFileUnavailable)
+                    var request = ( FtpWebRequest ) WebRequest.Create(server + pBx_Stoff_02.Image.Tag);
+                    request.Credentials = new NetworkCredential(user, pw);
+                    request.Method = WebRequestMethods.Ftp.GetFileSize;
+                    try
                     {
-                        using (WebClient client = new WebClient())
+                        FtpWebResponse response = ( FtpWebResponse ) request.GetResponse();
+                    }
+                    catch (WebException ex)
+                    {
+                        FtpWebResponse response = ( FtpWebResponse ) ex.Response;
+                        if (response.StatusCode != FtpStatusCode.ActionNotTakenFileUnavailable)
                         {
-                            client.Credentials = new NetworkCredential(user, pw);
-                            client.UploadFile(server + pBx_Stoff_02.Image.Tag, WebRequestMethods.Ftp.UploadFile, File_Path_FTP);
+                            using (WebClient client = new WebClient())
+                            {
+                                client.Credentials = new NetworkCredential(user, pw);
+                                client.UploadFile(server + pBx_Stoff_02.Image.Tag, WebRequestMethods.Ftp.UploadFile, File_Path_FTP);
+                            }
                         }
                     }
                 }
-            }
 
             string sql = string.Format("SELECT COUNT(*) FROM Stoff WHERE Bild = '{0}' AND ST_ID <> {1}", pBx_Stoff_02?.Image?.Tag as string,cbx_stoff_edit.SelectedValue.ToString());
             OdbcCommand cmd = new OdbcCommand(sql, Connection);
@@ -1297,58 +1360,61 @@ namespace LET_Auftragsverwaltung
 
         private void cbx_stoff_edit_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbx_stoff_edit.SelectedValue != null && cbx_stoff_edit.SelectedValue.ToString() != "System.Data.DataRowView")
+            if (!this.DesignMode)
             {
-                Connection.Open();
-                string sql = $"SELECT * FROM stoff WHERE stoff.ST_ID = {cbx_stoff_edit.SelectedValue.ToString()}";
-                OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                OdbcDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                if (cbx_stoff_edit.SelectedValue != null && cbx_stoff_edit.SelectedValue.ToString() != "System.Data.DataRowView")
                 {
-                    if (pBx_Stoff_02.Image != null)
+                    Connection.Open();
+                    string sql = $"SELECT * FROM stoff WHERE stoff.ST_ID = {cbx_stoff_edit.SelectedValue.ToString()}";
+                    OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                    OdbcDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        pBx_Stoff_02.Image.Dispose();
-                    }
-
-                    pBx_Stoff_02.Image = null;
-                    tBx_change_Stoff.Text = reader["Stoff"].ToString();
-                    sql = $"SELECT L_ID FROM stoff_lieferant WHERE stoff_lieferant.ST_ID = {cbx_stoff_edit.SelectedValue.ToString()} LIMIT 1";
-                    cmd = new OdbcCommand(sql, Connection);
-
-                    object l_ID;
-                    if (( l_ID = cmd.ExecuteScalar() ) != null)
-                    {
-                        cBx_stoff_lief_02.SelectedValue = l_ID;
-                    }
-                    else
-                    {
-                        cBx_stoff_lief_02.Text = "";
-                    }
-
-
-                    if (reader["Bild"].ToString() != "")
-                    {
-                        try
+                        if (pBx_Stoff_02.Image != null)
                         {
-                            WebClient client = new WebClient();
-                            client.Credentials = new NetworkCredential(user, pw);
-                            using (MemoryStream stream = new MemoryStream(client.DownloadData(server + reader["Bild"].ToString())))
+                            pBx_Stoff_02.Image.Dispose();
+                        }
+
+                        pBx_Stoff_02.Image = null;
+                        tBx_change_Stoff.Text = reader["Stoff"].ToString();
+                        sql = $"SELECT L_ID FROM stoff_lieferant WHERE stoff_lieferant.ST_ID = {cbx_stoff_edit.SelectedValue.ToString()} LIMIT 1";
+                        cmd = new OdbcCommand(sql, Connection);
+
+                        object l_ID;
+                        if (( l_ID = cmd.ExecuteScalar() ) != null)
+                        {
+                            cBx_stoff_lief_02.SelectedValue = l_ID;
+                        }
+                        else
+                        {
+                            cBx_stoff_lief_02.Text = "";
+                        }
+
+
+                        if (reader["Bild"].ToString() != "")
+                        {
+                            try
                             {
-                                MemoryStream ms = new MemoryStream();
-                                stream.CopyTo(ms);      //Because of some funnnny stuff that could happen (if you do not do this like this (copto an other memorystream) it could probably maybe be that not all data gets their....... I know, wired
-                                Image image = ByteToImage(ms.ToArray());
-                                image.Tag = reader["Bild"].ToString();
-                                pBx_Stoff_02.Image = image;
-                                pBx_Stoff_02.SizeMode = PictureBoxSizeMode.Zoom;
+                                WebClient client = new WebClient();
+                                client.Credentials = new NetworkCredential(user, pw);
+                                using (MemoryStream stream = new MemoryStream(client.DownloadData(server + reader["Bild"].ToString())))
+                                {
+                                    MemoryStream ms = new MemoryStream();
+                                    stream.CopyTo(ms);      //Because of some funnnny stuff that could happen (if you do not do this like this (copto an other memorystream) it could probably maybe be that not all data gets their....... I know, wired
+                                    Image image = ByteToImage(ms.ToArray());
+                                    image.Tag = reader["Bild"].ToString();
+                                    pBx_Stoff_02.Image = image;
+                                    pBx_Stoff_02.SizeMode = PictureBoxSizeMode.Zoom;
+                                }
+                            }
+                            catch (Exception exception)
+                            {
+                                MessageBox.Show("Wahrscheinlich wurde das Bild nicht auf dem FTP gefunden oder Bild kaput Be Happy (;" + exception.Message);
                             }
                         }
-                        catch (Exception exception)
-                        {
-                            MessageBox.Show("Wahrscheinlich wurde das Bild nicht auf dem FTP gefunden oder Bild kaput Be Happy (;" + exception.Message);
-                        }
                     }
+                    Connection.Close();
                 }
-                Connection.Close();
             }
         }
 
