@@ -14,18 +14,12 @@ namespace LET_Auftragsverwaltung
 {
     public partial class UC_New_auftrag : UserControl
     {
-        private OdbcConnection connection = null;
-
         private OdbcConnection Connection
         {
             get
             {
-                if (connection == null)
-                {
-                    string constrg = "Driver={MySQL ODBC 5.3 Unicode Driver};Server=192.168.16.192;Database=auftrags;User=admin;Password=cola0815;Option=3;";
-                    connection = new OdbcConnection(constrg);
-                }
-                return connection;
+                return CS_DB.Connection;
+
             }
         }
 
@@ -243,17 +237,13 @@ namespace LET_Auftragsverwaltung
                         cbx_new_auf_stoff.DisplayMember = "Stoff";
 
 
-                        if (cbx_new_auf_stoff.Items.Count > 0)
-                        {
-                            cbx_new_auf_stoff.SelectedIndex = 0;
-                        }
-                    }
-                    catch (Exception f)
-                    {
-                        MessageBox.Show("Fehler in der SQL Abfrage(Neue Auftrag: Fill CBX Stoff): \n\n" + f.Message,
-                            "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        connection.Close();
-                    }
+                    if (cbx_new_auf_stoff.Items.Count > 0) cbx_new_auf_stoff.SelectedIndex = 0;
+                }
+                catch (Exception f)
+                {
+                    MessageBox.Show("Fehler in der SQL Abfrage(Neue Auftrag: Fill CBX Stoff): \n\n" + f.Message,
+                        "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Connection.Close();
                 }
             }
         }
@@ -296,33 +286,25 @@ namespace LET_Auftragsverwaltung
                     bool added = false;
                     connection.Close();
 
-                    if (lbx_auftrag.Items.Count != 0)
+                if (lbx_auftrag.Items.Count != 0)
+                {
+                    for (int i = 0; i < lbx_auftrag.Items.Count; i++)
                     {
-                        for (int i = 0; i < lbx_auftrag.Items.Count; i++)
+                        if (lbx_auftrag.Items[i].ToString() == item.ToString())
                         {
-                            if (lbx_auftrag.Items[i].ToString() == item.ToString())
-                            {
-                                MessageBox.Show("Auswahl ist schon vorhanden", "Info", MessageBoxButtons.OK,
-                                    MessageBoxIcon.Information);
-                                added = true;
-                            }
-                        }
-
-                        if (!added)
-                        {
-                            lbx_auftrag.Items.Add(item);
+                            MessageBox.Show("Auswahl ist schon vorhanden", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            added = true;
                         }
                     }
-                    else
-                    {
-                        lbx_auftrag.Items.Add(item);
-                    }
-
-                    if (lbx_auftrag.Items.Count > 0)
-                    {
-                        lbx_auftrag.SelectedIndex = 0;
-                    }
+                    if (!added) lbx_auftrag.Items.Add(item);
                 }
+                else
+                {
+                    lbx_auftrag.Items.Add(item);
+                }
+
+                if (lbx_auftrag.Items.Count > 0) lbx_auftrag.SelectedIndex = 0;
+            }
 
                 catch (Exception f)
                 {
@@ -381,11 +363,11 @@ namespace LET_Auftragsverwaltung
                     cmd = new OdbcCommand(sql, connection);
                     cmd.ExecuteNonQuery();
 
-                    string sql2 = string.Format(
-                        "SELECT ID FROM auftraege WHERE auftraege.`Auftrags_NR` = '{0}' AND auftraege.`Fertigungsstatus` = {1} AND auftraege.Projektverantwortlicher = {2} AND auftraege.Planer_Techniker = {3} AND auftraege.Erstelldatum = '{4}' AND auftraege.Montage_Datum = '{5}' AND auftraege.Projektbezeichnung = '{6}' AND auftraege.`Schatten` = {7} AND auftraege.Notitz_Kauf = '{8}' AND auftraege.Notitz_Tech = '{9}'",
-                        txt_auftrag_nr.Text, 6, cbx_verant.SelectedValue, cbx_tech.SelectedValue,
-                        date_erstell.Value.ToString("yyyy-MM-dd"), date_mont.Value.ToString("yyyy-MM-dd"),
-                        txt_auf_proj_ken.Text, schatten_ID, txt_info_kauf.Text, txt_info_tech.Text);
+                string sql2 = string.Format(
+                    "SELECT ID FROM auftraege WHERE auftraege.`Auftrags_NR` = '{0}' AND auftraege.`Fertigungsstatus` = {1} AND auftraege.Projektverantwortlicher = {2} AND auftraege.Planer_Techniker = {3} AND auftraege.Erstelldatum = '{4}' AND auftraege.Montage_Datum = '{5}' AND auftraege.Projektbezeichnung = '{6}' AND auftraege.`Schatten` = {7} AND auftraege.Notitz_Kauf = '{8}' AND auftraege.Notitz_Tech = '{9}'",
+                    txt_auftrag_nr.Text, 6, cbx_verant.SelectedValue, cbx_tech.SelectedValue,
+                    date_erstell.Value.ToString("yyyy-MM-dd"), date_mont.Value.ToString("yyyy-MM-dd"),
+                    txt_auf_proj_ken.Text, schatten_ID, txt_info_kauf.Text, txt_info_tech.Text);
 
                     OdbcCommand cmd_read = new OdbcCommand(sql2, connection);
                     sqlReader = cmd_read.ExecuteReader();

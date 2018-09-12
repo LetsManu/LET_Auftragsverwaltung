@@ -9,6 +9,12 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.Odbc;
+using System.Security.Cryptography;
+using Office = Microsoft.Office.Core;
+using Outlook = Microsoft.Office.Interop.Outlook;
+using Exception = System.Exception;
+
 
 namespace LET_Auftragsverwaltung
 {
@@ -19,20 +25,12 @@ namespace LET_Auftragsverwaltung
 
     public partial class UC_edit_Auftrag : UserControl
     {
-        private OdbcConnection connection = null;
-
         private OdbcConnection Connection
         {
             get
             {
-                if (connection == null)
-                {
-                    string constrg =
-                        "Driver={MySQL ODBC 5.3 Unicode Driver};Server=192.168.16.192;Database=auftrags;User=admin;Password=cola0815;Option=3;";
-                    connection = new OdbcConnection(constrg);
-                }
+                return CS_DB.Connection;
 
-                return connection;
             }
         }
 

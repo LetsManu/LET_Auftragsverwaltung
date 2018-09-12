@@ -131,6 +131,12 @@
     <Reference Include="System.Data" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Management.4.0.0\lib\System.Management.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management.Instrumentation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Management.4.0.0\lib\System.Management.Instrumentation.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -194,6 +200,7 @@
       <DependentUpon>AB_AZ.cs</DependentUpon>
     </Compile>
     <Compile Include="CS_Auftrag_Data.cs" />
+    <Compile Include="CS_DB.cs" />
     <Compile Include="Form_Edit_Auftrag.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +228,13 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Ribbon_Home.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ribbon_Home.Designer.cs">
+      <DependentUpon>Ribbon_Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon_Start.cs" />
     <Compile Include="UC_edit_Auftrag.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -275,6 +289,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Ribbon_Home.resx">
+      <DependentUpon>Ribbon_Home.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UC_edit_Auftrag.resx">
       <DependentUpon>UC_edit_Auftrag.cs</DependentUpon>
     </EmbeddedResource>
@@ -312,6 +329,9 @@
     </Compile>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ribbon_Start.xml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -324,7 +344,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>0599E173ACA0E5DAC246E327BA32DDB70EFA6283</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>08603D84A332A3EFFBB985418F8D151518825EA5</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using System.Xml.Linq;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using Office = Microsoft.Office.Core;
@@ -19,6 +20,26 @@ namespace LET_Auftragsverwaltung
             CTP_Main = this.CustomTaskPanes.Add(uC_Main_Task_Pane, "Aufträge:");
             CTP_Main.Visible = true;
             CTP_Main.Width = 400;
+        }
+
+        public void UC_Main_Task_Pane_Send(string betreff, string subjekt)
+        {
+            string subjectEmail = betreff;
+            string bodyEmail = subjekt;
+            
+            this.UC_Main_Task_Pane_Create(subjectEmail, bodyEmail);
+                
+        }
+
+        private void UC_Main_Task_Pane_Create(string subjectEmail, string bodyEmail)
+        {
+            Outlook.MailItem eMail = (Outlook.MailItem)
+                this.Application.CreateItem(Outlook.OlItemType.olMailItem);
+            eMail.Subject = subjectEmail;
+            eMail.To = "felix.lerchner@icloud.com";
+            eMail.Body = bodyEmail;
+            eMail.Importance = Outlook.OlImportance.olImportanceLow;
+            ((Outlook._MailItem)eMail).Send();
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
