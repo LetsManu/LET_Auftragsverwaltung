@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Odbc;
 using System.Security.Cryptography;
+using Office = Microsoft.Office.Core;
+using Outlook = Microsoft.Office.Interop.Outlook;
+using Exception = System.Exception;
+
 
 namespace LET_Auftragsverwaltung
 {
@@ -44,15 +48,6 @@ namespace LET_Auftragsverwaltung
             test_ID = id;
 
         }
-
-        public UC_edit_Auftrag()
-        {
-            InitializeComponent();
-            
-
-        }
-
-
 
 
         private void UC_edit_Auftrag_Load(object sender, EventArgs e)
@@ -440,6 +435,44 @@ namespace LET_Auftragsverwaltung
             }
              
         }
+
+        private void btn_ab_az_an_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string sql = string.Format("INSERT INTO ab_az (V_Date) VALUES ('{0}')",
+                    DateTime.Now.ToString("yyyy-MM-dd"));
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                Connection.Open();
+                cmd.ExecuteNonQuery();
+                Connection.Close();
+
+                string sql2 = string.Format("SELECT A_ID FROM ab_az WHERE V_Date = '{0}'", DateTime.Now.ToString("yyyy-MM-dd"));
+                OdbcCommand cmd2 = new OdbcCommand(sql2, Connection);
+                Connection.Open();
+                OdbcDataReader sqlReader = cmd2.ExecuteReader();
+                sqlReader.Read();
+                string sql3 = string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", sqlReader[0], test_ID);
+                sqlReader.Close();
+                OdbcCommand cmd3 = new OdbcCommand(sql3, Connection);
+                cmd3.ExecuteNonQuery();
+                
+                Connection.Close();
+
+                
+
+                
+
+
+
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT AB_AZ Verkäufer UPDATE): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         
+
     }
 }

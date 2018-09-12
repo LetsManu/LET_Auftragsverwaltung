@@ -67,6 +67,12 @@
             this.tab_ab_az = new System.Windows.Forms.TabPage();
             this.tab_persennning = new System.Windows.Forms.TabPage();
             this.tab_schatten = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btn_ab_az_an = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_new_auf)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -75,6 +81,9 @@
             this.Auftraginfos.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tab_Allgemein.SuspendLayout();
+            this.tab_ab_az.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox4
@@ -435,6 +444,8 @@
             // 
             // tab_ab_az
             // 
+            this.tab_ab_az.Controls.Add(this.groupBox6);
+            this.tab_ab_az.Controls.Add(this.groupBox5);
             this.tab_ab_az.Location = new System.Drawing.Point(4, 22);
             this.tab_ab_az.Name = "tab_ab_az";
             this.tab_ab_az.Padding = new System.Windows.Forms.Padding(3);
@@ -461,6 +472,66 @@
             this.tab_schatten.Text = "Schatten";
             this.tab_schatten.UseVisualStyleBackColor = true;
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label9);
+            this.groupBox5.Controls.Add(this.btn_ab_az_an);
+            this.groupBox5.Location = new System.Drawing.Point(6, 4);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(217, 164);
+            this.groupBox5.TabIndex = 0;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Anzahlungsaufforderung";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.label10);
+            this.groupBox6.Controls.Add(this.button2);
+            this.groupBox6.Location = new System.Drawing.Point(256, 4);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(238, 164);
+            this.groupBox6.TabIndex = 1;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Anzahlungsbestätigung";
+            // 
+            // btn_ab_az_an
+            // 
+            this.btn_ab_az_an.Location = new System.Drawing.Point(68, 135);
+            this.btn_ab_az_an.Name = "btn_ab_az_an";
+            this.btn_ab_az_an.Size = new System.Drawing.Size(75, 23);
+            this.btn_ab_az_an.TabIndex = 0;
+            this.btn_ab_az_an.Text = "Anfordern";
+            this.btn_ab_az_an.UseVisualStyleBackColor = true;
+            this.btn_ab_az_an.Click += new System.EventHandler(this.btn_ab_az_an_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(82, 135);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Bestätigen";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 20);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(204, 39);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Anforderung der Anzahlungsaufforderung.\r\nNach betätigung wird eine Nachricht \r\nan" +
+    " das Büro gesendet";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(7, 20);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(182, 26);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "Bestätigung des Zahlungseinganges \r\ndurch das Büro.\r\n";
+            // 
             // UC_edit_Auftrag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -480,6 +551,11 @@
             this.Auftraginfos.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tab_Allgemein.ResumeLayout(false);
+            this.tab_ab_az.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -525,5 +601,11 @@
         private System.Windows.Forms.TabPage tab_ab_az;
         private System.Windows.Forms.TabPage tab_persennning;
         private System.Windows.Forms.TabPage tab_schatten;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btn_ab_az_an;
     }
 }
