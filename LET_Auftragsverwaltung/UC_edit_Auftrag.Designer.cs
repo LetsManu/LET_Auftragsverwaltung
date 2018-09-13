@@ -502,7 +502,7 @@
             this.btn_ab_az_an.TabIndex = 0;
             this.btn_ab_az_an.Text = "Anfordern";
             this.btn_ab_az_an.UseVisualStyleBackColor = true;
-            this.btn_ab_az_an.Click += new System.EventHandler(this.btn_ab_az_an_Click);
+            //TODO this.btn_ab_az_an.Click += new System.EventHandler(this.btn_ab_az_an_Click);
             // 
             // button2
             // 

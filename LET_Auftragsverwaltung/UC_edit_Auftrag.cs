@@ -100,13 +100,13 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
-                    OdbcConnection connection = Connection;
-                    connection.Open();
+
+                    Connection.Open();
                     string sql = "SELECT F_ID, Status FROM fertigungsstatus WHERE deaktiviert<>true";
-                    OdbcDataAdapter dc = new OdbcDataAdapter(sql, connection);
+                    OdbcDataAdapter dc = new OdbcDataAdapter(sql, Connection);
                     DataTable dtStatus = new DataTable();
                     dc.Fill(dtStatus);
-                    connection.Close();
+                    Connection.Close();
 
 
                     cbx_auftragsstatus.DataSource = dtStatus;
@@ -132,13 +132,13 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
-                    OdbcConnection connection = Connection;
-                    connection.Open();
+
+                    Connection.Open();
                     string sql = "SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 4";
-                    OdbcDataAdapter dc = new OdbcDataAdapter(sql, connection);
+                    OdbcDataAdapter dc = new OdbcDataAdapter(sql, Connection);
                     DataTable dtVerant = new DataTable();
                     dc.Fill(dtVerant);
-                    connection.Close();
+                    Connection.Close();
 
 
                     cbx_verant.DataSource = dtVerant;
@@ -164,13 +164,13 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
-                    OdbcConnection connection = Connection;
-                    connection.Open();
+
+                    Connection.Open();
                     string sql = "SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 1 OR pf.Funktion_ID = 2";
-                    OdbcDataAdapter db = new OdbcDataAdapter(sql, connection);
+                    OdbcDataAdapter db = new OdbcDataAdapter(sql, Connection);
                     DataTable dt = new DataTable();
                     db.Fill(dt);
-                    connection.Close();
+                    Connection.Close();
 
                     cbx_tech.DataSource = dt;
                     cbx_tech.ValueMember = "P_ID";
@@ -196,13 +196,13 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
-                    OdbcConnection connection = Connection;
-                    connection.Open();
+
+                    Connection.Open();
                     string sql = string.Format("SELECT auftragsart.Art_ID, auftragsart.`Art` FROM auftraege Inner JOIN auftraege_auftragsart ON auftraege.ID = auftraege_auftragsart.ID Inner JOIN auftragsart ON auftraege_auftragsart.Art_ID=auftragsart.Art_ID WHERE auftraege.ID = {0}", test_ID);
-                    OdbcDataAdapter db = new OdbcDataAdapter(sql, connection);
+                    OdbcDataAdapter db = new OdbcDataAdapter(sql, Connection);
                     DataTable dt = new DataTable();
                     db.Fill(dt);
-                    connection.Close();
+                    Connection.Close();
 
                     lbx_auftrag.DataSource = dt;
                     lbx_auftrag.ValueMember = "Art_ID";
@@ -216,7 +216,7 @@ namespace LET_Auftragsverwaltung
                 }
                 catch (Exception f)
                 {
-                    connection.Close();
+                    Connection.Close();
                     MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Fill LBX Auftrag): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -229,13 +229,13 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
-                    OdbcConnection connection = Connection;
-                    connection.Open();
+
+                    Connection.Open();
                     string sql = "SELECT Art_ID,Art FROM auftragsart WHERE deaktiviert<>true";
-                    OdbcDataAdapter db = new OdbcDataAdapter(sql, connection);
+                    OdbcDataAdapter db = new OdbcDataAdapter(sql, Connection);
                     DataTable dtArt = new DataTable();
                     db.Fill(dtArt);
-                    connection.Close();
+                    Connection.Close();
 
 
 
@@ -266,13 +266,13 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
-                    OdbcConnection connection = Connection;
-                    connection.Open();
+
+                    Connection.Open();
                     string sql = "SELECT L_ID, Lieferant FROM Lieferant WHERE deaktiviert<>true";
-                    OdbcDataAdapter dc = new OdbcDataAdapter(sql, connection);
+                    OdbcDataAdapter dc = new OdbcDataAdapter(sql, Connection);
                     DataTable dtLief = new DataTable();
                     dc.Fill(dtLief);
-                    connection.Close();
+                    Connection.Close();
 
 
                     cbx_edit_auf_lief.DataSource = dtLief;
@@ -298,13 +298,13 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
-                    OdbcConnection connection = Connection;
-                    connection.Open();
+
+                    Connection.Open();
                     string sql = string.Format("SELECT stoff.`ST_ID`,stoff.`Stoff` FROM auftraege INNER JOIN teile ON auftraege.`ID` = teile.`ID` INNER JOIN teile_stoff ON teile.`T_St_ID` = teile_stoff.`T_St_ID` INNER JOIN stoff ON teile_stoff.`ST_ID` = stoff.`ST_ID` WHERE auftraege.ID = 1", test_ID);
-                    OdbcDataAdapter db = new OdbcDataAdapter(sql, connection);
+                    OdbcDataAdapter db = new OdbcDataAdapter(sql, Connection);
                     DataTable dt = new DataTable();
                     db.Fill(dt);
-                    connection.Close();
+                    Connection.Close();
 
                     lbx_stoff.DataSource = dt;
                     lbx_stoff.ValueMember = "ST_ID";
@@ -318,7 +318,7 @@ namespace LET_Auftragsverwaltung
                 }
                 catch (Exception f)
                 {
-                    connection.Close();
+                    Connection.Close();
                     MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Fill LBX Auftrag): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -333,14 +333,14 @@ namespace LET_Auftragsverwaltung
                 {
                     try
                     {
-                        OdbcConnection connection = Connection;
-                        connection.Open();
+
+                        Connection.Open();
                         string sql =
                             string.Format("SELECT stoff.ST_ID,stoff.`Stoff` FROM stoff INNER JOIN stoff_lieferant ON stoff.ST_ID = stoff_lieferant.ST_ID WHERE stoff_lieferant.L_ID = {0}", cbx_edit_auf_lief.SelectedValue);
-                        OdbcDataAdapter dc = new OdbcDataAdapter(sql, connection);
+                        OdbcDataAdapter dc = new OdbcDataAdapter(sql, Connection);
                         DataTable dtStoff = new DataTable();
                         dc.Fill(dtStoff);
-                        connection.Close();
+                        Connection.Close();
 
 
                         cbx_edit_auf_stoff.DataSource = dtStoff;
@@ -357,7 +357,7 @@ namespace LET_Auftragsverwaltung
                     {
                         MessageBox.Show("Fehler in der SQL Abfrage(EDIT Auftrag: Fill CBX Stoff): \n\n" + f.Message,
                             "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        connection.Close();
+                        Connection.Close();
                     }
                 }
             }
@@ -384,7 +384,7 @@ namespace LET_Auftragsverwaltung
                         txt_auf_proj_ken.Text, date_mont.Value.ToString("yyyy-MM-dd"), txt_info_kauf.Text,
                         txt_info_tech.Text, date_erstell.Value.ToString("yyyy-MM-dd"), test_ID);
                     Connection.Open();
-                    OdbcCommand cmd = new OdbcCommand(sql, connection);
+                    OdbcCommand cmd = new OdbcCommand(sql, Connection);
                     cmd.ExecuteNonQuery();
                     Connection.Close();
                 }

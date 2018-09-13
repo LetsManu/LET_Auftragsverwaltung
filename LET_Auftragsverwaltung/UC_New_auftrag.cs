@@ -212,7 +212,7 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-        private void UC_New_auftrag_fill_cbx_stoff_lief( )
+        private void UC_New_auftrag_fill_cbx_stoff_lief()
         {
             if (!this.DesignMode)
             {
@@ -237,13 +237,14 @@ namespace LET_Auftragsverwaltung
                         cbx_new_auf_stoff.DisplayMember = "Stoff";
 
 
-                    if (cbx_new_auf_stoff.Items.Count > 0) cbx_new_auf_stoff.SelectedIndex = 0;
-                }
-                catch (Exception f)
-                {
-                    MessageBox.Show("Fehler in der SQL Abfrage(Neue Auftrag: Fill CBX Stoff): \n\n" + f.Message,
-                        "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Connection.Close();
+                        if (cbx_new_auf_stoff.Items.Count > 0) cbx_new_auf_stoff.SelectedIndex = 0;
+                    }
+                    catch (Exception f)
+                    {
+                        MessageBox.Show("Fehler in der SQL Abfrage(Neue Auftrag: Fill CBX Stoff): \n\n" + f.Message,
+                            "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Connection.Close();
+                    }
                 }
             }
         }
@@ -326,89 +327,91 @@ namespace LET_Auftragsverwaltung
 
         }
 
-        private void Btn_new_auf_save_Click(object sender, EventArgs e)
-        {
-            if (!this.DesignMode)
+            private void Btn_new_auf_save_Click(object sender, EventArgs e)
             {
-                try
+                if (!this.DesignMode)
                 {
-                    OdbcConnection connection = Connection;
-                    connection.Open();
-                    string sql = "INSERT INTO auftrags.schatten (schatten.Notitz) VALUES ('')";
-                    OdbcCommand cmd = new OdbcCommand(sql, connection);
-                    cmd.ExecuteNonQuery();
-                    sql = "SELECT * FROM schatten ORDER BY schatten.S_ID DESC LIMIT 1";
-                    cmd = new OdbcCommand(sql, connection);
-                    OdbcDataReader sqlReader = cmd.ExecuteReader();
-                    sqlReader.Read();
-                    int schatten_ID = Convert.ToInt32(sqlReader[0]);
-                    sql = String.Format("INSERT INTO auftrags.teile_stoff (teile_stoff.ST_ID) VALUES ({0})",
-                        cbx_new_auf_stoff.SelectedValue);
-                    cmd = new OdbcCommand(sql, connection);
-                    cmd.ExecuteNonQuery();
-                    sql = "SELECT * FROM teile_stoff ORDER BY teile_stoff.T_ST_ID DESC LIMIT 1";
-                    cmd = new OdbcCommand(sql, connection);
-                    sqlReader = cmd.ExecuteReader();
-                    sqlReader.Read();
-                    int teile_stoff_ID = Convert.ToInt32(sqlReader[0]);
-
-
-
-                    sql = string.Format(
-                        "INSERT INTO auftraege (auftraege.`Auftrags_NR`, auftraege.`Fertigungsstatus`, auftraege.Projektverantwortlicher, auftraege.Planer_Techniker, auftraege.Erstelldatum, auftraege.Montage_Datum, auftraege.Projektbezeichnung, auftraege.`Schatten`,  auftraege.Notitz_Kauf, auftraege.Notitz_Tech) VALUES ('{0}', 6, {1}, {2}, '{3}', '{4}', '{5}', {6}, '{7}', '{8}')",
-                        txt_auftrag_nr.Text, cbx_verant.SelectedValue, cbx_tech.SelectedValue,
-                        date_erstell.Value.ToString("yyyy-MM-dd"), date_mont.Value.ToString("yyyy-MM-dd"),
-                        txt_auf_proj_ken.Text, schatten_ID, txt_info_kauf.Text, txt_info_tech.Text);
-
-                    cmd = new OdbcCommand(sql, connection);
-                    cmd.ExecuteNonQuery();
-
-                string sql2 = string.Format(
-                    "SELECT ID FROM auftraege WHERE auftraege.`Auftrags_NR` = '{0}' AND auftraege.`Fertigungsstatus` = {1} AND auftraege.Projektverantwortlicher = {2} AND auftraege.Planer_Techniker = {3} AND auftraege.Erstelldatum = '{4}' AND auftraege.Montage_Datum = '{5}' AND auftraege.Projektbezeichnung = '{6}' AND auftraege.`Schatten` = {7} AND auftraege.Notitz_Kauf = '{8}' AND auftraege.Notitz_Tech = '{9}'",
-                    txt_auftrag_nr.Text, 6, cbx_verant.SelectedValue, cbx_tech.SelectedValue,
-                    date_erstell.Value.ToString("yyyy-MM-dd"), date_mont.Value.ToString("yyyy-MM-dd"),
-                    txt_auf_proj_ken.Text, schatten_ID, txt_info_kauf.Text, txt_info_tech.Text);
-
-                    OdbcCommand cmd_read = new OdbcCommand(sql2, connection);
-                    sqlReader = cmd_read.ExecuteReader();
-
-                    sqlReader.Read();
-
-                    int auf_id = sqlReader.GetInt32(0);
-                    sql = string.Format("INSERT INTO auftrags.teile (teile.ID, teile.T_St_ID) VALUES ({0}, {1})",
-                        auf_id, teile_stoff_ID);
-                    cmd = new OdbcCommand(sql, connection);
-                    cmd.ExecuteNonQuery();
-
-                    for (int i = 0; i < lbx_auftrag.Items.Count; i++)
+                    try
                     {
-                        int art_ID = ( lbx_auftrag.Items[i] as Object_auf ).ID;
+                        OdbcConnection connection = Connection;
+                        connection.Open();
+                        string sql = "INSERT INTO auftrags.schatten (schatten.Notitz) VALUES ('')";
+                        OdbcCommand cmd = new OdbcCommand(sql, connection);
+                        cmd.ExecuteNonQuery();
+                        sql = "SELECT * FROM schatten ORDER BY schatten.S_ID DESC LIMIT 1";
+                        cmd = new OdbcCommand(sql, connection);
+                        OdbcDataReader sqlReader = cmd.ExecuteReader();
+                        sqlReader.Read();
+                        int schatten_ID = Convert.ToInt32(sqlReader[0]);
+                        sql = String.Format("INSERT INTO auftrags.teile_stoff (teile_stoff.ST_ID) VALUES ({0})",
+                            cbx_new_auf_stoff.SelectedValue);
+                        cmd = new OdbcCommand(sql, connection);
+                        cmd.ExecuteNonQuery();
+                        sql = "SELECT * FROM teile_stoff ORDER BY teile_stoff.T_ST_ID DESC LIMIT 1";
+                        cmd = new OdbcCommand(sql, connection);
+                        sqlReader = cmd.ExecuteReader();
+                        sqlReader.Read();
+                        int teile_stoff_ID = Convert.ToInt32(sqlReader[0]);
 
 
-                        string sql3 = string.Format("INSERT INTO auftraege_auftragsart (ID, Art_ID) VALUES ({0}, {1})",
-                            auf_id, art_ID);
-                        OdbcCommand cmd2 = new OdbcCommand(sql3, connection);
-                        cmd2.ExecuteNonQuery();
+
+                        sql = string.Format(
+                            "INSERT INTO auftraege (auftraege.`Auftrags_NR`, auftraege.`Fertigungsstatus`, auftraege.Projektverantwortlicher, auftraege.Planer_Techniker, auftraege.Erstelldatum, auftraege.Montage_Datum, auftraege.Projektbezeichnung, auftraege.`Schatten`,  auftraege.Notitz_Kauf, auftraege.Notitz_Tech) VALUES ('{0}', 6, {1}, {2}, '{3}', '{4}', '{5}', {6}, '{7}', '{8}')",
+                            txt_auftrag_nr.Text, cbx_verant.SelectedValue, cbx_tech.SelectedValue,
+                            date_erstell.Value.ToString("yyyy-MM-dd"), date_mont.Value.ToString("yyyy-MM-dd"),
+                            txt_auf_proj_ken.Text, schatten_ID, txt_info_kauf.Text, txt_info_tech.Text);
+
+                        cmd = new OdbcCommand(sql, connection);
+                        cmd.ExecuteNonQuery();
+
+                        string sql2 = string.Format(
+                            "SELECT ID FROM auftraege WHERE auftraege.`Auftrags_NR` = '{0}' AND auftraege.`Fertigungsstatus` = {1} AND auftraege.Projektverantwortlicher = {2} AND auftraege.Planer_Techniker = {3} AND auftraege.Erstelldatum = '{4}' AND auftraege.Montage_Datum = '{5}' AND auftraege.Projektbezeichnung = '{6}' AND auftraege.`Schatten` = {7} AND auftraege.Notitz_Kauf = '{8}' AND auftraege.Notitz_Tech = '{9}'",
+                            txt_auftrag_nr.Text, 6, cbx_verant.SelectedValue, cbx_tech.SelectedValue,
+                            date_erstell.Value.ToString("yyyy-MM-dd"), date_mont.Value.ToString("yyyy-MM-dd"),
+                            txt_auf_proj_ken.Text, schatten_ID, txt_info_kauf.Text, txt_info_tech.Text);
+
+                        OdbcCommand cmd_read = new OdbcCommand(sql2, connection);
+                        sqlReader = cmd_read.ExecuteReader();
+
+                        sqlReader.Read();
+
+                        int auf_id = sqlReader.GetInt32(0);
+                        sql = string.Format("INSERT INTO auftrags.teile (teile.ID, teile.T_St_ID) VALUES ({0}, {1})",
+                            auf_id, teile_stoff_ID);
+                        cmd = new OdbcCommand(sql, connection);
+                        cmd.ExecuteNonQuery();
+
+                        for (int i = 0; i < lbx_auftrag.Items.Count; i++)
+                        {
+                            int art_ID = (lbx_auftrag.Items[i] as Object_auf).ID;
+
+
+                            string sql3 = string.Format(
+                                "INSERT INTO auftraege_auftragsart (ID, Art_ID) VALUES ({0}, {1})",
+                                auf_id, art_ID);
+                            OdbcCommand cmd2 = new OdbcCommand(sql3, connection);
+                            cmd2.ExecuteNonQuery();
+                        }
+
+
+
+
+                        connection.Close();
                     }
+                    catch (Exception f)
+                    {
+                        MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        MessageBox.Show("Person wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
 
-
-
-
-                    connection.Close();
-                }
-                catch (Exception f)
-                {
-                    MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    MessageBox.Show("Person wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-
+                    }
                 }
             }
-        }
+        
 
         private void cbx_new_auf_lief_SelectedValueChanged(object sender, EventArgs e)
         {
