@@ -33,21 +33,19 @@ namespace LET_Auftragsverwaltung
 
             }
         }
+        
+        //ID zur Übergabe
+        private int id = 0;   
 
-        private int test_ID;
-
-        public UC_edit_Auftrag(int id)
+        public UC_edit_Auftrag(int id_)
         {
             InitializeComponent();
-            test_ID = id;
-
+            id = id_;
         }
 
-        public UC_edit_Auftrag( )
+        public UC_edit_Auftrag()
         {
             InitializeComponent();
-
-
         }
 
 
@@ -70,21 +68,21 @@ namespace LET_Auftragsverwaltung
                 #endregion
 
 
-                string sql = "SELECT * FROM auftraege WHERE id = " + test_ID;
+                string sql = "SELECT * FROM auftraege WHERE id = " + id;
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
                 Connection.Open();
                 OdbcDataReader sqlReader = cmd.ExecuteReader();
                 sqlReader.Read();
 
-                txt_auftrag_nr.Text = ( string ) sqlReader[1];
+                txt_auftrag_nr.Text = (string)sqlReader[1];
                 cbx_auftragsstatus.SelectedValue = sqlReader[2];
                 date_erstell.Value = Convert.ToDateTime(sqlReader[3]);
                 cbx_verant.SelectedValue = sqlReader[6];
                 cbx_tech.SelectedValue = sqlReader[7];
-                txt_auf_proj_ken.Text = ( string ) sqlReader[8];
+                txt_auf_proj_ken.Text = (string)sqlReader[8];
                 date_mont.Value = Convert.ToDateTime(sqlReader[10]);
-                txt_info_kauf.Text = ( string ) sqlReader[11];
-                txt_info_tech.Text = ( string ) sqlReader[12];
+                txt_info_kauf.Text = (string)sqlReader[11];
+                txt_info_tech.Text = (string)sqlReader[12];
 
 
 
@@ -94,7 +92,7 @@ namespace LET_Auftragsverwaltung
 
         #region Definition Fill Klassen
 
-        private void UC_edit_Auftrag_fill_cbx_status( )
+        private void UC_edit_Auftrag_fill_cbx_status()
         {
             if (!this.DesignMode)
             {
@@ -126,7 +124,7 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-        private void UC_Edit_Auftrag_fill_cbx_verant( )
+        private void UC_Edit_Auftrag_fill_cbx_verant()
         {
             if (!this.DesignMode)
             {
@@ -158,7 +156,7 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-        private void UC_Editt_auftrag_fill_cbx_tech( )
+        private void UC_Editt_auftrag_fill_cbx_tech()
         {
             if (!this.DesignMode)
             {
@@ -190,7 +188,7 @@ namespace LET_Auftragsverwaltung
 
         }
 
-        private void UC_Edit_Auftrag_fill_lbx_auftrag( )
+        private void UC_Edit_Auftrag_fill_lbx_auftrag()
         {
             if (!this.DesignMode)
             {
@@ -198,7 +196,7 @@ namespace LET_Auftragsverwaltung
                 {
 
                     Connection.Open();
-                    string sql = string.Format("SELECT auftragsart.Art_ID, auftragsart.`Art` FROM auftraege Inner JOIN auftraege_auftragsart ON auftraege.ID = auftraege_auftragsart.ID Inner JOIN auftragsart ON auftraege_auftragsart.Art_ID=auftragsart.Art_ID WHERE auftraege.ID = {0}", test_ID);
+                    string sql = string.Format("SELECT auftragsart.Art_ID, auftragsart.`Art` FROM auftraege Inner JOIN auftraege_auftragsart ON auftraege.ID = auftraege_auftragsart.ID Inner JOIN auftragsart ON auftraege_auftragsart.Art_ID=auftragsart.Art_ID WHERE auftraege.ID = {0}", id);
                     OdbcDataAdapter db = new OdbcDataAdapter(sql, Connection);
                     DataTable dt = new DataTable();
                     db.Fill(dt);
@@ -223,7 +221,7 @@ namespace LET_Auftragsverwaltung
 
         }
 
-        private void UC_Edit_Auftrag_fill_cbx_art( )
+        private void UC_Edit_Auftrag_fill_cbx_art()
         {
             if (!this.DesignMode)
             {
@@ -260,7 +258,7 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-        private void UC_edit_auftrag_fill_cbx_lief( )
+        private void UC_edit_auftrag_fill_cbx_lief()
         {
             if (!this.DesignMode)
             {
@@ -292,7 +290,7 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-        private void UC_Edit_Auftrag_fill_lbx_stoff( )
+        private void UC_Edit_Auftrag_fill_lbx_stoff()
         {
             if (!this.DesignMode)
             {
@@ -300,7 +298,7 @@ namespace LET_Auftragsverwaltung
                 {
 
                     Connection.Open();
-                    string sql = string.Format("SELECT stoff.`ST_ID`,stoff.`Stoff` FROM auftraege INNER JOIN teile ON auftraege.`ID` = teile.`ID` INNER JOIN teile_stoff ON teile.`T_St_ID` = teile_stoff.`T_St_ID` INNER JOIN stoff ON teile_stoff.`ST_ID` = stoff.`ST_ID` WHERE auftraege.ID = 1", test_ID);
+                    string sql = string.Format("SELECT stoff.`ST_ID`,stoff.`Stoff` FROM auftraege INNER JOIN teile ON auftraege.`ID` = teile.`ID` INNER JOIN teile_stoff ON teile.`T_St_ID` = teile_stoff.`T_St_ID` INNER JOIN stoff ON teile_stoff.`ST_ID` = stoff.`ST_ID` WHERE auftraege.ID = 1", id);
                     OdbcDataAdapter db = new OdbcDataAdapter(sql, Connection);
                     DataTable dt = new DataTable();
                     db.Fill(dt);
@@ -325,7 +323,7 @@ namespace LET_Auftragsverwaltung
 
         }
 
-        private void UC_New_auftrag_fill_cbx_stoff_lief( )
+        private void UC_New_auftrag_fill_cbx_stoff_lief()
         {
             if (!this.DesignMode)
             {
@@ -382,7 +380,7 @@ namespace LET_Auftragsverwaltung
                         txt_auftrag_nr.Text, cbx_auftragsstatus.SelectedValue, cbx_verant.SelectedValue,
                         cbx_tech.SelectedValue,
                         txt_auf_proj_ken.Text, date_mont.Value.ToString("yyyy-MM-dd"), txt_info_kauf.Text,
-                        txt_info_tech.Text, date_erstell.Value.ToString("yyyy-MM-dd"), test_ID);
+                        txt_info_tech.Text, date_erstell.Value.ToString("yyyy-MM-dd"), id);
                     Connection.Open();
                     OdbcCommand cmd = new OdbcCommand(sql, Connection);
                     cmd.ExecuteNonQuery();
@@ -413,8 +411,8 @@ namespace LET_Auftragsverwaltung
                 try
                 {
                     string sql = string.Format("DELETE FROM  auftraege_auftragsart WHERE ID = {0} AND Art_ID = {1}",
-                        test_ID,
-                        ( int ) lbx_auftrag.SelectedValue);
+                        id,
+                        (int)lbx_auftrag.SelectedValue);
                     OdbcCommand cmd = new OdbcCommand(sql, Connection);
                     Connection.Open();
                     cmd.ExecuteNonQuery();
@@ -436,8 +434,8 @@ namespace LET_Auftragsverwaltung
                 try
                 {
                     string sql = string.Format("INSERT INTO auftraege_auftragsart (ID, Art_ID) VALUES ({0}, {1})",
-                        test_ID,
-                        ( int ) cbx_auftrag.SelectedValue);
+                        id,
+                        (int)cbx_auftrag.SelectedValue);
                     OdbcCommand cmd = new OdbcCommand(sql, Connection);
                     Connection.Open();
                     cmd.ExecuteNonQuery();
@@ -470,8 +468,8 @@ namespace LET_Auftragsverwaltung
                 try
                 {
                     string sql = string.Format("INSERT INTO auftraege_auftragsart (ID, Art_ID) VALUES ({0}, {1})",
-                        test_ID,
-                        ( int ) cbx_edit_auf_stoff.SelectedValue);
+                        id,
+                        (int)cbx_edit_auf_stoff.SelectedValue);
                     OdbcCommand cmd = new OdbcCommand(sql, Connection);
                     Connection.Open();
                     cmd.ExecuteNonQuery();
@@ -484,6 +482,5 @@ namespace LET_Auftragsverwaltung
                 }
             }
         }
-
     }
 }

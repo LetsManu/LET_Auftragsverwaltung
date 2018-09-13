@@ -43,7 +43,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1189, 396);
-            this.Controls.Add(this.uC_edit_Auftrag2);
+          //TODO  this.Controls.Add(this.uC_edit_Auftrag2);
             this.Name = "Form_Edit_Auftrag";
             this.Text = "Form_Edit_Auftrag";
             this.Leave += new System.EventHandler(this.Form_Edit_Auftrag_Leave);

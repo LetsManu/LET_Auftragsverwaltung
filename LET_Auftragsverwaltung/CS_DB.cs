@@ -46,21 +46,5 @@ namespace LET_Auftragsverwaltung
         {
             get { return "auftrags"; }
         }
-
-        public static string GetMotherBoardID()
-        {
-            string mbInfo = String.Empty;
-            ManagementScope scope = new ManagementScope("\\\\" + Environment.MachineName + "\\root\\cimv2");
-            scope.Connect();
-            ManagementObject wmiClass = new ManagementObject(scope, new ManagementPath("Win32_BaseBoard.Tag=\"Base Board\""), new ObjectGetOptions());
-
-            foreach (PropertyData propData in wmiClass.Properties)
-            {
-                if (propData.Name == "SerialNumber")
-                    mbInfo = Convert.ToString(propData.Value);
-            }
-
-            return mbInfo;
-        }
     }
 }
