@@ -42,15 +42,7 @@ namespace LET_Auftragsverwaltung
             InitializeComponent();
             id = id_;
         }
-
-        public UC_edit_Auftrag()
-        {
-            InitializeComponent();
-        }
-
-
-
-
+        
         private void UC_edit_Auftrag_Load(object sender, EventArgs e)
         {
             if (!this.DesignMode)

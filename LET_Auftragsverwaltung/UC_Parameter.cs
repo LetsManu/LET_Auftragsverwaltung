@@ -25,7 +25,8 @@ namespace LET_Auftragsverwaltung
         private string[] extensions = new string[] { "PNG", "JPG", "TIFF", "GIF" };
         private string user = "admin";
         private string pw = "cola0815";
-        private string server = "ftp://192.168.16.192/";
+       // private string server = "ftp://192.168.16.192/";
+        private string server = "ftp://localhost/";
 
 
 
@@ -64,8 +65,8 @@ namespace LET_Auftragsverwaltung
                     OdbcCommand cmd = new OdbcCommand(sql, Connection);
                     cmd.ExecuteNonQuery();
                     string sql2 = string.Format(
-                        "SELECT Adr_ID FROM adressen WHERE Land='{0}' AND PLZ='{1}' AND Ort='{2}' AND Hausnummer='{3}' AND Strasse='{4}' LIMIT 1",
-                        txt_pers_land.Text, txt_pers_plz.Text, txt_pers_ort.Text, txt_pers_hnr.Text, txt_pers_str.Text);
+                            "SELECT Adr_ID FROM adressen WHERE Land='{0}' AND PLZ='{1}' AND Ort='{2}' AND Hausnummer='{3}' AND Strasse='{4}' LIMIT 1",
+                            txt_pers_land.Text, txt_pers_plz.Text, txt_pers_ort.Text, txt_pers_hnr.Text, txt_pers_str.Text);
                     OdbcCommand cmd_read = new OdbcCommand(sql2, Connection);
                     OdbcDataReader sqlReader = cmd_read.ExecuteReader();
 
@@ -1343,13 +1344,14 @@ namespace LET_Auftragsverwaltung
                     }
 
                     sql = string.Format("INSERT INTO Stoff (`Stoff`,`Bild`) VALUES ('{0}','{1}')", tBx_new_stoff.Text,
-                        pbx_stoff.Image.Tag as string);
+                                        pbx_stoff.Image.Tag as string);
                     cmd = new OdbcCommand(sql, Connection);
                     cmd.ExecuteNonQuery();
+
                     sql = string.Format("SELECT stoff.ST_ID FROM stoff ORDER BY stoff.ST_ID DESC LIMIT 1");
                     cmd = new OdbcCommand(sql, Connection);
                     sql = string.Format("INSERT INTO stoff_lieferant (`ST_ID`,`L_ID`) VALUES ({0},{1})",
-                        cmd.ExecuteScalar().ToString(), cbx_stoff_lief.SelectedValue.ToString());
+                                        cmd.ExecuteScalar().ToString(), cbx_stoff_lief.SelectedValue.ToString());
                     cmd = new OdbcCommand(sql, Connection);
                     cmd.ExecuteNonQuery();
                 }
