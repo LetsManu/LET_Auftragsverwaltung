@@ -1163,8 +1163,7 @@ namespace LET_Auftragsverwaltung
                 var cmd = new OdbcCommand(sql, Connection);
 
                 Connection.Open();
-                if (pBx_Stoff_02?.Image?.Tag as string == null ||
-                    Convert.ToInt32(cmd.ExecuteScalar().ToString()) <= 0)
+                if (pBx_Stoff_02?.Image?.Tag as string == null || Convert.ToInt32(cmd.ExecuteScalar().ToString()) <= 0)
                 {
                     sql = string.Format(
                         "UPDATE Stoff SET `Stoff` = '{0}', `Bild` = '{1}', `deaktiviert` = {3} WHERE Stoff.ST_ID = {2}",

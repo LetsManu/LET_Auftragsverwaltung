@@ -196,7 +196,6 @@ namespace LET_Auftragsverwaltung
                     lbx_auftrag.ValueMember = "Art_ID";
                     lbx_auftrag.DisplayMember = "Art";
 
-
                     if (lbx_auftrag.Items.Count > 0)
                     {
                         lbx_auftrag.SelectedIndex = 0;
