@@ -18,5 +18,10 @@ namespace LET_Auftragsverwaltung
             id = id_;
             InitializeComponent();
         }
+
+        private void uC_edit_Auftrag1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

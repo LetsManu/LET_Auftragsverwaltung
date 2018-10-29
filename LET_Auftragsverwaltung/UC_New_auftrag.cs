@@ -44,16 +44,9 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
-                    OdbcConnection connection = Connection;
-                    connection.Open();
-                    string sql =
-                        "SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 4";
-                    OdbcDataAdapter dc = new OdbcDataAdapter(sql, connection);
-                    DataTable dtPer = new DataTable();
-                    dc.Fill(dtPer);
-                    connection.Close();
-
-
+                    
+                    DataTable dtPer = CS_SQL_methods.Fill_Box("SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 4");
+                   
                     cbx_verant.DataSource = dtPer;
                     cbx_verant.ValueMember = "P_ID";
                     cbx_verant.DisplayMember = "Name";
@@ -78,15 +71,8 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
-                    OdbcConnection connection = Connection;
-                    connection.Open();
-                    string sql =
-                        "SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 4";
-                    OdbcDataAdapter dc = new OdbcDataAdapter(sql, connection);
-                    DataTable dtPer = new DataTable();
-                    dc.Fill(dtPer);
-                    connection.Close();
-
+                   
+                    DataTable dtPer = CS_SQL_methods.Fill_Box("SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 4");
 
                     cbx_verant.DataSource = dtPer;
                     cbx_verant.ValueMember = "P_ID";
@@ -112,14 +98,8 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
-                    OdbcConnection connection = Connection;
-                    connection.Open();
-                    string sql =
-                        "SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 1 OR pf.Funktion_ID = 2";
-                    OdbcDataAdapter db = new OdbcDataAdapter(sql, connection);
-                    DataTable dt = new DataTable();
-                    db.Fill(dt);
-                    connection.Close();
+
+                    DataTable dt = CS_SQL_methods.Fill_Box("SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 1 OR pf.Funktion_ID = 2");
 
                     cbx_tech.DataSource = dt;
                     cbx_tech.ValueMember = "P_ID";
@@ -145,16 +125,8 @@ namespace LET_Auftragsverwaltung
             if (!this.DesignMode)
             {
                 try
-                {
-                    OdbcConnection connection = Connection;
-                    connection.Open();
-                    string sql = "SELECT Art_ID,Art FROM auftragsart WHERE deaktiviert<>true";
-                    OdbcDataAdapter db = new OdbcDataAdapter(sql, connection);
-                    DataTable dtArt = new DataTable();
-                    db.Fill(dtArt);
-                    connection.Close();
-
-
+                {                   
+                    DataTable dtArt = CS_SQL_methods.Fill_Box("SELECT Art_ID,Art FROM auftragsart WHERE deaktiviert<>true");
 
                     cbx_auftrag.DataSource = dtArt;
                     cbx_auftrag.DisplayMember = "Art";
@@ -185,14 +157,7 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
-                    OdbcConnection connection = Connection;
-                    connection.Open();
-                    string sql = "SELECT L_ID, Lieferant FROM Lieferant WHERE deaktiviert<>true";
-                    OdbcDataAdapter dc = new OdbcDataAdapter(sql, connection);
-                    DataTable dtLief = new DataTable();
-                    dc.Fill(dtLief);
-                    connection.Close();
-
+                    DataTable dtLief = CS_SQL_methods.Fill_Box("SELECT L_ID, Lieferant FROM Lieferant WHERE deaktiviert<>true");
 
                     cbx_new_auf_lief.DataSource = dtLief;
                     cbx_new_auf_lief.ValueMember = "L_ID";
@@ -220,17 +185,9 @@ namespace LET_Auftragsverwaltung
                 {
                     try
                     {
-                        OdbcConnection connection = Connection;
-                        connection.Open();
-                        string sql =
-                            string.Format(
-                                "SELECT stoff.ST_ID,stoff.`Stoff` FROM stoff INNER JOIN stoff_lieferant ON stoff.ST_ID = stoff_lieferant.ST_ID WHERE stoff_lieferant.L_ID = {0}",
-                                cbx_new_auf_lief.SelectedValue);
-                        OdbcDataAdapter dc = new OdbcDataAdapter(sql, connection);
-                        DataTable dtStoff = new DataTable();
-                        dc.Fill(dtStoff);
-                        connection.Close();
-
+                        DataTable dtStoff = CS_SQL_methods.Fill_Box(string.Format(
+                            "SELECT stoff.ST_ID,stoff.`Stoff` FROM stoff INNER JOIN stoff_lieferant ON stoff.ST_ID = stoff_lieferant.ST_ID WHERE stoff_lieferant.L_ID = {0}",
+                            cbx_new_auf_lief.SelectedValue));
 
                         cbx_new_auf_stoff.DataSource = dtStoff;
                         cbx_new_auf_stoff.ValueMember = "ST_ID";
@@ -352,18 +309,16 @@ namespace LET_Auftragsverwaltung
                         sqlReader = cmd.ExecuteReader();
                         sqlReader.Read();
                         int teile_stoff_ID = Convert.ToInt32(sqlReader[0]);
+                        Connection.Close();
 
 
-
-                        sql = string.Format(
+                        CS_SQL_methods.SQL_exec(string.Format(
                             "INSERT INTO auftraege (auftraege.`Auftrags_NR`, auftraege.`Fertigungsstatus`, auftraege.Projektverantwortlicher, auftraege.Planer_Techniker, auftraege.Erstelldatum, auftraege.Montage_Datum, auftraege.Projektbezeichnung, auftraege.`Schatten`,  auftraege.Notitz_Kauf, auftraege.Notitz_Tech) VALUES ('{0}', 6, {1}, {2}, '{3}', '{4}', '{5}', {6}, '{7}', '{8}')",
                             txt_auftrag_nr.Text, cbx_verant.SelectedValue, cbx_tech.SelectedValue,
                             date_erstell.Value.ToString("yyyy-MM-dd"), date_mont.Value.ToString("yyyy-MM-dd"),
-                            txt_auf_proj_ken.Text, schatten_ID, txt_info_kauf.Text, txt_info_tech.Text);
+                            txt_auf_proj_ken.Text, schatten_ID, txt_info_kauf.Text, txt_info_tech.Text));
 
-                        cmd = new OdbcCommand(sql, connection);
-                        cmd.ExecuteNonQuery();
-
+                        Connection.Open();
                         string sql2 = string.Format(
                             "SELECT ID FROM auftraege WHERE auftraege.`Auftrags_NR` = '{0}' AND auftraege.`Fertigungsstatus` = {1} AND auftraege.Projektverantwortlicher = {2} AND auftraege.Planer_Techniker = {3} AND auftraege.Erstelldatum = '{4}' AND auftraege.Montage_Datum = '{5}' AND auftraege.Projektbezeichnung = '{6}' AND auftraege.`Schatten` = {7} AND auftraege.Notitz_Kauf = '{8}' AND auftraege.Notitz_Tech = '{9}'",
                             txt_auftrag_nr.Text, 6, cbx_verant.SelectedValue, cbx_tech.SelectedValue,
@@ -376,27 +331,20 @@ namespace LET_Auftragsverwaltung
                         sqlReader.Read();
 
                         int auf_id = sqlReader.GetInt32(0);
-                        sql = string.Format("INSERT INTO auftrags.teile (teile.ID, teile.T_St_ID) VALUES ({0}, {1})",
-                            auf_id, teile_stoff_ID);
-                        cmd = new OdbcCommand(sql, connection);
-                        cmd.ExecuteNonQuery();
+                        Connection.Close();
 
+                        CS_SQL_methods.SQL_exec(string.Format("INSERT INTO auftrags.teile (teile.ID, teile.T_St_ID) VALUES ({0}, {1})",
+                            auf_id, teile_stoff_ID));
+
+                        
                         for (int i = 0; i < lbx_auftrag.Items.Count; i++)
                         {
                             int art_ID = (lbx_auftrag.Items[i] as Object_auf).ID;
-
-
-                            string sql3 = string.Format(
+                            CS_SQL_methods.SQL_exec(string.Format(
                                 "INSERT INTO auftraege_auftragsart (ID, Art_ID) VALUES ({0}, {1})",
-                                auf_id, art_ID);
-                            OdbcCommand cmd2 = new OdbcCommand(sql3, connection);
-                            cmd2.ExecuteNonQuery();
+                                auf_id, art_ID));
                         }
 
-
-
-
-                        connection.Close();
                     }
                     catch (Exception f)
                     {
