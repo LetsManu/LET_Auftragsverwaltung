@@ -14,15 +14,15 @@ namespace LET_Auftragsverwaltung
 
         static private OdbcConnection Connection => CS_DB.Connection;
 
-        static public DataTable Fill_CBX(string sql)
+        static public DataTable Fill_Box(string sql)
         {
 
             var da = new OdbcDataAdapter(sql, Connection);
             var dt_out = new DataTable();
             da.Fill(dt_out);
-            Connection.Close();
 
             return dt_out;
         }
+
     }
 }

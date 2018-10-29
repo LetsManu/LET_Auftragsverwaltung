@@ -138,10 +138,8 @@ namespace LET_Auftragsverwaltung
             if (!DesignMode)
                 try
                 {                    
-                    var dtFunkt = CS_SQL_methods.Fill_CBX("SELECT Funktion_ID,Funktion FROM funktion WHERE deaktiviert<>true");                    
+                    var dtFunkt = CS_SQL_methods.Fill_Box("SELECT Funktion_ID,Funktion FROM funktion WHERE deaktiviert<>true");                    
                     Connection.Close();
-
-
                     cbx_pers_funk.DataSource = dtFunkt;
                     cbx_funk.DataSource = dtFunkt;
                     cbx_funk.DisplayMember = "Funktion";
@@ -166,8 +164,7 @@ namespace LET_Auftragsverwaltung
                 try
                 {
 
-                    var dtArt = CS_SQL_methods.Fill_CBX("SELECT Art_ID,Art FROM auftragsart WHERE deaktiviert<>true");
-
+                    var dtArt = CS_SQL_methods.Fill_Box("SELECT Art_ID,Art FROM auftragsart WHERE deaktiviert<>true");
                     cbx_auf.DataSource = dtArt;
                     cbx_auf.DisplayMember = "Art";
                     cbx_auf.ValueMember = "Art_ID";
@@ -185,15 +182,9 @@ namespace LET_Auftragsverwaltung
         {
             if (!DesignMode)
                 try
-                {
-                    Connection.Open();
-                    var sql = "SELECT F_ID,Status FROM fertigungsstatus WHERE deaktiviert<>true";
-                    var db = new OdbcDataAdapter(sql, Connection);
-                    var dtArt = new DataTable();
-                    db.Fill(dtArt);
-                    Connection.Close();
-
-
+                { 
+                    
+                    var dtArt = CS_SQL_methods.Fill_Box("SELECT F_ID,Status FROM fertigungsstatus WHERE deaktiviert<>true");
                     cbx_fert.DataSource = dtArt;
                     cbx_fert.DisplayMember = "Status";
                     cbx_fert.ValueMember = "F_ID";
@@ -214,14 +205,7 @@ namespace LET_Auftragsverwaltung
             if (!DesignMode)
                 try
                 {
-                    Connection.Open();
-                    var sql = "SELECT P_ID,Nachname FROM personal WHERE deaktiviert<>true";
-                    var dc = new OdbcDataAdapter(sql, Connection);
-                    var dtPer = new DataTable();
-                    dc.Fill(dtPer);
-                    Connection.Close();
-
-
+                    var dtPer = CS_SQL_methods.Fill_Box("SELECT P_ID,Nachname FROM personal WHERE deaktiviert<>true");
                     lbx_pers.DataSource = dtPer;
                     lbx_pers.ValueMember = "P_ID";
                     lbx_pers.DisplayMember = "Nachname";
@@ -241,16 +225,8 @@ namespace LET_Auftragsverwaltung
             if (!DesignMode)
                 try
                 {
-                    var connection2 = Connection;
 
-                    var sql2 = "SELECT Lieferant,L_ID FROM lieferant WHERE deaktiviert<>true";
-                    var da = new OdbcDataAdapter(sql2, connection2);
-                    var dt = new DataTable();
-                    connection2.Open();
-                    da.Fill(dt);
-                    connection2.Close();
-
-
+                    var dt = CS_SQL_methods.Fill_Box("SELECT Lieferant,L_ID FROM lieferant WHERE deaktiviert<>true");
                     lbx_lief.DataSource = dt;
                     lbx_lief.ValueMember = "L_ID";
                     lbx_lief.DisplayMember = "Lieferant";
@@ -272,23 +248,15 @@ namespace LET_Auftragsverwaltung
             if (!DesignMode)
                 try
                 {
-                    var sql2 = "SELECT Lieferant,L_ID FROM lieferant WHERE deaktiviert<>true";
-                    var da = new OdbcDataAdapter(sql2, Connection);
-                    var dt = new DataTable();
-                    Connection.Open();
-                    da.Fill(dt);
-                    Connection.Close();
 
-
+                    var dt = CS_SQL_methods.Fill_Box("SELECT Lieferant,L_ID FROM lieferant WHERE deaktiviert<>true");
                     cbx_stoff_lief.DataSource = dt;
                     cbx_stoff_lief.ValueMember = "L_ID";
                     cbx_stoff_lief.DisplayMember = "Lieferant";
 
-
                     cBx_stoff_lief_02.DataSource = dt.Copy();
                     cBx_stoff_lief_02.ValueMember = "L_ID";
                     cBx_stoff_lief_02.DisplayMember = "Lieferant";
-
 
                     if (cbx_stoff_lief.Items.Count > 0) cbx_stoff_lief.SelectedIndex = 0;
                 }
@@ -306,18 +274,10 @@ namespace LET_Auftragsverwaltung
             if (!DesignMode)
                 try
                 {
-                    var sql2 = "SELECT Stoff,ST_ID FROM stoff WHERE deaktiviert<>true";
-                    var da = new OdbcDataAdapter(sql2, Connection);
-                    var dt = new DataTable();
-                    Connection.Open();
-                    da.Fill(dt);
-                    Connection.Close();
-
-
+                    var dt = CS_SQL_methods.Fill_Box("SELECT Stoff,ST_ID FROM stoff WHERE deaktiviert<>true");
                     cbx_stoff_edit.DataSource = dt;
                     cbx_stoff_edit.ValueMember = "ST_ID";
                     cbx_stoff_edit.DisplayMember = "Stoff";
-
 
                     if (cbx_stoff_edit.Items.Count > 0) cbx_stoff_edit.SelectedIndex = 0;
                 }
@@ -335,19 +295,14 @@ namespace LET_Auftragsverwaltung
             if (!DesignMode)
                 try
                 {
-                    Connection.Open();
-                    var sql = string.Format(
+
+                    var dt = CS_SQL_methods.Fill_Box(string.Format(
                         "SELECT DISTINCT funktion.`Funktion`, funktion.`Funktion_ID` FROM personal LEFT JOIN personal_funktion ON personal.`P_ID` = personal_funktion.`P_ID` LEFT JOIN funktion ON personal_funktion.`Funktion_ID` = funktion.`Funktion_ID` WHERE personal.`P_ID` = {0} ORDER BY funktion.`Funktion`",
-                        lbx_pers.SelectedValue);
-                    var db = new OdbcDataAdapter(sql, Connection);
-                    var dt = new DataTable();
-                    db.Fill(dt);
-                    Connection.Close();
+                        lbx_pers.SelectedValue));
 
                     lbx_pers_funk.DataSource = dt;
                     lbx_pers_funk.ValueMember = "Funktion_ID";
                     lbx_pers_funk.DisplayMember = "Funktion";
-
 
                     if (lbx_pers_funk.Items.Count > 0) lbx_pers_funk.SelectedIndex = 0;
                 }
