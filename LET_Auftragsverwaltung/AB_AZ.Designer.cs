@@ -35,7 +35,7 @@
             // 
             this.groupBox1.Location = new System.Drawing.Point(18, 40);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(201, 183);
+            this.groupBox1.Size = new System.Drawing.Size(272, 198);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ver";

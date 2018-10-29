@@ -14,6 +14,8 @@ namespace LET_Auftragsverwaltung
     {
         public AB_AZ()
         {
+            //WTF IS THIS DOING HERE
+            //WTF IS THIS DOING HERE
             InitializeComponent();
         }
     }
