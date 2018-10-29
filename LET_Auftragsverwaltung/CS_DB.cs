@@ -41,7 +41,7 @@ namespace LET_Auftragsverwaltung
         }
         private static string Server_IP
         {
-            get { return "81.10.155.134"; }
+            get { return "localhost"; }
         }
         private static string Database
         {
@@ -49,7 +49,7 @@ namespace LET_Auftragsverwaltung
         }
         private static string Port
         {
-            get { return "1337"; }
+            get { return "3306"; }
         }
     }
 }
