@@ -24,5 +24,14 @@ namespace LET_Auftragsverwaltung
             return dt_out;
         }
 
+        static public void SQL_exec(string sql)
+        {
+            Connection.Open();
+            var cmd = new OdbcCommand(sql, Connection);
+            cmd.ExecuteNonQuery();
+            Connection.Close();
+
+        }
+
     }
 }
