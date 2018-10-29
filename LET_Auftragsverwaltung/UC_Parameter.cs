@@ -26,7 +26,7 @@ namespace LET_Auftragsverwaltung
         private string user = "admin";
         private string pw = "cola0815";
        // private string server = "ftp://192.168.16.192/";
-        private string server = "ftp://localhost/";
+        private string server = "ftp://81.10.155.134:815/";
 
 
 
