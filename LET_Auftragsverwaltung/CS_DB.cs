@@ -26,30 +26,15 @@ namespace LET_Auftragsverwaltung
             }
         }
         
-        public static OdbcConnection Connection
-        {
-            get { return connection ?? (connection = new OdbcConnection(Connectionstring)); }
-        }
+        public static OdbcConnection Connection => connection ?? (connection = new OdbcConnection(Connectionstring));
 
-        private static string Login_name
-        {
-            get { return "root"; }
-        }
-        private static string Login_pw
-        {
-            get { return "cola0815"; }
-        }
-        private static string Server_IP
-        {
-            get { return "localhost"; }
-        }
-        private static string Database
-        {
-            get { return "auftrags"; }
-        }
-        private static string Port
-        {
-            get { return "3306"; }
-        }
+        private static string Login_name => "root";
+        private static string Login_pw => "cola0815";
+
+        private static string Server_IP => "localhost";
+
+        private static string Database => "auftrags";
+
+        private static string Port => "3306";
     }
 }
