@@ -1167,13 +1167,13 @@ namespace LET_Auftragsverwaltung
                     }
 
                     sql = string.Format("INSERT INTO Stoff (`Stoff`,`Bild`) VALUES ('{0}','{1}')", tBx_new_stoff.Text,
-                        pbx_stoff.Image.Tag as string);
+                                        pbx_stoff.Image.Tag as string);
                     cmd = new OdbcCommand(sql, Connection);
                     cmd.ExecuteNonQuery();
                     sql = "SELECT stoff.ST_ID FROM stoff ORDER BY stoff.ST_ID DESC LIMIT 1";
                     cmd = new OdbcCommand(sql, Connection);
                     sql = string.Format("INSERT INTO stoff_lieferant (`ST_ID`,`L_ID`) VALUES ({0},{1})",
-                        cmd.ExecuteScalar(), cbx_stoff_lief.SelectedValue);
+                                        cmd.ExecuteScalar().ToString(), cbx_stoff_lief.SelectedValue.ToString());
                     cmd = new OdbcCommand(sql, Connection);
                     cmd.ExecuteNonQuery();
                 }
