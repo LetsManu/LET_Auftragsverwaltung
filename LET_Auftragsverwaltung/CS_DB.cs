@@ -26,10 +26,10 @@ namespace LET_Auftragsverwaltung
 
         private static string Login_pw => "cola0815";
 
-        private static string Server_IP => "localhost";
+        private static string Server_IP => "81.10.155.134";
 
         private static string Database => "auftrags";
 
-        private static string Port => "3306";
+        private static string Port => "1337";
     }
 }
