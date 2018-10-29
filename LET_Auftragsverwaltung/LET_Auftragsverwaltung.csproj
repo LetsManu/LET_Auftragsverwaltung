@@ -201,6 +201,7 @@
     </Compile>
     <Compile Include="CS_Auftrag_Data.cs" />
     <Compile Include="CS_DB.cs" />
+    <Compile Include="CS_SQL_methods.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
