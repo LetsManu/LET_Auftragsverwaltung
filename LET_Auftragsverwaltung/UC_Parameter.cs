@@ -137,12 +137,8 @@ namespace LET_Auftragsverwaltung
         {
             if (!DesignMode)
                 try
-                {
-                    Connection.Open();
-                    var sql = "SELECT Funktion_ID,Funktion FROM funktion WHERE deaktiviert<>true";
-                    var da = new OdbcDataAdapter(sql, Connection);
-                    var dtFunkt = new DataTable();
-                    da.Fill(dtFunkt);
+                {                    
+                    var dtFunkt = CS_SQL_methods.Fill_CBX("SELECT Funktion_ID,Funktion FROM funktion WHERE deaktiviert<>true");                    
                     Connection.Close();
 
 
@@ -169,13 +165,8 @@ namespace LET_Auftragsverwaltung
             if (!DesignMode)
                 try
                 {
-                    Connection.Open();
-                    var sql = "SELECT Art_ID,Art FROM auftragsart WHERE deaktiviert<>true";
-                    var db = new OdbcDataAdapter(sql, Connection);
-                    var dtArt = new DataTable();
-                    db.Fill(dtArt);
-                    Connection.Close();
 
+                    var dtArt = CS_SQL_methods.Fill_CBX("SELECT Art_ID,Art FROM auftragsart WHERE deaktiviert<>true");
 
                     cbx_auf.DataSource = dtArt;
                     cbx_auf.DisplayMember = "Art";
