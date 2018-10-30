@@ -26,6 +26,7 @@ namespace LET_Auftragsverwaltung
         public UC_New_auftrag( )
         {
             InitializeComponent();
+            date_mont.Format = DateTimePickerFormat.Short;
         }
 
         private void UC_New_auftrag_Load(object sender, EventArgs e)
@@ -360,23 +361,6 @@ namespace LET_Auftragsverwaltung
                 }
             }
         
-
-        private void cbx_new_auf_lief_SelectedValueChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void cbx_new_auf_lief_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void cbx_new_auf_lief_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void cbx_new_auf_lief_Validated(object sender, EventArgs e)
-        {
-        }
-
         private void cbx_new_auf_lief_DropDownClosed(object sender, EventArgs e)
         {
             cbx_new_auf_stoff.Enabled = true;

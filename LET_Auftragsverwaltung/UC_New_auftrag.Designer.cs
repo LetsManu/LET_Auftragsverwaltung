@@ -66,18 +66,18 @@
             // date_erstell
             // 
             this.date_erstell.CustomFormat = "dd-mm-yyyy";
-            this.date_erstell.Location = new System.Drawing.Point(124, 209);
+            this.date_erstell.Location = new System.Drawing.Point(113, 209);
             this.date_erstell.Name = "date_erstell";
-            this.date_erstell.Size = new System.Drawing.Size(124, 20);
+            this.date_erstell.Size = new System.Drawing.Size(144, 20);
             this.date_erstell.TabIndex = 1;
             this.date_erstell.Value = new System.DateTime(2018, 9, 5, 14, 26, 25, 0);
             // 
             // date_mont
             // 
-            this.date_mont.CustomFormat = "dd-mm-yyyy";
-            this.date_mont.Location = new System.Drawing.Point(124, 259);
+            this.date_mont.CustomFormat = "MM-dd-yy";
+            this.date_mont.Location = new System.Drawing.Point(113, 259);
             this.date_mont.Name = "date_mont";
-            this.date_mont.Size = new System.Drawing.Size(124, 20);
+            this.date_mont.Size = new System.Drawing.Size(144, 20);
             this.date_mont.TabIndex = 2;
             // 
             // txt_info_kauf
@@ -99,9 +99,9 @@
             // 
             // txt_auftrag_nr
             // 
-            this.txt_auftrag_nr.Location = new System.Drawing.Point(124, 23);
+            this.txt_auftrag_nr.Location = new System.Drawing.Point(113, 23);
             this.txt_auftrag_nr.Name = "txt_auftrag_nr";
-            this.txt_auftrag_nr.Size = new System.Drawing.Size(124, 20);
+            this.txt_auftrag_nr.Size = new System.Drawing.Size(144, 20);
             this.txt_auftrag_nr.TabIndex = 9;
             // 
             // label2
@@ -153,23 +153,23 @@
             // cbx_verant
             // 
             this.cbx_verant.FormattingEnabled = true;
-            this.cbx_verant.Location = new System.Drawing.Point(124, 105);
+            this.cbx_verant.Location = new System.Drawing.Point(113, 105);
             this.cbx_verant.Name = "cbx_verant";
-            this.cbx_verant.Size = new System.Drawing.Size(124, 21);
+            this.cbx_verant.Size = new System.Drawing.Size(144, 21);
             this.cbx_verant.TabIndex = 16;
             // 
             // cbx_tech
             // 
             this.cbx_tech.FormattingEnabled = true;
-            this.cbx_tech.Location = new System.Drawing.Point(124, 155);
+            this.cbx_tech.Location = new System.Drawing.Point(113, 155);
             this.cbx_tech.Name = "cbx_tech";
-            this.cbx_tech.Size = new System.Drawing.Size(124, 21);
+            this.cbx_tech.Size = new System.Drawing.Size(144, 21);
             this.cbx_tech.TabIndex = 17;
             // 
             // btn_new_auf_save
             // 
             this.btn_new_auf_save.Enabled = false;
-            this.btn_new_auf_save.Location = new System.Drawing.Point(575, 362);
+            this.btn_new_auf_save.Location = new System.Drawing.Point(584, 362);
             this.btn_new_auf_save.Name = "btn_new_auf_save";
             this.btn_new_auf_save.Size = new System.Drawing.Size(192, 23);
             this.btn_new_auf_save.TabIndex = 19;
@@ -183,7 +183,7 @@
             this.groupBox2.Controls.Add(this.cbx_auftrag);
             this.groupBox2.Controls.Add(this.btn_auftrag_add);
             this.groupBox2.Controls.Add(this.btn_auftag_delete);
-            this.groupBox2.Location = new System.Drawing.Point(279, 49);
+            this.groupBox2.Location = new System.Drawing.Point(288, 49);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 230);
             this.groupBox2.TabIndex = 22;
@@ -206,7 +206,7 @@
             this.groupBox3.Controls.Add(this.cbx_verant);
             this.groupBox3.Location = new System.Drawing.Point(19, 48);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(254, 299);
+            this.groupBox3.Size = new System.Drawing.Size(263, 299);
             this.groupBox3.TabIndex = 23;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Allgemein";
@@ -222,9 +222,9 @@
             // 
             // txt_auf_proj_ken
             // 
-            this.txt_auf_proj_ken.Location = new System.Drawing.Point(124, 65);
+            this.txt_auf_proj_ken.Location = new System.Drawing.Point(113, 65);
             this.txt_auf_proj_ken.Name = "txt_auf_proj_ken";
-            this.txt_auf_proj_ken.Size = new System.Drawing.Size(124, 20);
+            this.txt_auf_proj_ken.Size = new System.Drawing.Size(144, 20);
             this.txt_auf_proj_ken.TabIndex = 21;
             // 
             // label8
@@ -287,7 +287,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txt_info_tech);
-            this.groupBox1.Location = new System.Drawing.Point(485, 48);
+            this.groupBox1.Location = new System.Drawing.Point(494, 48);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(282, 230);
             this.groupBox1.TabIndex = 27;
@@ -299,7 +299,7 @@
             this.groupBox4.Controls.Add(this.pbx_new_auf);
             this.groupBox4.Controls.Add(this.cbx_new_auf_stoff);
             this.groupBox4.Controls.Add(this.cbx_new_auf_lief);
-            this.groupBox4.Location = new System.Drawing.Point(280, 285);
+            this.groupBox4.Location = new System.Drawing.Point(289, 285);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(487, 62);
             this.groupBox4.TabIndex = 28;
@@ -330,12 +330,7 @@
             this.cbx_new_auf_lief.Name = "cbx_new_auf_lief";
             this.cbx_new_auf_lief.Size = new System.Drawing.Size(121, 21);
             this.cbx_new_auf_lief.TabIndex = 0;
-            this.cbx_new_auf_lief.SelectedIndexChanged += new System.EventHandler(this.cbx_new_auf_lief_SelectedIndexChanged);
             this.cbx_new_auf_lief.DropDownClosed += new System.EventHandler(this.cbx_new_auf_lief_DropDownClosed);
-            this.cbx_new_auf_lief.SelectedValueChanged += new System.EventHandler(this.cbx_new_auf_lief_SelectedValueChanged);
-            this.cbx_new_auf_lief.Click += new System.EventHandler(this.cbx_new_auf_lief_Click);
-            this.cbx_new_auf_lief.Validated += new System.EventHandler(this.cbx_new_auf_lief_Validated);
-            // 
             // UC_New_auftrag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -346,7 +341,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btn_new_auf_save);
             this.Name = "UC_New_auftrag";
-            this.Size = new System.Drawing.Size(777, 393);
+            this.Size = new System.Drawing.Size(781, 393);
             this.Load += new System.EventHandler(this.UC_New_auftrag_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);

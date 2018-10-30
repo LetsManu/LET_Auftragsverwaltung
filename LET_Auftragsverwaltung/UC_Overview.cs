@@ -15,21 +15,15 @@ namespace LET_Auftragsverwaltung
 {
     public partial class UC_Overview : UserControl
     {
-        LinkedList<CS_Auftrag_Data> datar = new LinkedList<CS_Auftrag_Data>();
+        LinkedList<CS_Auftrag_Data> data = new LinkedList<CS_Auftrag_Data>();
         private static bool reload = true;
 
-        private OdbcConnection Connection
-        {
-            get
-            {
-                return CS_DB.Connection;
-
-            }
-        }
         public UC_Overview( )
         {
             InitializeComponent();
         }
+
+        private OdbcConnection Connection => CS_DB.Connection;
 
         private object Right_Date(DateTime date)
         {
@@ -44,7 +38,7 @@ namespace LET_Auftragsverwaltung
         private void objectListView1_DoubleClick(object sender, EventArgs e)
         {
             if (sender != null)
-            { 
+            {
                 Form Form_EDIT = new Form_Edit_Auftrag(( ( sender as ObjectListView ).SelectedItem.RowObject as CS_Auftrag_Data ).ID);
                 Form_EDIT.Show();
             }
@@ -63,11 +57,14 @@ namespace LET_Auftragsverwaltung
                  decoration.Rotation = -20;
                  e.SubItem.Decoration = decoration; //NB. Sets Decoration*/
 
+
+                #region macht Felder wo nichts drinnen steht unsichtbar
                 CellBorderDecoration cbd = new CellBorderDecoration();
                 cbd.BorderPen = Pens.White;
                 cbd.FillBrush = Brushes.White;
                 cbd.CornerRounding = 4.0f;
-                e.SubItem.Decorations.Add(cbd); // N.B. Adds to Decorations}
+                e.SubItem.Decorations.Add(cbd);
+                #endregion
             }
         }
 
@@ -82,8 +79,8 @@ namespace LET_Auftragsverwaltung
             {
                 reload = false;
 
-                objectListView1.UseCellFormatEvents = true;
-                foreach (var result in objectListView1.AllColumns)
+                oLV_Overview.UseCellFormatEvents = true;
+                foreach (var result in oLV_Overview.AllColumns)
                 {
                     result.MinimumWidth = 30;
                     result.Width = 100;
@@ -131,10 +128,16 @@ namespace LET_Auftragsverwaltung
                     data.Persenning_liefer_Datum = Convert.ToDateTime(reader["Persenning Lieferdatum"] == DBNull.Value ? null : reader["Persenning Lieferdatum"]);
                     //data.Persenning_Lieferant = ( string ) reader["Persenning Lieferant"];
                     //data.Montage_Datum = Convert.ToDateTime(reader[""];
-                    datar.AddLast(data);
+                    this.data.AddLast(data);
                 }
                 Connection.Close();
-                objectListView1.SetObjects(datar);
+                oLV_Overview.SetObjects(data);
+
+                oLV_Overview.TintSortColumn = true;
+                oLV_Overview.SelectedColumn = oLV_Cl_Projektverantwortlicher_Name;
+                oLV_Overview.Sort(oLV_Cl_Projektverantwortlicher_Name);
+
+                oLV_Overview.SelectedColumnTint = Color.FromArgb(45, 248, 131, 121);
             }
         }
     }

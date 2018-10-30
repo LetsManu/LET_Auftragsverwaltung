@@ -45,7 +45,8 @@
             this.ClientSize = new System.Drawing.Size(1884, 1011);
             this.Controls.Add(this.uC_Overview1);
             this.Name = "Form_Overview";
-            this.Text = "Form_Overview";
+            this.Text = "Overview";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_Overview_KeyDown);
             this.ResumeLayout(false);
 
         }
