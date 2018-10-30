@@ -438,14 +438,17 @@ namespace LET_Auftragsverwaltung
         {
             try
             {
-                CS_SQL_methods.SQL_exec(string.Format("INSERT INTO AB_AZ (V_Date) Values ({0})",
-                    DateTime.Today.Date.ToString("yyyy-MM-dd")));
-                string sql = "SELECT ID FROM AB_AZ ORDER BY ID DESC LIMIT 1";
+                int a_ID;
+                CS_SQL_methods.SQL_exec(string.Format("INSERT INTO AB_AZ (V_Date) Values ('{0}')",
+                    DateTime.Now.Date.ToString("yyyy-MM-dd")));
+                string sql = "SELECT A_ID FROM ab_az ORDER BY A_ID DESC LIMIT 1";
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
                 Connection.Open();
                 OdbcDataReader sql_read = cmd.ExecuteReader();
                 sql_read.Read();
-                CS_SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", Convert.ToInt32(sql_read[0].ToString()), id));
+                a_ID = Convert.ToInt32(sql_read[0].ToString());
+                Connection.Close();
+            CS_SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
 
                 AB_AZ_Controll();
 
@@ -468,9 +471,12 @@ namespace LET_Auftragsverwaltung
                 OdbcDataReader sql_Reader = cmd.ExecuteReader();
                 sql_Reader.Read();
                 a_ID = Convert.ToInt32(sql_Reader[0].ToString());
+                Connection.Close();
 
-            CS_SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_DATE = {0} WHERE A_ID = {1}", DateTime.Today.Date.ToString("yyyy-MM-dd"), a_ID));
-                
+            CS_SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_DATE = '{0}' WHERE A_ID = {1}", DateTime.Now.Date.ToString("yyyy-MM-dd"), a_ID));
+
+                AB_AZ_Controll();
+
             }
             catch (Exception f)
             {
@@ -492,7 +498,7 @@ namespace LET_Auftragsverwaltung
                 Connection.Close();
                 CS_SQL_methods.SQL_exec(string.Format("UPDATE schatten SET Schattendarum = '{0}', P_ID = {1}, Notiz = '{2}' WHERE S_ID = {3}", dtp_schatten.Value.ToString("yyyy-MM-dd"), cbx_auftrag.SelectedValue.ToString(), rtx_schatten.Text.ToString(), s_ID));
 
-                AB_AZ_Controll();
+                
 
             }
 
@@ -539,15 +545,23 @@ namespace LET_Auftragsverwaltung
 
             OdbcCommand cmd = new OdbcCommand(sql, Connection);
             Connection.Open();
-            if (cmd.ExecuteScalar() != null)
+            object obj_db = cmd.ExecuteScalar();
+            if (obj_db != DBNull.Value)
             {
                 a_ID = Convert.ToInt32(cmd.ExecuteScalar());
-                sql = "SELECT V_Date FROM ab_az WHERE A_ID = " + a_ID;
-                cmd = new OdbcCommand(sql, Connection);
-                if (cmd.ExecuteScalar() != null)
+                string sql2 = "SELECT B_Date FROM ab_az WHERE A_ID = " + a_ID;
+                OdbcCommand cmd2 = new OdbcCommand(sql2, Connection);
+                obj_db = cmd2.ExecuteScalar();
+                
+                if (obj_db != DBNull.Value)
                 {
                     btn_ab_az_an.Enabled = false;
-                    btn_ab_az_an.Enabled = true;
+                    btn_ab_az_be.Enabled = false;
+                }
+                else
+                {
+                    btn_ab_az_an.Enabled = false;
+                    btn_ab_az_be.Enabled = true;
                 }
             }
             else
@@ -555,6 +569,9 @@ namespace LET_Auftragsverwaltung
                 btn_ab_az_an.Enabled = true;
                 btn_ab_az_be.Enabled = false;
             }
+            Connection.Close();
+
+
         }
     }
 }

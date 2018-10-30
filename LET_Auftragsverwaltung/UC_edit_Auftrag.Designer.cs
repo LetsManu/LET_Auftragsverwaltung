@@ -495,6 +495,7 @@
             // 
             // btn_ab_az_be
             // 
+            this.btn_ab_az_be.Enabled = false;
             this.btn_ab_az_be.Location = new System.Drawing.Point(82, 135);
             this.btn_ab_az_be.Name = "btn_ab_az_be";
             this.btn_ab_az_be.Size = new System.Drawing.Size(75, 23);
@@ -526,6 +527,7 @@
             // 
             // btn_ab_az_an
             // 
+            this.btn_ab_az_an.Enabled = false;
             this.btn_ab_az_an.Location = new System.Drawing.Point(68, 135);
             this.btn_ab_az_an.Name = "btn_ab_az_an";
             this.btn_ab_az_an.Size = new System.Drawing.Size(75, 23);
