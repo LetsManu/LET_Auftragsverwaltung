@@ -410,5 +410,48 @@ namespace LET_Auftragsverwaltung
                 }
             }
         }
+
+        private void btn_ab_az_an_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CS_SQL_methods.SQL_exec(string.Format("INSERT INTO AB_AZ (V_Date) Values ({0})",
+                    DateTime.Today.Date.ToString("yyyy-MM-dd")));
+                string sql = "SELECT ID FROM AB_AZ ORDER BY ID DESC LIMIT 1";
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                Connection.Open();
+                OdbcDataReader sql_read = cmd.ExecuteReader();
+                sql_read.Read();
+                CS_SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", Convert.ToInt32(sql_read[0].ToString()), id));
+            }
+            catch(Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT AB_AZ Anfordern): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int a_ID = 0;
+
+                string sql = "SELECT AB_AZ FROM auftraege Where ID = " + id;
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                Connection.Open();
+                OdbcDataReader sql_Reader = cmd.ExecuteReader();
+                sql_Reader.Read();
+                a_ID = Convert.ToInt32(sql_Reader[0].ToString());
+
+            CS_SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_DATE = {0} WHERE A_ID = {1}", DateTime.Today.Date.ToString("yyyy-MM-dd"), a_ID));
+                
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT AB_AZ Bestätigen): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
     }
 }

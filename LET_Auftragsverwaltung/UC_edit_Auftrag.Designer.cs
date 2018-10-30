@@ -482,6 +482,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Bestätigen";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // groupBox5
             // 
@@ -512,6 +513,7 @@
             this.btn_ab_az_an.TabIndex = 0;
             this.btn_ab_az_an.Text = "Anfordern";
             this.btn_ab_az_an.UseVisualStyleBackColor = true;
+            this.btn_ab_az_an.Click += new System.EventHandler(this.btn_ab_az_an_Click);
             // 
             // tab_persennning
             // 
