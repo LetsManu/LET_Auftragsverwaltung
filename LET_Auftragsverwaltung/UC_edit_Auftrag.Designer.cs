@@ -545,6 +545,7 @@
             this.tab_persennning.TabIndex = 2;
             this.tab_persennning.Text = "Persenning";
             this.tab_persennning.UseVisualStyleBackColor = true;
+            this.tab_persennning.Enter += new System.EventHandler(this.tab_persennning_Enter);
             // 
             // tab_schatten
             // 

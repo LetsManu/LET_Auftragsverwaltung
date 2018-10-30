@@ -498,7 +498,7 @@ namespace LET_Auftragsverwaltung
                 Connection.Close();
                 CS_SQL_methods.SQL_exec(string.Format("UPDATE schatten SET Schattendatum = '{0}', P_ID = {1}, Notiz = '{2}' WHERE S_ID = {3}", dtp_schatten.Value.ToString("yyyy-MM-dd"), cbx_schatten_pers.SelectedValue, rtx_schatten.Text, s_ID));
 
-                
+                Schatten_Controll();
 
             }
 
@@ -522,10 +522,23 @@ namespace LET_Auftragsverwaltung
                 p_ID = Convert.ToInt32(sql_reader[0].ToString());
                 Connection.Close();
                 //TODO UPDATE ABFRAGE WENN PERSENNING VORHANDEN!!
-                CS_SQL_methods.SQL_exec(string.Format(
-                    "INSERT INTO teile_persenning (Lieferdatum, Bestelldatum) Values ('{0}', '{1}'",
-                    dtp_persenning_lief.Value.ToString("yyyy-MM-dd"),
-                    dtp_persenning_best.Value.ToString("yyyy-MM-dd")));
+                if (Persenning_Controll())
+                {
+                    CS_SQL_methods.SQL_exec(string.Format(
+                        "UPDATE teile_persenning Lieferdatum = '{0}', Bestelldatum = '{1}' WHERE T_P_ID = {2}",
+                        dtp_persenning_lief.Value.ToString("yyyy-MM-dd"),
+                        dtp_persenning_best.Value.ToString("yyyy-MM-dd"), p_ID));
+                }
+                else
+                {
+                    CS_SQL_methods.SQL_exec(string.Format(
+                        "INSERT INTO teile_persenning (Lieferdatum, Bestelldatum) Values ('{0}', '{1}'",
+                        dtp_persenning_lief.Value.ToString("yyyy-MM-dd"),
+                        dtp_persenning_best.Value.ToString("yyyy-MM-dd")));
+                }
+
+                Persenning_Controll();
+
             }
             catch(Exception f)
             {
@@ -533,10 +546,7 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-        private void tab_ab_az_Enter(object sender, EventArgs e)
-        {
-            AB_AZ_Controll();
-        }
+        
 
         private void AB_AZ_Controll()
         {
@@ -574,7 +584,7 @@ namespace LET_Auftragsverwaltung
 
         }
 
-        private void Schatten_Date_Controll()
+        private void Schatten_Controll()
         {
             object obj_db;
             string sql = "SELECT Schatten FROM auftraege WHERE ID = " + id;
@@ -603,9 +613,74 @@ namespace LET_Auftragsverwaltung
             Connection.Close();
         }
 
+        private bool Persenning_Controll()
+        {
+            object obj_db;
+            int p_ID;
+            string sql = "SELECT T_P_ID FROM teile WHERE ID = " + id;
+            OdbcCommand cmd = new OdbcCommand(sql, Connection);
+            Connection.Open();
+            OdbcDataReader sql_reader = cmd.ExecuteReader();
+            sql_reader.Read();
+            p_ID = Convert.ToInt32(sql_reader[0].ToString());
+            sql_reader.Close();
+            sql = "SELECT Bestelldatum FROM teile_persenning WHERE T_P_ID = " +
+                  p_ID;
+
+            cmd = new OdbcCommand(sql, Connection);
+
+            obj_db = cmd.ExecuteScalar();
+
+            if (obj_db != DBNull.Value && obj_db != null)
+            {
+                sql_reader = cmd.ExecuteReader();
+                dtp_persenning_best.Value = DateTime.Parse(sql_reader[0].ToString());
+                sql_reader.Close();
+                sql = "SELECT Lieferdatum FROM teile_persenning WHERE T_P_ID = " +
+                      p_ID;
+                cmd = new OdbcCommand(sql, Connection);
+
+                obj_db = cmd.ExecuteScalar();
+                if (obj_db != DBNull.Value && obj_db != null)
+                {
+                    sql_reader = cmd.ExecuteReader();
+                    dtp_persenning_lief.Value = DateTime.Parse(sql_reader[0].ToString());
+                    sql_reader.Close();
+                    Connection.Close();
+                    return true;
+                }
+                else
+                {
+                    dtp_persenning_lief.Value = DateTime.Today;
+                    Connection.Close();
+                    return true;
+                }
+            }
+            else
+            {
+                dtp_persenning_lief.Value = DateTime.Today;
+                dtp_persenning_best.Value = DateTime.Today;
+                Connection.Close();
+                return false;
+            }
+
+            
+
+        }
+
         private void tab_schatten_Enter(object sender, EventArgs e)
         {
-            Schatten_Date_Controll();
+            Schatten_Controll();
+        }
+
+        private void tab_persennning_Enter(object sender, EventArgs e)
+        {
+            Persenning_Controll();
+        }
+
+        private void tab_ab_az_Enter(object sender, EventArgs e)
+        {
+            AB_AZ_Controll();
         }
     }
 }
