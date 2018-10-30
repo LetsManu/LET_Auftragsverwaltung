@@ -39,6 +39,7 @@ namespace LET_Auftragsverwaltung
         {
             InitializeComponent();
             id = id_;
+            
         }
         
         private void UC_edit_Auftrag_Load(object sender, EventArgs e)
@@ -54,6 +55,7 @@ namespace LET_Auftragsverwaltung
                 UC_Edit_Auftrag_fill_cbx_art();
                 UC_edit_auftrag_fill_cbx_lief();
                 UC_Edit_Auftrag_fill_lbx_stoff();
+                UC_Edit_Auftrag_fill_cbx_schatten_pers();
 
                 #endregion
 
@@ -305,6 +307,26 @@ namespace LET_Auftragsverwaltung
             }
         }
 
+        private void UC_Edit_Auftrag_fill_cbx_schatten_pers()
+        {
+            if (!this.DesignMode)
+            {
+                try
+                {
+                    DataTable dt_pers = CS_SQL_methods.Fill_Box(
+                        "SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID");
+
+                    cbx_verant.DataSource = dt_pers;
+                    cbx_verant.ValueMember = "P_ID";
+                    cbx_verant.DisplayMember = "Name";
+
+                }
+                catch (Exception f)
+                {
+                    MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Fill CBX Schatten Pers): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
 
         #endregion
 
@@ -408,6 +430,68 @@ namespace LET_Auftragsverwaltung
                 {
                     MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT LBX Auftrag Auftragsart): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void btn_ab_az_an_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CS_SQL_methods.SQL_exec(string.Format("INSERT INTO AB_AZ (V_Date) Values ({0})",
+                    DateTime.Today.Date.ToString("yyyy-MM-dd")));
+                string sql = "SELECT ID FROM AB_AZ ORDER BY ID DESC LIMIT 1";
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                Connection.Open();
+                OdbcDataReader sql_read = cmd.ExecuteReader();
+                sql_read.Read();
+                CS_SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", Convert.ToInt32(sql_read[0].ToString()), id));
+            }
+            catch(Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT AB_AZ Anfordern): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int a_ID = 0;
+
+                string sql = "SELECT AB_AZ FROM auftraege Where ID = " + id;
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                Connection.Open();
+                OdbcDataReader sql_Reader = cmd.ExecuteReader();
+                sql_Reader.Read();
+                a_ID = Convert.ToInt32(sql_Reader[0].ToString());
+
+            CS_SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_DATE = {0} WHERE A_ID = {1}", DateTime.Today.Date.ToString("yyyy-MM-dd"), a_ID));
+                
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT AB_AZ Bestätigen): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int s_ID = 0;
+                string sql = "SELECT Schatten FROM auftrage WHERE ID = " + id;
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                Connection.Open();
+                OdbcDataReader sql_reader = cmd.ExecuteReader();
+                sql_reader.Read();
+                s_ID = Convert.ToInt32(sql_reader[0].ToString());
+                Connection.Close();
+                CS_SQL_methods.SQL_exec(string.Format("UPDATE schatten SET Schattendarum = '{0}', P_ID = {1}, Notiz = '{2}' WHERE S_ID = {3}", dtp_schatten.Value.ToString("yyyy-MM-dd"), cbx_auftrag.SelectedValue.ToString(), rtx_schatten.Text.ToString(), s_ID));
+            }
+
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: UPDATE Schatten BTN): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

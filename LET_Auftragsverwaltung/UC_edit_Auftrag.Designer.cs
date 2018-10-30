@@ -73,6 +73,14 @@
             this.btn_ab_az_an = new System.Windows.Forms.Button();
             this.tab_persennning = new System.Windows.Forms.TabPage();
             this.tab_schatten = new System.Windows.Forms.TabPage();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.dtp_schatten = new System.Windows.Forms.DateTimePicker();
+            this.cbx_schatten_pers = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.rtx_schatten = new System.Windows.Forms.RichTextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_new_auf)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -84,6 +92,8 @@
             this.tab_ab_az.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.tab_schatten.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox4
@@ -482,6 +492,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Bestätigen";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // groupBox5
             // 
@@ -512,6 +523,7 @@
             this.btn_ab_az_an.TabIndex = 0;
             this.btn_ab_az_an.Text = "Anfordern";
             this.btn_ab_az_an.UseVisualStyleBackColor = true;
+            this.btn_ab_az_an.Click += new System.EventHandler(this.btn_ab_az_an_Click);
             // 
             // tab_persennning
             // 
@@ -524,12 +536,89 @@
             // 
             // tab_schatten
             // 
+            this.tab_schatten.Controls.Add(this.groupBox7);
             this.tab_schatten.Location = new System.Drawing.Point(4, 22);
             this.tab_schatten.Name = "tab_schatten";
             this.tab_schatten.Size = new System.Drawing.Size(1225, 374);
             this.tab_schatten.TabIndex = 3;
             this.tab_schatten.Text = "Schatten";
             this.tab_schatten.UseVisualStyleBackColor = true;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.label13);
+            this.groupBox7.Controls.Add(this.label12);
+            this.groupBox7.Controls.Add(this.rtx_schatten);
+            this.groupBox7.Controls.Add(this.button1);
+            this.groupBox7.Controls.Add(this.dtp_schatten);
+            this.groupBox7.Controls.Add(this.cbx_schatten_pers);
+            this.groupBox7.Controls.Add(this.label11);
+            this.groupBox7.Location = new System.Drawing.Point(3, 3);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(303, 215);
+            this.groupBox7.TabIndex = 3;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Schattenplanung";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(108, 176);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(189, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Speichern";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // dtp_schatten
+            // 
+            this.dtp_schatten.Location = new System.Drawing.Point(108, 19);
+            this.dtp_schatten.Name = "dtp_schatten";
+            this.dtp_schatten.Size = new System.Drawing.Size(189, 20);
+            this.dtp_schatten.TabIndex = 0;
+            // 
+            // cbx_schatten_pers
+            // 
+            this.cbx_schatten_pers.FormattingEnabled = true;
+            this.cbx_schatten_pers.Location = new System.Drawing.Point(108, 45);
+            this.cbx_schatten_pers.Name = "cbx_schatten_pers";
+            this.cbx_schatten_pers.Size = new System.Drawing.Size(189, 21);
+            this.cbx_schatten_pers.TabIndex = 2;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 48);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(99, 13);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "Zuständige Person:";
+            // 
+            // rtx_schatten
+            // 
+            this.rtx_schatten.Location = new System.Drawing.Point(108, 72);
+            this.rtx_schatten.Name = "rtx_schatten";
+            this.rtx_schatten.Size = new System.Drawing.Size(189, 98);
+            this.rtx_schatten.TabIndex = 4;
+            this.rtx_schatten.Text = "";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(56, 75);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(49, 13);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "Notitzen:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(22, 25);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(83, 13);
+            this.label13.TabIndex = 4;
+            this.label13.Text = "Planungsdatum:";
             // 
             // UC_edit_Auftrag
             // 
@@ -555,6 +644,9 @@
             this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.tab_schatten.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -606,5 +698,13 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btn_ab_az_an;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DateTimePicker dtp_schatten;
+        private System.Windows.Forms.ComboBox cbx_schatten_pers;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.RichTextBox rtx_schatten;
     }
 }
