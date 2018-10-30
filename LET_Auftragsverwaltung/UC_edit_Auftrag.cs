@@ -510,20 +510,36 @@ namespace LET_Auftragsverwaltung
 
         private void btn_persenning_save_Click(object sender, EventArgs e)
         {
-            try
-            {
+           // try
+           // {
                 int p_ID = 0;
+                string sql = "";
+                
+                OdbcCommand cmd;
+                OdbcDataReader sql_reader;
 
-                string sql = "SELECT T_P_ID FROM teile WHERE ID = " + id;
-                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                sql = "SELECT T_P_ID FROM teile WHERE ID = " + id;
+                cmd = new OdbcCommand(sql, Connection);
                 Connection.Open();
-                OdbcDataReader sql_reader = cmd.ExecuteReader();
+                sql_reader = cmd.ExecuteReader();
                 sql_reader.Read();
+
                 p_ID = Convert.ToInt32(sql_reader[0].ToString());
+                sql_reader.Close();
                 Connection.Close();
-                //TODO UPDATE ABFRAGE WENN PERSENNING VORHANDEN!!
-                if (Persenning_Controll())
+
+                //TODO MAYBE WORKS NOW
+                if (p_ID != 0)
                 {
+                    sql = "SELECT T_P_ID FROM teile WHERE ID = " + id;
+                    cmd = new OdbcCommand(sql, Connection);
+                    Connection.Open();
+                    sql_reader = cmd.ExecuteReader();
+                    sql_reader.Read();
+                    p_ID = Convert.ToInt32(sql_reader[0].ToString());
+                    sql_reader.Close();
+                    Connection.Close();
+
                     CS_SQL_methods.SQL_exec(string.Format(
                         "UPDATE teile_persenning Lieferdatum = '{0}', Bestelldatum = '{1}' WHERE T_P_ID = {2}",
                         dtp_persenning_lief.Value.ToString("yyyy-MM-dd"),
@@ -532,18 +548,27 @@ namespace LET_Auftragsverwaltung
                 else
                 {
                     CS_SQL_methods.SQL_exec(string.Format(
-                        "INSERT INTO teile_persenning (Lieferdatum, Bestelldatum) Values ('{0}', '{1}'",
+                        "INSERT INTO teile_persenning (Lieferdatum, Bestelldatum) Values ('{0}', '{1}')",
                         dtp_persenning_lief.Value.ToString("yyyy-MM-dd"),
                         dtp_persenning_best.Value.ToString("yyyy-MM-dd")));
+                    sql = "SELECT T_P_ID FROM teile_persenning ORDER BY T_P_ID DESC LIMIT 1";
+                    cmd = new OdbcCommand(sql, Connection);
+                    Connection.Open();
+                    sql_reader = cmd.ExecuteReader();
+                    sql_reader.Read();
+                    p_ID = Convert.ToInt32(sql_reader[0].ToString());
+                    sql_reader.Close();
+                    Connection.Close();
+                    CS_SQL_methods.SQL_exec(string.Format("UPDATE teile SET T_P_ID = {0} WHERE ID = {1}", p_ID, id));
                 }
 
                 Persenning_Controll();
 
-            }
-            catch(Exception f)
-            {
-                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Persenning): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+           // }
+           // catch(Exception f)
+           // {
+               // MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Persenning): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         
@@ -613,7 +638,7 @@ namespace LET_Auftragsverwaltung
             Connection.Close();
         }
 
-        private bool Persenning_Controll()
+        private void Persenning_Controll()
         {
             object obj_db;
             int p_ID;
@@ -634,6 +659,7 @@ namespace LET_Auftragsverwaltung
             if (obj_db != DBNull.Value && obj_db != null)
             {
                 sql_reader = cmd.ExecuteReader();
+                sql_reader.Read();
                 dtp_persenning_best.Value = DateTime.Parse(sql_reader[0].ToString());
                 sql_reader.Close();
                 sql = "SELECT Lieferdatum FROM teile_persenning WHERE T_P_ID = " +
@@ -644,27 +670,22 @@ namespace LET_Auftragsverwaltung
                 if (obj_db != DBNull.Value && obj_db != null)
                 {
                     sql_reader = cmd.ExecuteReader();
+                    sql_reader.Read();
                     dtp_persenning_lief.Value = DateTime.Parse(sql_reader[0].ToString());
                     sql_reader.Close();
-                    Connection.Close();
-                    return true;
                 }
                 else
                 {
                     dtp_persenning_lief.Value = DateTime.Today;
-                    Connection.Close();
-                    return true;
                 }
             }
             else
             {
                 dtp_persenning_lief.Value = DateTime.Today;
                 dtp_persenning_best.Value = DateTime.Today;
-                Connection.Close();
-                return false;
             }
 
-            
+            Connection.Close();
 
         }
 
