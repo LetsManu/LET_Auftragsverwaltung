@@ -40,5 +40,15 @@ namespace LET_Auftragsverwaltung
         {
             
         }
+
+        private void pbx_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
+
+        private void UC_Main_Task_Pane_Enter(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
