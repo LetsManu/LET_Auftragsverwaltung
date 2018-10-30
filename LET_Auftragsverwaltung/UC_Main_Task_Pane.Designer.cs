@@ -65,7 +65,7 @@
             this.aufträgeToolStripMenuItem.Name = "aufträgeToolStripMenuItem";
             this.aufträgeToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.aufträgeToolStripMenuItem.Text = "Übersicht";
-            this.aufträgeToolStripMenuItem.Click += new System.EventHandler(this.aufträgeToolStripMenuItem_Click);
+            this.aufträgeToolStripMenuItem.Click += new System.EventHandler(this.TSMI_Overview_Click);
             // 
             // neuerEintragToolStripMenuItem
             // 
@@ -111,7 +111,7 @@
             this.neuerAuftragToolStripMenuItem.Name = "neuerAuftragToolStripMenuItem";
             this.neuerAuftragToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.neuerAuftragToolStripMenuItem.Text = "Neuer Auftrag";
-            this.neuerAuftragToolStripMenuItem.Click += new System.EventHandler(this.neuerAuftragToolStripMenuItem_Click);
+            this.neuerAuftragToolStripMenuItem.Click += new System.EventHandler(this.TSMI_new_Auftrag_Click);
             // 
             // parameterToolStripMenuItem
             // 
