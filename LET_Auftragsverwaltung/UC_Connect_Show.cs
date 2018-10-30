@@ -35,7 +35,7 @@ namespace LET_Auftragsverwaltung
 
         private void pbx_ftp_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.FillEllipse(Brushes.Green, new Rectangle(25, 25, 7, 7));
+            e.Graphics.FillEllipse(b_ftp, new Rectangle(25, 25, 7, 7));
         }
 
 
@@ -71,7 +71,7 @@ namespace LET_Auftragsverwaltung
                     b_ftp = Brushes.Green;
                 }
             }
-            catch (WebException ex)
+            catch
             {
                 b_ftp = Brushes.Red;
             }
@@ -79,7 +79,8 @@ namespace LET_Auftragsverwaltung
             pbx_ftp.Invalidate();
         }
 
-        private void UC_Connect_Show_Enter(object sender, EventArgs e)
+
+        private void UC_Connect_Show_VisibleChanged(object sender, EventArgs e)
         {
             tmr.Enabled = true;
         }

@@ -15,6 +15,7 @@ namespace LET_Auftragsverwaltung
         public UC_Main_Task_Pane()
         {
             InitializeComponent();
+            
         }
 
         private void TSMI_Parameter_Click(object sender, EventArgs e)
