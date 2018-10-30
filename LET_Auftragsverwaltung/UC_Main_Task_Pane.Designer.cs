@@ -83,7 +83,7 @@
             this.neuerEintragToolStripMenuItem1.Name = "neuerEintragToolStripMenuItem1";
             this.neuerEintragToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.neuerEintragToolStripMenuItem1.Text = "Datenbank";
-            this.neuerEintragToolStripMenuItem1.Click += new System.EventHandler(this.neuerEintragToolStripMenuItem1_Click);
+            this.neuerEintragToolStripMenuItem1.Click += new System.EventHandler(this.TSMI_Parameter_Click);
             // 
             // exportÜbersichtToolStripMenuItem
             // 
