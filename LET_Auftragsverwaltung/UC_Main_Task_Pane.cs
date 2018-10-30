@@ -17,22 +17,23 @@ namespace LET_Auftragsverwaltung
             InitializeComponent();
         }
 
-        private void neuerEintragToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void TSMI_Parameter_Click(object sender, EventArgs e)
         {
-            Form Form_Para = new Form_Parameter();
-            Form_Para.Show();
+            Form form_Parameter_ = new Form_Parameter();
+            form_Parameter_.Show();
         }
 
-        private void aufträgeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TSMI_Overview_Click(object sender, EventArgs e)
         {
-            Form Form_Over = new Form_Overview();
-            Form_Over.Show();
+            Form form_Overview = new Form_Overview();
+            form_Overview.Show();
+            UC_Overview.Update_Overview();
         }
 
-        private void neuerAuftragToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TSMI_new_Auftrag_Click(object sender, EventArgs e)
         {
-            Form Form_NEW = new Form_New_Auftrag();
-            Form_NEW.Show();
+            Form form_new_Auftrag = new Form_New_Auftrag();
+            form_new_Auftrag.Show();
         }
 
         private void eDITAUFTRAGToolStripMenuItem_Click(object sender, EventArgs e)

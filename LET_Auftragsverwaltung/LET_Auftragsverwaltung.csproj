@@ -193,12 +193,6 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="AB_AZ.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AB_AZ.Designer.cs">
-      <DependentUpon>AB_AZ.cs</DependentUpon>
-    </Compile>
     <Compile Include="CS_Auftrag_Data.cs" />
     <Compile Include="CS_DB.cs" />
     <Compile Include="CS_FTP.cs" />
@@ -274,9 +268,6 @@
     <Compile Include="UC_Parameter.Designer.cs">
       <DependentUpon>UC_Parameter.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AB_AZ.resx">
-      <DependentUpon>AB_AZ.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -354,10 +345,11 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>LET_Auftragsverwaltung_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>293463C1756E194BE1E6EB4680EC151D6A8DC940</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>0599E173ACA0E5DAC246E327BA32DDB70EFA6283</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
