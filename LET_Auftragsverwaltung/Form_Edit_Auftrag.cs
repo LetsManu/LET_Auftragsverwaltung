@@ -12,16 +12,16 @@ namespace LET_Auftragsverwaltung
 {
     public partial class Form_Edit_Auftrag : Form
     {
-        public static int id;
+        private int id;
         public Form_Edit_Auftrag(int id_)
         {
             id = id_;
             InitializeComponent();
         }
 
-        private void uC_edit_Auftrag1_Load(object sender, EventArgs e)
+        private void Form_Edit_Auftrag_Leave(object sender, EventArgs e)
         {
-
+            UC_Overview.Update_Overview();
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.uC_edit_Auftrag1 = new LET_Auftragsverwaltung.UC_edit_Auftrag(this.id);
             this.SuspendLayout();
             // 
             // uC_edit_Auftrag1
@@ -36,7 +37,6 @@
             this.uC_edit_Auftrag1.Name = "uC_edit_Auftrag1";
             this.uC_edit_Auftrag1.Size = new System.Drawing.Size(1235, 406);
             this.uC_edit_Auftrag1.TabIndex = 0;
-            this.uC_edit_Auftrag1.Load += new System.EventHandler(this.uC_edit_Auftrag1_Load);
             // 
             // Form_Edit_Auftrag
             // 
@@ -46,6 +46,7 @@
             this.Controls.Add(this.uC_edit_Auftrag1);
             this.Name = "Form_Edit_Auftrag";
             this.Text = "Form_Edit_Auftrag";
+            this.Leave += new System.EventHandler(this.Form_Edit_Auftrag_Leave);
             this.ResumeLayout(false);
 
         }
