@@ -63,24 +63,17 @@ namespace LET_Auftragsverwaltung
             {
                 FtpWebRequest request = null;
 
-                request = (FtpWebRequest)WebRequest.Create("ftp://" + webrequestUrl + "/somefile.txt");
-                request.Credentials = new NetworkCredential(username, password);
+                request = (FtpWebRequest)WebRequest.Create("ftp://" + "81.10.155.134" + " / ");
+                request.Credentials = new NetworkCredential("admin", "cola0815");
                 request.Method = WebRequestMethods.Ftp.ListDirectory;
                 using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
                 {
-                    // Okay.  
+                    b_ftp = Brushes.Green;
                 }
             }
             catch (WebException ex)
             {
-                if (ex.Response != null)
-                {
-                    FtpWebResponse response = (FtpWebResponse)ex.Response;
-                    if (response.StatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
-                    {
-                        //task
-                    }
-                }
+                b_ftp = Brushes.Red;
             }
             pbx_mysql.Invalidate();
             pbx_ftp.Invalidate();
