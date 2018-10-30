@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Odbc;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
@@ -445,6 +446,9 @@ namespace LET_Auftragsverwaltung
                 OdbcDataReader sql_read = cmd.ExecuteReader();
                 sql_read.Read();
                 CS_SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", Convert.ToInt32(sql_read[0].ToString()), id));
+
+                AB_AZ_Controll();
+
             }
             catch(Exception f)
             {
@@ -487,11 +491,69 @@ namespace LET_Auftragsverwaltung
                 s_ID = Convert.ToInt32(sql_reader[0].ToString());
                 Connection.Close();
                 CS_SQL_methods.SQL_exec(string.Format("UPDATE schatten SET Schattendarum = '{0}', P_ID = {1}, Notiz = '{2}' WHERE S_ID = {3}", dtp_schatten.Value.ToString("yyyy-MM-dd"), cbx_auftrag.SelectedValue.ToString(), rtx_schatten.Text.ToString(), s_ID));
+
+                AB_AZ_Controll();
+
             }
 
             catch (Exception f)
             {
                 MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: UPDATE Schatten BTN): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_persenning_save_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int p_ID = 0;
+
+                string sql = "SELECT T_P_ID FROM teile WHERE ID = " + id;
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                Connection.Open();
+                OdbcDataReader sql_reader = cmd.ExecuteReader();
+                sql_reader.Read();
+                p_ID = Convert.ToInt32(sql_reader[0].ToString());
+                Connection.Close();
+                //TODO UPDATE ABFRAGE WENN PERSENNING VORHANDEN!!
+                CS_SQL_methods.SQL_exec(string.Format(
+                    "INSERT INTO teile_persenning (Lieferdatum, Bestelldatum) Values ('{0}', '{1}'",
+                    dtp_persenning_lief.Value.ToString("yyyy-MM-dd"),
+                    dtp_persenning_best.Value.ToString("yyyy-MM-dd")));
+            }
+            catch(Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Persenning): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tab_ab_az_Enter(object sender, EventArgs e)
+        {
+            AB_AZ_Controll();
+        }
+
+        private void AB_AZ_Controll()
+        {
+            int a_ID = 0;
+            string sql = "SELECT AB_AZ FROM auftraege WHERE ID = " + id;
+
+            OdbcCommand cmd = new OdbcCommand(sql, Connection);
+            Connection.Open();
+            if (cmd.ExecuteScalar() != null)
+            {
+                a_ID = Convert.ToInt32(cmd.ExecuteScalar());
+                sql = "SELECT V_Date FROM ab_az WHERE A_ID = " + a_ID;
+                cmd = new OdbcCommand(sql, Connection);
+                if (cmd.ExecuteScalar() != null)
+                {
+                    btn_ab_az_an.Enabled = false;
+                    btn_ab_az_an.Enabled = true;
+                }
+            }
+            else
+            {
+                btn_ab_az_an.Enabled = true;
+                btn_ab_az_be.Enabled = false;
             }
         }
     }
