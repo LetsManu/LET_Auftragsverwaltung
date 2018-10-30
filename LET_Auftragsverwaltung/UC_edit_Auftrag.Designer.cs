@@ -74,7 +74,7 @@
             this.tab_persennning = new System.Windows.Forms.TabPage();
             this.tab_schatten = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_schatten_save = new System.Windows.Forms.Button();
             this.dtp_schatten = new System.Windows.Forms.DateTimePicker();
             this.cbx_schatten_pers = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -555,13 +555,14 @@
             this.tab_schatten.TabIndex = 3;
             this.tab_schatten.Text = "Schatten";
             this.tab_schatten.UseVisualStyleBackColor = true;
+            this.tab_schatten.Enter += new System.EventHandler(this.tab_schatten_Enter);
             // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.label13);
             this.groupBox7.Controls.Add(this.label12);
             this.groupBox7.Controls.Add(this.rtx_schatten);
-            this.groupBox7.Controls.Add(this.button1);
+            this.groupBox7.Controls.Add(this.btn_schatten_save);
             this.groupBox7.Controls.Add(this.dtp_schatten);
             this.groupBox7.Controls.Add(this.cbx_schatten_pers);
             this.groupBox7.Controls.Add(this.label11);
@@ -572,15 +573,15 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Schattenplanung";
             // 
-            // button1
+            // btn_schatten_save
             // 
-            this.button1.Location = new System.Drawing.Point(108, 176);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(189, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Speichern";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_schatten_save.Location = new System.Drawing.Point(108, 176);
+            this.btn_schatten_save.Name = "btn_schatten_save";
+            this.btn_schatten_save.Size = new System.Drawing.Size(189, 23);
+            this.btn_schatten_save.TabIndex = 3;
+            this.btn_schatten_save.Text = "Speichern";
+            this.btn_schatten_save.UseVisualStyleBackColor = true;
+            this.btn_schatten_save.Click += new System.EventHandler(this.button1_Click);
             // 
             // dtp_schatten
             // 
@@ -770,7 +771,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btn_ab_az_an;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_schatten_save;
         private System.Windows.Forms.DateTimePicker dtp_schatten;
         private System.Windows.Forms.ComboBox cbx_schatten_pers;
         private System.Windows.Forms.Label label11;

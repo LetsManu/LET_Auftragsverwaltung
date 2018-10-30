@@ -317,9 +317,9 @@ namespace LET_Auftragsverwaltung
                     DataTable dt_pers = CS_SQL_methods.Fill_Box(
                         "SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID");
 
-                    cbx_verant.DataSource = dt_pers;
-                    cbx_verant.ValueMember = "P_ID";
-                    cbx_verant.DisplayMember = "Name";
+                    cbx_schatten_pers.DataSource = dt_pers;
+                    cbx_schatten_pers.ValueMember = "P_ID";
+                    cbx_schatten_pers.DisplayMember = "Name";
 
                 }
                 catch (Exception f)
@@ -489,14 +489,14 @@ namespace LET_Auftragsverwaltung
             try
             {
                 int s_ID = 0;
-                string sql = "SELECT Schatten FROM auftrage WHERE ID = " + id;
+                string sql = "SELECT Schatten FROM auftraege WHERE ID = " + id;
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
                 Connection.Open();
                 OdbcDataReader sql_reader = cmd.ExecuteReader();
                 sql_reader.Read();
                 s_ID = Convert.ToInt32(sql_reader[0].ToString());
                 Connection.Close();
-                CS_SQL_methods.SQL_exec(string.Format("UPDATE schatten SET Schattendarum = '{0}', P_ID = {1}, Notiz = '{2}' WHERE S_ID = {3}", dtp_schatten.Value.ToString("yyyy-MM-dd"), cbx_auftrag.SelectedValue.ToString(), rtx_schatten.Text.ToString(), s_ID));
+                CS_SQL_methods.SQL_exec(string.Format("UPDATE schatten SET Schattendatum = '{0}', P_ID = {1}, Notiz = '{2}' WHERE S_ID = {3}", dtp_schatten.Value.ToString("yyyy-MM-dd"), cbx_schatten_pers.SelectedValue, rtx_schatten.Text, s_ID));
 
                 
 
@@ -572,6 +572,40 @@ namespace LET_Auftragsverwaltung
             Connection.Close();
 
 
+        }
+
+        private void Schatten_Date_Controll()
+        {
+            object obj_db;
+            string sql = "SELECT Schatten FROM auftraege WHERE ID = " + id;
+            OdbcCommand cmd = new OdbcCommand(sql, Connection);
+            Connection.Open();
+            OdbcDataReader sql_reader = cmd.ExecuteReader();
+            sql_reader.Read();
+            string sql2 = "SELECT Schattendatum, P_ID, Notiz FROM schatten WHERE S_ID = " +
+                          Convert.ToInt32(sql_reader[0].ToString());
+            sql_reader.Close();
+            OdbcCommand cmd2 = new OdbcCommand(sql2, Connection);
+            obj_db = cmd2.ExecuteScalar();
+
+            if (obj_db != DBNull.Value)
+            {
+                sql_reader = cmd2.ExecuteReader();
+                sql_reader.Read();
+                dtp_schatten.Value = DateTime.Parse(sql_reader[0].ToString());
+                cbx_schatten_pers.SelectedValue = Convert.ToInt32(sql_reader[1].ToString());
+                rtx_schatten.Text = sql_reader[2].ToString();
+            }
+            else
+            {
+                dtp_schatten.Value = DateTime.Today.Date;
+            }
+            Connection.Close();
+        }
+
+        private void tab_schatten_Enter(object sender, EventArgs e)
+        {
+            Schatten_Date_Controll();
         }
     }
 }
