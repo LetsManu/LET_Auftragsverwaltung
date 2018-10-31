@@ -14,17 +14,13 @@ namespace LET_Auftragsverwaltung
 {
     public partial class UC_Connect_Show : UserControl
     {
+        public static bool tmr_timed = false;
         private OdbcConnection Connection => CS_DB.Connection;
         Brush b_mysql = Brushes.Green;
         Brush b_ftp = Brushes.Green;
         public UC_Connect_Show()
         {
             InitializeComponent();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void pbx_mysql_Paint(object sender, PaintEventArgs e)
@@ -66,6 +62,7 @@ namespace LET_Auftragsverwaltung
                 request = (FtpWebRequest)WebRequest.Create("ftp://" + "81.10.155.134" + " / ");
                 request.Credentials = new NetworkCredential("admin", "cola0815");
                 request.Method = WebRequestMethods.Ftp.ListDirectory;
+                request.UsePassive = false;
                 using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
                 {
                     b_ftp = Brushes.Green;
@@ -80,9 +77,10 @@ namespace LET_Auftragsverwaltung
         }
 
 
-        private void UC_Connect_Show_VisibleChanged(object sender, EventArgs e)
+
+        private void tmr_para_Tick(object sender, EventArgs e)
         {
-            tmr.Enabled = true;
+            tmr.Enabled = tmr_timed;
         }
     }
 }
