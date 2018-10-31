@@ -86,7 +86,7 @@ namespace LET_Auftragsverwaltung
                     result.Width = 100;
                 }
 
-                Connection.Open();
+                CS_SQL_methods.Open();
 
                 List<string> auftraege_ID = new List<string>();
 
@@ -130,7 +130,7 @@ namespace LET_Auftragsverwaltung
                     //data.Montage_Datum = Convert.ToDateTime(reader[""];
                     this.data.AddLast(data);
                 }
-                Connection.Close();
+                
                 oLV_Overview.SetObjects(data);
 
                 oLV_Overview.TintSortColumn = true;

@@ -26,12 +26,22 @@ namespace LET_Auftragsverwaltung
 
         static public void SQL_exec(string sql)
         {
-            Connection.Open();
+            Open();
             var cmd = new OdbcCommand(sql, Connection);
             cmd.ExecuteNonQuery();
-            Connection.Close();
+            
 
         }
 
+
+        /// <summary>
+        /// Benützen um Connection zu öffnen
+        /// Wenn NUR diese Methode zum öffnen benützt wird braucht man KEIN Close mehr!
+        /// </summary>
+        static public void Open( )
+        {
+            Connection.Close();
+            Connection.Open();
+        }
     }
 }

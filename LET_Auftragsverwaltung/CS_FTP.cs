@@ -15,10 +15,10 @@ namespace LET_Auftragsverwaltung
         private string File_Path_FTP = "";
 
         public static string Pw => "cola0815";
-        public static string User => "admin";
+        public static string User => "Auftragsuebersicht";
         public static string[] Extensions => extensions;
 
-        private static string Server_IP
+        public static string Server_IP
         {
             get
             {

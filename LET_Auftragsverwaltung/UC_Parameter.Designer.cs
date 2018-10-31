@@ -111,7 +111,7 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.pbx_stoff = new System.Windows.Forms.PictureBox();
-            this.cbx_stoff_lief = new System.Windows.Forms.ComboBox();
+            this.cBx_stoff_lief = new System.Windows.Forms.ComboBox();
             this.btn_Save_Stoff = new System.Windows.Forms.Button();
             this.btn_stoff_up = new System.Windows.Forms.Button();
             this.label26 = new System.Windows.Forms.Label();
@@ -976,7 +976,7 @@
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.pbx_stoff);
-            this.groupBox7.Controls.Add(this.cbx_stoff_lief);
+            this.groupBox7.Controls.Add(this.cBx_stoff_lief);
             this.groupBox7.Controls.Add(this.btn_Save_Stoff);
             this.groupBox7.Controls.Add(this.btn_stoff_up);
             this.groupBox7.Controls.Add(this.label26);
@@ -997,13 +997,13 @@
             this.pbx_stoff.TabIndex = 19;
             this.pbx_stoff.TabStop = false;
             // 
-            // cbx_stoff_lief
+            // cBx_stoff_lief
             // 
-            this.cbx_stoff_lief.FormattingEnabled = true;
-            this.cbx_stoff_lief.Location = new System.Drawing.Point(99, 60);
-            this.cbx_stoff_lief.Name = "cbx_stoff_lief";
-            this.cbx_stoff_lief.Size = new System.Drawing.Size(109, 21);
-            this.cbx_stoff_lief.TabIndex = 4;
+            this.cBx_stoff_lief.FormattingEnabled = true;
+            this.cBx_stoff_lief.Location = new System.Drawing.Point(99, 60);
+            this.cBx_stoff_lief.Name = "cBx_stoff_lief";
+            this.cBx_stoff_lief.Size = new System.Drawing.Size(109, 21);
+            this.cBx_stoff_lief.TabIndex = 4;
             // 
             // btn_Save_Stoff
             // 
@@ -1297,7 +1297,7 @@
         private System.Windows.Forms.Button btn_fert_edit;
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.Button btn_stoff_up;
-        private System.Windows.Forms.ComboBox cbx_stoff_lief;
+        private System.Windows.Forms.ComboBox cBx_stoff_lief;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Label label26;
