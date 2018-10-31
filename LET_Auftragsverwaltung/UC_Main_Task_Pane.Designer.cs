@@ -36,12 +36,13 @@
             this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.neuerAuftragToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eDITAUFTRAGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parameterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.soonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eDITAUFTRAGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uC_Connect_Show1 = new LET_Auftragsverwaltung.UC_Connect_Show();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,7 +82,7 @@
             // neuerEintragToolStripMenuItem1
             // 
             this.neuerEintragToolStripMenuItem1.Name = "neuerEintragToolStripMenuItem1";
-            this.neuerEintragToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.neuerEintragToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
             this.neuerEintragToolStripMenuItem1.Text = "Datenbank";
             this.neuerEintragToolStripMenuItem1.Click += new System.EventHandler(this.TSMI_Parameter_Click);
             // 
@@ -91,7 +92,7 @@
             this.excelToolStripMenuItem,
             this.pDFToolStripMenuItem});
             this.exportÜbersichtToolStripMenuItem.Name = "exportÜbersichtToolStripMenuItem";
-            this.exportÜbersichtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportÜbersichtToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.exportÜbersichtToolStripMenuItem.Text = "Export Übersicht";
             // 
             // excelToolStripMenuItem
@@ -109,9 +110,16 @@
             // neuerAuftragToolStripMenuItem
             // 
             this.neuerAuftragToolStripMenuItem.Name = "neuerAuftragToolStripMenuItem";
-            this.neuerAuftragToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.neuerAuftragToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.neuerAuftragToolStripMenuItem.Text = "Neuer Auftrag";
             this.neuerAuftragToolStripMenuItem.Click += new System.EventHandler(this.TSMI_new_Auftrag_Click);
+            // 
+            // eDITAUFTRAGToolStripMenuItem
+            // 
+            this.eDITAUFTRAGToolStripMenuItem.Name = "eDITAUFTRAGToolStripMenuItem";
+            this.eDITAUFTRAGToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.eDITAUFTRAGToolStripMenuItem.Text = "EDIT AUFTRAG";
+            this.eDITAUFTRAGToolStripMenuItem.Click += new System.EventHandler(this.eDITAUFTRAGToolStripMenuItem_Click);
             // 
             // parameterToolStripMenuItem
             // 
@@ -146,20 +154,26 @@
             this.testToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
             this.testToolStripMenuItem.Text = "test";
             // 
-            // eDITAUFTRAGToolStripMenuItem
+            // uC_Connect_Show1
             // 
-            this.eDITAUFTRAGToolStripMenuItem.Name = "eDITAUFTRAGToolStripMenuItem";
-            this.eDITAUFTRAGToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.eDITAUFTRAGToolStripMenuItem.Text = "EDIT AUFTRAG";
-            this.eDITAUFTRAGToolStripMenuItem.Click += new System.EventHandler(this.eDITAUFTRAGToolStripMenuItem_Click);
+            this.uC_Connect_Show1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uC_Connect_Show1.BackColor = System.Drawing.Color.White;
+            this.uC_Connect_Show1.Location = new System.Drawing.Point(0, 524);
+            this.uC_Connect_Show1.Name = "uC_Connect_Show1";
+            this.uC_Connect_Show1.Size = new System.Drawing.Size(430, 45);
+            this.uC_Connect_Show1.TabIndex = 2;
             // 
             // UC_Main_Task_Pane
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.uC_Connect_Show1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "UC_Main_Task_Pane";
             this.Size = new System.Drawing.Size(430, 569);
+            this.Enter += new System.EventHandler(this.UC_Main_Task_Pane_Enter);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -183,5 +197,6 @@
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem neuerAuftragToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eDITAUFTRAGToolStripMenuItem;
+        private UC_Connect_Show uC_Connect_Show1;
     }
 }
