@@ -510,8 +510,8 @@ namespace LET_Auftragsverwaltung
 
         private void btn_persenning_save_Click(object sender, EventArgs e)
         {
-           // try
-           // {
+            try
+            {
                 int p_ID = 0;
                 string sql = "";
                 
@@ -541,7 +541,7 @@ namespace LET_Auftragsverwaltung
                     Connection.Close();
 
                     CS_SQL_methods.SQL_exec(string.Format(
-                        "UPDATE teile_persenning Lieferdatum = '{0}', Bestelldatum = '{1}' WHERE T_P_ID = {2}",
+                        "UPDATE teile_persenning SET Lieferdatum = '{0}', Bestelldatum = '{1}' WHERE T_P_ID = {2}",
                         dtp_persenning_lief.Value.ToString("yyyy-MM-dd"),
                         dtp_persenning_best.Value.ToString("yyyy-MM-dd"), p_ID));
                 }
@@ -564,14 +564,76 @@ namespace LET_Auftragsverwaltung
 
                 Persenning_Controll();
 
-           // }
-           // catch(Exception f)
-           // {
-               // MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Persenning): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+            }
+            catch(Exception f)
+            {
+               MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Persenning): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void btn_sond_save_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int s_ID = 0;
+                string sql = "";
+
+                OdbcCommand cmd;
+                OdbcDataReader sql_reader;
+
+                sql = "SELECT T_S_ID FROM teile WHERE ID = " + id;
+                cmd = new OdbcCommand(sql, Connection);
+                Connection.Open();
+                sql_reader = cmd.ExecuteReader();
+                sql_reader.Read();
+
+                s_ID = Convert.ToInt32(sql_reader[0].ToString());
+                sql_reader.Close();
+                Connection.Close();
+
+                //TODO MAYBE WORKS NOW
+                if (s_ID != 0)
+                {
+                    sql = "SELECT T_S_ID FROM teile WHERE ID = " + id;
+                    cmd = new OdbcCommand(sql, Connection);
+                    Connection.Open();
+                    sql_reader = cmd.ExecuteReader();
+                    sql_reader.Read();
+                    s_ID = Convert.ToInt32(sql_reader[0].ToString());
+                    sql_reader.Close();
+                    Connection.Close();
+
+                    CS_SQL_methods.SQL_exec(string.Format(
+                        "UPDATE teile_sonder SET Lieferdatum = '{0}', Bestelldatum = '{1}' WHERE T_S_ID = {2}",
+                        dtp_sond_lief.Value.ToString("yyyy-MM-dd"),
+                        dtp_sond_best.Value.ToString("yyyy-MM-dd"), s_ID));
+                }
+                else
+                {
+                    CS_SQL_methods.SQL_exec(string.Format(
+                        "INSERT INTO teile_sonder (Lieferdatum, Bestelldatum) Values ('{0}', '{1}')",
+                        dtp_sond_lief.Value.ToString("yyyy-MM-dd"),
+                        dtp_sond_best.Value.ToString("yyyy-MM-dd")));
+                    sql = "SELECT T_S_ID FROM teile_sonder ORDER BY T_S_ID DESC LIMIT 1";
+                    cmd = new OdbcCommand(sql, Connection);
+                    Connection.Open();
+                    sql_reader = cmd.ExecuteReader();
+                    sql_reader.Read();
+                    s_ID = Convert.ToInt32(sql_reader[0].ToString());
+                    sql_reader.Close();
+                    Connection.Close();
+                    CS_SQL_methods.SQL_exec(string.Format("UPDATE teile SET T_S_ID = {0} WHERE ID = {1}", s_ID, id));
+                }
+
+                Sonderteile_Controll();
+
+            }
+           catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Persenning): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        
+
 
         private void AB_AZ_Controll()
         {
@@ -689,6 +751,57 @@ namespace LET_Auftragsverwaltung
 
         }
 
+        private void Sonderteile_Controll()
+        {
+            object obj_db;
+            int s_ID;
+            string sql = "SELECT T_S_ID FROM teile WHERE ID = " + id;
+            OdbcCommand cmd = new OdbcCommand(sql, Connection);
+            Connection.Open();
+            OdbcDataReader sql_reader = cmd.ExecuteReader();
+            sql_reader.Read();
+            s_ID = Convert.ToInt32(sql_reader[0].ToString());
+            sql_reader.Close();
+            sql = "SELECT Bestelldatum FROM teile_sonder WHERE T_S_ID = " +
+                  s_ID;
+
+            cmd = new OdbcCommand(sql, Connection);
+
+            obj_db = cmd.ExecuteScalar();
+
+            if (obj_db != DBNull.Value && obj_db != null)
+            {
+                sql_reader = cmd.ExecuteReader();
+                sql_reader.Read();
+                dtp_sond_best.Value = DateTime.Parse(sql_reader[0].ToString());
+                sql_reader.Close();
+                sql = "SELECT Lieferdatum FROM teile_sonder WHERE T_S_ID = " +
+                      s_ID;
+                cmd = new OdbcCommand(sql, Connection);
+
+                obj_db = cmd.ExecuteScalar();
+                if (obj_db != DBNull.Value && obj_db != null)
+                {
+                    sql_reader = cmd.ExecuteReader();
+                    sql_reader.Read();
+                    dtp_sond_lief.Value = DateTime.Parse(sql_reader[0].ToString());
+                    sql_reader.Close();
+                }
+                else
+                {
+                    dtp_sond_lief.Value = DateTime.Today;
+                }
+            }
+            else
+            {
+                dtp_sond_lief.Value = DateTime.Today;
+                dtp_sond_best.Value = DateTime.Today;
+            }
+
+            Connection.Close();
+
+        }
+
         private void tab_schatten_Enter(object sender, EventArgs e)
         {
             Schatten_Controll();
@@ -702,6 +815,11 @@ namespace LET_Auftragsverwaltung
         private void tab_ab_az_Enter(object sender, EventArgs e)
         {
             AB_AZ_Controll();
+        }
+
+        private void tab_sond_Enter(object sender, EventArgs e)
+        {
+            Sonderteile_Controll();
         }
     }
 }
