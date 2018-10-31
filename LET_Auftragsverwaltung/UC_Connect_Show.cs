@@ -52,7 +52,7 @@ namespace LET_Auftragsverwaltung
                     b_mysql = Brushes.Green;
                 }
 
-                Connection.Close();
+                
             }
             catch
             {

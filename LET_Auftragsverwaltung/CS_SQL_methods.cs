@@ -29,7 +29,7 @@ namespace LET_Auftragsverwaltung
             Open();
             var cmd = new OdbcCommand(sql, Connection);
             cmd.ExecuteNonQuery();
-            Connection.Close();
+            
 
         }
 

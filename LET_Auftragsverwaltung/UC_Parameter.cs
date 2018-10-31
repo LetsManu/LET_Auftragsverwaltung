@@ -52,7 +52,7 @@ namespace LET_Auftragsverwaltung
                     sqlReader.Read();
 
                     var adr_id = sqlReader.GetInt32(0);
-                    Connection.Close();
+                    
                     CS_SQL_methods.SQL_exec(string.Format("INSERT INTO personal (Vorname, Nachname, Adr_ID) VALUES ('{0}', '{1}', {2})",
                         txt_pers_vor.Text, txt_pers_nach.Text, adr_id));
 
@@ -126,7 +126,7 @@ namespace LET_Auftragsverwaltung
                 try
                 {                    
                     var dtFunkt = CS_SQL_methods.Fill_Box("SELECT Funktion_ID,Funktion FROM funktion WHERE deaktiviert<>true");                    
-                    Connection.Close();
+                    
                     cbx_pers_funk.DataSource = dtFunkt;
                     cbx_funk.DataSource = dtFunkt;
                     cbx_funk.DisplayMember = "Funktion";
@@ -223,7 +223,7 @@ namespace LET_Auftragsverwaltung
                 }
                 catch (Exception f)
                 {
-                    Connection.Close();
+                    
                     MessageBox.Show(
                         "Fehler in der SQL Abfrage(Lieferant Fill): \n\n" + f.Message + "\n\n" +
                         f.Data.Values, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -237,19 +237,19 @@ namespace LET_Auftragsverwaltung
                 {
 
                     var dt = CS_SQL_methods.Fill_Box("SELECT Lieferant,L_ID FROM lieferant WHERE deaktiviert<>true");
-                    cbx_stoff_lief.DataSource = dt;
-                    cbx_stoff_lief.ValueMember = "L_ID";
-                    cbx_stoff_lief.DisplayMember = "Lieferant";
+                    cBx_stoff_lief.DataSource = dt;
+                    cBx_stoff_lief.ValueMember = "L_ID";
+                    cBx_stoff_lief.DisplayMember = "Lieferant";
 
                     cBx_stoff_lief_02.DataSource = dt.Copy();
                     cBx_stoff_lief_02.ValueMember = "L_ID";
                     cBx_stoff_lief_02.DisplayMember = "Lieferant";
 
-                    if (cbx_stoff_lief.Items.Count > 0) cbx_stoff_lief.SelectedIndex = 0;
+                    if (cBx_stoff_lief.Items.Count > 0) cBx_stoff_lief.SelectedIndex = 0;
                 }
                 catch (Exception f)
                 {
-                    Connection.Close();
+                    
                     MessageBox.Show(
                         "Fehler in der SQL Abfrage(Stoff Lieferant Fill): \n\n" + f.Message + "\n\n" +
                         f.Data.Values, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -270,7 +270,7 @@ namespace LET_Auftragsverwaltung
                 }
                 catch (Exception f)
                 {
-                    Connection.Close();
+                    
                     MessageBox.Show(
                         "Fehler in der SQL Abfrage(Stoff Fill): \n\n" + f.Message + "\n\n" +
                         f.Data.Values, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -295,7 +295,7 @@ namespace LET_Auftragsverwaltung
                 }
                 catch (Exception f)
                 {
-                    Connection.Close();
+                    
                     MessageBox.Show(
                         "Fehler in der SQL Abfrage(Personal Funktion Fill): \n\n" + f.Message + "\n\n" +
                         f.Data.Values, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -504,7 +504,7 @@ namespace LET_Auftragsverwaltung
 
                     var adr_id = sqlReader.GetInt32(0);
 
-                    Connection.Close();
+                    
 
                     CS_SQL_methods.SQL_exec(string.Format("INSERT INTO Lieferant (Lieferant, Adr_ID ) VALUES ('{0}', {1})",
                         txt_lief_ken.Text, adr_id));
@@ -531,7 +531,9 @@ namespace LET_Auftragsverwaltung
 
                 UC_Parameter_lbx_lief_fill();
 
-
+                cBx_stoff_lief_02.Items.Clear();
+                cBx_stoff_lief.Items.Clear();
+                UC_Parameter_cbx_stoff_lief_fill();
             }
         }
 
@@ -591,12 +593,12 @@ namespace LET_Auftragsverwaltung
                         txt_pers_hnr.Text = sqlReader[3].ToString();
                         txt_pers_str.Text = sqlReader[4].ToString();
                         sqlReader.Close();
-                        Connection.Close();
+                        
                     }
 
                     catch (Exception f)
                     {
-                        Connection.Close();
+                        
                         MessageBox.Show("Fehler in der SQL Abfrage(lbx_pers): \n\n" + f.Message, "Fehler",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
@@ -619,7 +621,7 @@ namespace LET_Auftragsverwaltung
                 }
                 catch (Exception f)
                 {
-                    Connection.Close();
+                    
                     MessageBox.Show("Fehler in der SQL Abfrage(Personal Delete): \n\n" + f.Message, "Fehler",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -676,12 +678,12 @@ namespace LET_Auftragsverwaltung
                         txt_lief_hnr.Text = sqlReader[3].ToString();
                         txt_lief_str.Text = sqlReader[4].ToString();
                         sqlReader.Close();
-                        Connection.Close();
+                        
                     }
 
                     catch (Exception f)
                     {
-                        Connection.Close();
+                        
                         MessageBox.Show("Fehler in der SQL Abfrage(lbx_pers): \n\n" + f.Message, "Fehler",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
@@ -709,7 +711,7 @@ namespace LET_Auftragsverwaltung
 
                     var adr_id = sqlReader.GetInt32(0);
 
-                    Connection.Close();
+                    
 
                     CS_SQL_methods.SQL_exec(string.Format(
                         "UPDATE adressen SET Land = '{0}', PLZ = '{1}', Ort = '{2}', Hausnummer = '{3}', Strasse = '{4}' WHERE Adr_ID = {5}",
@@ -719,7 +721,7 @@ namespace LET_Auftragsverwaltung
                 }
                 catch (Exception f)
                 {
-                    Connection.Close();
+                    
                     MessageBox.Show("Fehler in der SQL Abfrage(Personal Update): \n\n" + f.Message, "Fehler",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -760,7 +762,7 @@ namespace LET_Auftragsverwaltung
 
                     var adr_id = sqlReader.GetInt32(0);
 
-                    Connection.Close();
+                    
 
                     CS_SQL_methods.SQL_exec(string.Format(
                         "UPDATE adressen SET Land = '{0}', PLZ = '{1}', Ort = '{2}', Hausnummer = '{3}', Strasse = '{4}' WHERE Adr_ID = {5}",
@@ -770,7 +772,7 @@ namespace LET_Auftragsverwaltung
                 }
                 catch (Exception f)
                 {
-                    Connection.Close();
+                    
                     MessageBox.Show("Fehler in der SQL Abfrage(Lieferant Update): \n\n" + f.Message, "Fehler",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -805,7 +807,7 @@ namespace LET_Auftragsverwaltung
 
                     CS_SQL_methods.Open();
                     var pers_funk_ext = Convert.ToInt32(cmd_check.ExecuteScalar().ToString());
-                    Connection.Close();
+                    
 
                     if (pers_funk_ext > 0)
                         MessageBox.Show("Person hat Funktion schon", "Infomation", MessageBoxButtons.OK,
@@ -819,7 +821,7 @@ namespace LET_Auftragsverwaltung
 
                 catch (Exception f)
                 {
-                    Connection.Close();
+                    
                     MessageBox.Show("Fehler in der SQL Abfrage(Personal Funktion): \n\n" + f.Message, "Fehler",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -842,7 +844,7 @@ namespace LET_Auftragsverwaltung
                 }
                 catch (Exception f)
                 {
-                    Connection.Close();
+                    
                     MessageBox.Show("Fehler in der SQL Abfrage(Personal Funktion): \n\n" + f.Message, "Fehler",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -946,7 +948,7 @@ namespace LET_Auftragsverwaltung
                 }
                 catch (Exception f)
                 {
-                    Connection.Close();
+                    
                     MessageBox.Show("Fehler in der SQL Abfrage(Lieferant Delete): \n\n" + f.Message, "Fehler",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -992,12 +994,12 @@ namespace LET_Auftragsverwaltung
                                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
                                 cmd.ExecuteNonQuery();
                             }
-                            Connection.Close();
+                            
                         }
 
                         catch (Exception f)
                         {
-                            Connection.Close();
+                            
                             SQL_Fehler(f);
                         }
 
@@ -1064,12 +1066,15 @@ namespace LET_Auftragsverwaltung
                     CS_SQL_methods.Open();
                     sql = "SELECT stoff.ST_ID FROM stoff ORDER BY stoff.ST_ID DESC LIMIT 1";
                     cmd = new OdbcCommand(sql, Connection);
-                    CS_SQL_methods.SQL_exec(string.Format("INSERT INTO stoff_lieferant (`ST_ID`,`L_ID`) VALUES ({0},{1})",cmd.ExecuteScalar().ToString(), cbx_stoff_lief.SelectedValue.ToString()));
+                    CS_SQL_methods.SQL_exec(string.Format("INSERT INTO stoff_lieferant (`ST_ID`,`L_ID`) VALUES ({0},{1})",cmd.ExecuteScalar().ToString(), cBx_stoff_lief.SelectedValue.ToString()));
                 }
                 else
                 {
                     Message_Bild_used_in_DB();
                 }
+
+                cbx_stoff_edit.Items.Clear();
+                UC_Parameter_lbx_stoff_fill();
 
             }
         }
@@ -1107,7 +1112,7 @@ namespace LET_Auftragsverwaltung
                 CS_SQL_methods.Open();
                 if (pBx_Stoff_02?.Image?.Tag as string == null || Convert.ToInt32(cmd.ExecuteScalar().ToString()) <= 0)
                 {
-                    Connection.Close();
+                    
 
                     CS_SQL_methods.SQL_exec(string.Format(
                         "UPDATE Stoff SET `Stoff` = '{0}', `Bild` = '{1}', `deaktiviert` = {3} WHERE Stoff.ST_ID = {2}",
@@ -1118,7 +1123,7 @@ namespace LET_Auftragsverwaltung
                         cbx_stoff_edit.SelectedValue));
 
                     CS_SQL_methods.SQL_exec(string.Format("INSERT INTO stoff_lieferant (`ST_ID`,`L_ID`) VALUES ({0},{1})",
-                        cbx_stoff_edit.SelectedValue, cbx_stoff_lief.SelectedValue));
+                        cbx_stoff_edit.SelectedValue, cBx_stoff_lief.SelectedValue));
                 }
                 else
                 {
@@ -1188,7 +1193,7 @@ namespace LET_Auftragsverwaltung
                             }
                     }
 
-                    Connection.Close();
+                    
                 }
         }
 

@@ -130,7 +130,7 @@ namespace LET_Auftragsverwaltung
                     //data.Montage_Datum = Convert.ToDateTime(reader[""];
                     this.data.AddLast(data);
                 }
-                Connection.Close();
+                
                 oLV_Overview.SetObjects(data);
 
                 oLV_Overview.TintSortColumn = true;

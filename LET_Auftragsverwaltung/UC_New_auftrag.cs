@@ -201,7 +201,7 @@ namespace LET_Auftragsverwaltung
                     {
                         MessageBox.Show("Fehler in der SQL Abfrage(Neue Auftrag: Fill CBX Stoff): \n\n" + f.Message,
                             "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        Connection.Close();
+                        
                     }
                 }
             }
@@ -243,7 +243,7 @@ namespace LET_Auftragsverwaltung
                     sqlReader.Read();
                     Object_auf item = new Object_auf(( int ) sqlReader[0], ( string ) sqlReader[1]);
                     bool added = false;
-                    connection.Close();
+                    
 
                 if (lbx_auftrag.Items.Count != 0)
                 {
@@ -312,7 +312,7 @@ namespace LET_Auftragsverwaltung
                         sqlReader = cmd.ExecuteReader();
                         sqlReader.Read();
                         int teile_stoff_ID = Convert.ToInt32(sqlReader[0]);
-                        Connection.Close();
+                        
 
 
                         CS_SQL_methods.SQL_exec(string.Format(
@@ -334,7 +334,7 @@ namespace LET_Auftragsverwaltung
                         sqlReader.Read();
 
                         int auf_id = sqlReader.GetInt32(0);
-                        Connection.Close();
+                        
 
                         CS_SQL_methods.SQL_exec(string.Format("INSERT INTO auftrags.teile (teile.ID, teile.T_St_ID) VALUES ({0}, {1})",
                             auf_id, teile_stoff_ID));

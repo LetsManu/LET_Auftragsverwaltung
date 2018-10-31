@@ -29,7 +29,7 @@ while (reader.Read())
     lBx_Laender.Items.Add(reader["Bezeichnung"]);
 }
 //Datenbank schlieﬂen
-Connection.Close();
+
 
 
 

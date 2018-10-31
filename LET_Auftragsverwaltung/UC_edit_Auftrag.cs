@@ -79,7 +79,7 @@ namespace LET_Auftragsverwaltung
 
 
 
-                Connection.Close();
+                
             }
         }
 
@@ -97,7 +97,7 @@ namespace LET_Auftragsverwaltung
                     OdbcDataAdapter dc = new OdbcDataAdapter(sql, Connection);
                     DataTable dtStatus = new DataTable();
                     dc.Fill(dtStatus);
-                    Connection.Close();
+                    
 
 
                     cbx_auftragsstatus.DataSource = dtStatus;
@@ -190,7 +190,7 @@ namespace LET_Auftragsverwaltung
                 }
                 catch (Exception f)
                 {
-                    Connection.Close();
+                    
                     MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Fill LBX Auftrag): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -271,7 +271,7 @@ namespace LET_Auftragsverwaltung
                 }
                 catch (Exception f)
                 {
-                    Connection.Close();
+                    
                     MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Fill LBX Auftrag): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -302,7 +302,7 @@ namespace LET_Auftragsverwaltung
                     {
                         MessageBox.Show("Fehler in der SQL Abfrage(EDIT Auftrag: Fill CBX Stoff): \n\n" + f.Message,
                             "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        Connection.Close();
+                        
                     }
                 }
             }
@@ -447,7 +447,7 @@ namespace LET_Auftragsverwaltung
                 OdbcDataReader sql_read = cmd.ExecuteReader();
                 sql_read.Read();
                 a_ID = Convert.ToInt32(sql_read[0].ToString());
-                Connection.Close();
+                
             CS_SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
 
                 AB_AZ_Controll();
@@ -471,7 +471,7 @@ namespace LET_Auftragsverwaltung
                 OdbcDataReader sql_Reader = cmd.ExecuteReader();
                 sql_Reader.Read();
                 a_ID = Convert.ToInt32(sql_Reader[0].ToString());
-                Connection.Close();
+                
 
             CS_SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_DATE = '{0}' WHERE A_ID = {1}", DateTime.Now.Date.ToString("yyyy-MM-dd"), a_ID));
 
@@ -495,7 +495,7 @@ namespace LET_Auftragsverwaltung
                 OdbcDataReader sql_reader = cmd.ExecuteReader();
                 sql_reader.Read();
                 s_ID = Convert.ToInt32(sql_reader[0].ToString());
-                Connection.Close();
+                
                 CS_SQL_methods.SQL_exec(string.Format("UPDATE schatten SET Schattendatum = '{0}', P_ID = {1}, Notiz = '{2}' WHERE S_ID = {3}", dtp_schatten.Value.ToString("yyyy-MM-dd"), cbx_schatten_pers.SelectedValue, rtx_schatten.Text, s_ID));
 
                 Schatten_Controll();
@@ -526,7 +526,7 @@ namespace LET_Auftragsverwaltung
 
                 p_ID = Convert.ToInt32(sql_reader[0].ToString());
                 sql_reader.Close();
-                Connection.Close();
+                
 
                 //TODO MAYBE WORKS NOW
                 if (p_ID != 0)
@@ -538,7 +538,7 @@ namespace LET_Auftragsverwaltung
                     sql_reader.Read();
                     p_ID = Convert.ToInt32(sql_reader[0].ToString());
                     sql_reader.Close();
-                    Connection.Close();
+                    
 
                     CS_SQL_methods.SQL_exec(string.Format(
                         "UPDATE teile_persenning Lieferdatum = '{0}', Bestelldatum = '{1}' WHERE T_P_ID = {2}",
@@ -558,7 +558,7 @@ namespace LET_Auftragsverwaltung
                     sql_reader.Read();
                     p_ID = Convert.ToInt32(sql_reader[0].ToString());
                     sql_reader.Close();
-                    Connection.Close();
+                    
                     CS_SQL_methods.SQL_exec(string.Format("UPDATE teile SET T_P_ID = {0} WHERE ID = {1}", p_ID, id));
                 }
 
@@ -604,7 +604,7 @@ namespace LET_Auftragsverwaltung
                 btn_ab_az_an.Enabled = true;
                 btn_ab_az_be.Enabled = false;
             }
-            Connection.Close();
+            
 
 
         }
@@ -635,7 +635,7 @@ namespace LET_Auftragsverwaltung
             {
                 dtp_schatten.Value = DateTime.Today.Date;
             }
-            Connection.Close();
+            
         }
 
         private void Persenning_Controll()
@@ -685,7 +685,7 @@ namespace LET_Auftragsverwaltung
                 dtp_persenning_best.Value = DateTime.Today;
             }
 
-            Connection.Close();
+            
 
         }
 
