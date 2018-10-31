@@ -35,6 +35,7 @@
             this.pbx_ftp = new System.Windows.Forms.PictureBox();
             this.tmr = new System.Windows.Forms.Timer(this.components);
             this.label3 = new System.Windows.Forms.Label();
+            this.tmr_para = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbx_mysql)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_ftp)).BeginInit();
             this.SuspendLayout();
@@ -97,6 +98,12 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Status";
             // 
+            // tmr_para
+            // 
+            this.tmr_para.Enabled = true;
+            this.tmr_para.Interval = 2500;
+            this.tmr_para.Tick += new System.EventHandler(this.tmr_para_Tick);
+            // 
             // UC_Connect_Show
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -109,7 +116,6 @@
             this.Controls.Add(this.label1);
             this.Name = "UC_Connect_Show";
             this.Size = new System.Drawing.Size(506, 45);
-            this.VisibleChanged += new System.EventHandler(this.UC_Connect_Show_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.pbx_mysql)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_ftp)).EndInit();
             this.ResumeLayout(false);
@@ -125,5 +131,6 @@
         private System.Windows.Forms.PictureBox pbx_ftp;
         private System.Windows.Forms.Label label3;
         public  System.Windows.Forms.Timer tmr;
+        private System.Windows.Forms.Timer tmr_para;
     }
 }

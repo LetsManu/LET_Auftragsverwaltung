@@ -207,23 +207,6 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-        private void txt_info_kauf_TextChanged(object sender, EventArgs e)
-        {
-            btn_new_auf_save.Enabled = true;
-            if (txt_info_tech.Text == "" && txt_info_kauf.Text == "")
-            {
-                btn_new_auf_save.Enabled = false;
-            }
-        }
-
-        private void txt_info_tech_TextChanged(object sender, EventArgs e)
-        {
-            btn_new_auf_save.Enabled = true;
-            if (txt_info_tech.Text == "" && txt_info_kauf.Text == "")
-            {
-                btn_new_auf_save.Enabled = false;
-            }
-        }
 
 
 
@@ -291,24 +274,20 @@ namespace LET_Auftragsverwaltung
                 {
                     try
                     {
-                        OdbcConnection connection = Connection;
+                        CS_SQL_methods.SQL_exec("INSERT INTO auftrags.schatten (schatten.Notiz) VALUES ('')");
+                        string sql = "SELECT * FROM schatten ORDER BY schatten.S_ID DESC LIMIT 1";
+                        OdbcCommand cmd = new OdbcCommand(sql, Connection);
                         CS_SQL_methods.Open();
-                        string sql = "INSERT INTO auftrags.schatten (schatten.Notitz) VALUES ('')";
-                        OdbcCommand cmd = new OdbcCommand(sql, connection);
-                        cmd.ExecuteNonQuery();
-                        sql = "SELECT * FROM schatten ORDER BY schatten.S_ID DESC LIMIT 1";
-                        cmd = new OdbcCommand(sql, connection);
-                        OdbcDataReader sqlReader = cmd.ExecuteReader();
+                    OdbcDataReader sqlReader = cmd.ExecuteReader();
                         sqlReader.Read();
                         int schatten_ID = Convert.ToInt32(sqlReader[0]);
-                        sql = String.Format("INSERT INTO auftrags.teile_stoff (teile_stoff.ST_ID) VALUES ({0})",
-                            cbx_new_auf_stoff.SelectedValue);
-                        cmd = new OdbcCommand(sql, connection);
-                        cmd.ExecuteNonQuery();
+                        sqlReader.Close();
+                        CS_SQL_methods.SQL_exec(String.Format("INSERT INTO auftrags.teile_stoff (teile_stoff.ST_ID) VALUES ({0})",
+                            cbx_new_auf_stoff.SelectedValue));
+                    CS_SQL_methods.Open();
 
-
-                        sql = "SELECT * FROM teile_stoff ORDER BY teile_stoff.T_ST_ID DESC LIMIT 1";
-                        cmd = new OdbcCommand(sql, connection);
+                    sql = "SELECT * FROM teile_stoff ORDER BY teile_stoff.T_ST_ID DESC LIMIT 1";
+                        cmd = new OdbcCommand(sql, Connection);
                         sqlReader = cmd.ExecuteReader();
                         sqlReader.Read();
                         int teile_stoff_ID = Convert.ToInt32(sqlReader[0]);
@@ -328,7 +307,7 @@ namespace LET_Auftragsverwaltung
                             date_erstell.Value.ToString("yyyy-MM-dd"), date_mont.Value.ToString("yyyy-MM-dd"),
                             txt_auf_proj_ken.Text, schatten_ID, txt_info_kauf.Text, txt_info_tech.Text);
 
-                        OdbcCommand cmd_read = new OdbcCommand(sql2, connection);
+                        OdbcCommand cmd_read = new OdbcCommand(sql2, Connection);
                         sqlReader = cmd_read.ExecuteReader();
 
                         sqlReader.Read();
@@ -356,8 +335,8 @@ namespace LET_Auftragsverwaltung
                     }
                     finally
                     {
-                        MessageBox.Show("Person wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
+                        MessageBox.Show("Auftrag wurde gespeichert", "Anfrage erfolgreich", MessageBoxButtons.OK,
+                            MessageBoxIcon.Asterisk);
 
                     }
                 }
