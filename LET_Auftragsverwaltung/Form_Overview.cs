@@ -15,6 +15,18 @@ namespace LET_Auftragsverwaltung
         public Form_Overview( )
         {
             InitializeComponent();
+            this.KeyPreview = true;
+        }
+
+        
+
+        private void Form_Overview_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F5)
+            {
+                UC_Overview.Update_Overview();
+                e.Handled = true;//Event nicht an andere Controls weiter leiten.
+            }
         }
     }
 }

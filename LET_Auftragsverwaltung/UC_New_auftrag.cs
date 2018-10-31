@@ -26,6 +26,7 @@ namespace LET_Auftragsverwaltung
         public UC_New_auftrag( )
         {
             InitializeComponent();
+            date_mont.Format = DateTimePickerFormat.Short;
         }
 
         private void UC_New_auftrag_Load(object sender, EventArgs e)
@@ -304,6 +305,8 @@ namespace LET_Auftragsverwaltung
                             cbx_new_auf_stoff.SelectedValue);
                         cmd = new OdbcCommand(sql, connection);
                         cmd.ExecuteNonQuery();
+
+
                         sql = "SELECT * FROM teile_stoff ORDER BY teile_stoff.T_ST_ID DESC LIMIT 1";
                         cmd = new OdbcCommand(sql, connection);
                         sqlReader = cmd.ExecuteReader();
@@ -360,29 +363,12 @@ namespace LET_Auftragsverwaltung
                 }
             }
         
-
-        private void cbx_new_auf_lief_SelectedValueChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void cbx_new_auf_lief_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void cbx_new_auf_lief_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void cbx_new_auf_lief_Validated(object sender, EventArgs e)
-        {
-        }
-
         private void cbx_new_auf_lief_DropDownClosed(object sender, EventArgs e)
         {
             cbx_new_auf_stoff.Enabled = true;
             UC_New_auftrag_fill_cbx_stoff_lief();
         }
-
+        //tets
         public class Object_auf
         {
             public int ID;
