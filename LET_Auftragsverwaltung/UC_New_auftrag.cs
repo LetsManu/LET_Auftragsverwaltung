@@ -305,6 +305,8 @@ namespace LET_Auftragsverwaltung
                             cbx_new_auf_stoff.SelectedValue);
                         cmd = new OdbcCommand(sql, connection);
                         cmd.ExecuteNonQuery();
+
+
                         sql = "SELECT * FROM teile_stoff ORDER BY teile_stoff.T_ST_ID DESC LIMIT 1";
                         cmd = new OdbcCommand(sql, connection);
                         sqlReader = cmd.ExecuteReader();
