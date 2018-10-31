@@ -12,9 +12,7 @@ namespace LET_Auftragsverwaltung
     public partial class UC_Parameter : UserControl
     {
         private readonly string[] extensions = {"PNG", "JPG", "TIFF", "GIF"};
-        private readonly string pw = "cola0815";
-        private readonly string server = "ftp://192.168.16.192/";
-        private readonly string user = "admin";
+        private readonly string server = "ftp://localhost/";
 
         private string File_Path_FTP = "";
 
@@ -47,7 +45,7 @@ namespace LET_Auftragsverwaltung
                     var sql2 = string.Format(
                         "SELECT Adr_ID FROM adressen WHERE Land='{0}' AND PLZ='{1}' AND Ort='{2}' AND Hausnummer='{3}' AND Strasse='{4}' LIMIT 1",
                         txt_pers_land.Text, txt_pers_plz.Text, txt_pers_ort.Text, txt_pers_hnr.Text, txt_pers_str.Text);
-                    Connection.Open();
+                    CS_SQL_methods.Open();
                     var cmd_read = new OdbcCommand(sql2, Connection);
                     var sqlReader = cmd_read.ExecuteReader();
 
@@ -498,7 +496,7 @@ namespace LET_Auftragsverwaltung
                         "SELECT Adr_ID FROM adressen WHERE Land='{0}' AND PLZ='{1}' AND Ort='{2}' AND Hausnummer='{3}' AND Strasse='{4}' LIMIT 1",
                         txt_lief_land.Text, txt_lief_plz.Text, txt_lief_ort.Text, txt_lief_hnr.Text,
                         txt_lief_str.Text);
-                    Connection.Open();
+                    CS_SQL_methods.Open();
                     var cmd_read = new OdbcCommand(sql, Connection);
                     var sqlReader = cmd_read.ExecuteReader();
 
@@ -569,7 +567,7 @@ namespace LET_Auftragsverwaltung
                         var sql = string.Format("SELECT * FROM personal WHERE P_ID = {0} LIMIT 1",
                             lbx_pers.SelectedValue);
 
-                        Connection.Open();
+                        CS_SQL_methods.Open();
                         var cmd_read = new OdbcCommand(sql, Connection);
                         var sqlReader = cmd_read.ExecuteReader();
                         sqlReader.Read();
@@ -657,7 +655,7 @@ namespace LET_Auftragsverwaltung
                         var sql = string.Format("SELECT * FROM lieferant WHERE L_ID = {0} LIMIT 1",
                             lbx_lief.SelectedValue);
 
-                        Connection.Open();
+                        CS_SQL_methods.Open();
                         var cmd_read = new OdbcCommand(sql, Connection);
                         var sqlReader = cmd_read.ExecuteReader();
                         sqlReader.Read();
@@ -703,7 +701,7 @@ namespace LET_Auftragsverwaltung
                   
                     var sql2 = string.Format("SELECT Adr_ID FROM personal WHERE P_ID = {0}",
                         lbx_pers.SelectedValue);
-                    Connection.Open();
+                    CS_SQL_methods.Open();
                     var cmd_read = new OdbcCommand(sql2, Connection);
                     var sqlReader = cmd_read.ExecuteReader();
 
@@ -752,7 +750,7 @@ namespace LET_Auftragsverwaltung
                         "UPDATE lieferant SET lieferant= '{0}' WHERE L_ID = {1}",
                         txt_lief_ken.Text, lbx_lief.SelectedValue));
 
-                    Connection.Open();
+                    CS_SQL_methods.Open();
                     var sql2 = string.Format("SELECT Adr_ID FROM lieferant WHERE L_ID = {0}",
                         lbx_lief.SelectedValue);
                     var cmd_read = new OdbcCommand(sql2, Connection);
@@ -805,7 +803,7 @@ namespace LET_Auftragsverwaltung
 
                     var cmd_check = new OdbcCommand(sql_controll, Connection);
 
-                    Connection.Open();
+                    CS_SQL_methods.Open();
                     var pers_funk_ext = Convert.ToInt32(cmd_check.ExecuteScalar().ToString());
                     Connection.Close();
 
@@ -980,7 +978,7 @@ namespace LET_Auftragsverwaltung
                             string sql = string.Format("INSERT INTO stoff_lieferant (L_ID,ST_ID) VALUES ({0},{1})", cbx_stoff_lief.SelectedValue, cbx_stoff_zu_stoff.SelectedIndex);
 
 
-                            Connection.Open();
+                            CS_SQL_methods.Open();
 
 
                             OdbcCommand cmd_check = new OdbcCommand(sql_controll, Connection);
@@ -1047,31 +1045,32 @@ namespace LET_Auftragsverwaltung
                     pbx_stoff.Image.Tag as string);
                 var cmd = new OdbcCommand(sql, Connection);
 
-                Connection.Open();
+                CS_SQL_methods.Open();
                 if (Convert.ToInt32(cmd.ExecuteScalar().ToString()) <= 0)
                 {
                     using (var client = new WebClient())
                     {
-                        client.Credentials = new NetworkCredential(user, pw);
+                        client.Credentials = new NetworkCredential(CS_FTP.User, CS_FTP.Pw);
                         client.UploadFile(server + pbx_stoff.Image.Tag, WebRequestMethods.Ftp.UploadFile,
                             ofd_stoff_up.FileName);
                     }
 
+
                     CS_SQL_methods.SQL_exec(string.Format("INSERT INTO Stoff (`Stoff`,`Bild`) VALUES ('{0}','{1}')", tBx_new_stoff.Text,
                         pbx_stoff.Image.Tag as string));
 
+
+
+                    CS_SQL_methods.Open();
                     sql = "SELECT stoff.ST_ID FROM stoff ORDER BY stoff.ST_ID DESC LIMIT 1";
                     cmd = new OdbcCommand(sql, Connection);
-                    CS_SQL_methods.SQL_exec(string.Format("INSERT INTO stoff_lieferant (`ST_ID`,`L_ID`) VALUES ({0},{1})",
-                        cmd.ExecuteScalar().ToString(), cbx_stoff_lief.SelectedValue.ToString()));
-                    cmd.ExecuteNonQuery();
+                    CS_SQL_methods.SQL_exec(string.Format("INSERT INTO stoff_lieferant (`ST_ID`,`L_ID`) VALUES ({0},{1})",cmd.ExecuteScalar().ToString(), cbx_stoff_lief.SelectedValue.ToString()));
                 }
                 else
                 {
                     Message_Bild_used_in_DB();
                 }
 
-                Connection.Close();
             }
         }
 
@@ -1082,7 +1081,7 @@ namespace LET_Auftragsverwaltung
                 if (pBx_Stoff_02?.Image?.Tag?.GetType() == typeof(string)) //Überprüfung ob Klasse string ist
                 {
                     var request = (FtpWebRequest) WebRequest.Create(server + pBx_Stoff_02.Image.Tag);
-                    request.Credentials = new NetworkCredential(user, pw);
+                    request.Credentials = new NetworkCredential(CS_FTP.User, CS_FTP.Pw);
                     request.Method = WebRequestMethods.Ftp.GetFileSize;
                     try
                     {
@@ -1094,7 +1093,7 @@ namespace LET_Auftragsverwaltung
                         if (response.StatusCode != FtpStatusCode.ActionNotTakenFileUnavailable)
                             using (var client = new WebClient())
                             {
-                                client.Credentials = new NetworkCredential(user, pw);
+                                client.Credentials = new NetworkCredential(CS_FTP.User, CS_FTP.Pw);
                                 client.UploadFile(server + pBx_Stoff_02.Image.Tag, WebRequestMethods.Ftp.UploadFile,
                                     File_Path_FTP);
                             }
@@ -1105,7 +1104,7 @@ namespace LET_Auftragsverwaltung
                     pBx_Stoff_02?.Image?.Tag as string, cbx_stoff_edit.SelectedValue);
                 var cmd = new OdbcCommand(sql, Connection);
 
-                Connection.Open();
+                CS_SQL_methods.Open();
                 if (pBx_Stoff_02?.Image?.Tag as string == null || Convert.ToInt32(cmd.ExecuteScalar().ToString()) <= 0)
                 {
                     Connection.Close();
@@ -1142,7 +1141,7 @@ namespace LET_Auftragsverwaltung
                 if (cbx_stoff_edit.SelectedValue != null &&
                     cbx_stoff_edit.SelectedValue.ToString() != "System.Data.DataRowView")
                 {
-                    Connection.Open();
+                    CS_SQL_methods.Open();
                     var sql =
                         $"SELECT * FROM stoff WHERE stoff.ST_ID = {cbx_stoff_edit.SelectedValue}";
                     var cmd = new OdbcCommand(sql, Connection);
@@ -1168,7 +1167,7 @@ namespace LET_Auftragsverwaltung
                             try
                             {
                                 var client = new WebClient();
-                                client.Credentials = new NetworkCredential(user, pw);
+                                client.Credentials = new NetworkCredential(CS_FTP.User, CS_FTP.Pw);
                                 using (var stream =
                                     new MemoryStream(client.DownloadData(server + reader["Bild"])))
                                 {

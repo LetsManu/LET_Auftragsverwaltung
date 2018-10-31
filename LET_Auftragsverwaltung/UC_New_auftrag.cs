@@ -235,7 +235,7 @@ namespace LET_Auftragsverwaltung
                 try
                 {
                     OdbcConnection connection = Connection;
-                    connection.Open();
+                    CS_SQL_methods.Open();
                     string sql = string.Format("SELECT Art_ID,Art FROM auftragsart WHERE Art_ID = {0}",
                         cbx_auftrag.SelectedValue);
                     OdbcCommand cmd = new OdbcCommand(sql, connection);
@@ -292,7 +292,7 @@ namespace LET_Auftragsverwaltung
                     try
                     {
                         OdbcConnection connection = Connection;
-                        connection.Open();
+                        CS_SQL_methods.Open();
                         string sql = "INSERT INTO auftrags.schatten (schatten.Notitz) VALUES ('')";
                         OdbcCommand cmd = new OdbcCommand(sql, connection);
                         cmd.ExecuteNonQuery();
@@ -321,7 +321,7 @@ namespace LET_Auftragsverwaltung
                             date_erstell.Value.ToString("yyyy-MM-dd"), date_mont.Value.ToString("yyyy-MM-dd"),
                             txt_auf_proj_ken.Text, schatten_ID, txt_info_kauf.Text, txt_info_tech.Text));
 
-                        Connection.Open();
+                        CS_SQL_methods.Open();
                         string sql2 = string.Format(
                             "SELECT ID FROM auftraege WHERE auftraege.`Auftrags_NR` = '{0}' AND auftraege.`Fertigungsstatus` = {1} AND auftraege.Projektverantwortlicher = {2} AND auftraege.Planer_Techniker = {3} AND auftraege.Erstelldatum = '{4}' AND auftraege.Montage_Datum = '{5}' AND auftraege.Projektbezeichnung = '{6}' AND auftraege.`Schatten` = {7} AND auftraege.Notitz_Kauf = '{8}' AND auftraege.Notitz_Tech = '{9}'",
                             txt_auftrag_nr.Text, 6, cbx_verant.SelectedValue, cbx_tech.SelectedValue,

@@ -86,7 +86,7 @@ namespace LET_Auftragsverwaltung
                     result.Width = 100;
                 }
 
-                Connection.Open();
+                CS_SQL_methods.Open();
 
                 List<string> auftraege_ID = new List<string>();
 

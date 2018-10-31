@@ -46,7 +46,7 @@ namespace LET_Auftragsverwaltung
             {
                 string sql = "SELECT COUNT(ID) FROM auftraege WHERE ID > 0";
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                Connection.Open();
+                CS_SQL_methods.Open();
                 if (!cmd.ExecuteNonQuery().Equals(0))
                 {
                     b_mysql = Brushes.Green;
@@ -63,7 +63,7 @@ namespace LET_Auftragsverwaltung
             {
                 FtpWebRequest request = null;
 
-                request = (FtpWebRequest)WebRequest.Create("ftp://" + CS_FTP.Server_IP + " / ");
+                request = (FtpWebRequest)WebRequest.Create("ftps://" + CS_FTP.Server_IP + " / ");
                 request.Credentials = new NetworkCredential(CS_FTP.User, CS_FTP.Pw);
                 request.Method = WebRequestMethods.Ftp.ListDirectory;
                 using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
@@ -71,7 +71,7 @@ namespace LET_Auftragsverwaltung
                     b_ftp = Brushes.Green;
                 }
             }
-            catch
+            catch(Exception exception)
             {
                 b_ftp = Brushes.Red;
             }

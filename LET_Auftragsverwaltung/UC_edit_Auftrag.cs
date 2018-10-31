@@ -63,7 +63,7 @@ namespace LET_Auftragsverwaltung
 
                 string sql = "SELECT * FROM auftraege WHERE id = " + id;
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                Connection.Open();
+                CS_SQL_methods.Open();
                 OdbcDataReader sqlReader = cmd.ExecuteReader();
                 sqlReader.Read();
 
@@ -92,7 +92,7 @@ namespace LET_Auftragsverwaltung
                 try
                 {
 
-                    Connection.Open();
+                    CS_SQL_methods.Open();
                     string sql = "SELECT F_ID, Status FROM fertigungsstatus WHERE deaktiviert<>true";
                     OdbcDataAdapter dc = new OdbcDataAdapter(sql, Connection);
                     DataTable dtStatus = new DataTable();
@@ -443,7 +443,7 @@ namespace LET_Auftragsverwaltung
                     DateTime.Now.Date.ToString("yyyy-MM-dd")));
                 string sql = "SELECT A_ID FROM ab_az ORDER BY A_ID DESC LIMIT 1";
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                Connection.Open();
+                CS_SQL_methods.Open();
                 OdbcDataReader sql_read = cmd.ExecuteReader();
                 sql_read.Read();
                 a_ID = Convert.ToInt32(sql_read[0].ToString());
@@ -467,7 +467,7 @@ namespace LET_Auftragsverwaltung
 
                 string sql = "SELECT AB_AZ FROM auftraege Where ID = " + id;
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                Connection.Open();
+                CS_SQL_methods.Open();
                 OdbcDataReader sql_Reader = cmd.ExecuteReader();
                 sql_Reader.Read();
                 a_ID = Convert.ToInt32(sql_Reader[0].ToString());
@@ -491,7 +491,7 @@ namespace LET_Auftragsverwaltung
                 int s_ID = 0;
                 string sql = "SELECT Schatten FROM auftraege WHERE ID = " + id;
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                Connection.Open();
+                CS_SQL_methods.Open();
                 OdbcDataReader sql_reader = cmd.ExecuteReader();
                 sql_reader.Read();
                 s_ID = Convert.ToInt32(sql_reader[0].ToString());
@@ -520,7 +520,7 @@ namespace LET_Auftragsverwaltung
 
                 sql = "SELECT T_P_ID FROM teile WHERE ID = " + id;
                 cmd = new OdbcCommand(sql, Connection);
-                Connection.Open();
+                CS_SQL_methods.Open();
                 sql_reader = cmd.ExecuteReader();
                 sql_reader.Read();
 
@@ -533,7 +533,7 @@ namespace LET_Auftragsverwaltung
                 {
                     sql = "SELECT T_P_ID FROM teile WHERE ID = " + id;
                     cmd = new OdbcCommand(sql, Connection);
-                    Connection.Open();
+                    CS_SQL_methods.Open();
                     sql_reader = cmd.ExecuteReader();
                     sql_reader.Read();
                     p_ID = Convert.ToInt32(sql_reader[0].ToString());
@@ -553,7 +553,7 @@ namespace LET_Auftragsverwaltung
                         dtp_persenning_best.Value.ToString("yyyy-MM-dd")));
                     sql = "SELECT T_P_ID FROM teile_persenning ORDER BY T_P_ID DESC LIMIT 1";
                     cmd = new OdbcCommand(sql, Connection);
-                    Connection.Open();
+                    CS_SQL_methods.Open();
                     sql_reader = cmd.ExecuteReader();
                     sql_reader.Read();
                     p_ID = Convert.ToInt32(sql_reader[0].ToString());
@@ -579,7 +579,7 @@ namespace LET_Auftragsverwaltung
             string sql = "SELECT AB_AZ FROM auftraege WHERE ID = " + id;
 
             OdbcCommand cmd = new OdbcCommand(sql, Connection);
-            Connection.Open();
+            CS_SQL_methods.Open();
             object obj_db = cmd.ExecuteScalar();
             if (obj_db != DBNull.Value)
             {
@@ -614,7 +614,7 @@ namespace LET_Auftragsverwaltung
             object obj_db;
             string sql = "SELECT Schatten FROM auftraege WHERE ID = " + id;
             OdbcCommand cmd = new OdbcCommand(sql, Connection);
-            Connection.Open();
+            CS_SQL_methods.Open();
             OdbcDataReader sql_reader = cmd.ExecuteReader();
             sql_reader.Read();
             string sql2 = "SELECT Schattendatum, P_ID, Notiz FROM schatten WHERE S_ID = " +
@@ -644,7 +644,7 @@ namespace LET_Auftragsverwaltung
             int p_ID;
             string sql = "SELECT T_P_ID FROM teile WHERE ID = " + id;
             OdbcCommand cmd = new OdbcCommand(sql, Connection);
-            Connection.Open();
+            CS_SQL_methods.Open();
             OdbcDataReader sql_reader = cmd.ExecuteReader();
             sql_reader.Read();
             p_ID = Convert.ToInt32(sql_reader[0].ToString());

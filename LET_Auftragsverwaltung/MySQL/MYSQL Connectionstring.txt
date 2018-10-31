@@ -19,7 +19,7 @@ private OdbcConnection Connection
 
 
 //Verbindung öffnen
-Connection.Open();
+CS_SQL_methods.Open();
 //Daten Lesen / Schreiben
 string sql = "SELECT * FROM tab_Land ORDER BY Bezeichnung";
 OdbcCommand cmd = new OdbcCommand(sql, Connection);
