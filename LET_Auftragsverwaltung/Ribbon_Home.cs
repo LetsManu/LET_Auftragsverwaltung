@@ -12,5 +12,10 @@ namespace LET_Auftragsverwaltung
         {
 
         }
+
+        private void btn_open_Main_Click(object sender, RibbonControlEventArgs e)
+        {
+
+        } 
     }
 }

@@ -3,7 +3,7 @@
     partial class Ribbon_Home : Microsoft.Office.Tools.Ribbon.RibbonBase
     {
         /// <summary>
-        /// Required designer variable.
+        /// Erforderliche Designervariable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
@@ -14,9 +14,9 @@
         }
 
         /// <summary> 
-        /// Clean up any resources being used.
+        /// Verwendete Ressourcen bereinigen.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">"true", wenn verwaltete Ressourcen gelöscht werden sollen, andernfalls "false".</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -26,52 +26,65 @@
             base.Dispose(disposing);
         }
 
-        #region Component Designer generated code
+        #region Vom Komponenten-Designer generierter Code
 
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// Erforderliche Methode für die Designerunterstützung.
+        /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ribbon_Home));
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
-            this.button1 = this.Factory.CreateRibbonButton();
+            this.btn_open_Main = this.Factory.CreateRibbonButton();
+            this.tab2 = this.Factory.CreateRibbonTab();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
+            this.tab2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab1
             // 
             this.tab1.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
+            this.tab1.ControlId.OfficeId = "TabMail";
             this.tab1.Groups.Add(this.group1);
-            this.tab1.Label = "TabAddIns";
+            this.tab1.Label = "TabMail";
             this.tab1.Name = "tab1";
+            this.tab1.Position = this.Factory.RibbonPosition.AfterOfficeId("Add-Ins");
             // 
             // group1
             // 
-            this.group1.Items.Add(this.button1);
-            this.group1.Label = "group1";
+            this.group1.Items.Add(this.btn_open_Main);
+            this.group1.Label = "LET-IT";
             this.group1.Name = "group1";
             // 
-            // button1
+            // btn_open_Main
             // 
-            this.button1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.button1.Label = "button1";
-            this.button1.Name = "button1";
-            this.button1.ShowImage = true;
+            this.btn_open_Main.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.btn_open_Main.Image = global::LET_Auftragsverwaltung.Properties.Resources.Tobi;
+            this.btn_open_Main.Label = "LET AV";
+            this.btn_open_Main.Name = "btn_open_Main";
+            this.btn_open_Main.ShowImage = true;
+            this.btn_open_Main.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btn_open_Main_Click);
+            // 
+            // tab2
+            // 
+            this.tab2.Label = "tab2";
+            this.tab2.Name = "tab2";
             // 
             // Ribbon_Home
             // 
             this.Name = "Ribbon_Home";
-            this.RibbonType = resources.GetString("$this.RibbonType");
+            this.RibbonType = "Microsoft.Outlook.Explorer";
             this.Tabs.Add(this.tab1);
+            this.Tabs.Add(this.tab2);
             this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.Ribbon_Home_Load);
             this.tab1.ResumeLayout(false);
             this.tab1.PerformLayout();
             this.group1.ResumeLayout(false);
             this.group1.PerformLayout();
+            this.tab2.ResumeLayout(false);
+            this.tab2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -80,7 +93,8 @@
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btn_open_Main;
+        private Microsoft.Office.Tools.Ribbon.RibbonTab tab2;
     }
 
     partial class ThisRibbonCollection

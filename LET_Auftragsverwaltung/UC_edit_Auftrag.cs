@@ -528,7 +528,6 @@ namespace LET_Auftragsverwaltung
                 sql_reader.Close();
                 Connection.Close();
 
-                //TODO MAYBE WORKS NOW
                 if (p_ID != 0)
                 {
                     sql = "SELECT T_P_ID FROM teile WHERE ID = " + id;
@@ -590,7 +589,7 @@ namespace LET_Auftragsverwaltung
                 sql_reader.Close();
                 Connection.Close();
 
-                //TODO MAYBE WORKS NOW
+                
                 if (s_ID != 0)
                 {
                     sql = "SELECT T_S_ID FROM teile WHERE ID = " + id;

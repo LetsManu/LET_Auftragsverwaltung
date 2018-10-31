@@ -237,7 +237,6 @@
     <Compile Include="Ribbon_Home.Designer.cs">
       <DependentUpon>Ribbon_Home.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ribbon_Start.cs" />
     <Compile Include="UC_Connect_Show.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -297,6 +296,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Ribbon_Home.resx">
       <DependentUpon>Ribbon_Home.cs</DependentUpon>
@@ -345,7 +345,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Ribbon_Start.xml" />
+    <None Include="Resources\Logo_transperent2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tobi.PNG" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
