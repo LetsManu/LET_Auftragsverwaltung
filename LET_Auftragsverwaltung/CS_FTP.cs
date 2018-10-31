@@ -18,7 +18,7 @@ namespace LET_Auftragsverwaltung
         public static string User => "admin";
         public static string[] Extensions => extensions;
 
-        private static string Server_IP
+        public static string Server_IP
         {
             get
             {

@@ -63,7 +63,7 @@ namespace LET_Auftragsverwaltung
             {
                 FtpWebRequest request = null;
 
-                request = (FtpWebRequest)WebRequest.Create("ftp://" + "81.10.155.134" + " / ");
+                request = (FtpWebRequest)WebRequest.Create("ftp://" + CS_FTP. + " / ");
                 request.Credentials = new NetworkCredential("admin", "cola0815");
                 request.Method = WebRequestMethods.Ftp.ListDirectory;
                 using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
