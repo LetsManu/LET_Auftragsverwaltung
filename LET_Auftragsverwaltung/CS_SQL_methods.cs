@@ -14,6 +14,11 @@ namespace LET_Auftragsverwaltung
 
         static private OdbcConnection Connection => CS_DB.Connection;
 
+        /// <summary>
+        /// Füllt DataTables mit der gewünschten SQL-Query
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
         static public DataTable Fill_Box(string sql)
         {
 
@@ -24,6 +29,10 @@ namespace LET_Auftragsverwaltung
             return dt_out;
         }
 
+        /// <summary>
+        /// Führt den SQL-Befehl aus. Es wird kein Con.Open benötigt!
+        /// </summary>
+        /// <param name="sql"></param>
         static public void SQL_exec(string sql)
         {
             Open();

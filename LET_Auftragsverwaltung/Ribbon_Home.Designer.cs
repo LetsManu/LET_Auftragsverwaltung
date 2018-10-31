@@ -37,10 +37,8 @@
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
             this.btn_open_Main = this.Factory.CreateRibbonButton();
-            this.tab2 = this.Factory.CreateRibbonTab();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
-            this.tab2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab1
@@ -67,24 +65,16 @@
             this.btn_open_Main.ShowImage = true;
             this.btn_open_Main.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btn_open_Main_Click);
             // 
-            // tab2
-            // 
-            this.tab2.Label = "tab2";
-            this.tab2.Name = "tab2";
-            // 
             // Ribbon_Home
             // 
             this.Name = "Ribbon_Home";
             this.RibbonType = "Microsoft.Outlook.Explorer";
             this.Tabs.Add(this.tab1);
-            this.Tabs.Add(this.tab2);
             this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.Ribbon_Home_Load);
             this.tab1.ResumeLayout(false);
             this.tab1.PerformLayout();
             this.group1.ResumeLayout(false);
             this.group1.PerformLayout();
-            this.tab2.ResumeLayout(false);
-            this.tab2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -94,7 +84,6 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btn_open_Main;
-        private Microsoft.Office.Tools.Ribbon.RibbonTab tab2;
     }
 
     partial class ThisRibbonCollection

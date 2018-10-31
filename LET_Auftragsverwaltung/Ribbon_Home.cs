@@ -15,7 +15,8 @@ namespace LET_Auftragsverwaltung
 
         private void btn_open_Main_Click(object sender, RibbonControlEventArgs e)
         {
-
+            LET_Auftragsverwaltung.Globals.ThisAddIn.Dispose();
+            LET_Auftragsverwaltung.Globals.ThisAddIn.BeginInit();
         } 
     }
 }

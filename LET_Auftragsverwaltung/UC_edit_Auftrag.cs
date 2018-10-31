@@ -581,25 +581,23 @@ namespace LET_Auftragsverwaltung
 
                 sql = "SELECT T_S_ID FROM teile WHERE ID = " + id;
                 cmd = new OdbcCommand(sql, Connection);
-                Connection.Open();
+                CS_SQL_methods.Open();
                 sql_reader = cmd.ExecuteReader();
                 sql_reader.Read();
 
                 s_ID = Convert.ToInt32(sql_reader[0].ToString());
                 sql_reader.Close();
-                Connection.Close();
 
                 
                 if (s_ID != 0)
                 {
                     sql = "SELECT T_S_ID FROM teile WHERE ID = " + id;
                     cmd = new OdbcCommand(sql, Connection);
-                    Connection.Open();
+                    CS_SQL_methods.Open();
                     sql_reader = cmd.ExecuteReader();
                     sql_reader.Read();
                     s_ID = Convert.ToInt32(sql_reader[0].ToString());
                     sql_reader.Close();
-                    Connection.Close();
 
                     CS_SQL_methods.SQL_exec(string.Format(
                         "UPDATE teile_sonder SET Lieferdatum = '{0}', Bestelldatum = '{1}' WHERE T_S_ID = {2}",
@@ -614,12 +612,12 @@ namespace LET_Auftragsverwaltung
                         dtp_sond_best.Value.ToString("yyyy-MM-dd")));
                     sql = "SELECT T_S_ID FROM teile_sonder ORDER BY T_S_ID DESC LIMIT 1";
                     cmd = new OdbcCommand(sql, Connection);
-                    Connection.Open();
+                    CS_SQL_methods.Open();
                     sql_reader = cmd.ExecuteReader();
                     sql_reader.Read();
                     s_ID = Convert.ToInt32(sql_reader[0].ToString());
                     sql_reader.Close();
-                    Connection.Close();
+
                     CS_SQL_methods.SQL_exec(string.Format("UPDATE teile SET T_S_ID = {0} WHERE ID = {1}", s_ID, id));
                 }
 
@@ -756,7 +754,7 @@ namespace LET_Auftragsverwaltung
             int s_ID;
             string sql = "SELECT T_S_ID FROM teile WHERE ID = " + id;
             OdbcCommand cmd = new OdbcCommand(sql, Connection);
-            Connection.Open();
+            CS_SQL_methods.Open();
             OdbcDataReader sql_reader = cmd.ExecuteReader();
             sql_reader.Read();
             s_ID = Convert.ToInt32(sql_reader[0].ToString());
@@ -797,7 +795,6 @@ namespace LET_Auftragsverwaltung
                 dtp_sond_best.Value = DateTime.Today;
             }
 
-            Connection.Close();
 
         }
 

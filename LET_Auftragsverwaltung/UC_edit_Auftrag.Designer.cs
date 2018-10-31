@@ -94,6 +94,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.dtp_sond_best = new System.Windows.Forms.DateTimePicker();
             this.dtp_sond_lief = new System.Windows.Forms.DateTimePicker();
+            this.tab_schluss = new System.Windows.Forms.TabPage();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_new_auf)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -450,6 +451,7 @@
             this.tabControl1.Controls.Add(this.tab_persennning);
             this.tabControl1.Controls.Add(this.tab_schatten);
             this.tabControl1.Controls.Add(this.tab_sond);
+            this.tabControl1.Controls.Add(this.tab_schluss);
             this.tabControl1.Location = new System.Drawing.Point(2, 5);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -767,6 +769,15 @@
             this.dtp_sond_lief.Size = new System.Drawing.Size(200, 20);
             this.dtp_sond_lief.TabIndex = 1;
             // 
+            // tab_schluss
+            // 
+            this.tab_schluss.Location = new System.Drawing.Point(4, 22);
+            this.tab_schluss.Name = "tab_schluss";
+            this.tab_schluss.Size = new System.Drawing.Size(1225, 374);
+            this.tab_schluss.TabIndex = 5;
+            this.tab_schluss.Text = "Schlussrechnung";
+            this.tab_schluss.UseVisualStyleBackColor = true;
+            // 
             // UC_edit_Auftrag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -872,5 +883,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.DateTimePicker dtp_sond_best;
         private System.Windows.Forms.DateTimePicker dtp_sond_lief;
+        private System.Windows.Forms.TabPage tab_schluss;
     }
 }
