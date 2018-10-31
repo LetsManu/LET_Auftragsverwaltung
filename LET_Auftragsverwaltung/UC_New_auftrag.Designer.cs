@@ -87,7 +87,6 @@
             this.txt_info_kauf.Size = new System.Drawing.Size(257, 66);
             this.txt_info_kauf.TabIndex = 5;
             this.txt_info_kauf.Text = "";
-            this.txt_info_kauf.TextChanged += new System.EventHandler(this.txt_info_kauf_TextChanged);
             // 
             // lbx_auftrag
             // 
@@ -168,7 +167,6 @@
             // 
             // btn_new_auf_save
             // 
-            this.btn_new_auf_save.Enabled = false;
             this.btn_new_auf_save.Location = new System.Drawing.Point(584, 362);
             this.btn_new_auf_save.Name = "btn_new_auf_save";
             this.btn_new_auf_save.Size = new System.Drawing.Size(192, 23);
@@ -261,7 +259,6 @@
             this.txt_info_tech.Size = new System.Drawing.Size(257, 66);
             this.txt_info_tech.TabIndex = 24;
             this.txt_info_tech.Text = "";
-            this.txt_info_tech.TextChanged += new System.EventHandler(this.txt_info_tech_TextChanged);
             // 
             // label1
             // 
@@ -331,6 +328,7 @@
             this.cbx_new_auf_lief.Size = new System.Drawing.Size(121, 21);
             this.cbx_new_auf_lief.TabIndex = 0;
             this.cbx_new_auf_lief.DropDownClosed += new System.EventHandler(this.cbx_new_auf_lief_DropDownClosed);
+            // 
             // UC_New_auftrag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

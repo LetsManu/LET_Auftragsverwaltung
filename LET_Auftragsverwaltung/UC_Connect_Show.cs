@@ -14,6 +14,7 @@ namespace LET_Auftragsverwaltung
 {
     public partial class UC_Connect_Show : UserControl
     {
+
         public static bool tmr_timed = false;
         private OdbcConnection Connection => CS_DB.Connection;
         Brush b_mysql = Brushes.Green;
@@ -38,49 +39,56 @@ namespace LET_Auftragsverwaltung
 
         private void tmr_Tick(object sender, EventArgs e)
         {
-            try
+            if (!this.DesignMode)
             {
-                string sql = "SELECT COUNT(ID) FROM auftraege WHERE ID > 0";
-                OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                Connection.Open();
-                if (!cmd.ExecuteNonQuery().Equals(0))
+                try
                 {
-                    b_mysql = Brushes.Green;
+                    string sql = "SELECT COUNT(ID) FROM auftraege WHERE ID > 0";
+                    OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                    Connection.Open();
+                    if (!cmd.ExecuteNonQuery().Equals(0))
+                    {
+                        b_mysql = Brushes.Green;
+                    }
+
+                    Connection.Close();
+                }
+                catch
+                {
+                    b_mysql = Brushes.Red;
                 }
 
-                Connection.Close();
-            }
-            catch
-            {
-                b_mysql = Brushes.Red;
-            }
-
-            try
-            {
-                FtpWebRequest request = null;
-
-                request = (FtpWebRequest)WebRequest.Create("ftp://" + "81.10.155.134" + " / ");
-                request.Credentials = new NetworkCredential("admin", "cola0815");
-                request.Method = WebRequestMethods.Ftp.ListDirectory;
-                request.UsePassive = false;
-                using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+                try
                 {
-                    b_ftp = Brushes.Green;
+                    FtpWebRequest request = null;
+
+                    request = (FtpWebRequest) WebRequest.Create("ftp://" + "81.10.155.134" + " / ");
+                    request.Credentials = new NetworkCredential("admin", "cola0815");
+                    request.Method = WebRequestMethods.Ftp.ListDirectory;
+                    request.UsePassive = false;
+                    using (FtpWebResponse response = (FtpWebResponse) request.GetResponse())
+                    {
+                        b_ftp = Brushes.Green;
+                    }
                 }
+                catch
+                {
+                    b_ftp = Brushes.Red;
+                }
+
+                pbx_mysql.Invalidate();
+                pbx_ftp.Invalidate();
             }
-            catch
-            {
-                b_ftp = Brushes.Red;
-            }
-            pbx_mysql.Invalidate();
-            pbx_ftp.Invalidate();
         }
 
 
 
         private void tmr_para_Tick(object sender, EventArgs e)
         {
-            tmr.Enabled = tmr_timed;
+            if (!this.DesignMode)
+            {
+                tmr.Enabled = tmr_timed;
+            }
         }
     }
 }
