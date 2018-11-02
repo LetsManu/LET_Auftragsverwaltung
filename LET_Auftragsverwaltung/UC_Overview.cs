@@ -140,5 +140,27 @@ namespace LET_Auftragsverwaltung
                 oLV_Overview.SelectedColumnTint = Color.FromArgb(45, 248, 131, 121);
             }
         }
+
+        public void Print_OLV()
+        {
+
+            listViewPrinter printer = new listViewPrinter(oLV_Overview, new Point(50, 50), true, oLV_Overview.Groups.Count > 0, "titleText");
+            printer.print();
+
+            /*
+            BrightIdeasSoftware.ListViewPrinter printer = new BrightIdeasSoftware.ListViewPrinter();
+            printer.AlwaysCenterListHeader = true;
+            printer.ListView = this.oLV_Overview;
+            printer.DocumentName = "Fuhrpark Änderungsliste";
+            printer.Header = "Fuhrpark Änderungsliste";
+            printer.DefaultPageSettings.Margins.Top = 5;
+            printer.DefaultPageSettings.Margins.Left = 5;
+            printer.DefaultPageSettings.Margins.Right = 5;
+            printer.IsListHeaderOnEachPage = true;
+            printer.Watermark = "Fuhrpark";
+            printer.WatermarkTransparency = 50;
+            printer.Footer = "Fuhrpark - " + DateTime.Now.ToString("dddd, dd.MMMM yyyy HH:mm");
+            printer.PrintPreview();*/
+        }
     }
 }
