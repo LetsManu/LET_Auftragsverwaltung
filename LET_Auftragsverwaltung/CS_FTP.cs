@@ -12,7 +12,6 @@ namespace LET_Auftragsverwaltung
         private static bool Is_this_mb = "M80-AC016500071" == CS_System_Info.GetMotherBoardID();
         internal static string[] extensions = {"PNG", "JPG", "TIFF", "GIF"};
 
-        private string File_Path_FTP = "";
 
         public static string Pw => "cola0815";
         public static string User => "Auftragsuebersicht";
