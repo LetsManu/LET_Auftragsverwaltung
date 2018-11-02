@@ -144,7 +144,7 @@ namespace LET_Auftragsverwaltung
         public void Print_OLV()
         {
 
-            listViewPrinter printer = new listViewPrinter(oLV_Overview, new Point(50, 50), true, oLV_Overview.Groups.Count > 0, "titleText");
+            CS_listViewPrinter printer = new CS_listViewPrinter(oLV_Overview, new Point(50, 50), true, oLV_Overview.Groups.Count > 0, "titleText");
             printer.print();
 
             /*

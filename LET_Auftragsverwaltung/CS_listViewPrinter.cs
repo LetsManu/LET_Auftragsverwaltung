@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace LET_Auftragsverwaltung
 {
-    public class listViewPrinter
+    public class CS_listViewPrinter
     {
 
         private ListView lv;
@@ -21,7 +21,7 @@ namespace LET_Auftragsverwaltung
 
         private PrintDocument pd = new PrintDocument();
 
-        public listViewPrinter(ListView lv, Point location, bool border, bool hasGroups, string title)
+        public CS_listViewPrinter(ListView lv, Point location, bool border, bool hasGroups, string title)
         {
             this.lv = lv;
             this.location = location;
