@@ -195,6 +195,7 @@
   <ItemGroup>
     <Compile Include="CS_Auftrag_Data.cs" />
     <Compile Include="CS_DB.cs" />
+    <Compile Include="CS_Email.cs" />
     <Compile Include="CS_FTP.cs" />
     <Compile Include="CS_SQL_methods.cs" />
     <Compile Include="CS_System_Info.cs" />
@@ -359,10 +360,11 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>LET_Auftragsverwaltung_3_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>81831E1CE95C167BB3A5F3E03F7847A1135CC858</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>0599E173ACA0E5DAC246E327BA32DDB70EFA6283</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
