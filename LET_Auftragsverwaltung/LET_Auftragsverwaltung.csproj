@@ -229,7 +229,6 @@
     <Compile Include="Form_Parameter.Designer.cs">
       <DependentUpon>Form_Parameter.cs</DependentUpon>
     </Compile>
-    <Compile Include="CS_listViewPrinter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

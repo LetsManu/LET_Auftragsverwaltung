@@ -143,12 +143,13 @@ namespace LET_Auftragsverwaltung
 
         public void Print_OLV()
         {
-
+            /*
             CS_listViewPrinter printer = new CS_listViewPrinter(oLV_Overview, new Point(50, 50), true, oLV_Overview.Groups.Count > 0, "titleText");
-            printer.print();
+            printer.print();*/
 
             /*
-            BrightIdeasSoftware.ListViewPrinter printer = new BrightIdeasSoftware.ListViewPrinter();
+            
+            ListViewPrinter printer = new ListViewPrinter();
             printer.AlwaysCenterListHeader = true;
             printer.ListView = this.oLV_Overview;
             printer.DocumentName = "Fuhrpark Änderungsliste";
