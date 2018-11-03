@@ -99,9 +99,11 @@ namespace LET_Auftragsverwaltung
                     data.ID = ( int ) ( reader["ID"] == DBNull.Value ? null : reader["ID"] );
                     data.Auftrags_Nr = ( string ) ( reader["Auftrags Nr."] == DBNull.Value ? null : reader["Auftrags Nr."] );
                     data.Fertigungsstatus = ( string ) ( reader["Status"] == DBNull.Value ? null : reader["Status"] );
+
                     data.Erstell_Datum = Convert.ToDateTime(reader["Erstelldatum"] == DBNull.Value ? null : reader["Erstelldatum"]);
                     data.Anzahlung_Datum = Convert.ToDateTime(reader["Anzahlung anfordern"] == DBNull.Value ? null : reader["Anzahlung anfordern"]);
                     data.AZ_bestaetigt_Datum = Convert.ToDateTime(reader["Anzahlung bestätigt"] == DBNull.Value ? null : reader["Anzahlung bestätigt"]);
+
                     data.Schlussrechnung_Date = Convert.ToDateTime(reader["Schlussrechnung ausgestellt am"] == DBNull.Value ? null : reader["Schlussrechnung ausgestellt am"]);
                     data.Projektverantwortlicher_Name = ( string ) ( reader["Projektverantwortlicher"] == DBNull.Value ? null : reader["Projektverantwortlicher"] );
                     data.Planner_Name = ( string ) ( reader["Planner"] == DBNull.Value ? null : reader["Planner"] );
