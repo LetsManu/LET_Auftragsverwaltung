@@ -21,6 +21,7 @@ namespace LET_Auftragsverwaltung
 
         public UC_Overview( )
         {
+            //BrightIdeasSoftware.TreeListView.IgnoreMissingAspects = true;
             InitializeComponent();
         }
 
@@ -35,8 +36,12 @@ namespace LET_Auftragsverwaltung
             }
         }
 
+
+        
         private void objectListView1_FormatCell(object sender, BrightIdeasSoftware.FormatCellEventArgs e)
         {
+            /*
+            ////oLV_Overview.UseCellFormatEvents = true; //this must be called somewhere so that this method gets a call.
             
             DateTime tmp = new DateTime();
             if (tmp.GetType() == e?.CellValue?.GetType() && ( DateTime ) e.CellValue == tmp)
@@ -58,9 +63,11 @@ namespace LET_Auftragsverwaltung
                 e.SubItem.Decorations.Add(cbd);
                 #endregion
                 
-            }
+            }*/
         
         }
+        
+
 
         public static void Update_Overview( )
         {
@@ -73,7 +80,7 @@ namespace LET_Auftragsverwaltung
             {
                 reload = false;
 
-                oLV_Overview.UseCellFormatEvents = true;
+                //oLV_Overview.UseCellFormatEvents = true;
                 foreach (var result in oLV_Overview.AllColumns)
                 {
                     result.MinimumWidth = 30;
