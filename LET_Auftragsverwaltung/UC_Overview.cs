@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Odbc;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -24,16 +25,6 @@ namespace LET_Auftragsverwaltung
         }
 
         private OdbcConnection Connection => CS_DB.Connection;
-
-        private object Right_Date(DateTime date)
-        {
-            if (date.Year == 1)
-            {
-                return "";
-            }
-
-            return date;
-        }
 
         private void objectListView1_DoubleClick(object sender, EventArgs e)
         {
@@ -108,8 +99,8 @@ namespace LET_Auftragsverwaltung
                     data.ID = ( int ) ( reader["ID"] == DBNull.Value ? null : reader["ID"] );
                     data.Auftrags_Nr = ( string ) ( reader["Auftrags Nr."] == DBNull.Value ? null : reader["Auftrags Nr."] );
                     data.Fertigungsstatus = ( string ) ( reader["Status"] == DBNull.Value ? null : reader["Status"] );
-                    Right_Date(data.Erstell_Datum = Convert.ToDateTime(reader["Erstelldatum"] == DBNull.Value ? null : reader["Erstelldatum"]));
-                    Right_Date(data.Anzahlung_Datum = Convert.ToDateTime(reader["Anzahlung anfordern"] == DBNull.Value ? null : reader["Anzahlung anfordern"]));
+                    data.Erstell_Datum = Convert.ToDateTime(reader["Erstelldatum"] == DBNull.Value ? null : reader["Erstelldatum"]);
+                    data.Anzahlung_Datum = Convert.ToDateTime(reader["Anzahlung anfordern"] == DBNull.Value ? null : reader["Anzahlung anfordern"]);
                     data.AZ_bestaetigt_Datum = Convert.ToDateTime(reader["Anzahlung bestätigt"] == DBNull.Value ? null : reader["Anzahlung bestätigt"]);
                     data.Schlussrechnung_Date = Convert.ToDateTime(reader["Schlussrechnung ausgestellt am"] == DBNull.Value ? null : reader["Schlussrechnung ausgestellt am"]);
                     data.Projektverantwortlicher_Name = ( string ) ( reader["Projektverantwortlicher"] == DBNull.Value ? null : reader["Projektverantwortlicher"] );
@@ -147,21 +138,24 @@ namespace LET_Auftragsverwaltung
             CS_listViewPrinter printer = new CS_listViewPrinter(oLV_Overview, new Point(50, 50), true, oLV_Overview.Groups.Count > 0, "titleText");
             printer.print();*/
 
-            /*
+            
             
             ListViewPrinter printer = new ListViewPrinter();
+            
             printer.AlwaysCenterListHeader = true;
             printer.ListView = this.oLV_Overview;
-            printer.DocumentName = "Fuhrpark Änderungsliste";
-            printer.Header = "Fuhrpark Änderungsliste";
+            printer.DocumentName = "Auftragsübersicht" + DateTime.Now.ToString("dd.MMMM.yy_HH:mm");
+            printer.Header = "Auftragsübersicht";
             printer.DefaultPageSettings.Margins.Top = 5;
             printer.DefaultPageSettings.Margins.Left = 5;
             printer.DefaultPageSettings.Margins.Right = 5;
             printer.IsListHeaderOnEachPage = true;
-            printer.Watermark = "Fuhrpark";
-            printer.WatermarkTransparency = 50;
-            printer.Footer = "Fuhrpark - " + DateTime.Now.ToString("dddd, dd.MMMM yyyy HH:mm");
-            printer.PrintPreview();*/
+            printer.Watermark = "LET Sonnensegel";
+            printer.WatermarkTransparency = 40;
+            printer.Footer = "LET Sonnensegel - " + DateTime.Now.ToString("dddd, dd.MMMM yyyy HH:mm");
+            printer.DefaultPageSettings.Landscape = true;
+            printer.DefaultPageSettings.PaperSize.RawKind = 8;
+            printer.PrintWithDialog();
         }
     }
 }
