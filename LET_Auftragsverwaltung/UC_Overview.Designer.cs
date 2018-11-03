@@ -130,29 +130,29 @@
             // 
             // oLV_Cl_Erstell_Datum
             // 
-            this.oLV_Cl_Erstell_Datum.AspectName = "Erstell Datum";
-            this.oLV_Cl_Erstell_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
+            this.oLV_Cl_Erstell_Datum.AspectName = "Erstell_Datum";
+            this.oLV_Cl_Erstell_Datum.AspectToStringFormat = "";
             this.oLV_Cl_Erstell_Datum.DisplayIndex = 2;
             this.oLV_Cl_Erstell_Datum.Text = "Erstell_Datum";
             // 
             // oLV_Cl_Anzahlung_Datum
             // 
-            this.oLV_Cl_Anzahlung_Datum.AspectName = "Anzahlung Datum";
-            this.oLV_Cl_Anzahlung_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
+            this.oLV_Cl_Anzahlung_Datum.AspectName = "Anzahlung_Datum";
+            this.oLV_Cl_Anzahlung_Datum.AspectToStringFormat = "";
             this.oLV_Cl_Anzahlung_Datum.DisplayIndex = 3;
             this.oLV_Cl_Anzahlung_Datum.Text = "Anzahlung_Datum";
             // 
             // oLV_Cl_AZ_bestaetigt_Datum
             // 
-            this.oLV_Cl_AZ_bestaetigt_Datum.AspectName = "AZ bestaetigt Datum";
-            this.oLV_Cl_AZ_bestaetigt_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
+            this.oLV_Cl_AZ_bestaetigt_Datum.AspectName = "AZ_bestaetigt_Datum";
+            this.oLV_Cl_AZ_bestaetigt_Datum.AspectToStringFormat = "";
             this.oLV_Cl_AZ_bestaetigt_Datum.DisplayIndex = 4;
             this.oLV_Cl_AZ_bestaetigt_Datum.Text = "AZ_bestaetigt_Datum";
             // 
             // oLV_Cl_Schlussrechnung_Date
             // 
             this.oLV_Cl_Schlussrechnung_Date.AspectName = "Schlussrechnung_Date";
-            this.oLV_Cl_Schlussrechnung_Date.AspectToStringFormat = "{0:dd.MM.yyyy}";
+            this.oLV_Cl_Schlussrechnung_Date.AspectToStringFormat = "";
             this.oLV_Cl_Schlussrechnung_Date.DisplayIndex = 5;
             this.oLV_Cl_Schlussrechnung_Date.Text = "Schlussrechnung_Date";
             // 
@@ -175,46 +175,46 @@
             // oLV_Cl_Schatten_Datum
             // 
             this.oLV_Cl_Schatten_Datum.AspectName = "Schatten_Datum";
-            this.oLV_Cl_Schatten_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
+            this.oLV_Cl_Schatten_Datum.AspectToStringFormat = "";
             this.oLV_Cl_Schatten_Datum.Text = "Schatten_Datum";
             // 
             // oLV_Cl_Stoff_bestell_Datum
             // 
             this.oLV_Cl_Stoff_bestell_Datum.AspectName = "Stoff_bestell_Datum";
-            this.oLV_Cl_Stoff_bestell_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
+            this.oLV_Cl_Stoff_bestell_Datum.AspectToStringFormat = "";
             this.oLV_Cl_Stoff_bestell_Datum.Text = "Stoff_bestell_Datum";
             // 
             // oLV_Cl_Persenning_bestell_Datum
             // 
             this.oLV_Cl_Persenning_bestell_Datum.AspectName = "Persenning_bestell_Datum";
-            this.oLV_Cl_Persenning_bestell_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
+            this.oLV_Cl_Persenning_bestell_Datum.AspectToStringFormat = "";
             this.oLV_Cl_Persenning_bestell_Datum.DisplayIndex = 16;
             this.oLV_Cl_Persenning_bestell_Datum.Text = "Persenning_bestell_Datum";
             // 
             // oLV_Cl_Sonderteile_bestell_Datum
             // 
             this.oLV_Cl_Sonderteile_bestell_Datum.AspectName = "Sonderteile_bestell_Datum";
-            this.oLV_Cl_Sonderteile_bestell_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
+            this.oLV_Cl_Sonderteile_bestell_Datum.AspectToStringFormat = "";
             this.oLV_Cl_Sonderteile_bestell_Datum.Text = "Sonderteile_bestell_Datum";
             // 
             // oLV_Cl_Stoff_liefer_Datum
             // 
             this.oLV_Cl_Stoff_liefer_Datum.AspectName = "Stoff_liefer_Datum";
-            this.oLV_Cl_Stoff_liefer_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
+            this.oLV_Cl_Stoff_liefer_Datum.AspectToStringFormat = "";
             this.oLV_Cl_Stoff_liefer_Datum.DisplayIndex = 13;
             this.oLV_Cl_Stoff_liefer_Datum.Text = "Stoff_liefer_Datum";
             // 
             // oLV_Cl_Sonderteile_liefer_Datum
             // 
             this.oLV_Cl_Sonderteile_liefer_Datum.AspectName = "Sonderteile_liefer_Datum";
-            this.oLV_Cl_Sonderteile_liefer_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
+            this.oLV_Cl_Sonderteile_liefer_Datum.AspectToStringFormat = "";
             this.oLV_Cl_Sonderteile_liefer_Datum.DisplayIndex = 15;
             this.oLV_Cl_Sonderteile_liefer_Datum.Text = "Sonderteile_liefer_Datum";
             // 
             // oLV_Cl_Persenning_liefer_Datum
             // 
             this.oLV_Cl_Persenning_liefer_Datum.AspectName = "Persenning_liefer_Datum";
-            this.oLV_Cl_Persenning_liefer_Datum.AspectToStringFormat = "{0:dd.MM.yyyy}";
+            this.oLV_Cl_Persenning_liefer_Datum.AspectToStringFormat = "";
             this.oLV_Cl_Persenning_liefer_Datum.Text = "Persenning_liefer_Datum";
             // 
             // tmr_250ms
