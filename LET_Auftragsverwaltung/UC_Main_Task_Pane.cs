@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +12,7 @@ namespace LET_Auftragsverwaltung
 {
     public partial class UC_Main_Task_Pane : UserControl
     {
-        public UC_Main_Task_Pane()
+        public UC_Main_Task_Pane( )
         {
             InitializeComponent();
             UC_Connect_Show.tmr_timed = true;
@@ -42,23 +42,17 @@ namespace LET_Auftragsverwaltung
 
         private void eDITAUFTRAGToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void pbx_Paint(object sender, PaintEventArgs e)
         {
-            
+
         }
 
         private void UC_Main_Task_Pane_Enter(object sender, EventArgs e)
         {
             UC_Connect_Show.tmr_timed = true;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Form hasher = new Hash();
-            hasher.Show();
         }
     }
 }
