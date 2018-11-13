@@ -50,6 +50,7 @@ namespace LET_Auftragsverwaltung
         static public void Open( )
         {
             Connection.Close(); //TODO add Exception thingy
+            //TODO Connection.State
             Connection.Open();
         }
     }

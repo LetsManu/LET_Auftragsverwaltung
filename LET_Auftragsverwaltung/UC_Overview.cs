@@ -170,10 +170,6 @@ namespace LET_Auftragsverwaltung
 
         public void Print_OLV( )
         {
-            /*
-            CS_listViewPrinter printer = new CS_listViewPrinter(oLV_Overview, new Point(50, 50), true, oLV_Overview.Groups.Count > 0, "titleText");
-            printer.print();*/
-
 
 
             ListViewPrinter printer = new ListViewPrinter();
@@ -191,6 +187,9 @@ namespace LET_Auftragsverwaltung
             printer.Footer = "LET Sonnensegel - " + DateTime.Now.ToString("dddd, dd.MMMM yyyy HH:mm");
             printer.DefaultPageSettings.Landscape = true;
             printer.DefaultPageSettings.PaperSize.RawKind = 8;
+
+            //printer.PageSetup();
+            
             printer.PrintWithDialog();
         }
     }

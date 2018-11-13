@@ -54,5 +54,11 @@ namespace LET_Auftragsverwaltung
         {
             UC_Connect_Show.tmr_timed = true;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form hasher = new Hash();
+            hasher.Show();
+        }
     }
 }

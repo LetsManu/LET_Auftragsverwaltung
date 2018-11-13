@@ -73,6 +73,16 @@ namespace LET_Auftragsverwaltung.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Logo_transperent2_128x128 {
+            get {
+                object obj = ResourceManager.GetObject("Logo_transperent2 128x128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Tobi {
             get {
                 object obj = ResourceManager.GetObject("Tobi", resourceCulture);
