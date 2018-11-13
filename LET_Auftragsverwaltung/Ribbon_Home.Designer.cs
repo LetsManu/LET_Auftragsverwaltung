@@ -59,7 +59,7 @@
             // btn_open_Main
             // 
             this.btn_open_Main.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.btn_open_Main.Image = global::LET_Auftragsverwaltung.Properties.Resources.Tobi;
+            this.btn_open_Main.Image = global::LET_Auftragsverwaltung.Properties.Resources.Logo_transperent2;
             this.btn_open_Main.Label = "LET AV";
             this.btn_open_Main.Name = "btn_open_Main";
             this.btn_open_Main.ShowImage = true;

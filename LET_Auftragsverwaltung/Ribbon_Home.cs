@@ -28,7 +28,7 @@ namespace LET_Auftragsverwaltung
                     Microsoft.Office.Interop.Outlook.OlItemType.olMailItem);
 
             eMail.Subject = "FELIX LECK MI AM ARSCH";
-            eMail.To = "felix.lerchner@icloud.com";
+            eMail.To = "";
             eMail.Body = "FELIX DU KANNST DES ECHT ND";
             eMail.Importance = OlImportance.olImportanceHigh;
             ((Microsoft.Office.Interop.Outlook._MailItem)eMail).Send();
