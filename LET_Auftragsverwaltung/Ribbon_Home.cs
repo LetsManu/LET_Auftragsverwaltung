@@ -23,6 +23,16 @@ namespace LET_Auftragsverwaltung
         private void btn_open_Main_Click(object sender, RibbonControlEventArgs e)
         {
 
+            Microsoft.Office.Interop.Outlook.MailItem eMail =
+                (Microsoft.Office.Interop.Outlook.MailItem)Globals.ThisAddIn.Application.CreateItem(
+                    Microsoft.Office.Interop.Outlook.OlItemType.olMailItem);
+
+            eMail.Subject = "FELIX LECK MI AM ARSCH";
+            eMail.To = "";
+            eMail.Body = "FELIX DU KANNST DES ECHT ND";
+            eMail.Importance = OlImportance.olImportanceHigh;
+            ((Microsoft.Office.Interop.Outlook._MailItem)eMail).Send();
+
         } 
     }
 }
