@@ -49,7 +49,7 @@ namespace LET_Auftragsverwaltung
         /// </summary>
         static public void Open( )
         {
-            Connection.Close();
+            Connection.Close(); //TODO add Exception thingy
             Connection.Open();
         }
     }

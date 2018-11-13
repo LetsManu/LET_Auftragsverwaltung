@@ -28,5 +28,10 @@ namespace LET_Auftragsverwaltung
                 e.Handled = true;//Event nicht an andere Controls weiter leiten.
             }
         }
+
+        private void btn_print_Click(object sender, EventArgs e)
+        {
+            this.uC_Overview1.Print_OLV();
+        }
     }
 }

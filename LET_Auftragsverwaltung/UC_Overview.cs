@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Odbc;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -20,20 +21,11 @@ namespace LET_Auftragsverwaltung
 
         public UC_Overview( )
         {
+            //BrightIdeasSoftware.TreeListView.IgnoreMissingAspects = true;
             InitializeComponent();
         }
 
         private OdbcConnection Connection => CS_DB.Connection;
-
-        private object Right_Date(DateTime date)
-        {
-            if (date.Year == 1)
-            {
-                return "";
-            }
-
-            return date;
-        }
 
         private void objectListView1_DoubleClick(object sender, EventArgs e)
         {
@@ -44,18 +36,23 @@ namespace LET_Auftragsverwaltung
             }
         }
 
+
+        
         private void objectListView1_FormatCell(object sender, BrightIdeasSoftware.FormatCellEventArgs e)
         {
+            /*
+            ////oLV_Overview.UseCellFormatEvents = true; //this must be called somewhere so that this method gets a call.
+            
             DateTime tmp = new DateTime();
             if (tmp.GetType() == e?.CellValue?.GetType() && ( DateTime ) e.CellValue == tmp)
             {
                 // Add a opaque, rotated text decoration
-                /* TextDecoration decoration = new TextDecoration("Missing!", 255);
-                 decoration.Alignment = ContentAlignment.MiddleCenter;
-                 decoration.Font = new Font(this.Font.Name, this.Font.SizeInPoints + 2);
-                 decoration.TextColor = Color.Crimson;
-                 decoration.Rotation = -20;
-                 e.SubItem.Decoration = decoration; //NB. Sets Decoration*/
+                //TextDecoration decoration = new TextDecoration("Missing!", 255);
+                //decoration.Alignment = ContentAlignment.MiddleCenter;
+                //decoration.Font = new Font(this.Font.Name, this.Font.SizeInPoints + 2);
+                //decoration.TextColor = Color.Crimson;
+                //decoration.Rotation = -20;
+                //e.SubItem.Decoration = decoration; //NB. Sets Decoration
 
 
                 #region macht Felder wo nichts drinnen steht unsichtbar
@@ -65,8 +62,12 @@ namespace LET_Auftragsverwaltung
                 cbd.CornerRounding = 4.0f;
                 e.SubItem.Decorations.Add(cbd);
                 #endregion
-            }
+                
+            }*/
+        
         }
+        
+
 
         public static void Update_Overview( )
         {
@@ -79,7 +80,7 @@ namespace LET_Auftragsverwaltung
             {
                 reload = false;
 
-                oLV_Overview.UseCellFormatEvents = true;
+                //oLV_Overview.UseCellFormatEvents = true;
                 foreach (var result in oLV_Overview.AllColumns)
                 {
                     result.MinimumWidth = 30;
@@ -106,31 +107,33 @@ namespace LET_Auftragsverwaltung
                     reader.Read();
                     CS_Auftrag_Data data = new CS_Auftrag_Data();
                     data.ID = ( int ) ( reader["ID"] == DBNull.Value ? null : reader["ID"] );
-                    data.Auftrags_Nr = ( string ) ( reader["Auftrags Nr."] == DBNull.Value ? null : reader["Auftrags Nr."] );
-                    data.Fertigungsstatus = ( string ) ( reader["Status"] == DBNull.Value ? null : reader["Status"] );
-                    Right_Date(data.Erstell_Datum = Convert.ToDateTime(reader["Erstelldatum"] == DBNull.Value ? null : reader["Erstelldatum"]));
-                    Right_Date(data.Anzahlung_Datum = Convert.ToDateTime(reader["Anzahlung anfordern"] == DBNull.Value ? null : reader["Anzahlung anfordern"]));
-                    data.AZ_bestaetigt_Datum = Convert.ToDateTime(reader["Anzahlung bestätigt"] == DBNull.Value ? null : reader["Anzahlung bestätigt"]);
-                    data.Schlussrechnung_Date = Convert.ToDateTime(reader["Schlussrechnung ausgestellt am"] == DBNull.Value ? null : reader["Schlussrechnung ausgestellt am"]);
-                    data.Projektverantwortlicher_Name = ( string ) ( reader["Projektverantwortlicher"] == DBNull.Value ? null : reader["Projektverantwortlicher"] );
-                    data.Planner_Name = ( string ) ( reader["Planner"] == DBNull.Value ? null : reader["Planner"] );
-                    data.Projektbezeichnung = ( string ) ( reader["Projektbezeichnung"] == DBNull.Value ? null : reader["Projektbezeichnung"] );
-                    data.Auftrags_Art = ( string ) ( reader["Auftrags Art"] == DBNull.Value ? null : reader["Auftrags Art"] );
-                    data.Stoff_Kennzahl = ( string ) ( reader["Stoff"] == DBNull.Value ? null : reader["Stoff"] );
-                    data.Schatten_Datum = Convert.ToDateTime(reader["Schatten fertig"] == DBNull.Value ? null : reader["Schatten fertig"]);
-                    data.Stoff_bestell_Datum = Convert.ToDateTime(reader["Stoff Bestelldatum"] == DBNull.Value ? null : reader["Stoff Bestelldatum"]);
-                    data.Stoff_liefer_Datum = Convert.ToDateTime(reader["Stoff Lieferdatum"] == DBNull.Value ? null : reader["Stoff Lieferdatum"]);
-                    //data.Stoff_Lieferant = ( string ) ( reader["Stoff Lieferant"] == DBNull.Value ? null : reader["Stoff Lieferant"] );
-                    data.Sonderteile_bestell_Datum = Convert.ToDateTime(reader["Sonderteile Bestelldatum"] == DBNull.Value ? null : reader["Sonderteile Bestelldatum"]);
-                    data.Sonderteile_liefer_Datum = Convert.ToDateTime(reader["Sonderteile Lieferdatum"] == DBNull.Value ? null : reader["Sonderteile Lieferdatum"]);
-                    //data.Sonderteile_Lieferant = ( string ) ( reader["Sonderteile Lieferant"] == DBNull.Value ? null : reader["Sonderteile Lieferant"] );
-                    data.Persenning_bestell_Datum = Convert.ToDateTime(reader["Persenning Bestelldatum"] == DBNull.Value ? null : reader["Persenning Bestelldatum"]);
-                    data.Persenning_liefer_Datum = Convert.ToDateTime(reader["Persenning Lieferdatum"] == DBNull.Value ? null : reader["Persenning Lieferdatum"]);
-                    //data.Persenning_Lieferant = ( string ) reader["Persenning Lieferant"];
+                    data.Auftrags_Nr = DB_to_string(reader["Auftrags Nr."]);
+                    data.Fertigungsstatus = DB_to_string(reader["Status"]);
+
+                    data.Erstell_Datum = DB_Date_to_string(reader["Erstelldatum"]);
+                    data.Anzahlung_Datum = DB_Date_to_string(reader["Anzahlung anfordern"]);
+                    data.AZ_bestaetigt_Datum = DB_Date_to_string(reader["Anzahlung bestätigt"]);
+
+                    data.Schlussrechnung_Date = DB_Date_to_string(reader["Schlussrechnung ausgestellt am"]);
+                    data.Projektverantwortlicher_Name = DB_to_string(reader["Projektverantwortlicher"]);
+                    data.Planner_Name = DB_to_string(reader["Planner"]);
+                    data.Projektbezeichnung = DB_to_string(reader["Projektbezeichnung"]);
+                    data.Auftrags_Art = DB_to_string(reader["Auftrags Art"]);
+                    data.Stoff_Kennzahl = DB_to_string(reader["Stoff"]);
+                    data.Schatten_Datum = DB_Date_to_string(reader["Schatten fertig"]);
+                    data.Stoff_bestell_Datum = DB_Date_to_string(reader["Stoff Bestelldatum"]);
+                    data.Stoff_liefer_Datum = DB_Date_to_string(reader["Stoff Lieferdatum"]);
+                    //data.Stoff_Lieferant = DB_to_string( reader["Stoff Lieferant"] );
+                    data.Sonderteile_bestell_Datum = DB_Date_to_string(reader["Sonderteile Bestelldatum"]);
+                    data.Sonderteile_liefer_Datum = DB_Date_to_string(reader["Sonderteile Lieferdatum"]);
+                    //data.Sonderteile_Lieferant = DB_to_string(reader["Sonderteile Lieferant"] );
+                    data.Persenning_bestell_Datum = DB_Date_to_string(reader["Persenning Bestelldatum"]);
+                    data.Persenning_liefer_Datum = DB_Date_to_string(reader["Persenning Lieferdatum"]);
+                    //data.Persenning_Lieferant = DB_to_string(reader["Persenning Lieferant"]);
                     //data.Montage_Datum = Convert.ToDateTime(reader[""];
                     this.data.AddLast(data);
                 }
-                
+
                 oLV_Overview.SetObjects(data);
 
                 oLV_Overview.TintSortColumn = true;
@@ -139,6 +142,56 @@ namespace LET_Auftragsverwaltung
 
                 oLV_Overview.SelectedColumnTint = Color.FromArgb(45, 248, 131, 121);
             }
+        }
+
+        public string DB_Date_to_string(object db_Data)
+        {
+            if (db_Data == DBNull.Value)
+            {
+                return "";
+            }
+            else
+            {
+                return Convert.ToDateTime(db_Data).ToString("dd.MM.yyyy");
+            }
+        }
+
+        public string DB_to_string(object db_Data)
+        {
+            if (db_Data == DBNull.Value)
+            {
+                return "";
+            }
+            else
+            {
+                return ( string ) db_Data;
+            }
+        }
+
+        public void Print_OLV( )
+        {
+            /*
+            CS_listViewPrinter printer = new CS_listViewPrinter(oLV_Overview, new Point(50, 50), true, oLV_Overview.Groups.Count > 0, "titleText");
+            printer.print();*/
+
+
+
+            ListViewPrinter printer = new ListViewPrinter();
+
+            printer.AlwaysCenterListHeader = true;
+            printer.ListView = this.oLV_Overview;
+            printer.DocumentName = "Auftragsübersicht" + DateTime.Now.ToString("dd.MMMM.yy_HH:mm");
+            printer.Header = "Auftragsübersicht";
+            printer.DefaultPageSettings.Margins.Top = 5;
+            printer.DefaultPageSettings.Margins.Left = 5;
+            printer.DefaultPageSettings.Margins.Right = 5;
+            printer.IsListHeaderOnEachPage = true;
+            printer.Watermark = "LET Sonnensegel";
+            printer.WatermarkTransparency = 40;
+            printer.Footer = "LET Sonnensegel - " + DateTime.Now.ToString("dddd, dd.MMMM yyyy HH:mm");
+            printer.DefaultPageSettings.Landscape = true;
+            printer.DefaultPageSettings.PaperSize.RawKind = 8;
+            printer.PrintWithDialog();
         }
     }
 }
