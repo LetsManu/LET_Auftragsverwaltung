@@ -26,15 +26,18 @@ namespace LET_Auftragsverwaltung
         }
 
 
-        public UC_edit_Kauf(int id_)
+        public UC_edit_Kauf()
         {
-            InitializeComponent();
-            id = id_;
-            UC_Kauf_Fill_cbx_kauf_edit_auf();
-            UC_Kauf_Fill_cbx_kauf_edit_anz();
-            UC_Kauf_Fill_cbx_kauf_edit_schluss();
-            UC_Kauf_Date_Auf_set();
-            UC_Kauf_Date_Anz_set();
+            if (!this.DesignMode)
+            {
+                InitializeComponent();
+                id = 10;
+                UC_Kauf_Fill_cbx_kauf_edit_auf();
+                UC_Kauf_Fill_cbx_kauf_edit_anz();
+                UC_Kauf_Fill_cbx_kauf_edit_schluss();
+                UC_Kauf_Date_Auf_set();
+                UC_Kauf_Date_Anz_set();
+            }
         }
 
 
@@ -132,7 +135,9 @@ namespace LET_Auftragsverwaltung
                 }
                 else
                 {
-                    date_kauf_edit_auf.Value = DateTime.Parse("");
+                    date_kauf_edit_auf.CustomFormat = " ";
+                    date_kauf_edit_auf.Format = DateTimePickerFormat.Custom;
+
                 }
             }
             catch (Exception f)
@@ -165,7 +170,8 @@ namespace LET_Auftragsverwaltung
                 }
                 else
                 {
-                    date_kauf_edit_auf.Value = DateTime.Parse("");
+                    date_kauf_edit_anz.CustomFormat = " ";
+                    date_kauf_edit_anz.Format = DateTimePickerFormat.Custom;
                 }
             }
             catch (Exception f)
@@ -240,5 +246,15 @@ namespace LET_Auftragsverwaltung
 
 
         #endregion
+
+        private void date_kauf_edit_auf_ValueChanged(object sender, EventArgs e)
+        {
+            date_kauf_edit_auf.CustomFormat = "dd/MM/yyyy hh:mm:ss";
+        }
+
+        private void date_kauf_edit_anz_ValueChanged(object sender, EventArgs e)
+        {
+            date_kauf_edit_anz.CustomFormat = "dd/MM/yyyy hh:mm:ss";
+        }
     }
 }

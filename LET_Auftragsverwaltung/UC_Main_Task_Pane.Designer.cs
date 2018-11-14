@@ -153,6 +153,7 @@
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
             this.testToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
             this.testToolStripMenuItem.Text = "test";
+            this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
             // uC_Connect_Show1
             // 

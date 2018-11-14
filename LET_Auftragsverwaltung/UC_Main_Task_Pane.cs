@@ -54,5 +54,12 @@ namespace LET_Auftragsverwaltung
         {
             UC_Connect_Show.tmr_timed = true;
         }
+
+        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UC_Connect_Show.tmr_timed = false;
+            Form form_test_weim = new Form_test_weim();
+            form_test_weim.Show();
+        }
     }
 }

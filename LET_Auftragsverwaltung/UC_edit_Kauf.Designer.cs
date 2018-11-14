@@ -136,6 +136,7 @@
             this.date_kauf_edit_auf.Name = "date_kauf_edit_auf";
             this.date_kauf_edit_auf.Size = new System.Drawing.Size(178, 20);
             this.date_kauf_edit_auf.TabIndex = 2;
+            this.date_kauf_edit_auf.ValueChanged += new System.EventHandler(this.date_kauf_edit_auf_ValueChanged);
             // 
             // label4
             // 
@@ -201,6 +202,7 @@
             this.txt_kauf_anz_best.Size = new System.Drawing.Size(165, 13);
             this.txt_kauf_anz_best.TabIndex = 12;
             this.txt_kauf_anz_best.Text = "Anzahlung ist schon erfolgt!";
+            this.txt_kauf_anz_best.Visible = false;
             // 
             // btn_save_kauf_edit_anz
             // 
@@ -242,6 +244,7 @@
             this.date_kauf_edit_anz.Name = "date_kauf_edit_anz";
             this.date_kauf_edit_anz.Size = new System.Drawing.Size(180, 20);
             this.date_kauf_edit_anz.TabIndex = 1;
+            this.date_kauf_edit_anz.ValueChanged += new System.EventHandler(this.date_kauf_edit_anz_ValueChanged);
             // 
             // label8
             // 
