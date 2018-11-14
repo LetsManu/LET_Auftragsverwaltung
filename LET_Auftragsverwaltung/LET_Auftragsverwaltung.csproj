@@ -249,6 +249,12 @@
     <Compile Include="Ribbon_Home.Designer.cs">
       <DependentUpon>Ribbon_Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="UC_Bestellungen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_Bestellungen.Designer.cs">
+      <DependentUpon>UC_Bestellungen.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC_Connect_Show.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -260,6 +266,12 @@
     </Compile>
     <Compile Include="UC_edit_Auftrag.Designer.cs">
       <DependentUpon>UC_edit_Auftrag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_edit_Kauf.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_edit_Kauf.Designer.cs">
+      <DependentUpon>UC_edit_Kauf.cs</DependentUpon>
     </Compile>
     <Compile Include="UC_Main_Task_Pane.cs">
       <SubType>UserControl</SubType>
@@ -316,11 +328,17 @@
     <EmbeddedResource Include="Ribbon_Home.resx">
       <DependentUpon>Ribbon_Home.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UC_Bestellungen.resx">
+      <DependentUpon>UC_Bestellungen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UC_Connect_Show.resx">
       <DependentUpon>UC_Connect_Show.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UC_edit_Auftrag.resx">
       <DependentUpon>UC_edit_Auftrag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_edit_Kauf.resx">
+      <DependentUpon>UC_edit_Kauf.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UC_Main_Task_Pane.resx">
       <DependentUpon>UC_Main_Task_Pane.cs</DependentUpon>
