@@ -110,7 +110,7 @@
             this.btn_save_kauf_edit_auf.Name = "btn_save_kauf_edit_auf";
             this.btn_save_kauf_edit_auf.Size = new System.Drawing.Size(178, 23);
             this.btn_save_kauf_edit_auf.TabIndex = 5;
-            this.btn_save_kauf_edit_auf.Text = "Speichern";
+            this.btn_save_kauf_edit_auf.Text = "Anfordern bei Sandra";
             this.btn_save_kauf_edit_auf.UseVisualStyleBackColor = true;
             // 
             // txt_kauf_edit_auf
@@ -208,7 +208,7 @@
             this.btn_save_kauf_edit_anz.Name = "btn_save_kauf_edit_anz";
             this.btn_save_kauf_edit_anz.Size = new System.Drawing.Size(178, 23);
             this.btn_save_kauf_edit_anz.TabIndex = 6;
-            this.btn_save_kauf_edit_anz.Text = "Speichern";
+            this.btn_save_kauf_edit_anz.Text = "Anfordern bei Sandra";
             this.btn_save_kauf_edit_anz.UseVisualStyleBackColor = true;
             // 
             // txt_kauf_edit_anz
@@ -314,7 +314,7 @@
             this.btn_save_kauf_edit_schluss.Name = "btn_save_kauf_edit_schluss";
             this.btn_save_kauf_edit_schluss.Size = new System.Drawing.Size(178, 23);
             this.btn_save_kauf_edit_schluss.TabIndex = 7;
-            this.btn_save_kauf_edit_schluss.Text = "Speichern";
+            this.btn_save_kauf_edit_schluss.Text = "Anfordern bei Sandra";
             this.btn_save_kauf_edit_schluss.UseVisualStyleBackColor = true;
             // 
             // label11
@@ -396,7 +396,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "UC_edit_Kauf";
-            this.Size = new System.Drawing.Size(903, 297);
+            this.Size = new System.Drawing.Size(903, 311);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

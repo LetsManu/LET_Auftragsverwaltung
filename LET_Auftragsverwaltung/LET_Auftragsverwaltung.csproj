@@ -238,6 +238,12 @@
     <Compile Include="Form_testing.Designer.cs">
       <DependentUpon>Form_testing.cs</DependentUpon>
     </Compile>
+    <Compile Include="From_test_weim.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="From_test_weim.Designer.cs">
+      <DependentUpon>From_test_weim.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -351,6 +357,7 @@
       <DependentUpon>UC_Parameter.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="LET_Auftragsverwaltung_4_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -389,11 +396,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>
-    </ManifestKeyFile>
+    <ManifestKeyFile>LET_Auftragsverwaltung_4_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>0599E173ACA0E5DAC246E327BA32DDB70EFA6283</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>9BB898EB79F43AFAF28C42277A0EE95C0BDD1869</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
