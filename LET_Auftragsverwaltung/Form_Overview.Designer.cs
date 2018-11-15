@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent( )
         {
+            this.components = new System.ComponentModel.Container();
             this.uC_Overview1 = new LET_Auftragsverwaltung.UC_Overview();
             this.btn_print = new System.Windows.Forms.Button();
+            this.tmr_100ms = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // uC_Overview1
@@ -49,6 +51,11 @@
             this.btn_print.UseVisualStyleBackColor = true;
             this.btn_print.Click += new System.EventHandler(this.btn_print_Click);
             // 
+            // tmr_100ms
+            // 
+            this.tmr_100ms.Enabled = true;
+            this.tmr_100ms.Tick += new System.EventHandler(this.tmr_100ms_Tick);
+            // 
             // Form_Overview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -67,5 +74,6 @@
 
         private UC_Overview uC_Overview1;
         private System.Windows.Forms.Button btn_print;
+        private System.Windows.Forms.Timer tmr_100ms;
     }
 }
