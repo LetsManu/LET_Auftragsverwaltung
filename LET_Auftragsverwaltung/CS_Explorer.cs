@@ -19,7 +19,7 @@ namespace LET_Auftragsverwaltung
             }
             else
             {
-                MessageBox.Show("Dieses Projekt wurde leider nicht in dem gespeicherten Pfad gefunden. Vielleicht wurde es verschoben / gelöscht oder nie erstellt. Bei einer Wiederholung des Problems kontaktieren Sie bitte einen Systemadministrator","Warnung",MessageBoxButtons.OK);
+                MessageBox.Show("Dieses Projekt wurde leider nicht in dem gespeicherten Pfad gefunden.\n Vielleicht wurde der Ordner verschoben / gelöscht oder nie erstellt. \nBei einer Wiederholung des Problems kontaktieren Sie bitte einen Systemadministrator","Warnung",MessageBoxButtons.OK);
             }
         }
     }
