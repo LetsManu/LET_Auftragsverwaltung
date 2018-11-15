@@ -23,6 +23,12 @@ namespace LET_Auftragsverwaltung
         {
             //BrightIdeasSoftware.TreeListView.IgnoreMissingAspects = true;
             InitializeComponent();
+
+            oLV_Overview.FullRowSelect = true;
+
+            oLV_Overview.SelectedRowDecoration =  new TintedColumnDecoration(oLV_Cl_Planner_Name);
+
+            
         }
 
         private OdbcConnection Connection => CS_DB.Connection;
@@ -79,6 +85,8 @@ namespace LET_Auftragsverwaltung
             if (reload && !this.DesignMode)
             {
                 reload = false;
+
+                oLV_Overview.Clear();
 
                 //oLV_Overview.UseCellFormatEvents = true;
                 foreach (var result in oLV_Overview.AllColumns)
