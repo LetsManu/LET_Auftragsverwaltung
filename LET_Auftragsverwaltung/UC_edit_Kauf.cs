@@ -338,7 +338,7 @@ namespace LET_Auftragsverwaltung
 
                 CS_SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
 
-                CS_Email.Send_Mail("chaftalie@icloud.com", "Anforderung", "TestTest");
+                CS_Email.Send_Mail("chaftalie@icloud.com", "Anforderung", "TestTest"); //TODO (SUBJEKT: [LET] AUftragsbestätigung: ProjektBet) (BODY: Mehr Infot ID ect..)
 
 
 
