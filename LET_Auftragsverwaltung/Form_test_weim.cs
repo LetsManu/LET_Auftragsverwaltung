@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace LET_Auftragsverwaltung
 {
-    public partial class From_test_weim : Form
+    public partial class Form_test_weim : Form
     {
-        public From_test_weim()
+        public Form_test_weim()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
 ﻿namespace LET_Auftragsverwaltung
 {
-    partial class From_test_weim
+    partial class Form_test_weim
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.uC_edit_Kauf1 = new LET_Auftragsverwaltung.UC_edit_Kauf();
+            this.SuspendLayout();
+            // 
+            // uC_edit_Kauf1
+            // 
+            this.uC_edit_Kauf1.Location = new System.Drawing.Point(12, 12);
+            this.uC_edit_Kauf1.Name = "uC_edit_Kauf1";
+            this.uC_edit_Kauf1.Size = new System.Drawing.Size(903, 311);
+            this.uC_edit_Kauf1.TabIndex = 0;
+            // 
+            // From_test_weim
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(920, 450);
+            this.Controls.Add(this.uC_edit_Kauf1);
+            this.Name = "From_test_weim";
             this.Text = "From_test_weim";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private UC_edit_Kauf uC_edit_Kauf1;
     }
 }
