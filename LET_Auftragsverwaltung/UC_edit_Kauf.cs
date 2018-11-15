@@ -321,5 +321,30 @@ namespace LET_Auftragsverwaltung
         {
             date_kauf_edit_anz.CustomFormat = "dd/MM/yyyy hh:mm:ss";
         }
+
+        private void btn_save_kauf_edit_auf_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int a_ID;
+                CS_SQL_methods.SQL_exec(string.Format("INSERT INTO AB_AZ (V_Notiz) Values ('{0}')",
+                    txt_kauf_edit_auf.Text));
+                string sql = "SELECT A_ID FROM ab_az ORDER BY A_ID DESC LIMIT 1";
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                CS_SQL_methods.Open();
+                OdbcDataReader sql_read = cmd.ExecuteReader();
+                sql_read.Read();
+                a_ID = Convert.ToInt32(sql_read[0].ToString());
+
+                CS_SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
+
+                UC_Kauf_Date_Auf_set();
+
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT AB_AZ Anfordern): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
