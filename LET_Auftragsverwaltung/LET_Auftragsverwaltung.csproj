@@ -403,7 +403,7 @@
     <ManifestKeyFile>LET_Auftragsverwaltung_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>65AD16DA9052B1D076380F5373C6E4DEB650CD4A</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>DD49B1D937122C849462228EA3BFC68C79A4AC18</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
