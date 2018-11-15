@@ -338,7 +338,9 @@ namespace LET_Auftragsverwaltung
 
                 CS_SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
 
-               
+                CS_Email.Send_Mail("chaftalie@icloud.com", "Anforderung", "TestTest");
+
+
 
             }
             catch (Exception f)
@@ -361,7 +363,7 @@ namespace LET_Auftragsverwaltung
                 a_ID = Convert.ToInt32(sql_Reader[0].ToString());
 
 
-                CS_SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_Notiz = '{0}' WHERE A_ID = {1}", txt_kauf_edit_anz.Text, a_ID));
+                CS_SQL_methods.SQL_exec($"UPDATE AB_AZ SET B_Notiz = '{txt_kauf_edit_anz.Text}' WHERE A_ID = {a_ID}");
 
                
 
