@@ -37,6 +37,7 @@ namespace LET_Auftragsverwaltung
                 UC_Kauf_Fill_cbx_kauf_edit_schluss();
                 UC_Kauf_Date_Auf_set();
                 UC_Kauf_Date_Anz_set();
+                UC_Kauf_Date_Schluss_set();
             }
         }
 
@@ -180,6 +181,40 @@ namespace LET_Auftragsverwaltung
             }
         }
 
+        private void UC_Kauf_Date_Schluss_set()
+        {
+            try
+            {
+                object obj_db;
+                string sql = "SELECT AB_AZ FROM auftraege WHERE ID = " + id;
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                CS_SQL_methods.Open();
+                OdbcDataReader sql_reader = cmd.ExecuteReader();
+                sql_reader.Read();
+                string sql2 = "SELECT S_Date FROM ab_az WHERE A_ID = " +
+                              Convert.ToInt32(sql_reader[0].ToString());
+                sql_reader.Close();
+                OdbcCommand cmd2 = new OdbcCommand(sql2, Connection);
+                obj_db = cmd2.ExecuteScalar();
+
+                if (obj_db != DBNull.Value)
+                {
+                    sql_reader = cmd2.ExecuteReader();
+                    sql_reader.Read();
+                    date_kauf_edit_schluss.Value = DateTime.Parse(sql_reader[0].ToString());
+                }
+                else
+                {
+                    date_kauf_edit_schluss.CustomFormat = " ";
+                    date_kauf_edit_schluss.Format = DateTimePickerFormat.Custom;
+                }
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Kaufmänisch: Datum Schlussrechnung): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         #endregion
 
         #region Notiz Fills
@@ -210,7 +245,7 @@ namespace LET_Auftragsverwaltung
             }
             catch (Exception f)
             {
-                MessageBox.Show("Fehler in der SQL Abfrage(Kaufmänisch: Datum Anzahlung): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Fehler in der SQL Abfrage(Kaufmänisch: Notiz Anzahlung): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -240,7 +275,37 @@ namespace LET_Auftragsverwaltung
             }
             catch (Exception f)
             {
-                MessageBox.Show("Fehler in der SQL Abfrage(Kaufmänisch: Datum Anzahlung): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Fehler in der SQL Abfrage(Kaufmänisch: Notiz Anzahlung): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void UC_Kauf_Text_Schluss()
+        {
+            try
+            {
+                object obj_db;
+                string sql = "SELECT AB_AZ FROM auftraege WHERE ID = " + id;
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                CS_SQL_methods.Open();
+                OdbcDataReader sql_reader = cmd.ExecuteReader();
+                sql_reader.Read();
+                string sql2 = "SELECT B_Notiz FROM ab_az WHERE A_ID = " +
+                              Convert.ToInt32(sql_reader[0].ToString());
+                sql_reader.Close();
+                OdbcCommand cmd2 = new OdbcCommand(sql2, Connection);
+                obj_db = cmd2.ExecuteScalar();
+
+                if (obj_db != DBNull.Value)
+                {
+                    sql_reader = cmd2.ExecuteReader();
+                    sql_reader.Read();
+                    txt_kauf_edit_schluss.Text = sql_reader[0].ToString();
+                }
+
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Kaufmänisch: Sclussrechnung Notiz): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
