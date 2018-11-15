@@ -26,9 +26,9 @@ namespace LET_Auftragsverwaltung
 
             oLV_Overview.FullRowSelect = true;
 
-            oLV_Overview.SelectedRowDecoration =  new TintedColumnDecoration(oLV_Cl_Planner_Name);
+            oLV_Overview.SelectedRowDecoration = new TintedColumnDecoration(oLV_Cl_Planner_Name);
 
-            
+
         }
 
         private OdbcConnection Connection => CS_DB.Connection;
@@ -43,7 +43,7 @@ namespace LET_Auftragsverwaltung
         }
 
 
-        
+
         private void objectListView1_FormatCell(object sender, BrightIdeasSoftware.FormatCellEventArgs e)
         {
             /*
@@ -70,9 +70,9 @@ namespace LET_Auftragsverwaltung
                 #endregion
                 
             }*/
-        
+
         }
-        
+
 
 
         public static void Update_Overview( )
@@ -86,7 +86,7 @@ namespace LET_Auftragsverwaltung
             {
                 reload = false;
 
-                oLV_Overview.Clear();
+             //oLV_Overview.Items.Clear();  //is nor working because then the olv never shows anything
 
                 //oLV_Overview.UseCellFormatEvents = true;
                 foreach (var result in oLV_Overview.AllColumns)
@@ -197,7 +197,7 @@ namespace LET_Auftragsverwaltung
             printer.DefaultPageSettings.PaperSize.RawKind = 8;
 
             //printer.PageSetup();
-            
+
             printer.PrintWithDialog();
         }
     }

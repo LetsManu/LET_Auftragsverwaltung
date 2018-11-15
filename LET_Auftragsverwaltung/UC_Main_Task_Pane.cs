@@ -28,9 +28,16 @@ namespace LET_Auftragsverwaltung
         private void TSMI_Overview_Click(object sender, EventArgs e)
         {
             UC_Connect_Show.tmr_timed = false;
-            Form form_Overview = new Form_Overview();
-            form_Overview.Show();
-            UC_Overview.Update_Overview();
+            if (Form_Overview.isopen)
+            {
+                Form_Overview.tofront = true;
+            }
+            else
+            {
+                Form form_Overview = new Form_Overview();
+                form_Overview.Show();
+                UC_Overview.Update_Overview();
+            }
         }
 
         private void TSMI_new_Auftrag_Click(object sender, EventArgs e)
