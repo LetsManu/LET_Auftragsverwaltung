@@ -213,6 +213,7 @@
             this.btn_save_kauf_edit_anz.TabIndex = 6;
             this.btn_save_kauf_edit_anz.Text = "Anfordern bei Sandra";
             this.btn_save_kauf_edit_anz.UseVisualStyleBackColor = true;
+            this.btn_save_kauf_edit_anz.Click += new System.EventHandler(this.btn_save_kauf_edit_anz_Click);
             // 
             // txt_kauf_edit_anz
             // 

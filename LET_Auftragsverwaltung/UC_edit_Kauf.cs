@@ -338,12 +338,37 @@ namespace LET_Auftragsverwaltung
 
                 CS_SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
 
-                UC_Kauf_Date_Auf_set();
+               
 
             }
             catch (Exception f)
             {
                 MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT AB_AZ Anfordern): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_save_kauf_edit_anz_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int a_ID = 0;
+
+                string sql = "SELECT AB_AZ FROM auftraege Where ID = " + id;
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                CS_SQL_methods.Open();
+                OdbcDataReader sql_Reader = cmd.ExecuteReader();
+                sql_Reader.Read();
+                a_ID = Convert.ToInt32(sql_Reader[0].ToString());
+
+
+                CS_SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_Notiz = '{0}' WHERE A_ID = {1}", txt_kauf_edit_anz.Text, a_ID));
+
+               
+
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT AB_AZ Bestätigen): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
