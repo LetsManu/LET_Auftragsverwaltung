@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Odbc;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,17 @@ namespace LET_Auftragsverwaltung
         public Form_Edit_Auftrag(int id_)
         {
             id = id_;
+
             InitializeComponent();
+
+            CS_SQL_methods.Open();
+            string sql = "SELECT concat(concat(auftraege.Auftrags_NR, ', '), auftraege.Projektbezeichnung) AS title FROM auftraege WHERE auftraege.id = " + id;
+            OdbcCommand cmd = new OdbcCommand(sql, CS_DB.Connection);
+            OdbcDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                this.Text = Convert.ToString(reader[0]);
+            }
         }
 
         private void Form_Edit_Auftrag_Leave(object sender, EventArgs e)
