@@ -29,17 +29,10 @@
         private void InitializeComponent( )
         {
             this.components = new System.ComponentModel.Container();
-            this.uC_Overview1 = new LET_Auftragsverwaltung.UC_Overview();
             this.btn_print = new System.Windows.Forms.Button();
             this.tmr_100ms = new System.Windows.Forms.Timer(this.components);
+            this.uC_Overview1 = new LET_Auftragsverwaltung.UC_Overview();
             this.SuspendLayout();
-            // 
-            // uC_Overview1
-            // 
-            this.uC_Overview1.Location = new System.Drawing.Point(-1, -1);
-            this.uC_Overview1.Name = "uC_Overview1";
-            this.uC_Overview1.Size = new System.Drawing.Size(1885, 1013);
-            this.uC_Overview1.TabIndex = 0;
             // 
             // btn_print
             // 
@@ -56,6 +49,13 @@
             this.tmr_100ms.Enabled = true;
             this.tmr_100ms.Tick += new System.EventHandler(this.tmr_100ms_Tick);
             // 
+            // uC_Overview1
+            // 
+            this.uC_Overview1.Location = new System.Drawing.Point(-1, -1);
+            this.uC_Overview1.Name = "uC_Overview1";
+            this.uC_Overview1.Size = new System.Drawing.Size(1885, 1013);
+            this.uC_Overview1.TabIndex = 0;
+            // 
             // Form_Overview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -65,6 +65,7 @@
             this.Controls.Add(this.uC_Overview1);
             this.Name = "Form_Overview";
             this.Text = "Overview";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Overview_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_Overview_KeyDown);
             this.ResumeLayout(false);
 

@@ -12,12 +12,14 @@ namespace LET_Auftragsverwaltung
 {
     public partial class Form_Overview : Form
     {
-        private static  bool tofront;
+        public static bool tofront;
+        public static bool isopen = false;
 
         public Form_Overview( )
         {
             InitializeComponent();
             this.KeyPreview = true;
+            isopen = true;
         }
 
 
@@ -44,6 +46,11 @@ namespace LET_Auftragsverwaltung
                 tofront = false;
                 this.BringToFront();
             }
+        }
+
+        private void Form_Overview_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            isopen = false;
         }
     }
 }
