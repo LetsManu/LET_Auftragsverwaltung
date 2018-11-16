@@ -15,18 +15,20 @@ namespace LET_Auftragsverwaltung
         {
             Task.Factory.StartNew(( ) =>
             {
+                StreamReader reader;
+                StreamWriter writer;
                 while (true)
                 {
                     var server = new NamedPipeServerStream("LET_Auftragsverwaltung_outlook_Pipe");
                     server.WaitForConnection();
-                    StreamReader reader = new StreamReader(server);
-                    StreamWriter writer = new StreamWriter(server);
+                    reader = new StreamReader(server);
+                    writer = new StreamWriter(server);
                     while (server.IsConnected)
                     {
                         var line = reader.ReadLine();
                         if (line != null)
                         {
-                            writer.WriteLine(String.Join("", line.Reverse()));
+                            writer.WriteLine("Thank ya, you are our man!");
                             writer.Flush();
                         }
                     }
