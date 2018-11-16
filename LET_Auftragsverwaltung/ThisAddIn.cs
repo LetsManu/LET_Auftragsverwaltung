@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.Pipes;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using Outlook = Microsoft.Office.Interop.Outlook;
@@ -21,6 +24,21 @@ namespace LET_Auftragsverwaltung
             CTP_Main = this.CustomTaskPanes.Add(uC_Main_Task_Pane, "Aufträge:");
             CTP_Main.Visible = true;
             CTP_Main.Width = 400;
+
+
+            Task.Factory.StartNew(( ) =>
+            {
+                var server = new NamedPipeServerStream("PipesOfPiece");
+                server.WaitForConnection();
+                StreamReader reader = new StreamReader(server);
+                StreamWriter writer = new StreamWriter(server);
+                while (true)
+                {
+                    var line = reader.ReadLine();
+                    writer.WriteLine(String.Join("", line.Reverse()));
+                    writer.Flush();
+                }
+            });
         }
 
         public void UC_Main_Task_Pane_Send(string betreff, string subjekt)
