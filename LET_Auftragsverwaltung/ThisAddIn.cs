@@ -24,6 +24,7 @@ namespace LET_Auftragsverwaltung
             CTP_Main = this.CustomTaskPanes.Add(uC_Main_Task_Pane, "Aufträge:");
             CTP_Main.Visible = true;
             CTP_Main.Width = 400;
+
         }
 
         public void UC_Main_Task_Pane_Send(string betreff, string subjekt)
