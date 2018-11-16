@@ -34,9 +34,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
             this.btn_open_Main = this.Factory.CreateRibbonButton();
+            this.tmr_100 = new System.Windows.Forms.Timer(this.components);
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.SuspendLayout();
@@ -65,6 +67,11 @@
             this.btn_open_Main.ShowImage = true;
             this.btn_open_Main.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btn_open_Main_Click);
             // 
+            // tmr_100
+            // 
+            this.tmr_100.Enabled = true;
+            this.tmr_100.Tick += new System.EventHandler(this.tmr_100_Tick);
+            // 
             // Ribbon_Home
             // 
             this.Name = "Ribbon_Home";
@@ -84,6 +91,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btn_open_Main;
+        private System.Windows.Forms.Timer tmr_100;
     }
 
     partial class ThisRibbonCollection

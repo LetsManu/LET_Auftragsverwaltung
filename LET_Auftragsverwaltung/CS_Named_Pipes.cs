@@ -1,13 +1,14 @@
-﻿using System;
+﻿using BrightIdeasSoftware;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Pipes;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using BrightIdeasSoftware;
 
 namespace LET_Auftragsverwaltung
 {
@@ -35,17 +36,17 @@ namespace LET_Auftragsverwaltung
                             var split_line = line.Split(';');
                             switch (split_line[0])
                             {
-                                case "Edit_Auftrag" :
+                                case "Edit_Auftrag":
                                     if (split_line.Last() == "LET_ENDE")    //All ifs are to ensure the string comes from an safe source (at least somewhat safe...)
                                     {
                                         if (split_line[3] == "LET_SPACE")
                                         {
                                             if (split_line[1] == "ID:")
                                             {
-                                                if(Int32.TryParse(split_line[2],out int num))
+                                                if (Int32.TryParse(split_line[2], out int num))
                                                 {
-                                                    Form Form_EDIT = new Form_Edit_Auftrag(num);
-                                                    Form_EDIT.Show();
+                                                    Ribbon_Home.ID = num;
+                                                    Ribbon_Home.open_edit_auftrag = true;
                                                 }
                                             }
                                         }

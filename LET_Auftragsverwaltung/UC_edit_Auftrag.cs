@@ -10,9 +10,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Exception = System.Exception;
 using Office = Microsoft.Office.Core;
 using Outlook = Microsoft.Office.Interop.Outlook;
-using Exception = System.Exception;
 
 
 namespace LET_Auftragsverwaltung
@@ -32,17 +32,17 @@ namespace LET_Auftragsverwaltung
 
             }
         }
-        
+
         //ID zur Übergabe
-        private int id = 0;   
+        private int id = 0;
 
         public UC_edit_Auftrag(int id_)
         {
             InitializeComponent();
             id = id_;
-            
+
         }
-        
+
         private void UC_edit_Auftrag_Load(object sender, EventArgs e)
         {
             if (!this.DesignMode)
@@ -65,27 +65,28 @@ namespace LET_Auftragsverwaltung
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
                 CS_SQL_methods.Open();
                 OdbcDataReader sqlReader = cmd.ExecuteReader();
-                sqlReader.Read();
+                if (sqlReader.Read())
+                {
+                    txt_auftrag_nr.Text = ( string ) sqlReader[1];
+                    cbx_auftragsstatus.SelectedValue = sqlReader[2];
+                    date_erstell.Value = Convert.ToDateTime(sqlReader[3]);
+                    cbx_verant.SelectedValue = sqlReader[6];
+                    cbx_tech.SelectedValue = sqlReader[7];
+                    txt_auf_proj_ken.Text = ( string ) sqlReader[8];
+                    date_mont.Value = Convert.ToDateTime(sqlReader[10]);
+                    txt_info_kauf.Text = ( string ) sqlReader[11];
+                    txt_info_tech.Text = ( string ) sqlReader[12];
+                }
 
-                txt_auftrag_nr.Text = (string)sqlReader[1];
-                cbx_auftragsstatus.SelectedValue = sqlReader[2];
-                date_erstell.Value = Convert.ToDateTime(sqlReader[3]);
-                cbx_verant.SelectedValue = sqlReader[6];
-                cbx_tech.SelectedValue = sqlReader[7];
-                txt_auf_proj_ken.Text = (string)sqlReader[8];
-                date_mont.Value = Convert.ToDateTime(sqlReader[10]);
-                txt_info_kauf.Text = (string)sqlReader[11];
-                txt_info_tech.Text = (string)sqlReader[12];
 
 
 
-                
             }
         }
 
         #region Definition Fill Klassen
 
-        private void UC_edit_Auftrag_fill_cbx_status()
+        private void UC_edit_Auftrag_fill_cbx_status( )
         {
             if (!this.DesignMode)
             {
@@ -97,7 +98,7 @@ namespace LET_Auftragsverwaltung
                     OdbcDataAdapter dc = new OdbcDataAdapter(sql, Connection);
                     DataTable dtStatus = new DataTable();
                     dc.Fill(dtStatus);
-                    
+
 
 
                     cbx_auftragsstatus.DataSource = dtStatus;
@@ -117,14 +118,14 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-        private void UC_Edit_Auftrag_fill_cbx_verant()
+        private void UC_Edit_Auftrag_fill_cbx_verant( )
         {
             if (!this.DesignMode)
             {
                 try
                 {
 
-                    
+
                     DataTable dtVerant = CS_SQL_methods.Fill_Box("SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 4");
 
                     cbx_verant.DataSource = dtVerant;
@@ -144,7 +145,7 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-        private void UC_Editt_auftrag_fill_cbx_tech()
+        private void UC_Editt_auftrag_fill_cbx_tech( )
         {
             if (!this.DesignMode)
             {
@@ -171,7 +172,7 @@ namespace LET_Auftragsverwaltung
 
         }
 
-        private void UC_Edit_Auftrag_fill_lbx_auftrag()
+        private void UC_Edit_Auftrag_fill_lbx_auftrag( )
         {
             if (!this.DesignMode)
             {
@@ -190,14 +191,14 @@ namespace LET_Auftragsverwaltung
                 }
                 catch (Exception f)
                 {
-                    
+
                     MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Fill LBX Auftrag): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
         }
 
-        private void UC_Edit_Auftrag_fill_cbx_art()
+        private void UC_Edit_Auftrag_fill_cbx_art( )
         {
             if (!this.DesignMode)
             {
@@ -226,7 +227,7 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-        private void UC_edit_auftrag_fill_cbx_lief()
+        private void UC_edit_auftrag_fill_cbx_lief( )
         {
             if (!this.DesignMode)
             {
@@ -251,7 +252,7 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-        private void UC_Edit_Auftrag_fill_lbx_stoff()
+        private void UC_Edit_Auftrag_fill_lbx_stoff( )
         {
             if (!this.DesignMode)
             {
@@ -271,14 +272,14 @@ namespace LET_Auftragsverwaltung
                 }
                 catch (Exception f)
                 {
-                    
+
                     MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Fill LBX Auftrag): \n\n" + f.Message + "\n\n" + f.Data.Values.ToString(), "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
         }
 
-        private void UC_New_auftrag_fill_cbx_stoff_lief()
+        private void UC_New_auftrag_fill_cbx_stoff_lief( )
         {
             if (!this.DesignMode)
             {
@@ -302,13 +303,13 @@ namespace LET_Auftragsverwaltung
                     {
                         MessageBox.Show("Fehler in der SQL Abfrage(EDIT Auftrag: Fill CBX Stoff): \n\n" + f.Message,
                             "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        
+
                     }
                 }
             }
         }
 
-        private void UC_Edit_Auftrag_fill_cbx_schatten_pers()
+        private void UC_Edit_Auftrag_fill_cbx_schatten_pers( )
         {
             if (!this.DesignMode)
             {
@@ -375,7 +376,7 @@ namespace LET_Auftragsverwaltung
                 {
                     CS_SQL_methods.SQL_exec(string.Format("DELETE FROM  auftraege_auftragsart WHERE ID = {0} AND Art_ID = {1}",
                         id,
-                        (int)lbx_auftrag.SelectedValue));
+                        ( int ) lbx_auftrag.SelectedValue));
                     UC_Edit_Auftrag_fill_lbx_auftrag();
                 }
                 catch (Exception f)
@@ -394,7 +395,7 @@ namespace LET_Auftragsverwaltung
                 {
                     CS_SQL_methods.SQL_exec(string.Format("INSERT INTO auftraege_auftragsart (ID, Art_ID) VALUES ({0}, {1})",
                         id,
-                        (int)cbx_auftrag.SelectedValue));
+                        ( int ) cbx_auftrag.SelectedValue));
                     UC_Edit_Auftrag_fill_lbx_auftrag();
                 }
                 catch (Exception f)
@@ -424,7 +425,7 @@ namespace LET_Auftragsverwaltung
                 {
                     CS_SQL_methods.SQL_exec(string.Format("INSERT INTO auftraege_auftragsart (ID, Art_ID) VALUES ({0}, {1})",
                         id,
-                        (int)cbx_edit_auf_stoff.SelectedValue));
+                        ( int ) cbx_edit_auf_stoff.SelectedValue));
                     UC_Edit_Auftrag_fill_lbx_auftrag();
                 }
                 catch (Exception f)
@@ -447,13 +448,13 @@ namespace LET_Auftragsverwaltung
                 OdbcDataReader sql_read = cmd.ExecuteReader();
                 sql_read.Read();
                 a_ID = Convert.ToInt32(sql_read[0].ToString());
-                
-            CS_SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
+
+                CS_SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
 
                 AB_AZ_Controll();
 
             }
-            catch(Exception f)
+            catch (Exception f)
             {
                 MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT AB_AZ Anfordern): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -471,9 +472,9 @@ namespace LET_Auftragsverwaltung
                 OdbcDataReader sql_Reader = cmd.ExecuteReader();
                 sql_Reader.Read();
                 a_ID = Convert.ToInt32(sql_Reader[0].ToString());
-                
 
-            CS_SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_DATE = '{0}' WHERE A_ID = {1}", DateTime.Now.Date.ToString("yyyy-MM-dd"), a_ID));
+
+                CS_SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_DATE = '{0}' WHERE A_ID = {1}", DateTime.Now.Date.ToString("yyyy-MM-dd"), a_ID));
 
                 AB_AZ_Controll();
 
@@ -495,7 +496,7 @@ namespace LET_Auftragsverwaltung
                 OdbcDataReader sql_reader = cmd.ExecuteReader();
                 sql_reader.Read();
                 s_ID = Convert.ToInt32(sql_reader[0].ToString());
-                
+
                 CS_SQL_methods.SQL_exec(string.Format("UPDATE schatten SET Schattendatum = '{0}', P_ID = {1}, Notiz = '{2}' WHERE S_ID = {3}", dtp_schatten.Value.ToString("yyyy-MM-dd"), cbx_schatten_pers.SelectedValue, rtx_schatten.Text, s_ID));
 
                 Schatten_Controll();
@@ -514,7 +515,7 @@ namespace LET_Auftragsverwaltung
             {
                 int p_ID = 0;
                 string sql = "";
-                
+
                 OdbcCommand cmd;
                 OdbcDataReader sql_reader;
 
@@ -526,7 +527,7 @@ namespace LET_Auftragsverwaltung
 
                 p_ID = Convert.ToInt32(sql_reader[0].ToString());
                 sql_reader.Close();
-                
+
 
                 if (p_ID != 0)
                 {
@@ -537,7 +538,7 @@ namespace LET_Auftragsverwaltung
                     sql_reader.Read();
                     p_ID = Convert.ToInt32(sql_reader[0].ToString());
                     sql_reader.Close();
-                    
+
 
                     CS_SQL_methods.SQL_exec(string.Format(
                         "UPDATE teile_persenning SET Lieferdatum = '{0}', Bestelldatum = '{1}' WHERE T_P_ID = {2}",
@@ -557,16 +558,16 @@ namespace LET_Auftragsverwaltung
                     sql_reader.Read();
                     p_ID = Convert.ToInt32(sql_reader[0].ToString());
                     sql_reader.Close();
-                    
+
                     CS_SQL_methods.SQL_exec(string.Format("UPDATE teile SET T_P_ID = {0} WHERE ID = {1}", p_ID, id));
                 }
 
                 Persenning_Controll();
 
             }
-            catch(Exception f)
+            catch (Exception f)
             {
-               MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Persenning): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Persenning): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void btn_sond_save_Click(object sender, EventArgs e)
@@ -588,7 +589,7 @@ namespace LET_Auftragsverwaltung
                 s_ID = Convert.ToInt32(sql_reader[0].ToString());
                 sql_reader.Close();
 
-                
+
                 if (s_ID != 0)
                 {
                     sql = "SELECT T_S_ID FROM teile WHERE ID = " + id;
@@ -624,7 +625,7 @@ namespace LET_Auftragsverwaltung
                 Sonderteile_Controll();
 
             }
-           catch (Exception f)
+            catch (Exception f)
             {
                 MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Persenning): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -632,7 +633,7 @@ namespace LET_Auftragsverwaltung
 
 
 
-        private void AB_AZ_Controll()
+        private void AB_AZ_Controll( )
         {
             int a_ID = 0;
             string sql = "SELECT AB_AZ FROM auftraege WHERE ID = " + id;
@@ -646,7 +647,7 @@ namespace LET_Auftragsverwaltung
                 string sql2 = "SELECT B_Date FROM ab_az WHERE A_ID = " + a_ID;
                 OdbcCommand cmd2 = new OdbcCommand(sql2, Connection);
                 obj_db = cmd2.ExecuteScalar();
-                
+
                 if (obj_db != DBNull.Value)
                 {
                     btn_ab_az_an.Enabled = false;
@@ -663,12 +664,12 @@ namespace LET_Auftragsverwaltung
                 btn_ab_az_an.Enabled = true;
                 btn_ab_az_be.Enabled = false;
             }
-            
+
 
 
         }
 
-        private void Schatten_Controll()
+        private void Schatten_Controll( )
         {
             object obj_db;
             string sql = "SELECT Schatten FROM auftraege WHERE ID = " + id;
@@ -694,10 +695,10 @@ namespace LET_Auftragsverwaltung
             {
                 dtp_schatten.Value = DateTime.Today.Date;
             }
-            
+
         }
 
-        private void Persenning_Controll()
+        private void Persenning_Controll( )
         {
             object obj_db;
             int p_ID;
@@ -744,11 +745,11 @@ namespace LET_Auftragsverwaltung
                 dtp_persenning_best.Value = DateTime.Today;
             }
 
-            
+
 
         }
 
-        private void Sonderteile_Controll()
+        private void Sonderteile_Controll( )
         {
             object obj_db;
             int s_ID;
