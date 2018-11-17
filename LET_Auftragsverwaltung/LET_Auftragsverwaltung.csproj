@@ -405,7 +405,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>0599E173ACA0E5DAC246E327BA32DDB70EFA6283</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>293463C1756E194BE1E6EB4680EC151D6A8DC940</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>

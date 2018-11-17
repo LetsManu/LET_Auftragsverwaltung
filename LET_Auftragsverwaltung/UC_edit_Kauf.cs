@@ -167,7 +167,7 @@ namespace LET_Auftragsverwaltung
                 {
                     sql_reader = cmd2.ExecuteReader();
                     sql_reader.Read();
-                    date_kauf_edit_auf.Value = DateTime.Parse(sql_reader[0].ToString());
+                    date_kauf_edit_anz.Value = DateTime.Parse(sql_reader[0].ToString());
                 }
                 else
                 {
@@ -312,29 +312,108 @@ namespace LET_Auftragsverwaltung
 
         #endregion
 
-        private void date_kauf_edit_auf_ValueChanged(object sender, EventArgs e)
-        {
-            date_kauf_edit_auf.CustomFormat = "dd/MM/yyyy hh:mm:ss";
+        #region Special Methods
 
+        private void SQL_Date_Auf()
+        {
             if (date_kauf_edit_auf.Equals(null))
             {
-                SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_DATE = '{0}' WHERE A_ID = {1}", date_kauf_edit_auf.Value.ToString("yyyy-MM-dd"), id));
+                SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET V_DATE = '{0}' WHERE A_ID = {1}", date_kauf_edit_auf.Value.ToString("yyyy-MM-dd"), id));
                 UC_Kauf_Date_Auf_set();
             }
             else
             {
-                DateTime dtp = date_kauf_edit_auf.Value;
-
-                if((MessageBox.Show("Wollen sie das Datum überschreiben?","Datums Änderung in der Datenbank", MessageBoxButtons.YesNo) == DialogResult.Yes))
+                DialogResult dr = MessageBox.Show("Wollen sie das Datum überschreiben?",
+                    "Datums Änderung in der Datenbank", MessageBoxButtons.YesNo);
+                if (dr == DialogResult.Yes)
                 {
-                    SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_DATE = '{0}' WHERE A_ID = {1}", date_kauf_edit_auf.Value.ToString("yyyy-MM-dd"), id));
+                    string sql = "SELECT AB_AZ FROM auftraege WHERE ID = " + id;
+                    OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                    SQL_methods.Open();
+                    OdbcDataReader sql_reader = cmd.ExecuteReader();
+                    sql_reader.Read();
+                    int ab_id = Convert.ToInt32(sql_reader[0].ToString());
+                    sql_reader.Close();
+                    SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET V_DATE = '{0}' WHERE A_ID = {1}", date_kauf_edit_auf.Value.ToString("yyyy-MM-dd"), ab_id));
                     UC_Kauf_Date_Auf_set();
                 }
-                else
+
+                if (dr == DialogResult.No)
                 {
-                    date_kauf_edit_auf.Value = dtp;
+                    UC_Kauf_Date_Auf_set();
                 }
             }
+        }
+
+        private void SQL_Date_Anz()
+        {
+            if (date_kauf_edit_anz.Equals(null))
+            {
+                SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_DATE = '{0}' WHERE A_ID = {1}", date_kauf_edit_anz.Value.ToString("yyyy-MM-dd"), id));
+                UC_Kauf_Date_Anz_set();
+            }
+            else
+            {
+                DialogResult dr = MessageBox.Show("Wollen sie das Datum überschreiben?",
+                    "Datums Änderung in der Datenbank", MessageBoxButtons.YesNo);
+                if (dr == DialogResult.Yes)
+                {
+                    string sql = "SELECT AB_AZ FROM auftraege WHERE ID = " + id;
+                    OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                    SQL_methods.Open();
+                    OdbcDataReader sql_reader = cmd.ExecuteReader();
+                    sql_reader.Read();
+                    int ab_id = Convert.ToInt32(sql_reader[0].ToString());
+                    sql_reader.Close();
+                    SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_DATE = '{0}' WHERE A_ID = {1}", date_kauf_edit_anz.Value.ToString("yyyy-MM-dd"), ab_id));
+                    UC_Kauf_Date_Anz_set();
+                }
+
+                if (dr == DialogResult.No)
+                {
+                    UC_Kauf_Date_Anz_set();
+                }
+            }
+        }
+
+        private void SQL_Date_Schluss()
+        {
+            if (date_kauf_edit_schluss.Equals(null))
+            {
+                SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET S_DATE = '{0}' WHERE A_ID = {1}", date_kauf_edit_schluss.Value.ToString("yyyy-MM-dd"), id));
+                UC_Kauf_Date_Schluss_set();
+            }
+            else
+            {
+                DialogResult dr = MessageBox.Show("Wollen sie das Datum überschreiben?",
+                    "Datums Änderung in der Datenbank", MessageBoxButtons.YesNo);
+                if (dr == DialogResult.Yes)
+                {
+                    string sql = "SELECT AB_AZ FROM auftraege WHERE ID = " + id;
+                    OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                    SQL_methods.Open();
+                    OdbcDataReader sql_reader = cmd.ExecuteReader();
+                    sql_reader.Read();
+                    int ab_id = Convert.ToInt32(sql_reader[0].ToString());
+                    sql_reader.Close();
+                    SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET S_DATE = '{0}' WHERE A_ID = {1}", date_kauf_edit_schluss.Value.ToString("yyyy-MM-dd"), ab_id));
+                    UC_Kauf_Date_Schluss_set();
+                }
+
+                if (dr == DialogResult.No)
+                {
+                    UC_Kauf_Date_Schluss_set();
+                }
+            }
+        }
+        #endregion
+
+        #region Form Methods
+
+        private void date_kauf_edit_auf_ValueChanged(object sender, EventArgs e)
+        {
+            date_kauf_edit_auf.CustomFormat = "dd/MM/yyyy hh:mm:ss";
+
 
         }
 
@@ -393,6 +472,51 @@ namespace LET_Auftragsverwaltung
             {
                 MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT AB_AZ Bestätigen): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+
+
+        private void date_kauf_edit_auf_CloseUp(object sender, EventArgs e) //TODO Pro Date und Akt_Date eine neue Methode die die SQL und DialogBox behandeln soll
+        {           
+            SQL_Date_Auf();
+        }
+
+        private void btn_date_kauf_edit_auf_Click(object sender, EventArgs e)
+        {
+            date_kauf_edit_auf.Value = DateTime.Today;
+            SQL_Date_Auf();
+        }
+
+
+
+        #endregion
+
+        private void date_kauf_edit_anz_CloseUp(object sender, EventArgs e)
+        {
+            SQL_Date_Anz();
+
+        }
+
+        private void btn_date_kauf_edit_anz_Click(object sender, EventArgs e)
+        {
+            date_kauf_edit_anz.Value = DateTime.Today;
+            SQL_Date_Auf();
+        }
+
+        private void date_kauf_edit_schluss_ValueChanged(object sender, EventArgs e)
+        {
+            date_kauf_edit_schluss.CustomFormat = "dd/MM/yyyy hh:mm:ss";
+        }
+
+        private void date_kauf_edit_schluss_CloseUp(object sender, EventArgs e)
+        {
+            SQL_Date_Schluss();
+        }
+
+        private void btn_date_kauf_edit_schluss_Click(object sender, EventArgs e)
+        {
+            date_kauf_edit_schluss.Value = DateTime.Today;
+            SQL_Date_Schluss();
         }
     }
 }
