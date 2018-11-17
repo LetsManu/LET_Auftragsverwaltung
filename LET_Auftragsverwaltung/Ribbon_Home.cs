@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
+using BrightIdeasSoftware;
 using Microsoft.Office.Core;
 using Microsoft.Office.Interop.Outlook;
 using Microsoft.Office.Tools;
@@ -12,6 +14,8 @@ namespace LET_Auftragsverwaltung
 {
     public partial class Ribbon_Home
     {
+        public static int ID = 0;
+        public static bool open_edit_auftrag = false;
         private UC_Main_Task_Pane uC_Main_Task_Pane;
         private Microsoft.Office.Tools.CustomTaskPane CTP_Main;
 
@@ -22,17 +26,17 @@ namespace LET_Auftragsverwaltung
 
         private void btn_open_Main_Click(object sender, RibbonControlEventArgs e)
         {
+            
+        }
 
-            Microsoft.Office.Interop.Outlook.MailItem eMail =
-                (Microsoft.Office.Interop.Outlook.MailItem)Globals.ThisAddIn.Application.CreateItem(
-                    Microsoft.Office.Interop.Outlook.OlItemType.olMailItem);
-
-            eMail.Subject = "FELIX LECK MI AM ARSCH";
-            eMail.To = "";
-            eMail.Body = "FELIX DU KANNST DES ECHT ND";
-            eMail.Importance = OlImportance.olImportanceHigh;
-            ((Microsoft.Office.Interop.Outlook._MailItem)eMail).Send();
-
-        } 
+        private void tmr_100_Tick(object sender, EventArgs e)
+        {
+            if (open_edit_auftrag)
+            {
+                open_edit_auftrag = false;
+                Form Form_EDIT = new Form_Edit_Auftrag(ID);
+                Form_EDIT.Show();
+            }
+        }
     }
 }

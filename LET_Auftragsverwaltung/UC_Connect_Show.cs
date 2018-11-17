@@ -39,6 +39,7 @@ namespace LET_Auftragsverwaltung
 
         private void tmr_Tick(object sender, EventArgs e)
         {
+            /*
             try
             {
                 string sql = "SELECT COUNT(ID) FROM auftraege WHERE ID > 0";
@@ -75,7 +76,7 @@ namespace LET_Auftragsverwaltung
             }
 
             pbx_mysql.Invalidate();
-            pbx_ftp.Invalidate();
+            pbx_ftp.Invalidate();*/
         }
         
 

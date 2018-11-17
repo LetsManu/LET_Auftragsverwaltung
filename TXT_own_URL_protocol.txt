@@ -1,0 +1,58 @@
+﻿
+
+
+
+
+
+██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+Eigenes URL Protocol machen
+██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+
+https://stackoverflow.com/questions/389204/how-do-i-create-my-own-url-protocol-e-g-so
+
+https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/aa767914(v=vs.85
+
+HKEY_CLASSES_ROOT
+   alert
+      (Default) = "URL:Alert Protocol"
+      URL Protocol = ""
+      DefaultIcon
+         (Default) = "alert.exe,1"
+      shell
+         open
+            command
+               (Default) = "C:\Program Files\Alert\alert.exe" "%1"
+
+
+██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+
+
+
+
+
+
+
+
+██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+Unterdrücken der Wanrmeldung des unbekannten Protocols
+██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+
+https://support.microsoft.com/de-at/help/925757/how-to-enable-or-disable-hyperlink-warning-messages-in-2007-office-pro
+
+Aktivieren oder Deaktivieren von Hyperlink-Warnmeldungen pro Protokoll
+Gehen Sie wie folgt vor, um die Anzeige von Sicherheitswarnungen für ein bestimmtes Protokoll zu deaktivieren:
+
+    Klicken Sie auf Start, dann auf Ausführen, geben Sie regedit ein, und klicken Sie auf OK.
+    Gehen Sie zum folgenden Registrierungsunterschlüssel:
+    HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\xx.0\Common\Security\Trusted Protocols\All Applications
+    Note Ersetzen Sie in diesem Unterschlüssel "xx.0" für Outlook 2007 durch 12.0 und für Outlook 2010 durch 14.0.
+    Klicken Sie auf den Unterschlüssel "All Applications".
+    Zeigen Sie im Menü Bearbeiten auf Neu, und klicken Sie dann auf Schlüssel.
+    Geben Sie den Namen des Protokolls ein, das Sie ausschließen möchten. Um beispielsweise die Anzeige einer Sicherheitswarnung für das Protokoll "Notes:" zu deaktivieren, geben Sie Notes: ein.
+
+    Hinweis Sie müssen den Doppelpunkt (:) eingeben.
+    Drücken Sie die Eingabetaste..
+    Beenden Sie den Registrierungs-Editor.
+
+
+██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
