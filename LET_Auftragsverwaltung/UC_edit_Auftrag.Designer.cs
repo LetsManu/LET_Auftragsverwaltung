@@ -64,13 +64,6 @@
             this.btn_edit_infos = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tab_Allgemein = new System.Windows.Forms.TabPage();
-            this.tab_ab_az = new System.Windows.Forms.TabPage();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.btn_ab_az_be = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.btn_ab_az_an = new System.Windows.Forms.Button();
             this.tab_persennning = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.btn_persenning_save = new System.Windows.Forms.Button();
@@ -94,7 +87,8 @@
             this.label17 = new System.Windows.Forms.Label();
             this.dtp_sond_best = new System.Windows.Forms.DateTimePicker();
             this.dtp_sond_lief = new System.Windows.Forms.DateTimePicker();
-            this.tab_schluss = new System.Windows.Forms.TabPage();
+            this.tab_kauf = new System.Windows.Forms.TabPage();
+            this.uC_edit_Kauf1 = new LET_Auftragsverwaltung.UC_edit_Kauf();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_new_auf)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -103,15 +97,13 @@
             this.Auftraginfos.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tab_Allgemein.SuspendLayout();
-            this.tab_ab_az.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.tab_persennning.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.tab_schatten.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.tab_sond.SuspendLayout();
             this.groupBox9.SuspendLayout();
+            this.tab_kauf.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox4
@@ -447,11 +439,10 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tab_Allgemein);
-            this.tabControl1.Controls.Add(this.tab_ab_az);
+            this.tabControl1.Controls.Add(this.tab_kauf);
             this.tabControl1.Controls.Add(this.tab_persennning);
             this.tabControl1.Controls.Add(this.tab_schatten);
             this.tabControl1.Controls.Add(this.tab_sond);
-            this.tabControl1.Controls.Add(this.tab_schluss);
             this.tabControl1.Location = new System.Drawing.Point(2, 5);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -471,82 +462,6 @@
             this.tab_Allgemein.Text = "Allgemein";
             this.tab_Allgemein.UseVisualStyleBackColor = true;
             this.tab_Allgemein.Click += new System.EventHandler(this.tab_Allgemein_Click);
-            // 
-            // tab_ab_az
-            // 
-            this.tab_ab_az.Controls.Add(this.groupBox6);
-            this.tab_ab_az.Controls.Add(this.groupBox5);
-            this.tab_ab_az.Location = new System.Drawing.Point(4, 22);
-            this.tab_ab_az.Name = "tab_ab_az";
-            this.tab_ab_az.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_ab_az.Size = new System.Drawing.Size(1225, 374);
-            this.tab_ab_az.TabIndex = 1;
-            this.tab_ab_az.Text = "AB-AZ";
-            this.tab_ab_az.UseVisualStyleBackColor = true;
-            this.tab_ab_az.Enter += new System.EventHandler(this.tab_ab_az_Enter);
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.label10);
-            this.groupBox6.Controls.Add(this.btn_ab_az_be);
-            this.groupBox6.Location = new System.Drawing.Point(256, 4);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(238, 164);
-            this.groupBox6.TabIndex = 1;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Anzahlungsbestätigung";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(7, 20);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(182, 26);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "Bestätigung des Zahlungseinganges \r\ndurch das Büro.\r\n";
-            // 
-            // btn_ab_az_be
-            // 
-            this.btn_ab_az_be.Enabled = false;
-            this.btn_ab_az_be.Location = new System.Drawing.Point(82, 135);
-            this.btn_ab_az_be.Name = "btn_ab_az_be";
-            this.btn_ab_az_be.Size = new System.Drawing.Size(75, 23);
-            this.btn_ab_az_be.TabIndex = 1;
-            this.btn_ab_az_be.Text = "Bestätigen";
-            this.btn_ab_az_be.UseVisualStyleBackColor = true;
-            this.btn_ab_az_be.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.label9);
-            this.groupBox5.Controls.Add(this.btn_ab_az_an);
-            this.groupBox5.Location = new System.Drawing.Point(6, 4);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(217, 164);
-            this.groupBox5.TabIndex = 0;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Anzahlungsaufforderung";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 20);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(204, 39);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Anforderung der Anzahlungsaufforderung.\r\nNach betätigung wird eine Nachricht \r\nan" +
-    " das Büro gesendet";
-            // 
-            // btn_ab_az_an
-            // 
-            this.btn_ab_az_an.Enabled = false;
-            this.btn_ab_az_an.Location = new System.Drawing.Point(68, 135);
-            this.btn_ab_az_an.Name = "btn_ab_az_an";
-            this.btn_ab_az_an.Size = new System.Drawing.Size(75, 23);
-            this.btn_ab_az_an.TabIndex = 0;
-            this.btn_ab_az_an.Text = "Anfordern";
-            this.btn_ab_az_an.UseVisualStyleBackColor = true;
-            this.btn_ab_az_an.Click += new System.EventHandler(this.btn_ab_az_an_Click);
             // 
             // tab_persennning
             // 
@@ -769,14 +684,22 @@
             this.dtp_sond_lief.Size = new System.Drawing.Size(200, 20);
             this.dtp_sond_lief.TabIndex = 1;
             // 
-            // tab_schluss
+            // tab_kauf
             // 
-            this.tab_schluss.Location = new System.Drawing.Point(4, 22);
-            this.tab_schluss.Name = "tab_schluss";
-            this.tab_schluss.Size = new System.Drawing.Size(1225, 374);
-            this.tab_schluss.TabIndex = 5;
-            this.tab_schluss.Text = "Schlussrechnung";
-            this.tab_schluss.UseVisualStyleBackColor = true;
+            this.tab_kauf.Controls.Add(this.uC_edit_Kauf1);
+            this.tab_kauf.Location = new System.Drawing.Point(4, 22);
+            this.tab_kauf.Name = "tab_kauf";
+            this.tab_kauf.Size = new System.Drawing.Size(1225, 374);
+            this.tab_kauf.TabIndex = 5;
+            this.tab_kauf.Text = "Kaufmänisch";
+            this.tab_kauf.UseVisualStyleBackColor = true;
+            // 
+            // uC_edit_Kauf1
+            // 
+            this.uC_edit_Kauf1.Location = new System.Drawing.Point(3, 3);
+            this.uC_edit_Kauf1.Name = "uC_edit_Kauf1";
+            this.uC_edit_Kauf1.Size = new System.Drawing.Size(903, 329);
+            this.uC_edit_Kauf1.TabIndex = 0;
             // 
             // UC_edit_Auftrag
             // 
@@ -797,11 +720,6 @@
             this.Auftraginfos.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tab_Allgemein.ResumeLayout(false);
-            this.tab_ab_az.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.tab_persennning.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
@@ -811,6 +729,7 @@
             this.tab_sond.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
+            this.tab_kauf.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -853,15 +772,8 @@
         private System.Windows.Forms.ComboBox cbx_auftragsstatus;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tab_Allgemein;
-        private System.Windows.Forms.TabPage tab_ab_az;
         private System.Windows.Forms.TabPage tab_persennning;
         private System.Windows.Forms.TabPage tab_schatten;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button btn_ab_az_be;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button btn_ab_az_an;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Button btn_schatten_save;
         private System.Windows.Forms.DateTimePicker dtp_schatten;
@@ -883,6 +795,7 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.DateTimePicker dtp_sond_best;
         private System.Windows.Forms.DateTimePicker dtp_sond_lief;
-        private System.Windows.Forms.TabPage tab_schluss;
+        private System.Windows.Forms.TabPage tab_kauf;
+        private UC_edit_Kauf uC_edit_Kauf1;
     }
 }
