@@ -315,6 +315,27 @@ namespace LET_Auftragsverwaltung
         private void date_kauf_edit_auf_ValueChanged(object sender, EventArgs e)
         {
             date_kauf_edit_auf.CustomFormat = "dd/MM/yyyy hh:mm:ss";
+
+            if (date_kauf_edit_auf.Equals(null))
+            {
+                CS_SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_DATE = '{0}' WHERE A_ID = {1}", date_kauf_edit_auf.Value.ToString("yyyy-MM-dd"), id));
+                UC_Kauf_Date_Auf_set();
+            }
+            else
+            {
+                DateTime dtp = date_kauf_edit_auf.Value;
+
+                if((MessageBox.Show("Wollen sie das Datum überschreiben?","Datums Änderung in der Datenbank", MessageBoxButtons.YesNo) == DialogResult.Yes))
+                {
+                    CS_SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_DATE = '{0}' WHERE A_ID = {1}", date_kauf_edit_auf.Value.ToString("yyyy-MM-dd"), id));
+                    UC_Kauf_Date_Auf_set();
+                }
+                else
+                {
+                    date_kauf_edit_auf.Value = dtp;
+                }
+            }
+
         }
 
         private void date_kauf_edit_anz_ValueChanged(object sender, EventArgs e)
