@@ -26,7 +26,7 @@ namespace LET_URL_Client
             {
                 StreamReader reader = new StreamReader(client);
                 StreamWriter writer = new StreamWriter(client);
-                writer.WriteLine("Edit_Auftrag;ID:;" + args[0].Replace("leturl:ID-","") + ";LET_SPACE;LET_ENDE");
+                writer.WriteLine("Edit_Auftrag;ID:;" + args[0].ToLower().Replace("leturl:id-","") + ";LET_SPACE;LET_ENDE");
                 writer.Flush();
                 Console.WriteLine(reader.ReadLine());
             }
