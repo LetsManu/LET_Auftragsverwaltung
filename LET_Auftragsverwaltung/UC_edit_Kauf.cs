@@ -38,6 +38,9 @@ namespace LET_Auftragsverwaltung
                 UC_Kauf_Date_Auf_set();
                 UC_Kauf_Date_Anz_set();
                 UC_Kauf_Date_Schluss_set();
+                UC_Kauf_Text_Auf();
+                UC_Kauf_Text_Anz();
+                UC_Kauf_Text_Schluss();
             }
         }
 
@@ -223,7 +226,6 @@ namespace LET_Auftragsverwaltung
         {
             try
             {
-                object obj_db;
                 string sql = "SELECT AB_AZ FROM auftraege WHERE ID = " + id;
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
                 SQL_methods.Open();
@@ -233,14 +235,11 @@ namespace LET_Auftragsverwaltung
                               Convert.ToInt32(sql_reader[0].ToString());
                 sql_reader.Close();
                 OdbcCommand cmd2 = new OdbcCommand(sql2, Connection);
-                obj_db = cmd2.ExecuteScalar();
 
-                if (obj_db != DBNull.Value)
-                {
                     sql_reader = cmd2.ExecuteReader();
                     sql_reader.Read();
                     txt_kauf_edit_auf.Text = sql_reader[0].ToString();
-                }
+                
 
             }
             catch (Exception f)
@@ -253,7 +252,6 @@ namespace LET_Auftragsverwaltung
         {
             try
             {
-                object obj_db;
                 string sql = "SELECT AB_AZ FROM auftraege WHERE ID = " + id;
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
                 SQL_methods.Open();
@@ -263,14 +261,11 @@ namespace LET_Auftragsverwaltung
                               Convert.ToInt32(sql_reader[0].ToString());
                 sql_reader.Close();
                 OdbcCommand cmd2 = new OdbcCommand(sql2, Connection);
-                obj_db = cmd2.ExecuteScalar();
-
-                if (obj_db != DBNull.Value)
-                {
+              
                     sql_reader = cmd2.ExecuteReader();
                     sql_reader.Read();
                     txt_kauf_edit_anz.Text = sql_reader[0].ToString();
-                }
+                
 
             }
             catch (Exception f)
@@ -283,7 +278,6 @@ namespace LET_Auftragsverwaltung
         {
             try
             {
-                object obj_db;
                 string sql = "SELECT AB_AZ FROM auftraege WHERE ID = " + id;
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
                 SQL_methods.Open();
@@ -293,14 +287,11 @@ namespace LET_Auftragsverwaltung
                               Convert.ToInt32(sql_reader[0].ToString());
                 sql_reader.Close();
                 OdbcCommand cmd2 = new OdbcCommand(sql2, Connection);
-                obj_db = cmd2.ExecuteScalar();
 
-                if (obj_db != DBNull.Value)
-                {
                     sql_reader = cmd2.ExecuteReader();
                     sql_reader.Read();
                     txt_kauf_edit_schluss.Text = sql_reader[0].ToString();
-                }
+                
 
             }
             catch (Exception f)
@@ -406,6 +397,26 @@ namespace LET_Auftragsverwaltung
                 }
             }
         }
+
+        private void SQL_ALL_Notiz_Save()
+        {
+            int a_ID = 0;
+
+            string sql = "SELECT AB_AZ FROM auftraege Where ID = " + id;
+            OdbcCommand cmd = new OdbcCommand(sql, Connection);
+            SQL_methods.Open();
+            OdbcDataReader sql_Reader = cmd.ExecuteReader();
+            sql_Reader.Read();
+            a_ID = Convert.ToInt32(sql_Reader[0].ToString());
+
+
+            SQL_methods.SQL_exec($"UPDATE AB_AZ SET B_Notiz = '{txt_kauf_edit_anz.Text}', V_Notiz = '{txt_kauf_edit_auf.Text}', S_Notiz = '{txt_kauf_edit_schluss.Text}' WHERE A_ID = {a_ID}");
+
+            UC_Kauf_Text_Auf();
+            UC_Kauf_Text_Anz();
+            UC_Kauf_Text_Schluss();
+        }
+
         #endregion
 
         #region Form Methods
@@ -428,13 +439,15 @@ namespace LET_Auftragsverwaltung
             {
                 int a_ID;
                 SQL_methods.SQL_exec(string.Format("INSERT INTO AB_AZ (V_Notiz) Values ('{0}')",
-                    txt_kauf_edit_auf.Text));
+                    " "));
                 string sql = "SELECT A_ID FROM ab_az ORDER BY A_ID DESC LIMIT 1";
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
                 SQL_methods.Open();
                 OdbcDataReader sql_read = cmd.ExecuteReader();
                 sql_read.Read();
                 a_ID = Convert.ToInt32(sql_read[0].ToString());
+
+                SQL_ALL_Notiz_Save();
 
                 SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
 
@@ -453,17 +466,7 @@ namespace LET_Auftragsverwaltung
         {
             try
             {
-                int a_ID = 0;
-
-                string sql = "SELECT AB_AZ FROM auftraege Where ID = " + id;
-                OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                SQL_methods.Open();
-                OdbcDataReader sql_Reader = cmd.ExecuteReader();
-                sql_Reader.Read();
-                a_ID = Convert.ToInt32(sql_Reader[0].ToString());
-
-
-                SQL_methods.SQL_exec($"UPDATE AB_AZ SET B_Notiz = '{txt_kauf_edit_anz.Text}' WHERE A_ID = {a_ID}");
+                
 
                
 
@@ -518,5 +521,12 @@ namespace LET_Auftragsverwaltung
             date_kauf_edit_schluss.Value = DateTime.Today;
             SQL_Date_Schluss();
         }
+
+        private void btn_edit_kauf_text_save_Click(object sender, EventArgs e)
+        {
+            SQL_ALL_Notiz_Save();
+        }
+
+        
     }
 }
