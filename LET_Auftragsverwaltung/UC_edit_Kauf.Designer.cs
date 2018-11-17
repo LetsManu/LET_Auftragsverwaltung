@@ -91,6 +91,7 @@
             this.btn_date_kauf_edit_auf.TabIndex = 12;
             this.btn_date_kauf_edit_auf.Text = "Aktuelles Datum";
             this.btn_date_kauf_edit_auf.UseVisualStyleBackColor = true;
+            this.btn_date_kauf_edit_auf.Click += new System.EventHandler(this.btn_date_kauf_edit_auf_Click);
             // 
             // txt_kauf_auf_best
             // 
@@ -137,6 +138,7 @@
             this.date_kauf_edit_auf.Name = "date_kauf_edit_auf";
             this.date_kauf_edit_auf.Size = new System.Drawing.Size(178, 20);
             this.date_kauf_edit_auf.TabIndex = 2;
+            this.date_kauf_edit_auf.CloseUp += new System.EventHandler(this.date_kauf_edit_auf_CloseUp);
             this.date_kauf_edit_auf.ValueChanged += new System.EventHandler(this.date_kauf_edit_auf_ValueChanged);
             // 
             // label4
@@ -186,12 +188,13 @@
             // 
             // btn_date_kauf_edit_anz
             // 
-            this.btn_date_kauf_edit_anz.Location = new System.Drawing.Point(111, 65);
+            this.btn_date_kauf_edit_anz.Location = new System.Drawing.Point(109, 65);
             this.btn_date_kauf_edit_anz.Name = "btn_date_kauf_edit_anz";
-            this.btn_date_kauf_edit_anz.Size = new System.Drawing.Size(178, 23);
+            this.btn_date_kauf_edit_anz.Size = new System.Drawing.Size(180, 23);
             this.btn_date_kauf_edit_anz.TabIndex = 13;
             this.btn_date_kauf_edit_anz.Text = "Aktuelles Datum";
             this.btn_date_kauf_edit_anz.UseVisualStyleBackColor = true;
+            this.btn_date_kauf_edit_anz.Click += new System.EventHandler(this.btn_date_kauf_edit_anz_Click);
             // 
             // txt_kauf_anz_best
             // 
@@ -246,6 +249,7 @@
             this.date_kauf_edit_anz.Name = "date_kauf_edit_anz";
             this.date_kauf_edit_anz.Size = new System.Drawing.Size(180, 20);
             this.date_kauf_edit_anz.TabIndex = 1;
+            this.date_kauf_edit_anz.CloseUp += new System.EventHandler(this.date_kauf_edit_anz_CloseUp);
             this.date_kauf_edit_anz.ValueChanged += new System.EventHandler(this.date_kauf_edit_anz_ValueChanged);
             // 
             // label8
@@ -291,6 +295,7 @@
             this.btn_date_kauf_edit_schluss.TabIndex = 14;
             this.btn_date_kauf_edit_schluss.Text = "Aktuelles Datum";
             this.btn_date_kauf_edit_schluss.UseVisualStyleBackColor = true;
+            this.btn_date_kauf_edit_schluss.Click += new System.EventHandler(this.btn_date_kauf_edit_schluss_Click);
             // 
             // label15
             // 
@@ -362,6 +367,8 @@
             this.date_kauf_edit_schluss.Name = "date_kauf_edit_schluss";
             this.date_kauf_edit_schluss.Size = new System.Drawing.Size(178, 20);
             this.date_kauf_edit_schluss.TabIndex = 0;
+            this.date_kauf_edit_schluss.CloseUp += new System.EventHandler(this.date_kauf_edit_schluss_CloseUp);
+            this.date_kauf_edit_schluss.ValueChanged += new System.EventHandler(this.date_kauf_edit_schluss_ValueChanged);
             // 
             // label1
             // 
