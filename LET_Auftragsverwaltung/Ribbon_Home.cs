@@ -26,17 +26,7 @@ namespace LET_Auftragsverwaltung
 
         private void btn_open_Main_Click(object sender, RibbonControlEventArgs e)
         {
-
-            Microsoft.Office.Interop.Outlook.MailItem eMail =
-                (Microsoft.Office.Interop.Outlook.MailItem)Globals.ThisAddIn.Application.CreateItem(
-                    Microsoft.Office.Interop.Outlook.OlItemType.olMailItem);
-
-            eMail.Subject = "";
-            eMail.To = "";
-            eMail.Body = "";
-            eMail.Importance = OlImportance.olImportanceHigh;
-            ((Microsoft.Office.Interop.Outlook._MailItem)eMail).Send();
-
+            
         }
 
         private void tmr_100_Tick(object sender, EventArgs e)
