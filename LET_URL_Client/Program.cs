@@ -15,7 +15,6 @@ namespace LET_URL_Client
         static void Main(string[ ] args)
         {
             //Edit_Auftrag;ID:;6;LET_SPACE;LET_ENDE
-
             ThreadStart childref = new ThreadStart(Timout);
             Thread childThread = new Thread(childref);
             childThread.Start();
@@ -27,8 +26,7 @@ namespace LET_URL_Client
             {
                 StreamReader reader = new StreamReader(client);
                 StreamWriter writer = new StreamWriter(client);
-
-                writer.WriteLine("Edit_Auftrag;ID:;" + args[0].Replace("ID-","") + ";LET_SPACE;LET_ENDE");
+                writer.WriteLine("Edit_Auftrag;ID:;" + args[0].Replace("leturl:ID-","") + ";LET_SPACE;LET_ENDE");
                 writer.Flush();
                 Console.WriteLine(reader.ReadLine());
             }
@@ -42,7 +40,12 @@ namespace LET_URL_Client
         static void Timout()
         {
             Thread.Sleep(5000);
+            Console.WriteLine("Outlook oder das LET Auftragsverwaltungs addin ist nicht gestartet. \nWenn dies nicht der Fall ist Outlook neustarten. \nBei Wiederholung Programmierer hinzuholen.\n\n\nDieses Fenster kann geschlossen werden.\nEine Taste drücken um zu Beenden.");
+            Thread.Sleep(15000);
             Environment.Exit(1);
+
+
+            //TODO add messageboxen
         }
     }
 }
