@@ -24,7 +24,6 @@ namespace LET_URL_Client
                 StreamWriter writer = new StreamWriter(client);
 
                 writer.WriteLine("Edit_Auftrag;ID:;" + args[0].Last() + ";LET_SPACE;LET_ENDE");
-
                 writer.Flush();
                 Console.WriteLine(reader.ReadLine());
             }

@@ -362,7 +362,6 @@
       <DependentUpon>UC_Parameter.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="LET_Auftragsverwaltung_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -401,10 +400,11 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>LET_Auftragsverwaltung_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>2E0711D3374AE3DD1ACDBADA99CC29FC369252F8</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>0599E173ACA0E5DAC246E327BA32DDB70EFA6283</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
