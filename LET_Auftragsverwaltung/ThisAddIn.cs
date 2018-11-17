@@ -25,7 +25,7 @@ namespace LET_Auftragsverwaltung
             CTP_Main.Visible = true;
             CTP_Main.Width = 400;
 
-            CS_Named_Pipes.Start();
+            Named_Pipes.Start();
         }
 
         public void UC_Main_Task_Pane_Send(string betreff, string subjekt)

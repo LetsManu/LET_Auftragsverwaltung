@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace LET_Auftragsverwaltung
 {
-    class CS_FTP
+    class FTP
     {
-        private static bool Is_this_mb = "M80-AC016500071" == CS_System_Info.GetMotherBoardID();
+        private static bool Is_this_mb = "M80-AC016500071" == System_Info.GetMotherBoardID();
         internal static string[] extensions = {"PNG", "JPG", "TIFF", "GIF"};
 
 

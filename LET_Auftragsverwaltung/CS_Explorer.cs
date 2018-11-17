@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace LET_Auftragsverwaltung
 {
-    class CS_Explorer
+    class Explorer
     {
         private static void Open(string path)
         {

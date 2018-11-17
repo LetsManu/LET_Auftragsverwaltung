@@ -23,7 +23,7 @@ namespace LET_Auftragsverwaltung
         }
 
 
-        private OdbcConnection Connection => CS_DB.Connection;
+        private OdbcConnection Connection => DB.Connection;
 
         //! Replace all the Messageboxes for information and Error with this Method and passe diese Method an damit sie damit umgehen kan alter flater.....
         private void SQL_Fehler(Exception f)
@@ -38,7 +38,7 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
-                    CS_SQL_methods.SQL_exec(string.Format(
+                    SQL_methods.SQL_exec(string.Format(
                         "INSERT INTO adressen (Land, PLZ, Ort, Hausnummer, Strasse ) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')",
                         txt_pers_land.Text, txt_pers_plz.Text, txt_pers_ort.Text, txt_pers_hnr.Text,
                         txt_pers_str.Text));
@@ -46,7 +46,7 @@ namespace LET_Auftragsverwaltung
                     var sql2 = string.Format(
                         "SELECT Adr_ID FROM adressen WHERE Land='{0}' AND PLZ='{1}' AND Ort='{2}' AND Hausnummer='{3}' AND Strasse='{4}' LIMIT 1",
                         txt_pers_land.Text, txt_pers_plz.Text, txt_pers_ort.Text, txt_pers_hnr.Text, txt_pers_str.Text);
-                    CS_SQL_methods.Open();
+                    SQL_methods.Open();
                     var cmd_read = new OdbcCommand(sql2, Connection);
                     var sqlReader = cmd_read.ExecuteReader();
 
@@ -54,7 +54,7 @@ namespace LET_Auftragsverwaltung
 
                     var adr_id = sqlReader.GetInt32(0);
                     
-                    CS_SQL_methods.SQL_exec(string.Format("INSERT INTO personal (Vorname, Nachname, Adr_ID) VALUES ('{0}', '{1}', {2})",
+                    SQL_methods.SQL_exec(string.Format("INSERT INTO personal (Vorname, Nachname, Adr_ID) VALUES ('{0}', '{1}', {2})",
                         txt_pers_vor.Text, txt_pers_nach.Text, adr_id));
 
                 }
@@ -88,7 +88,7 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
-                    CS_SQL_methods.SQL_exec(string.Format("INSERT INTO funktion (Funktion) VALUES ('{0}')", txt_funk_new.Text));
+                    SQL_methods.SQL_exec(string.Format("INSERT INTO funktion (Funktion) VALUES ('{0}')", txt_funk_new.Text));
                 }
                 catch (Exception f)
                 {
@@ -126,7 +126,7 @@ namespace LET_Auftragsverwaltung
             if (!DesignMode)
                 try
                 {                    
-                    var dtFunkt = CS_SQL_methods.Fill_Box("SELECT Funktion_ID,Funktion FROM funktion WHERE deaktiviert<>true");                    
+                    var dtFunkt = SQL_methods.Fill_Box("SELECT Funktion_ID,Funktion FROM funktion WHERE deaktiviert<>true");                    
                     
                     cbx_pers_funk.DataSource = dtFunkt;
                     cbx_funk.DataSource = dtFunkt;
@@ -152,7 +152,7 @@ namespace LET_Auftragsverwaltung
                 try
                 {
 
-                    var dtArt = CS_SQL_methods.Fill_Box("SELECT Art_ID,Art FROM auftragsart WHERE deaktiviert<>true");
+                    var dtArt = SQL_methods.Fill_Box("SELECT Art_ID,Art FROM auftragsart WHERE deaktiviert<>true");
                     cbx_auf.DataSource = dtArt;
                     cbx_auf.DisplayMember = "Art";
                     cbx_auf.ValueMember = "Art_ID";
@@ -172,7 +172,7 @@ namespace LET_Auftragsverwaltung
                 try
                 { 
                     
-                    var dtArt = CS_SQL_methods.Fill_Box("SELECT F_ID,Status FROM fertigungsstatus WHERE deaktiviert<>true");
+                    var dtArt = SQL_methods.Fill_Box("SELECT F_ID,Status FROM fertigungsstatus WHERE deaktiviert<>true");
                     cbx_fert.DataSource = dtArt;
                     cbx_fert.DisplayMember = "Status";
                     cbx_fert.ValueMember = "F_ID";
@@ -193,7 +193,7 @@ namespace LET_Auftragsverwaltung
             if (!DesignMode)
                 try
                 {
-                    var dtPer = CS_SQL_methods.Fill_Box("SELECT P_ID,Nachname FROM personal WHERE deaktiviert<>true");
+                    var dtPer = SQL_methods.Fill_Box("SELECT P_ID,Nachname FROM personal WHERE deaktiviert<>true");
                     lbx_pers.DataSource = dtPer;
                     lbx_pers.ValueMember = "P_ID";
                     lbx_pers.DisplayMember = "Nachname";
@@ -214,7 +214,7 @@ namespace LET_Auftragsverwaltung
                 try
                 {
 
-                    var dt = CS_SQL_methods.Fill_Box("SELECT Lieferant,L_ID FROM lieferant WHERE deaktiviert<>true");
+                    var dt = SQL_methods.Fill_Box("SELECT Lieferant,L_ID FROM lieferant WHERE deaktiviert<>true");
                     lbx_lief.DataSource = dt;
                     lbx_lief.ValueMember = "L_ID";
                     lbx_lief.DisplayMember = "Lieferant";
@@ -237,7 +237,7 @@ namespace LET_Auftragsverwaltung
                 try
                 {
 
-                    var dt = CS_SQL_methods.Fill_Box("SELECT Lieferant,L_ID FROM lieferant WHERE deaktiviert<>true");
+                    var dt = SQL_methods.Fill_Box("SELECT Lieferant,L_ID FROM lieferant WHERE deaktiviert<>true");
                     cBx_stoff_lief.DataSource = dt;
                     cBx_stoff_lief.ValueMember = "L_ID";
                     cBx_stoff_lief.DisplayMember = "Lieferant";
@@ -262,7 +262,7 @@ namespace LET_Auftragsverwaltung
             if (!DesignMode)
                 try
                 {
-                    var dt = CS_SQL_methods.Fill_Box("SELECT Stoff,ST_ID FROM stoff WHERE deaktiviert<>true");
+                    var dt = SQL_methods.Fill_Box("SELECT Stoff,ST_ID FROM stoff WHERE deaktiviert<>true");
                     cbx_stoff_edit.DataSource = dt;
                     cbx_stoff_edit.ValueMember = "ST_ID";
                     cbx_stoff_edit.DisplayMember = "Stoff";
@@ -284,7 +284,7 @@ namespace LET_Auftragsverwaltung
                 try
                 {
 
-                    var dt = CS_SQL_methods.Fill_Box(string.Format(
+                    var dt = SQL_methods.Fill_Box(string.Format(
                         "SELECT DISTINCT funktion.`Funktion`, funktion.`Funktion_ID` FROM personal LEFT JOIN personal_funktion ON personal.`P_ID` = personal_funktion.`P_ID` LEFT JOIN funktion ON personal_funktion.`Funktion_ID` = funktion.`Funktion_ID` WHERE personal.`P_ID` = {0} ORDER BY funktion.`Funktion`",
                         lbx_pers.SelectedValue));
 
@@ -309,7 +309,7 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
-                    CS_SQL_methods.SQL_exec(string.Format("INSERT INTO auftragsart (Art) VALUES ('{0}')", txt_auf_new.Text));
+                    SQL_methods.SQL_exec(string.Format("INSERT INTO auftragsart (Art) VALUES ('{0}')", txt_auf_new.Text));
                 }
                 catch (Exception f)
                 {
@@ -352,7 +352,7 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
-                    CS_SQL_methods.SQL_exec(string.Format(
+                    SQL_methods.SQL_exec(string.Format(
                         "UPDATE funktion SET deaktiviert = {0}, funktion = '{1}' WHERE Funktion_ID = {2}",
                         box_funk_dec.Checked, txt_funk_re.Text, cbx_funk.SelectedValue));
                 }
@@ -383,7 +383,7 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
-                    CS_SQL_methods.SQL_exec(string.Format("UPDATE auftragsart SET deaktiviert = {0}, art = '{1}' WHERE Art_ID = {2}",
+                    SQL_methods.SQL_exec(string.Format("UPDATE auftragsart SET deaktiviert = {0}, art = '{1}' WHERE Art_ID = {2}",
                         box_auf_dec.Checked, txt_auf_re.Text, cbx_auf.SelectedValue));
                 }
                 catch (Exception f)
@@ -488,7 +488,7 @@ namespace LET_Auftragsverwaltung
                 try
                 {
                     
-                    CS_SQL_methods.SQL_exec(string.Format(
+                    SQL_methods.SQL_exec(string.Format(
                         "INSERT INTO adressen (Land, PLZ, Ort, Hausnummer, Strasse ) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')",
                         txt_lief_land.Text, txt_lief_plz.Text, txt_lief_ort.Text, txt_lief_hnr.Text,
                         txt_lief_str.Text));
@@ -497,7 +497,7 @@ namespace LET_Auftragsverwaltung
                         "SELECT Adr_ID FROM adressen WHERE Land='{0}' AND PLZ='{1}' AND Ort='{2}' AND Hausnummer='{3}' AND Strasse='{4}' LIMIT 1",
                         txt_lief_land.Text, txt_lief_plz.Text, txt_lief_ort.Text, txt_lief_hnr.Text,
                         txt_lief_str.Text);
-                    CS_SQL_methods.Open();
+                    SQL_methods.Open();
                     var cmd_read = new OdbcCommand(sql, Connection);
                     var sqlReader = cmd_read.ExecuteReader();
 
@@ -507,7 +507,7 @@ namespace LET_Auftragsverwaltung
 
                     
 
-                    CS_SQL_methods.SQL_exec(string.Format("INSERT INTO Lieferant (Lieferant, Adr_ID ) VALUES ('{0}', {1})",
+                    SQL_methods.SQL_exec(string.Format("INSERT INTO Lieferant (Lieferant, Adr_ID ) VALUES ('{0}', {1})",
                         txt_lief_ken.Text, adr_id));
                 }
                 catch (Exception f)
@@ -570,7 +570,7 @@ namespace LET_Auftragsverwaltung
                         var sql = string.Format("SELECT * FROM personal WHERE P_ID = {0} LIMIT 1",
                             lbx_pers.SelectedValue);
 
-                        CS_SQL_methods.Open();
+                        SQL_methods.Open();
                         var cmd_read = new OdbcCommand(sql, Connection);
                         var sqlReader = cmd_read.ExecuteReader();
                         sqlReader.Read();
@@ -617,7 +617,7 @@ namespace LET_Auftragsverwaltung
             if (!DesignMode)
                 try
                 {
-                    CS_SQL_methods.SQL_exec(string.Format("UPDATE personal SET deaktiviert=true WHERE P_ID={0}",
+                    SQL_methods.SQL_exec(string.Format("UPDATE personal SET deaktiviert=true WHERE P_ID={0}",
                         lbx_pers.SelectedValue));
                 }
                 catch (Exception f)
@@ -658,7 +658,7 @@ namespace LET_Auftragsverwaltung
                         var sql = string.Format("SELECT * FROM lieferant WHERE L_ID = {0} LIMIT 1",
                             lbx_lief.SelectedValue);
 
-                        CS_SQL_methods.Open();
+                        SQL_methods.Open();
                         var cmd_read = new OdbcCommand(sql, Connection);
                         var sqlReader = cmd_read.ExecuteReader();
                         sqlReader.Read();
@@ -698,13 +698,13 @@ namespace LET_Auftragsverwaltung
                 try
                 {
                     
-                    CS_SQL_methods.SQL_exec(string.Format("UPDATE personal SET Vorname= '{0}', Nachname = '{1}' WHERE P_ID = {2}",
+                    SQL_methods.SQL_exec(string.Format("UPDATE personal SET Vorname= '{0}', Nachname = '{1}' WHERE P_ID = {2}",
                         txt_pers_vor.Text, txt_pers_nach.Text, lbx_pers.SelectedValue));
 
                   
                     var sql2 = string.Format("SELECT Adr_ID FROM personal WHERE P_ID = {0}",
                         lbx_pers.SelectedValue);
-                    CS_SQL_methods.Open();
+                    SQL_methods.Open();
                     var cmd_read = new OdbcCommand(sql2, Connection);
                     var sqlReader = cmd_read.ExecuteReader();
 
@@ -714,7 +714,7 @@ namespace LET_Auftragsverwaltung
 
                     
 
-                    CS_SQL_methods.SQL_exec(string.Format(
+                    SQL_methods.SQL_exec(string.Format(
                         "UPDATE adressen SET Land = '{0}', PLZ = '{1}', Ort = '{2}', Hausnummer = '{3}', Strasse = '{4}' WHERE Adr_ID = {5}",
                         txt_pers_land.Text, txt_pers_plz.Text, txt_pers_ort.Text, txt_pers_hnr.Text,
                         txt_pers_str.Text,
@@ -749,11 +749,11 @@ namespace LET_Auftragsverwaltung
             if (!DesignMode)
                 try
                 {
-                    CS_SQL_methods.SQL_exec(string.Format(
+                    SQL_methods.SQL_exec(string.Format(
                         "UPDATE lieferant SET lieferant= '{0}' WHERE L_ID = {1}",
                         txt_lief_ken.Text, lbx_lief.SelectedValue));
 
-                    CS_SQL_methods.Open();
+                    SQL_methods.Open();
                     var sql2 = string.Format("SELECT Adr_ID FROM lieferant WHERE L_ID = {0}",
                         lbx_lief.SelectedValue);
                     var cmd_read = new OdbcCommand(sql2, Connection);
@@ -765,7 +765,7 @@ namespace LET_Auftragsverwaltung
 
                     
 
-                    CS_SQL_methods.SQL_exec(string.Format(
+                    SQL_methods.SQL_exec(string.Format(
                         "UPDATE adressen SET Land = '{0}', PLZ = '{1}', Ort = '{2}', Hausnummer = '{3}', Strasse = '{4}' WHERE Adr_ID = {5}",
                         txt_lief_land.Text, txt_lief_plz.Text, txt_lief_ort.Text, txt_lief_hnr.Text,
                         txt_lief_str.Text,
@@ -806,7 +806,7 @@ namespace LET_Auftragsverwaltung
 
                     var cmd_check = new OdbcCommand(sql_controll, Connection);
 
-                    CS_SQL_methods.Open();
+                    SQL_methods.Open();
                     var pers_funk_ext = Convert.ToInt32(cmd_check.ExecuteScalar().ToString());
                     
 
@@ -814,7 +814,7 @@ namespace LET_Auftragsverwaltung
                         MessageBox.Show("Person hat Funktion schon", "Infomation", MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
                     else
-                        CS_SQL_methods.SQL_exec(string.Format("INSERT INTO personal_funktion (P_ID,Funktion_ID) VALUES ({0},{1})",
+                        SQL_methods.SQL_exec(string.Format("INSERT INTO personal_funktion (P_ID,Funktion_ID) VALUES ({0},{1})",
                             lbx_pers.SelectedValue, cbx_pers_funk.SelectedValue));
 
                     
@@ -839,7 +839,7 @@ namespace LET_Auftragsverwaltung
             if (!DesignMode)
                 try
                 {
-                    CS_SQL_methods.SQL_exec(string.Format(
+                    SQL_methods.SQL_exec(string.Format(
                         "DELETE FROM personal_funktion WHERE P_ID = {0} AND Funktion_ID = {1}",
                         lbx_pers.SelectedValue, lbx_pers_funk.SelectedValue));
                 }
@@ -869,7 +869,7 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
-                    CS_SQL_methods.SQL_exec(string.Format("INSERT INTO fertigungsstatus (Status) VALUES ('{0}')",
+                    SQL_methods.SQL_exec(string.Format("INSERT INTO fertigungsstatus (Status) VALUES ('{0}')",
                         txt_fert_new.Text));
                 }
                 catch (Exception f)
@@ -914,7 +914,7 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
-                    CS_SQL_methods.SQL_exec(string.Format(
+                    SQL_methods.SQL_exec(string.Format(
                         "UPDATE fertigungsstatus SET deaktiviert = {0}, status = '{1}' WHERE F_ID = {2}",
                         box_fert_dis.Checked, txt_fert_edit.Text, cbx_fert.SelectedValue));
                 }
@@ -944,7 +944,7 @@ namespace LET_Auftragsverwaltung
             if (!DesignMode)
                 try
                 {
-                    CS_SQL_methods.SQL_exec(string.Format("UPDATE lieferant SET deaktiviert=true WHERE L_ID={0}",
+                    SQL_methods.SQL_exec(string.Format("UPDATE lieferant SET deaktiviert=true WHERE L_ID={0}",
                         lbx_lief.SelectedValue));
                 }
                 catch (Exception f)
@@ -1048,26 +1048,26 @@ namespace LET_Auftragsverwaltung
                     pbx_stoff.Image.Tag as string);
                 var cmd = new OdbcCommand(sql, Connection);
 
-                CS_SQL_methods.Open();
+                SQL_methods.Open();
                 if (Convert.ToInt32(cmd.ExecuteScalar().ToString()) <= 0)
                 {
                     using (var client = new WebClient())
                     {
-                        client.Credentials = new NetworkCredential(CS_FTP.User, CS_FTP.Pw);
+                        client.Credentials = new NetworkCredential(FTP.User, FTP.Pw);
                         client.UploadFile(server + pbx_stoff.Image.Tag, WebRequestMethods.Ftp.UploadFile,
                             ofd_stoff_up.FileName);
                     }
 
 
-                    CS_SQL_methods.SQL_exec(string.Format("INSERT INTO Stoff (`Stoff`,`Bild`) VALUES ('{0}','{1}')", tBx_new_stoff.Text,
+                    SQL_methods.SQL_exec(string.Format("INSERT INTO Stoff (`Stoff`,`Bild`) VALUES ('{0}','{1}')", tBx_new_stoff.Text,
                         pbx_stoff.Image.Tag as string));
 
 
 
-                    CS_SQL_methods.Open();
+                    SQL_methods.Open();
                     sql = "SELECT stoff.ST_ID FROM stoff ORDER BY stoff.ST_ID DESC LIMIT 1";
                     cmd = new OdbcCommand(sql, Connection);
-                    CS_SQL_methods.SQL_exec(string.Format("INSERT INTO stoff_lieferant (`ST_ID`,`L_ID`) VALUES ({0},{1})",cmd.ExecuteScalar().ToString(), cBx_stoff_lief.SelectedValue.ToString()));
+                    SQL_methods.SQL_exec(string.Format("INSERT INTO stoff_lieferant (`ST_ID`,`L_ID`) VALUES ({0},{1})",cmd.ExecuteScalar().ToString(), cBx_stoff_lief.SelectedValue.ToString()));
                 }
                 else
                 {
@@ -1087,7 +1087,7 @@ namespace LET_Auftragsverwaltung
                 if (pBx_Stoff_02?.Image?.Tag?.GetType() == typeof(string)) //Überprüfung ob Klasse string ist
                 {
                     var request = (FtpWebRequest) WebRequest.Create(server + pBx_Stoff_02.Image.Tag);
-                    request.Credentials = new NetworkCredential(CS_FTP.User, CS_FTP.Pw);
+                    request.Credentials = new NetworkCredential(FTP.User, FTP.Pw);
                     request.Method = WebRequestMethods.Ftp.GetFileSize;
                     try
                     {
@@ -1099,7 +1099,7 @@ namespace LET_Auftragsverwaltung
                         if (response.StatusCode != FtpStatusCode.ActionNotTakenFileUnavailable)
                             using (var client = new WebClient())
                             {
-                                client.Credentials = new NetworkCredential(CS_FTP.User, CS_FTP.Pw);
+                                client.Credentials = new NetworkCredential(FTP.User, FTP.Pw);
                                 client.UploadFile(server + pBx_Stoff_02.Image.Tag, WebRequestMethods.Ftp.UploadFile,
                                     File_Path_FTP);
                             }
@@ -1110,20 +1110,20 @@ namespace LET_Auftragsverwaltung
                     pBx_Stoff_02?.Image?.Tag as string, cbx_stoff_edit.SelectedValue);
                 var cmd = new OdbcCommand(sql, Connection);
 
-                CS_SQL_methods.Open();
+                SQL_methods.Open();
                 if (pBx_Stoff_02?.Image?.Tag as string == null || Convert.ToInt32(cmd.ExecuteScalar().ToString()) <= 0)
                 {
                     
 
-                    CS_SQL_methods.SQL_exec(string.Format(
+                    SQL_methods.SQL_exec(string.Format(
                         "UPDATE Stoff SET `Stoff` = '{0}', `Bild` = '{1}', `deaktiviert` = {3} WHERE Stoff.ST_ID = {2}",
                         tBx_change_Stoff.Text, pBx_Stoff_02?.Image?.Tag as string,
                         cbx_stoff_edit.SelectedValue, Convert.ToInt32(box_delete.Checked)));
 
-                    CS_SQL_methods.SQL_exec(string.Format("DELETE FROM stoff_lieferant WHERE ST_ID = {0}",
+                    SQL_methods.SQL_exec(string.Format("DELETE FROM stoff_lieferant WHERE ST_ID = {0}",
                         cbx_stoff_edit.SelectedValue));
 
-                    CS_SQL_methods.SQL_exec(string.Format("INSERT INTO stoff_lieferant (`ST_ID`,`L_ID`) VALUES ({0},{1})",
+                    SQL_methods.SQL_exec(string.Format("INSERT INTO stoff_lieferant (`ST_ID`,`L_ID`) VALUES ({0},{1})",
                         cbx_stoff_edit.SelectedValue, cBx_stoff_lief.SelectedValue));
                 }
                 else
@@ -1147,7 +1147,7 @@ namespace LET_Auftragsverwaltung
                 if (cbx_stoff_edit.SelectedValue != null &&
                     cbx_stoff_edit.SelectedValue.ToString() != "System.Data.DataRowView")
                 {
-                    CS_SQL_methods.Open();
+                    SQL_methods.Open();
                     var sql =
                         $"SELECT * FROM stoff WHERE stoff.ST_ID = {cbx_stoff_edit.SelectedValue}";
                     var cmd = new OdbcCommand(sql, Connection);
@@ -1173,7 +1173,7 @@ namespace LET_Auftragsverwaltung
                             try
                             {
                                 var client = new WebClient();
-                                client.Credentials = new NetworkCredential(CS_FTP.User, CS_FTP.Pw);
+                                client.Credentials = new NetworkCredential(FTP.User, FTP.Pw);
                                 using (var stream =
                                     new MemoryStream(client.DownloadData(server + reader["Bild"])))
                                 {

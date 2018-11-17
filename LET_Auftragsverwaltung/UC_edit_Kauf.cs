@@ -20,7 +20,7 @@ namespace LET_Auftragsverwaltung
         {
             get
             {
-                return CS_DB.Connection;
+                return DB.Connection;
 
             }
         }
@@ -94,7 +94,7 @@ namespace LET_Auftragsverwaltung
                 try
                 {
 
-                    DataTable dtPers = CS_SQL_methods.Fill_Box("SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 4");
+                    DataTable dtPers = SQL_methods.Fill_Box("SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 4");
 
                     return dtPers;
                 }
@@ -119,7 +119,7 @@ namespace LET_Auftragsverwaltung
                 object obj_db;
                 string sql = "SELECT AB_AZ FROM auftraege WHERE ID = " + id;
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                CS_SQL_methods.Open();
+                SQL_methods.Open();
                 OdbcDataReader sql_reader = cmd.ExecuteReader();
                 sql_reader.Read();
                 string sql2 = "SELECT V_Date FROM ab_az WHERE A_ID = " +
@@ -154,7 +154,7 @@ namespace LET_Auftragsverwaltung
                 object obj_db;
                 string sql = "SELECT AB_AZ FROM auftraege WHERE ID = " + id;
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                CS_SQL_methods.Open();
+                SQL_methods.Open();
                 OdbcDataReader sql_reader = cmd.ExecuteReader();
                 sql_reader.Read();
                 string sql2 = "SELECT B_Date FROM ab_az WHERE A_ID = " +
@@ -188,7 +188,7 @@ namespace LET_Auftragsverwaltung
                 object obj_db;
                 string sql = "SELECT AB_AZ FROM auftraege WHERE ID = " + id;
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                CS_SQL_methods.Open();
+                SQL_methods.Open();
                 OdbcDataReader sql_reader = cmd.ExecuteReader();
                 sql_reader.Read();
                 string sql2 = "SELECT S_Date FROM ab_az WHERE A_ID = " +
@@ -226,7 +226,7 @@ namespace LET_Auftragsverwaltung
                 object obj_db;
                 string sql = "SELECT AB_AZ FROM auftraege WHERE ID = " + id;
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                CS_SQL_methods.Open();
+                SQL_methods.Open();
                 OdbcDataReader sql_reader = cmd.ExecuteReader();
                 sql_reader.Read();
                 string sql2 = "SELECT V_Notiz FROM ab_az WHERE A_ID = " +
@@ -256,7 +256,7 @@ namespace LET_Auftragsverwaltung
                 object obj_db;
                 string sql = "SELECT AB_AZ FROM auftraege WHERE ID = " + id;
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                CS_SQL_methods.Open();
+                SQL_methods.Open();
                 OdbcDataReader sql_reader = cmd.ExecuteReader();
                 sql_reader.Read();
                 string sql2 = "SELECT B_Notiz FROM ab_az WHERE A_ID = " +
@@ -286,7 +286,7 @@ namespace LET_Auftragsverwaltung
                 object obj_db;
                 string sql = "SELECT AB_AZ FROM auftraege WHERE ID = " + id;
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                CS_SQL_methods.Open();
+                SQL_methods.Open();
                 OdbcDataReader sql_reader = cmd.ExecuteReader();
                 sql_reader.Read();
                 string sql2 = "SELECT B_Notiz FROM ab_az WHERE A_ID = " +
@@ -327,18 +327,18 @@ namespace LET_Auftragsverwaltung
             try
             {
                 int a_ID;
-                CS_SQL_methods.SQL_exec(string.Format("INSERT INTO AB_AZ (V_Notiz) Values ('{0}')",
+                SQL_methods.SQL_exec(string.Format("INSERT INTO AB_AZ (V_Notiz) Values ('{0}')",
                     txt_kauf_edit_auf.Text));
                 string sql = "SELECT A_ID FROM ab_az ORDER BY A_ID DESC LIMIT 1";
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                CS_SQL_methods.Open();
+                SQL_methods.Open();
                 OdbcDataReader sql_read = cmd.ExecuteReader();
                 sql_read.Read();
                 a_ID = Convert.ToInt32(sql_read[0].ToString());
 
-                CS_SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
+                SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
 
-                CS_Email.Send_Mail("chaftalie@icloud.com", "Anforderung", "TestTest"); //TODO (SUBJEKT: [LET] AUftragsbestätigung: ProjektBet) (BODY: Mehr Infot ID ect..)
+                Email.Send_Mail("chaftalie@icloud.com", "Anforderung", "TestTest"); //TODO (SUBJEKT: [LET] AUftragsbestätigung: ProjektBet) (BODY: Mehr Infot ID ect..)
 
 
 
@@ -357,13 +357,13 @@ namespace LET_Auftragsverwaltung
 
                 string sql = "SELECT AB_AZ FROM auftraege Where ID = " + id;
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                CS_SQL_methods.Open();
+                SQL_methods.Open();
                 OdbcDataReader sql_Reader = cmd.ExecuteReader();
                 sql_Reader.Read();
                 a_ID = Convert.ToInt32(sql_Reader[0].ToString());
 
 
-                CS_SQL_methods.SQL_exec($"UPDATE AB_AZ SET B_Notiz = '{txt_kauf_edit_anz.Text}' WHERE A_ID = {a_ID}");
+                SQL_methods.SQL_exec($"UPDATE AB_AZ SET B_Notiz = '{txt_kauf_edit_anz.Text}' WHERE A_ID = {a_ID}");
 
                
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LET_Auftragsverwaltung
 {
-    class CS_dot_LET
+    class dot_LET
     {
 
     }

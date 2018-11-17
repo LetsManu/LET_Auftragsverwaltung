@@ -11,10 +11,10 @@ namespace LET_Auftragsverwaltung
 
 //TODO konfigurieren datei machen
 {
-        class CS_DB
+        class DB
         {
             private static OdbcConnection connection = null;
-            private static bool Is_this_mb = "M80-AC016500071" == CS_System_Info.GetMotherBoardID();
+            private static bool Is_this_mb = "M80-AC016500071" == System_Info.GetMotherBoardID();
 
             private static string Connectionstring => $"Driver={"MySQL ODBC 5.3 Unicode Driver"};Server={Server_IP};Port={Port};Database={Database};User={Login_name};Password={Login_pw};Option=3;";
 

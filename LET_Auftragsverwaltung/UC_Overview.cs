@@ -16,7 +16,7 @@ namespace LET_Auftragsverwaltung
 {
     public partial class UC_Overview : UserControl
     {
-        LinkedList<CS_Auftrag_Data> data = new LinkedList<CS_Auftrag_Data>();
+        LinkedList<Auftrag_Data> data = new LinkedList<Auftrag_Data>();
         private static bool reload = true;
 
         public UC_Overview( )
@@ -31,13 +31,13 @@ namespace LET_Auftragsverwaltung
 
         }
 
-        private OdbcConnection Connection => CS_DB.Connection;
+        private OdbcConnection Connection => DB.Connection;
 
         private void objectListView1_DoubleClick(object sender, EventArgs e)
         {
             if (sender != null)
             {
-                Form Form_EDIT = new Form_Edit_Auftrag(( ( sender as ObjectListView ).SelectedItem.RowObject as CS_Auftrag_Data ).ID);
+                Form Form_EDIT = new Form_Edit_Auftrag(( ( sender as ObjectListView ).SelectedItem.RowObject as Auftrag_Data ).ID);
                 Form_EDIT.Show();
             }
         }
@@ -95,7 +95,7 @@ namespace LET_Auftragsverwaltung
                     result.Width = 100;
                 }
 
-                CS_SQL_methods.Open();
+                SQL_methods.Open();
 
                 List<string> auftraege_ID = new List<string>();
 
@@ -113,7 +113,7 @@ namespace LET_Auftragsverwaltung
                     cmd = new OdbcCommand(sql, Connection);
                     reader = cmd.ExecuteReader();
                     reader.Read();
-                    CS_Auftrag_Data data = new CS_Auftrag_Data();
+                    Auftrag_Data data = new Auftrag_Data();
                     data.ID = ( int ) ( reader["ID"] == DBNull.Value ? null : reader["ID"] );
                     data.Auftrags_Nr = DB_to_string(reader["Auftrags Nr."]);
                     data.Fertigungsstatus = DB_to_string(reader["Status"]);

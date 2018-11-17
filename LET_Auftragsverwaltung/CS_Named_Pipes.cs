@@ -12,7 +12,7 @@ using System.Windows.Forms.VisualStyles;
 
 namespace LET_Auftragsverwaltung
 {
-    static class CS_Named_Pipes
+    static class Named_Pipes
     {
         public static void Start( )
         {

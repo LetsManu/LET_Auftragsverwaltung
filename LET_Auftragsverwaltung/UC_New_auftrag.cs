@@ -18,7 +18,7 @@ namespace LET_Auftragsverwaltung
         {
             get
             {
-                return CS_DB.Connection;
+                return DB.Connection;
 
             }
         }
@@ -46,7 +46,7 @@ namespace LET_Auftragsverwaltung
                 try
                 {
                     
-                    DataTable dtPer = CS_SQL_methods.Fill_Box("SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 4");
+                    DataTable dtPer = SQL_methods.Fill_Box("SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 4");
                    
                     cbx_verant.DataSource = dtPer;
                     cbx_verant.ValueMember = "P_ID";
@@ -73,7 +73,7 @@ namespace LET_Auftragsverwaltung
                 try
                 {
                    
-                    DataTable dtPer = CS_SQL_methods.Fill_Box("SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 4");
+                    DataTable dtPer = SQL_methods.Fill_Box("SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 4");
 
                     cbx_verant.DataSource = dtPer;
                     cbx_verant.ValueMember = "P_ID";
@@ -100,7 +100,7 @@ namespace LET_Auftragsverwaltung
                 try
                 {
 
-                    DataTable dt = CS_SQL_methods.Fill_Box("SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 1 OR pf.Funktion_ID = 2");
+                    DataTable dt = SQL_methods.Fill_Box("SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 1 OR pf.Funktion_ID = 2");
 
                     cbx_tech.DataSource = dt;
                     cbx_tech.ValueMember = "P_ID";
@@ -127,7 +127,7 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {                   
-                    DataTable dtArt = CS_SQL_methods.Fill_Box("SELECT Art_ID,Art FROM auftragsart WHERE deaktiviert<>true");
+                    DataTable dtArt = SQL_methods.Fill_Box("SELECT Art_ID,Art FROM auftragsart WHERE deaktiviert<>true");
 
                     cbx_auftrag.DataSource = dtArt;
                     cbx_auftrag.DisplayMember = "Art";
@@ -158,7 +158,7 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
-                    DataTable dtLief = CS_SQL_methods.Fill_Box("SELECT L_ID, Lieferant FROM Lieferant WHERE deaktiviert<>true");
+                    DataTable dtLief = SQL_methods.Fill_Box("SELECT L_ID, Lieferant FROM Lieferant WHERE deaktiviert<>true");
 
                     cbx_new_auf_lief.DataSource = dtLief;
                     cbx_new_auf_lief.ValueMember = "L_ID";
@@ -186,7 +186,7 @@ namespace LET_Auftragsverwaltung
                 {
                     try
                     {
-                        DataTable dtStoff = CS_SQL_methods.Fill_Box(string.Format(
+                        DataTable dtStoff = SQL_methods.Fill_Box(string.Format(
                             "SELECT stoff.ST_ID,stoff.`Stoff` FROM stoff INNER JOIN stoff_lieferant ON stoff.ST_ID = stoff_lieferant.ST_ID WHERE stoff_lieferant.L_ID = {0}",
                             cbx_new_auf_lief.SelectedValue));
 
@@ -218,7 +218,7 @@ namespace LET_Auftragsverwaltung
                 try
                 {
                     OdbcConnection connection = Connection;
-                    CS_SQL_methods.Open();
+                    SQL_methods.Open();
                     string sql = string.Format("SELECT Art_ID,Art FROM auftragsart WHERE Art_ID = {0}",
                         cbx_auftrag.SelectedValue);
                     OdbcCommand cmd = new OdbcCommand(sql, connection);
@@ -274,17 +274,17 @@ namespace LET_Auftragsverwaltung
                 {
                     try
                     {
-                        CS_SQL_methods.SQL_exec("INSERT INTO auftrags.schatten (schatten.Notiz) VALUES ('')");
+                        SQL_methods.SQL_exec("INSERT INTO auftrags.schatten (schatten.Notiz) VALUES ('')");
                         string sql = "SELECT * FROM schatten ORDER BY schatten.S_ID DESC LIMIT 1";
                         OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                        CS_SQL_methods.Open();
+                        SQL_methods.Open();
                     OdbcDataReader sqlReader = cmd.ExecuteReader();
                         sqlReader.Read();
                         int schatten_ID = Convert.ToInt32(sqlReader[0]);
                         sqlReader.Close();
-                        CS_SQL_methods.SQL_exec(String.Format("INSERT INTO auftrags.teile_stoff (teile_stoff.ST_ID) VALUES ({0})",
+                        SQL_methods.SQL_exec(String.Format("INSERT INTO auftrags.teile_stoff (teile_stoff.ST_ID) VALUES ({0})",
                             cbx_new_auf_stoff.SelectedValue));
-                    CS_SQL_methods.Open();
+                    SQL_methods.Open();
 
                     sql = "SELECT * FROM teile_stoff ORDER BY teile_stoff.T_ST_ID DESC LIMIT 1";
                         cmd = new OdbcCommand(sql, Connection);
@@ -294,13 +294,13 @@ namespace LET_Auftragsverwaltung
                         
 
 
-                        CS_SQL_methods.SQL_exec(string.Format(
+                        SQL_methods.SQL_exec(string.Format(
                             "INSERT INTO auftraege (auftraege.`Auftrags_NR`, auftraege.`Fertigungsstatus`, auftraege.Projektverantwortlicher, auftraege.Planer_Techniker, auftraege.Erstelldatum, auftraege.Montage_Datum, auftraege.Projektbezeichnung, auftraege.`Schatten`,  auftraege.Notitz_Kauf, auftraege.Notitz_Tech) VALUES ('{0}', 6, {1}, {2}, '{3}', '{4}', '{5}', {6}, '{7}', '{8}')",
                             txt_auftrag_nr.Text, cbx_verant.SelectedValue, cbx_tech.SelectedValue,
                             date_erstell.Value.ToString("yyyy-MM-dd"), date_mont.Value.ToString("yyyy-MM-dd"),
                             txt_auf_proj_ken.Text, schatten_ID, txt_info_kauf.Text, txt_info_tech.Text));
 
-                        CS_SQL_methods.Open();
+                        SQL_methods.Open();
                         string sql2 = string.Format(
                             "SELECT ID FROM auftraege WHERE auftraege.`Auftrags_NR` = '{0}' AND auftraege.`Fertigungsstatus` = {1} AND auftraege.Projektverantwortlicher = {2} AND auftraege.Planer_Techniker = {3} AND auftraege.Erstelldatum = '{4}' AND auftraege.Montage_Datum = '{5}' AND auftraege.Projektbezeichnung = '{6}' AND auftraege.`Schatten` = {7} AND auftraege.Notitz_Kauf = '{8}' AND auftraege.Notitz_Tech = '{9}'",
                             txt_auftrag_nr.Text, 6, cbx_verant.SelectedValue, cbx_tech.SelectedValue,
@@ -315,14 +315,14 @@ namespace LET_Auftragsverwaltung
                         int auf_id = sqlReader.GetInt32(0);
                         
 
-                        CS_SQL_methods.SQL_exec(string.Format("INSERT INTO auftrags.teile (teile.ID, teile.T_St_ID) VALUES ({0}, {1})",
+                        SQL_methods.SQL_exec(string.Format("INSERT INTO auftrags.teile (teile.ID, teile.T_St_ID) VALUES ({0}, {1})",
                             auf_id, teile_stoff_ID));
 
                         
                         for (int i = 0; i < lbx_auftrag.Items.Count; i++)
                         {
                             int art_ID = (lbx_auftrag.Items[i] as Object_auf).ID;
-                            CS_SQL_methods.SQL_exec(string.Format(
+                            SQL_methods.SQL_exec(string.Format(
                                 "INSERT INTO auftraege_auftragsart (ID, Art_ID) VALUES ({0}, {1})",
                                 auf_id, art_ID));
                         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LET_Auftragsverwaltung
 {
-    class CS_System_Info
+    class System_Info
     {
         public static string GetMotherBoardID( )
         {

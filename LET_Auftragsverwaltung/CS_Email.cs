@@ -2,7 +2,7 @@
 
 namespace LET_Auftragsverwaltung
 {
-    class CS_Email
+    class Email
     {
         public static void Send_Mail(string to, string subject, string body)
         {

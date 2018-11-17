@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 namespace LET_Auftragsverwaltung
 {
 
-    class CS_SQL_methods
+    class SQL_methods
     {
 
-        static private OdbcConnection Connection => CS_DB.Connection;
+        static private OdbcConnection Connection => DB.Connection;
 
         /// <summary>
         /// Füllt DataTables mit der gewünschten SQL-Query

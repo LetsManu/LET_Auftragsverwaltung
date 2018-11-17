@@ -16,7 +16,7 @@ namespace LET_Auftragsverwaltung
     {
 
         public static bool tmr_timed = false;
-        private OdbcConnection Connection => CS_DB.Connection;
+        private OdbcConnection Connection => DB.Connection;
         Brush b_mysql = Brushes.Green;
         Brush b_ftp = Brushes.Green;
         public UC_Connect_Show( )

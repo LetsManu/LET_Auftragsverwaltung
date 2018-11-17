@@ -20,9 +20,9 @@ namespace LET_Auftragsverwaltung
 
             InitializeComponent();
 
-            CS_SQL_methods.Open();
+            SQL_methods.Open();
             string sql = "SELECT concat(concat(auftraege.Auftrags_NR, ', '), auftraege.Projektbezeichnung) AS title FROM auftraege WHERE auftraege.id = " + id;
-            OdbcCommand cmd = new OdbcCommand(sql, CS_DB.Connection);
+            OdbcCommand cmd = new OdbcCommand(sql, DB.Connection);
             OdbcDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
