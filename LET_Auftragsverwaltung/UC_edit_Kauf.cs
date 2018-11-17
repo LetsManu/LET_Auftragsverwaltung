@@ -318,7 +318,7 @@ namespace LET_Auftragsverwaltung
 
             if (date_kauf_edit_auf.Equals(null))
             {
-                CS_SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_DATE = '{0}' WHERE A_ID = {1}", date_kauf_edit_auf.Value.ToString("yyyy-MM-dd"), id));
+                SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_DATE = '{0}' WHERE A_ID = {1}", date_kauf_edit_auf.Value.ToString("yyyy-MM-dd"), id));
                 UC_Kauf_Date_Auf_set();
             }
             else
@@ -327,7 +327,7 @@ namespace LET_Auftragsverwaltung
 
                 if((MessageBox.Show("Wollen sie das Datum überschreiben?","Datums Änderung in der Datenbank", MessageBoxButtons.YesNo) == DialogResult.Yes))
                 {
-                    CS_SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_DATE = '{0}' WHERE A_ID = {1}", date_kauf_edit_auf.Value.ToString("yyyy-MM-dd"), id));
+                    SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_DATE = '{0}' WHERE A_ID = {1}", date_kauf_edit_auf.Value.ToString("yyyy-MM-dd"), id));
                     UC_Kauf_Date_Auf_set();
                 }
                 else
