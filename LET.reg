@@ -1,0 +1,13 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\LET]
+@="URL:LET Protocol"
+"URL Protocol"=""
+
+[HKEY_CLASSES_ROOT\LET\shell]
+
+[HKEY_CLASSES_ROOT\LET\shell\open]
+
+[HKEY_CLASSES_ROOT\LET\shell\open\command]
+@="\"C:\\Users\\Felix\\source\\repos\\LET_Auftragsverwaltung\\LET_URL_Client\\bin\\Debug\\LET_URL_Client.exe\" \"%1\""
+

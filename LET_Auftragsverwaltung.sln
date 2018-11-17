@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MySQL", "MySQL", "{116EADD3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F2F6FA95-991C-4ADF-BA21-885CA8981254}"
 	ProjectSection(SolutionItems) = preProject
+		LET.reg = LET.reg
 		TXT_own_URL_protocol.txt = TXT_own_URL_protocol.txt
 	EndProjectSection
 EndProject
