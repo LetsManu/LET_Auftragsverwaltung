@@ -402,10 +402,11 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>LET_Auftragsverwaltung_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>05BE33A9E560F0FE52451AAFCCDAA7BA5996AD22</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>9BB898EB79F43AFAF28C42277A0EE95C0BDD1869</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
