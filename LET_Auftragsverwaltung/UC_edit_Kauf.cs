@@ -446,12 +446,21 @@ namespace LET_Auftragsverwaltung
                 OdbcDataReader sql_read = cmd.ExecuteReader();
                 sql_read.Read();
                 a_ID = Convert.ToInt32(sql_read[0].ToString());
+                sql_read.Close();
 
                 SQL_ALL_Notiz_Save();
 
                 SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
 
-                Email.Send_Mail("chaftalie@icloud.com", "Anforderung", "TestTest"); //TODO (SUBJEKT: [LET] AUftragsbestätigung: ProjektBet) (BODY: Mehr Infot ID ect..)
+                sql = "SELECT Projektbezeichnung FROM auftraege WHERE ID = " + id;
+                 cmd = new OdbcCommand(sql, Connection);
+                SQL_methods.Open();
+                sql_read = cmd.ExecuteReader();
+                sql_read.Read();
+                string bez = Convert.ToString(sql_read[0].ToString());
+                sql_read.Close();
+
+                Email.Send_Mail("chaftalie@icloud.com", "[LET] Auftragsbestätigung: "+ bez, "TestTest"); //TODO (SUBJEKT: [LET] AUftragsbestätigung: ProjektBet) (BODY: Mehr Infot ID ect..)
 
 
 
@@ -466,9 +475,32 @@ namespace LET_Auftragsverwaltung
         {
             try
             {
-                
+                int a_ID;
+                SQL_methods.SQL_exec(string.Format("INSERT INTO AB_AZ (V_Notiz) Values ('{0}')",
+                    " "));
+                string sql = "SELECT A_ID FROM ab_az ORDER BY A_ID DESC LIMIT 1";
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                SQL_methods.Open();
+                OdbcDataReader sql_read = cmd.ExecuteReader();
+                sql_read.Read();
+                a_ID = Convert.ToInt32(sql_read[0].ToString());
+                sql_read.Close();
 
-               
+                SQL_ALL_Notiz_Save();
+
+                SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
+
+                sql = "SELECT Projektbezeichnung FROM auftraege WHERE ID = " + id;
+                cmd = new OdbcCommand(sql, Connection);
+                SQL_methods.Open();
+                sql_read = cmd.ExecuteReader();
+                sql_read.Read();
+                string bez = Convert.ToString(sql_read[0].ToString());
+                sql_read.Close();
+
+                Email.Send_Mail("chaftalie@icloud.com", "[LET] Anzahlungsrechnung: " + bez, "TestTest"); //TODO (SUBJEKT: [LET] AUftragsbestätigung: ProjektBet) (BODY: Mehr Infot ID ect..)
+
+
 
             }
             catch (Exception f)
@@ -527,6 +559,42 @@ namespace LET_Auftragsverwaltung
             SQL_ALL_Notiz_Save();
         }
 
-        
+        private void btn_save_kauf_edit_schluss_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int a_ID;
+                SQL_methods.SQL_exec(string.Format("INSERT INTO AB_AZ (V_Notiz) Values ('{0}')",
+                    " "));
+                string sql = "SELECT A_ID FROM ab_az ORDER BY A_ID DESC LIMIT 1";
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                SQL_methods.Open();
+                OdbcDataReader sql_read = cmd.ExecuteReader();
+                sql_read.Read();
+                a_ID = Convert.ToInt32(sql_read[0].ToString());
+                sql_read.Close();
+
+                SQL_ALL_Notiz_Save();
+
+                SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
+
+                sql = "SELECT Projektbezeichnung FROM auftraege WHERE ID = " + id;
+                cmd = new OdbcCommand(sql, Connection);
+                SQL_methods.Open();
+                sql_read = cmd.ExecuteReader();
+                sql_read.Read();
+                string bez = Convert.ToString(sql_read[0].ToString());
+                sql_read.Close();
+
+                Email.Send_Mail("chaftalie@icloud.com", "[LET] Schlussrechnung: " + bez, "TestTest"); //TODO (SUBJEKT: [LET] AUftragsbestätigung: ProjektBet) (BODY: Mehr Infot ID ect..)
+
+
+
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT AB_AZ Schlussrechnung): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

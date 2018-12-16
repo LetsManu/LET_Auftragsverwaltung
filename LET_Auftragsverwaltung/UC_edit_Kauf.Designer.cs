@@ -327,6 +327,7 @@
             this.btn_save_kauf_edit_schluss.TabIndex = 7;
             this.btn_save_kauf_edit_schluss.Text = "Anfordern bei Sandra";
             this.btn_save_kauf_edit_schluss.UseVisualStyleBackColor = true;
+            this.btn_save_kauf_edit_schluss.Click += new System.EventHandler(this.btn_save_kauf_edit_schluss_Click);
             // 
             // label11
             // 

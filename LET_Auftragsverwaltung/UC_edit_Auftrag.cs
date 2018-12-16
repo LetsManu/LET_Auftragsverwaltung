@@ -451,7 +451,7 @@ namespace LET_Auftragsverwaltung
 
                 SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
 
-                AB_AZ_Controll();
+               
 
             }
             catch (Exception f)
@@ -476,7 +476,7 @@ namespace LET_Auftragsverwaltung
 
                 SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_DATE = '{0}' WHERE A_ID = {1}", DateTime.Now.Date.ToString("yyyy-MM-dd"), a_ID));
 
-                AB_AZ_Controll();
+                
 
             }
             catch (Exception f)
@@ -633,41 +633,7 @@ namespace LET_Auftragsverwaltung
 
 
 
-        private void AB_AZ_Controll( )
-        {
-            int a_ID = 0;
-            string sql = "SELECT AB_AZ FROM auftraege WHERE ID = " + id;
-
-            OdbcCommand cmd = new OdbcCommand(sql, Connection);
-            SQL_methods.Open();
-            object obj_db = cmd.ExecuteScalar();
-            if (obj_db != DBNull.Value)
-            {
-                a_ID = Convert.ToInt32(cmd.ExecuteScalar());
-                string sql2 = "SELECT B_Date FROM ab_az WHERE A_ID = " + a_ID;
-                OdbcCommand cmd2 = new OdbcCommand(sql2, Connection);
-                obj_db = cmd2.ExecuteScalar();
-
-                if (obj_db != DBNull.Value)
-                {
-                    btn_ab_az_an.Enabled = false;
-                    btn_ab_az_be.Enabled = false;
-                }
-                else
-                {
-                    btn_ab_az_an.Enabled = false;
-                    btn_ab_az_be.Enabled = true;
-                }
-            }
-            else
-            {
-                btn_ab_az_an.Enabled = true;
-                btn_ab_az_be.Enabled = false;
-            }
-
-
-
-        }
+       
 
         private void Schatten_Controll( )
         {
@@ -811,7 +777,7 @@ namespace LET_Auftragsverwaltung
 
         private void tab_ab_az_Enter(object sender, EventArgs e)
         {
-            AB_AZ_Controll();
+           
         }
 
         private void tab_sond_Enter(object sender, EventArgs e)
