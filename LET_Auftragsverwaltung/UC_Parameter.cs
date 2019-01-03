@@ -91,6 +91,7 @@ namespace LET_Auftragsverwaltung
             UC_Parameter_lbx_pers_funk_fill();
             UC_Parameter_lbx_stoff_fill();
             UC_Parameter_cbx_stoff_lief_fill();
+            UC_Parameter_cbx_funk_fill();
         }
 
         private void UC_Parameter_cbx_art_fill()
@@ -369,6 +370,27 @@ namespace LET_Auftragsverwaltung
             if (txt_lief_ken.Text == "") btn_lief_save.Enabled = false;
 
             if (btn_lief_edit.Enabled || btn_lief_delete.Enabled) btn_lief_save.Enabled = false;
+        }
+
+        private void UC_Parameter_cbx_funk_fill()
+        {
+            if (!DesignMode)
+                try
+                {
+                    var dtFunkt = SQL_methods.Fill_Box("SELECT Funktion_ID,Funktion FROM funktion WHERE deaktiviert<>true");
+
+                    cbx_pers_funk.DataSource = dtFunkt;
+                    cbx_pers_funk.DisplayMember = "Funktion";
+                    cbx_pers_funk.ValueMember = "Funktion_ID";
+
+
+                    if (cbx_pers_funk.Items.Count > 0) cbx_pers_funk.SelectedIndex = 0;
+                }
+                catch (Exception f)
+                {
+                    MessageBox.Show("Fehler in der SQL Abfrage(Funtkion Fill): \n\n" + f.Message, "Fehler",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
         }
 
         private void btn_lief_save_Click(object sender, EventArgs e)
