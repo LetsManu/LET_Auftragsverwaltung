@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ofd_stoff_up = new System.Windows.Forms.OpenFileDialog();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -119,6 +120,10 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.toolTip_hoover = new System.Windows.Forms.ToolTip(this.components);
             this.tabPage6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_stoff)).BeginInit();
@@ -775,6 +780,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label32);
+            this.tabPage1.Controls.Add(this.label12);
+            this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.btn_pers_funk_add);
             this.tabPage1.Controls.Add(this.btn_pers_funk_del);
             this.tabPage1.Controls.Add(this.lbx_pers_funk);
@@ -814,6 +822,7 @@
             this.btn_pers_funk_add.Size = new System.Drawing.Size(109, 23);
             this.btn_pers_funk_add.TabIndex = 26;
             this.btn_pers_funk_add.Text = "Hinzufügen";
+            this.toolTip_hoover.SetToolTip(this.btn_pers_funk_add, "Funktion aus der Dropdownliste wird der Markierten person Hinzugefügt");
             this.btn_pers_funk_add.UseVisualStyleBackColor = true;
             this.btn_pers_funk_add.Click += new System.EventHandler(this.btn_pers_funk_add_Click);
             // 
@@ -825,6 +834,7 @@
             this.btn_pers_funk_del.Size = new System.Drawing.Size(109, 23);
             this.btn_pers_funk_del.TabIndex = 25;
             this.btn_pers_funk_del.Text = "Löschen";
+            this.toolTip_hoover.SetToolTip(this.btn_pers_funk_del, "Markierte Funktion wird von Markierter Person gelöscht");
             this.btn_pers_funk_del.UseVisualStyleBackColor = true;
             this.btn_pers_funk_del.Click += new System.EventHandler(this.btn_pers_funk_del_Click);
             // 
@@ -856,6 +866,7 @@
             this.btn_pers_delete.Size = new System.Drawing.Size(109, 23);
             this.btn_pers_delete.TabIndex = 21;
             this.btn_pers_delete.Text = "Löschen";
+            this.toolTip_hoover.SetToolTip(this.btn_pers_delete, "Markierte Person wird gelöscht");
             this.btn_pers_delete.UseVisualStyleBackColor = true;
             this.btn_pers_delete.Click += new System.EventHandler(this.btn_pers_delete_Click);
             // 
@@ -1046,6 +1057,46 @@
             this.label8.TabIndex = 40;
             this.label8.Text = "Lieferanten";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(101, 21);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(117, 24);
+            this.label7.TabIndex = 40;
+            this.label7.Text = "Hinzufügen";
+            this.toolTip_hoover.SetToolTip(this.label7, "Hinzufügen einer Person\r\nVor- & Nachname sind Pflichtfelder\r\n");
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(421, 21);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(121, 24);
+            this.label12.TabIndex = 41;
+            this.label12.Text = "Funktionen ";
+            this.toolTip_hoover.SetToolTip(this.label12, "Funktionen der jeweilgen Person\r\n(welche in der Personen Liste ausgewählt ist)\r\n");
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(656, 21);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(100, 24);
+            this.label32.TabIndex = 42;
+            this.label32.Text = "Personen";
+            this.toolTip_hoover.SetToolTip(this.label32, "Liste aller eingetragenen personen");
+            // 
+            // toolTip_hoover
+            // 
+            this.toolTip_hoover.AutoPopDelay = 5000;
+            this.toolTip_hoover.InitialDelay = 250;
+            this.toolTip_hoover.ReshowDelay = 100;
+            this.toolTip_hoover.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
             // UC_Parameter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1172,5 +1223,9 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.ToolTip toolTip_hoover;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label7;
     }
 }
