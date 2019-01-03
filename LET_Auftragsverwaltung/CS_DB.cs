@@ -38,8 +38,7 @@ namespace LET_Auftragsverwaltung
                 get
                 {
                     if (Is_this_mb) return "localhost";
-                    //else return "81.10.155.134";
-                    else return "192.168.16.211";
+                    else return "81.10.155.134";
                 }
             }
             
@@ -48,8 +47,7 @@ namespace LET_Auftragsverwaltung
                 get
                 {
                     if (Is_this_mb) return "3306";
-                    //else return "1337";
-                    else return "3306";
+                    else return "1337";
                 }
             }
         }
