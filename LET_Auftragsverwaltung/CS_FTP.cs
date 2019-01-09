@@ -22,7 +22,8 @@ namespace LET_Auftragsverwaltung
             get
             {
                 if (Is_this_mb) return "localhost";
-                return "81.10.155.134:815";
+                //return "81.10.155.134:815";
+                return "192.168.16.211";
             }
         }
 

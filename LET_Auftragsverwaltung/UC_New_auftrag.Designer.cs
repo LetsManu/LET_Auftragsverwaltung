@@ -106,7 +106,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 108);
+            this.label2.Location = new System.Drawing.Point(6, 112);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(83, 13);
             this.label2.TabIndex = 11;
@@ -152,7 +152,7 @@
             // cbx_verant
             // 
             this.cbx_verant.FormattingEnabled = true;
-            this.cbx_verant.Location = new System.Drawing.Point(113, 105);
+            this.cbx_verant.Location = new System.Drawing.Point(113, 109);
             this.cbx_verant.Name = "cbx_verant";
             this.cbx_verant.Size = new System.Drawing.Size(144, 21);
             this.cbx_verant.TabIndex = 16;
