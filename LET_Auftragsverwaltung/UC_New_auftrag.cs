@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+
 namespace LET_Auftragsverwaltung
 {
     public partial class UC_New_auftrag : UserControl
@@ -23,7 +25,7 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-        public UC_New_auftrag( )
+        public UC_New_auftrag()
         {
             InitializeComponent();
             date_mont.Format = DateTimePickerFormat.Short;
@@ -39,15 +41,15 @@ namespace LET_Auftragsverwaltung
             date_mont.Value = DateTime.Today.AddDays(28);
         }
 
-        private void UC_New_auftrag_fill_cbx_verant( )
+        private void UC_New_auftrag_fill_cbx_verant()
         {
             if (!this.DesignMode)
             {
                 try
                 {
-                    
+
                     DataTable dtPer = SQL_methods.Fill_Box("SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 4");
-                   
+
                     cbx_verant.DataSource = dtPer;
                     cbx_verant.ValueMember = "P_ID";
                     cbx_verant.DisplayMember = "Name";
@@ -66,14 +68,14 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-        private void UC_New_auftrag_fill_cbx_stoff( )
+        private void UC_New_auftrag_fill_cbx_stoff()
         {
             if (!this.DesignMode)
             {
                 try
                 {
-                   
-                    DataTable dtPer = SQL_methods.Fill_Box("SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 4");
+
+                    DataTable dtPer = SQL_methods.Fill_Box("SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 9");
 
                     cbx_verant.DataSource = dtPer;
                     cbx_verant.ValueMember = "P_ID";
@@ -93,14 +95,14 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-        private void UC_New_auftrag_fill_cbx_tech( )
+        private void UC_New_auftrag_fill_cbx_tech()
         {
             if (!this.DesignMode)
             {
                 try
                 {
 
-                    DataTable dt = SQL_methods.Fill_Box("SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 1 OR pf.Funktion_ID = 2");
+                    DataTable dt = SQL_methods.Fill_Box("SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 1 OR pf.Funktion_ID = 8");
 
                     cbx_tech.DataSource = dt;
                     cbx_tech.ValueMember = "P_ID";
@@ -121,12 +123,12 @@ namespace LET_Auftragsverwaltung
 
         }
 
-        private void UC_New_auftrag_fill_cbx_auf( )
+        private void UC_New_auftrag_fill_cbx_auf()
         {
             if (!this.DesignMode)
             {
                 try
-                {                   
+                {
                     DataTable dtArt = SQL_methods.Fill_Box("SELECT Art_ID,Art FROM auftragsart WHERE deaktiviert<>true");
 
                     cbx_auftrag.DataSource = dtArt;
@@ -152,7 +154,7 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-        private void UC_New_auftrag_fill_cbx_lief( )
+        private void UC_New_auftrag_fill_cbx_lief()
         {
             if (!this.DesignMode)
             {
@@ -201,7 +203,7 @@ namespace LET_Auftragsverwaltung
                     {
                         MessageBox.Show("Fehler in der SQL Abfrage(Neue Auftrag: Fill CBX Stoff): \n\n" + f.Message,
                             "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        
+
                     }
                 }
             }
@@ -224,29 +226,29 @@ namespace LET_Auftragsverwaltung
                     OdbcCommand cmd = new OdbcCommand(sql, connection);
                     OdbcDataReader sqlReader = cmd.ExecuteReader();
                     sqlReader.Read();
-                    Object_auf item = new Object_auf(( int ) sqlReader[0], ( string ) sqlReader[1]);
+                    Object_auf item = new Object_auf((int)sqlReader[0], (string)sqlReader[1]);
                     bool added = false;
-                    
 
-                if (lbx_auftrag.Items.Count != 0)
-                {
-                    for (int i = 0; i < lbx_auftrag.Items.Count; i++)
+
+                    if (lbx_auftrag.Items.Count != 0)
                     {
-                        if (lbx_auftrag.Items[i].ToString() == item.ToString())
+                        for (int i = 0; i < lbx_auftrag.Items.Count; i++)
                         {
-                            MessageBox.Show("Auswahl ist schon vorhanden", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            added = true;
+                            if (lbx_auftrag.Items[i].ToString() == item.ToString())
+                            {
+                                MessageBox.Show("Auswahl ist schon vorhanden", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                added = true;
+                            }
                         }
+                        if (!added) lbx_auftrag.Items.Add(item);
                     }
-                    if (!added) lbx_auftrag.Items.Add(item);
-                }
-                else
-                {
-                    lbx_auftrag.Items.Add(item);
-                }
+                    else
+                    {
+                        lbx_auftrag.Items.Add(item);
+                    }
 
-                if (lbx_auftrag.Items.Count > 0) lbx_auftrag.SelectedIndex = 0;
-            }
+                    if (lbx_auftrag.Items.Count > 0) lbx_auftrag.SelectedIndex = 0;
+                }
 
                 catch (Exception f)
                 {
@@ -268,91 +270,90 @@ namespace LET_Auftragsverwaltung
 
         }
 
-            private void Btn_new_auf_save_Click(object sender, EventArgs e)
+        private void Btn_new_auf_save_Click(object sender, EventArgs e)
+        {
+            if (!this.DesignMode)
             {
-                if (!this.DesignMode)
+                try
                 {
-                    try
-                    {
 
-                        int a_ID;
-                        SQL_methods.SQL_exec(string.Format("INSERT INTO AB_AZ (V_Notiz) Values ('{0}')",
-                            " "));
-                        string sql = "SELECT A_ID FROM ab_az ORDER BY A_ID DESC LIMIT 1";
-                        OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                        SQL_methods.Open();
-                        OdbcDataReader sql_read = cmd.ExecuteReader();
-                        sql_read.Read();
-                        a_ID = Convert.ToInt32(sql_read[0].ToString());
+                    int a_ID;
+                    SQL_methods.SQL_exec(string.Format("INSERT INTO AB_AZ (V_Notiz) Values ('{0}')", " "));
+                    string sql = "SELECT A_ID FROM ab_az ORDER BY A_ID DESC LIMIT 1";
+                    OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                    SQL_methods.Open();
+                    OdbcDataReader sql_read = cmd.ExecuteReader();
+                    sql_read.Read();
+                    a_ID = Convert.ToInt32(sql_read[0].ToString());
 
                     SQL_methods.SQL_exec("INSERT INTO auftrags.schatten (schatten.Notiz) VALUES ('')");
-                        string sql2 = "SELECT * FROM schatten ORDER BY schatten.S_ID DESC LIMIT 1";
-                        OdbcCommand cmd2 = new OdbcCommand(sql2, Connection);
-                        SQL_methods.Open();
+                    string sql2 = "SELECT * FROM schatten ORDER BY schatten.S_ID DESC LIMIT 1";
+                    OdbcCommand cmd2 = new OdbcCommand(sql2, Connection);
+                    SQL_methods.Open();
                     OdbcDataReader sqlReader2 = cmd2.ExecuteReader();
-                        sqlReader2.Read();
-                        int schatten_ID = Convert.ToInt32(sqlReader2[0]);
-                        sqlReader2.Close();
-                        SQL_methods.SQL_exec(String.Format("INSERT INTO auftrags.teile_stoff (teile_stoff.ST_ID) VALUES ({0})",
-                            cbx_new_auf_stoff.SelectedValue));
+                    sqlReader2.Read();
+                    int schatten_ID = Convert.ToInt32(sqlReader2[0]);
+                    sqlReader2.Close();
+                    SQL_methods.SQL_exec(String.Format("INSERT INTO auftrags.teile_stoff (teile_stoff.ST_ID) VALUES ({0})",
+                        cbx_new_auf_stoff.SelectedValue));
                     SQL_methods.Open();
 
                     sql = "SELECT * FROM teile_stoff ORDER BY teile_stoff.T_ST_ID DESC LIMIT 1";
-                        cmd = new OdbcCommand(sql, Connection);
-                        sqlReader2 = cmd.ExecuteReader();
-                        sqlReader2.Read();
-                        int teile_stoff_ID = Convert.ToInt32(sqlReader2[0]);
-                        
+                    cmd = new OdbcCommand(sql, Connection);
+                    sqlReader2 = cmd.ExecuteReader();
+                    sqlReader2.Read();
+                    int teile_stoff_ID = Convert.ToInt32(sqlReader2[0]);
 
 
+
+                    SQL_methods.SQL_exec(string.Format(
+                        "INSERT INTO auftraege (auftraege.`Auftrags_NR`, auftraege.`Fertigungsstatus`, auftraege.Projektverantwortlicher, auftraege.Planer_Techniker, auftraege.Erstelldatum, auftraege.AB_AZ, auftraege.Montage_Datum, auftraege.Projektbezeichnung, auftraege.`Schatten`,  auftraege.Notitz_Kauf, auftraege.Notitz_Tech) VALUES ('{0}', 6, {1}, {2}, '{3}', {4}, '{5}', {6}, '{7}', '{8}', '{9}')",
+                        txt_auftrag_nr.Text, cbx_verant.SelectedValue, cbx_tech.SelectedValue,
+                        date_erstell.Value.ToString("yyyy-MM-dd"), date_mont.Value.ToString("yyyy-MM-dd"), a_ID,
+                        txt_auf_proj_ken.Text, schatten_ID, txt_info_kauf.Text, txt_info_tech.Text));
+
+                    SQL_methods.Open();
+                    sql2 = string.Format(
+                        "SELECT ID FROM auftraege WHERE auftraege.`Auftrags_NR` = '{0}' AND auftraege.`Fertigungsstatus` = {1} AND auftraege.Projektverantwortlicher = {2} AND auftraege.Planer_Techniker = {3} AND auftraege.Erstelldatum = '{4}' AND auftraege.Montage_Datum = '{5}' AND auftraege.Projektbezeichnung = '{6}' AND auftraege.`Schatten` = {7} AND auftraege.Notitz_Kauf = '{8}' AND auftraege.Notitz_Tech = '{9}'",
+                        txt_auftrag_nr.Text, 6, cbx_verant.SelectedValue, cbx_tech.SelectedValue,
+                        date_erstell.Value.ToString("yyyy-MM-dd"), date_mont.Value.ToString("yyyy-MM-dd"),
+                        txt_auf_proj_ken.Text, schatten_ID, txt_info_kauf.Text, txt_info_tech.Text);
+
+                    OdbcCommand cmd_read = new OdbcCommand(sql2, Connection);
+                    sqlReader2 = cmd_read.ExecuteReader();
+
+                    sqlReader2.Read();
+
+                    int auf_id = sqlReader2.GetInt32(0);
+
+
+                    SQL_methods.SQL_exec(string.Format("INSERT INTO auftrags.teile (teile.ID, teile.T_St_ID) VALUES ({0}, {1})",
+                        auf_id, teile_stoff_ID));
+
+
+                    for (int i = 0; i < lbx_auftrag.Items.Count; i++)
+                    {
+                        int art_ID = (lbx_auftrag.Items[i] as Object_auf).ID;
                         SQL_methods.SQL_exec(string.Format(
-                            "INSERT INTO auftraege (auftraege.`Auftrags_NR`, auftraege.`Fertigungsstatus`, auftraege.Projektverantwortlicher, auftraege.Planer_Techniker, auftraege.Erstelldatum, auftraege.AB_AZ, auftraege.Montage_Datum, auftraege.Projektbezeichnung, auftraege.`Schatten`,  auftraege.Notitz_Kauf, auftraege.Notitz_Tech) VALUES ('{0}', 6, {1}, {2}, '{3}', {4}, '{5}', {6}, '{7}', '{8}', '{9}')",
-                            txt_auftrag_nr.Text, cbx_verant.SelectedValue, cbx_tech.SelectedValue,
-                            date_erstell.Value.ToString("yyyy-MM-dd"), date_mont.Value.ToString("yyyy-MM-dd"), a_ID,
-                            txt_auf_proj_ken.Text, schatten_ID, txt_info_kauf.Text, txt_info_tech.Text));
-
-                        SQL_methods.Open();
-                        sql2 = string.Format(
-                            "SELECT ID FROM auftraege WHERE auftraege.`Auftrags_NR` = '{0}' AND auftraege.`Fertigungsstatus` = {1} AND auftraege.Projektverantwortlicher = {2} AND auftraege.Planer_Techniker = {3} AND auftraege.Erstelldatum = '{4}' AND auftraege.Montage_Datum = '{5}' AND auftraege.Projektbezeichnung = '{6}' AND auftraege.`Schatten` = {7} AND auftraege.Notitz_Kauf = '{8}' AND auftraege.Notitz_Tech = '{9}'",
-                            txt_auftrag_nr.Text, 6, cbx_verant.SelectedValue, cbx_tech.SelectedValue,
-                            date_erstell.Value.ToString("yyyy-MM-dd"), date_mont.Value.ToString("yyyy-MM-dd"),
-                            txt_auf_proj_ken.Text, schatten_ID, txt_info_kauf.Text, txt_info_tech.Text);
-
-                        OdbcCommand cmd_read = new OdbcCommand(sql2, Connection);
-                        sqlReader2 = cmd_read.ExecuteReader();
-
-                        sqlReader2.Read();
-
-                        int auf_id = sqlReader2.GetInt32(0);
-                        
-
-                        SQL_methods.SQL_exec(string.Format("INSERT INTO auftrags.teile (teile.ID, teile.T_St_ID) VALUES ({0}, {1})",
-                            auf_id, teile_stoff_ID));
-
-                        
-                        for (int i = 0; i < lbx_auftrag.Items.Count; i++)
-                        {
-                            int art_ID = (lbx_auftrag.Items[i] as Object_auf).ID;
-                            SQL_methods.SQL_exec(string.Format(
-                                "INSERT INTO auftraege_auftragsart (ID, Art_ID) VALUES ({0}, {1})",
-                                auf_id, art_ID));
-                        }
-
+                            "INSERT INTO auftraege_auftragsart (ID, Art_ID) VALUES ({0}, {1})",
+                            auf_id, art_ID));
                     }
-                    catch (Exception f)
-                    {
-                        MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                    }
-                    finally
-                    {
-                        MessageBox.Show("Auftrag wurde gespeichert", "Anfrage erfolgreich", MessageBoxButtons.OK,
-                            MessageBoxIcon.Asterisk);
 
-                    }
+                }
+                catch (Exception f)
+                {
+                    MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    MessageBox.Show("Auftrag wurde gespeichert", "Anfrage erfolgreich", MessageBoxButtons.OK,
+                        MessageBoxIcon.Asterisk);
+
                 }
             }
-        
+        }
+
         private void cbx_new_auf_lief_DropDownClosed(object sender, EventArgs e)
         {
             cbx_new_auf_stoff.Enabled = true;
@@ -370,7 +371,7 @@ namespace LET_Auftragsverwaltung
                 Text = art;
             }
 
-            public override string ToString( )
+            public override string ToString()
             {
                 return Text;
             }

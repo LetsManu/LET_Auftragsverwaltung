@@ -18,11 +18,18 @@ namespace LET_Auftragsverwaltung
 
         public static OdbcConnection Connection => connection ?? (connection = new OdbcConnection(Connectionstring));
 
-        private static string Database => "auftrags";
-
         private static string Login_name => "root";
 
         private static string Connectionstring => $"Driver={"MySQL ODBC 5.3 Unicode Driver"};Server={Server_IP};Port={Port};Database={Database};User={Login_name};Password={Login_pw};Option=3;";
+
+        private static string Database
+        {
+            get
+            {
+                if (Is_this_mb) return "auftrags_";
+                else return "auftrags";
+            }
+        }
 
         private static string Login_pw
         {
