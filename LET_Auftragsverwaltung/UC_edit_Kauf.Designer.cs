@@ -50,7 +50,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btn_date_kauf_edit_schluss = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
+            this.txt_schluss_best = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.btn_save_kauf_edit_schluss = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -274,7 +274,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.btn_date_kauf_edit_schluss);
-            this.groupBox3.Controls.Add(this.label15);
+            this.groupBox3.Controls.Add(this.txt_schluss_best);
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Controls.Add(this.btn_save_kauf_edit_schluss);
             this.groupBox3.Controls.Add(this.label11);
@@ -298,17 +298,17 @@
             this.btn_date_kauf_edit_schluss.UseVisualStyleBackColor = true;
             this.btn_date_kauf_edit_schluss.Click += new System.EventHandler(this.btn_date_kauf_edit_schluss_Click);
             // 
-            // label15
+            // txt_schluss_best
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.DarkGreen;
-            this.label15.Location = new System.Drawing.Point(104, 16);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(158, 13);
-            this.label15.TabIndex = 13;
-            this.label15.Text = "Schlussrechnung ist fertig!";
-            this.label15.Visible = false;
+            this.txt_schluss_best.AutoSize = true;
+            this.txt_schluss_best.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_schluss_best.ForeColor = System.Drawing.Color.DarkGreen;
+            this.txt_schluss_best.Location = new System.Drawing.Point(104, 16);
+            this.txt_schluss_best.Name = "txt_schluss_best";
+            this.txt_schluss_best.Size = new System.Drawing.Size(158, 13);
+            this.txt_schluss_best.TabIndex = 13;
+            this.txt_schluss_best.Text = "Schlussrechnung ist fertig!";
+            this.txt_schluss_best.Visible = false;
             // 
             // label12
             // 
@@ -458,7 +458,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label txt_schluss_best;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btn_save_kauf_edit_schluss;
         private System.Windows.Forms.Label label11;
