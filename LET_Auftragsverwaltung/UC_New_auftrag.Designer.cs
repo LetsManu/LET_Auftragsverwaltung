@@ -137,7 +137,7 @@
             this.btn_auftrag_add.TabIndex = 14;
             this.btn_auftrag_add.Text = "Hinzufügen";
             this.btn_auftrag_add.UseVisualStyleBackColor = true;
-            this.btn_auftrag_add.Click += new System.EventHandler(this.btn_auftrag_add_Click);
+            this.btn_auftrag_add.Click += new System.EventHandler(this.Btn_auftrag_add_Click);
             // 
             // btn_auftag_delete
             // 

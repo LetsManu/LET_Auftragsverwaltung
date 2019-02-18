@@ -26,12 +26,12 @@ namespace LET_Auftragsverwaltung
         }
 
 
-        public UC_edit_Kauf()
+        public UC_edit_Kauf(int id_)
         {
             if (!this.DesignMode)
             {
                 InitializeComponent();
-                id = 1; //TODO WIE BEI ID BEI PARTIAL CLASS
+                id = id_; 
                 UC_Kauf_Fill_cbx_kauf_edit_auf();
                 UC_Kauf_Fill_cbx_kauf_edit_anz();
                 UC_Kauf_Fill_cbx_kauf_edit_schluss();
@@ -45,6 +45,10 @@ namespace LET_Auftragsverwaltung
             }
         }
 
+        public UC_edit_Kauf( )
+        {
+            //TODO wird vom VS Designer gebraucht der designer is so a bullshit?!?!?!?!?!??!?!?!?!!?!!!!!!!!!!!!!!
+        }
 
         private void cbx_kauf_edit_auf_SelectedIndexChanged(object sender, EventArgs e)
         {

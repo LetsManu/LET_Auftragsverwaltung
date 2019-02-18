@@ -64,6 +64,7 @@
             this.btn_edit_infos = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tab_Allgemein = new System.Windows.Forms.TabPage();
+            this.tab_kauf = new System.Windows.Forms.TabPage();
             this.tab_persennning = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.btn_persenning_save = new System.Windows.Forms.Button();
@@ -87,8 +88,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.dtp_sond_best = new System.Windows.Forms.DateTimePicker();
             this.dtp_sond_lief = new System.Windows.Forms.DateTimePicker();
-            this.tab_kauf = new System.Windows.Forms.TabPage();
-            this.uC_edit_Kauf1 = new LET_Auftragsverwaltung.UC_edit_Kauf();
+            this.uC_edit_Kauf1 = new LET_Auftragsverwaltung.UC_edit_Kauf(id);
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_new_auf)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -97,13 +97,13 @@
             this.Auftraginfos.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tab_Allgemein.SuspendLayout();
+            this.tab_kauf.SuspendLayout();
             this.tab_persennning.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.tab_schatten.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.tab_sond.SuspendLayout();
             this.groupBox9.SuspendLayout();
-            this.tab_kauf.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox4
@@ -463,6 +463,23 @@
             this.tab_Allgemein.UseVisualStyleBackColor = true;
             this.tab_Allgemein.Click += new System.EventHandler(this.tab_Allgemein_Click);
             // 
+            // tab_kauf
+            // 
+            this.tab_kauf.Controls.Add(this.uC_edit_Kauf1);
+            this.tab_kauf.Location = new System.Drawing.Point(4, 22);
+            this.tab_kauf.Name = "tab_kauf";
+            this.tab_kauf.Size = new System.Drawing.Size(1225, 374);
+            this.tab_kauf.TabIndex = 5;
+            this.tab_kauf.Text = "Kaufmänisch";
+            this.tab_kauf.UseVisualStyleBackColor = true;
+            // 
+            // uC_edit_Kauf1
+            // 
+            this.uC_edit_Kauf1.Location = new System.Drawing.Point(3, 3);
+            this.uC_edit_Kauf1.Name = "uC_edit_Kauf1";
+            this.uC_edit_Kauf1.Size = new System.Drawing.Size(903, 329);
+            this.uC_edit_Kauf1.TabIndex = 0;
+            // 
             // tab_persennning
             // 
             this.tab_persennning.Controls.Add(this.groupBox8);
@@ -684,23 +701,6 @@
             this.dtp_sond_lief.Size = new System.Drawing.Size(200, 20);
             this.dtp_sond_lief.TabIndex = 1;
             // 
-            // tab_kauf
-            // 
-            this.tab_kauf.Controls.Add(this.uC_edit_Kauf1);
-            this.tab_kauf.Location = new System.Drawing.Point(4, 22);
-            this.tab_kauf.Name = "tab_kauf";
-            this.tab_kauf.Size = new System.Drawing.Size(1225, 374);
-            this.tab_kauf.TabIndex = 5;
-            this.tab_kauf.Text = "Kaufmänisch";
-            this.tab_kauf.UseVisualStyleBackColor = true;
-            // 
-            // uC_edit_Kauf1
-            // 
-            this.uC_edit_Kauf1.Location = new System.Drawing.Point(3, 3);
-            this.uC_edit_Kauf1.Name = "uC_edit_Kauf1";
-            this.uC_edit_Kauf1.Size = new System.Drawing.Size(903, 329);
-            this.uC_edit_Kauf1.TabIndex = 0;
-            // 
             // UC_edit_Auftrag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -720,6 +720,7 @@
             this.Auftraginfos.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tab_Allgemein.ResumeLayout(false);
+            this.tab_kauf.ResumeLayout(false);
             this.tab_persennning.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
@@ -729,7 +730,6 @@
             this.tab_sond.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
-            this.tab_kauf.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
