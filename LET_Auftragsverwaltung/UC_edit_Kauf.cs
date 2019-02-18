@@ -14,7 +14,7 @@ namespace LET_Auftragsverwaltung
     public partial class UC_edit_Kauf : UserControl
     {
         //ID zur Übergabe
-        private int id = 0;
+        private int id = 1; //TODO Für Testzwecke durch echte ID ersetzten vor auslieferung
 
         private OdbcConnection Connection
         {
@@ -31,7 +31,7 @@ namespace LET_Auftragsverwaltung
             if (!this.DesignMode)
             {
                 InitializeComponent();
-                id = 10;
+                id = 1; //TODO WIE BEI ID BEI PARTIAL CLASS
                 UC_Kauf_Fill_cbx_kauf_edit_auf();
                 UC_Kauf_Fill_cbx_kauf_edit_anz();
                 UC_Kauf_Fill_cbx_kauf_edit_schluss();
@@ -41,6 +41,7 @@ namespace LET_Auftragsverwaltung
                 UC_Kauf_Text_Auf();
                 UC_Kauf_Text_Anz();
                 UC_Kauf_Text_Schluss();
+                txt_check_if_requested();
             }
         }
 
@@ -334,6 +335,7 @@ namespace LET_Auftragsverwaltung
                     UC_Kauf_Date_Auf_set();
                 }
             }
+            txt_check_if_requested();
         }
 
         private void SQL_Date_Anz()
@@ -365,6 +367,7 @@ namespace LET_Auftragsverwaltung
                     UC_Kauf_Date_Anz_set();
                 }
             }
+            txt_check_if_requested();
         }
 
         private void SQL_Date_Schluss()
@@ -396,12 +399,12 @@ namespace LET_Auftragsverwaltung
                     UC_Kauf_Date_Schluss_set();
                 }
             }
+            txt_check_if_requested();
         }
 
         private void SQL_ALL_Notiz_Save()
         {
-            int a_ID = 0;
-
+            int a_ID = 1;  //TODO Durch echte ID ersetzten
             string sql = "SELECT AB_AZ FROM auftraege Where ID = " + id;
             OdbcCommand cmd = new OdbcCommand(sql, Connection);
             SQL_methods.Open();
@@ -436,33 +439,38 @@ namespace LET_Auftragsverwaltung
         private void btn_save_kauf_edit_auf_Click(object sender, EventArgs e)
         {
             try
-            {
-                int a_ID;
-                SQL_methods.SQL_exec(string.Format("INSERT INTO AB_AZ (V_Notiz) Values ('{0}')",
-                    " "));
-                string sql = "SELECT A_ID FROM ab_az ORDER BY A_ID DESC LIMIT 1";
-                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+            {               
+                if (A_ID_IF_Exist())
+                {
+                    int a_ID;
+                    SQL_methods.SQL_exec(string.Format("INSERT INTO AB_AZ (V_Notiz) Values ('{0}')",
+                        " "));
+                    string sql = "SELECT A_ID FROM ab_az ORDER BY A_ID DESC LIMIT 1";
+                    OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                    SQL_methods.Open();
+                    OdbcDataReader sql_read = cmd.ExecuteReader();
+                    sql_read.Read();
+                    a_ID = Convert.ToInt32(sql_read[0].ToString());
+                    sql_read.Close();
+
+                    SQL_ALL_Notiz_Save();
+
+                    SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
+                      
+                }
+
+                string sql2 = "SELECT Projektbezeichnung FROM auftraege WHERE ID = " + id;
+                OdbcCommand cmd2 = new OdbcCommand(sql2, Connection);
                 SQL_methods.Open();
-                OdbcDataReader sql_read = cmd.ExecuteReader();
-                sql_read.Read();
-                a_ID = Convert.ToInt32(sql_read[0].ToString());
-                sql_read.Close();
+                OdbcDataReader sql_read2 = cmd2.ExecuteReader();
+                sql_read2.Read();
+                string bez = Convert.ToString(sql_read2[0].ToString());
+                sql_read2.Close();
 
-                SQL_ALL_Notiz_Save();
-
-                SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
-
-                sql = "SELECT Projektbezeichnung FROM auftraege WHERE ID = " + id;
-                 cmd = new OdbcCommand(sql, Connection);
-                SQL_methods.Open();
-                sql_read = cmd.ExecuteReader();
-                sql_read.Read();
-                string bez = Convert.ToString(sql_read[0].ToString());
-                sql_read.Close();
 
                 Email.Send_Mail("chaftalie@icloud.com", "[LET] Auftragsbestätigung: "+ bez, "TestTest"); //TODO (SUBJEKT: [LET] AUftragsbestätigung: ProjektBet) (BODY: Mehr Infot ID ect..)
 
-
+                txt_check_if_requested();
 
             }
             catch (Exception f)
@@ -475,32 +483,35 @@ namespace LET_Auftragsverwaltung
         {
             try
             {
-                int a_ID;
-                SQL_methods.SQL_exec(string.Format("INSERT INTO AB_AZ (V_Notiz) Values ('{0}')",
-                    " "));
-                string sql = "SELECT A_ID FROM ab_az ORDER BY A_ID DESC LIMIT 1";
-                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                if (A_ID_IF_Exist())
+                {
+                    int a_ID;
+                    SQL_methods.SQL_exec(string.Format("INSERT INTO AB_AZ (V_Notiz) Values ('{0}')",
+                        " "));
+                    string sql = "SELECT A_ID FROM ab_az ORDER BY A_ID DESC LIMIT 1";
+                    OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                    SQL_methods.Open();
+                    OdbcDataReader sql_read = cmd.ExecuteReader();
+                    sql_read.Read();
+                    a_ID = Convert.ToInt32(sql_read[0].ToString());
+                    sql_read.Close();
+
+                    SQL_ALL_Notiz_Save();
+
+                    SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
+                }
+
+                string sql2 = "SELECT Projektbezeichnung FROM auftraege WHERE ID = " + id;
+                OdbcCommand cmd2 = new OdbcCommand(sql2, Connection);
                 SQL_methods.Open();
-                OdbcDataReader sql_read = cmd.ExecuteReader();
-                sql_read.Read();
-                a_ID = Convert.ToInt32(sql_read[0].ToString());
-                sql_read.Close();
-
-                SQL_ALL_Notiz_Save();
-
-                SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
-
-                sql = "SELECT Projektbezeichnung FROM auftraege WHERE ID = " + id;
-                cmd = new OdbcCommand(sql, Connection);
-                SQL_methods.Open();
-                sql_read = cmd.ExecuteReader();
-                sql_read.Read();
-                string bez = Convert.ToString(sql_read[0].ToString());
-                sql_read.Close();
+                OdbcDataReader sql_read2 = cmd2.ExecuteReader();
+                sql_read2.Read();
+                string bez = Convert.ToString(sql_read2[0].ToString());
+                sql_read2.Close();
 
                 Email.Send_Mail("chaftalie@icloud.com", "[LET] Anzahlungsrechnung: " + bez, "TestTest"); //TODO (SUBJEKT: [LET] AUftragsbestätigung: ProjektBet) (BODY: Mehr Infot ID ect..)
 
-
+                txt_check_if_requested();
 
             }
             catch (Exception f)
@@ -535,7 +546,7 @@ namespace LET_Auftragsverwaltung
         private void btn_date_kauf_edit_anz_Click(object sender, EventArgs e)
         {
             date_kauf_edit_anz.Value = DateTime.Today;
-            SQL_Date_Auf();
+            SQL_Date_Anz();
         }
 
         private void date_kauf_edit_schluss_ValueChanged(object sender, EventArgs e)
@@ -563,38 +574,95 @@ namespace LET_Auftragsverwaltung
         {
             try
             {
-                int a_ID;
-                SQL_methods.SQL_exec(string.Format("INSERT INTO AB_AZ (V_Notiz) Values ('{0}')",
-                    " "));
-                string sql = "SELECT A_ID FROM ab_az ORDER BY A_ID DESC LIMIT 1";
-                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                if (A_ID_IF_Exist())
+                {
+                    int a_ID;
+                    SQL_methods.SQL_exec(string.Format("INSERT INTO AB_AZ (V_Notiz) Values ('{0}')",
+                        " "));
+                    string sql = "SELECT A_ID FROM ab_az ORDER BY A_ID DESC LIMIT 1";
+                    OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                    SQL_methods.Open();
+                    OdbcDataReader sql_read = cmd.ExecuteReader();
+                    sql_read.Read();
+                    a_ID = Convert.ToInt32(sql_read[0].ToString());
+                    sql_read.Close();
+
+                    SQL_ALL_Notiz_Save();
+
+                    SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
+                }
+
+                string sql2 = "SELECT Projektbezeichnung FROM auftraege WHERE ID = " + id;
+                OdbcCommand cmd2 = new OdbcCommand(sql2, Connection);
                 SQL_methods.Open();
-                OdbcDataReader sql_read = cmd.ExecuteReader();
-                sql_read.Read();
-                a_ID = Convert.ToInt32(sql_read[0].ToString());
-                sql_read.Close();
-
-                SQL_ALL_Notiz_Save();
-
-                SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
-
-                sql = "SELECT Projektbezeichnung FROM auftraege WHERE ID = " + id;
-                cmd = new OdbcCommand(sql, Connection);
-                SQL_methods.Open();
-                sql_read = cmd.ExecuteReader();
-                sql_read.Read();
-                string bez = Convert.ToString(sql_read[0].ToString());
-                sql_read.Close();
+                OdbcDataReader sql_read2 = cmd2.ExecuteReader();
+                sql_read2.Read();
+                string bez = Convert.ToString(sql_read2[0].ToString());
+                sql_read2.Close();
 
                 Email.Send_Mail("chaftalie@icloud.com", "[LET] Schlussrechnung: " + bez, "TestTest"); //TODO (SUBJEKT: [LET] AUftragsbestätigung: ProjektBet) (BODY: Mehr Infot ID ect..)
 
-
+                txt_check_if_requested();
 
             }
             catch (Exception f)
             {
                 MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT AB_AZ Schlussrechnung): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void txt_check_if_requested()
+        {
+            txt_kauf_auf_best.Visible = false;
+            txt_kauf_anz_best.Visible = false;
+            txt_schluss_best.Visible = false;
+
+            string sql = "SELECT AB_AZ FROM auftraege WHERE ID = " + id;
+            OdbcCommand cmd = new OdbcCommand(sql, Connection);
+            SQL_methods.Open();
+            OdbcDataReader sql_read = cmd.ExecuteReader();
+            sql_read.Read();
+            int a_ID = Convert.ToInt32(sql_read[0]);
+            sql = "SELECT V_Date FROM ab_az WHERE A_ID = " + a_ID;
+            sql_read.Close();
+            cmd.Dispose();
+            cmd = new OdbcCommand(sql, Connection);
+            if (cmd.ExecuteScalar() != DBNull.Value)
+            {
+                txt_kauf_auf_best.Visible = true;
+            }
+
+            sql = "SELECT B_Date FROM ab_az WHERE A_ID = " + a_ID;
+            sql_read.Close();
+            cmd.Dispose();
+            cmd = new OdbcCommand(sql, Connection);          
+            if (cmd.ExecuteScalar() != DBNull.Value)
+            {
+                txt_kauf_anz_best.Visible = true;
+            }
+
+            sql = "SELECT S_Date FROM ab_az WHERE A_ID = " + a_ID;
+            sql_read.Close();
+            cmd.Dispose();
+            cmd = new OdbcCommand(sql, Connection);
+            
+            if (cmd.ExecuteScalar() != DBNull.Value)
+            {
+                txt_schluss_best.Visible = true;
+            }
+
+        }
+
+        private bool A_ID_IF_Exist()
+        {
+            string sql_check = "SELECT A_ID FROM auftraege WHERE ID = " + id;
+            OdbcCommand cmd_check = new OdbcCommand(sql_check, Connection);
+            SQL_methods.Open();
+            if (cmd_check.ExecuteScalar() == DBNull.Value)
+            {
+                return true;
+            }
+                return false;
         }
     }
 }
