@@ -38,10 +38,11 @@ namespace LET_Auftragsverwaltung
 
         public UC_edit_Auftrag(int id_)
         {
-            InitializeComponent();
             id = id_;
+            InitializeComponent();
 
         }
+        
 
         private void UC_edit_Auftrag_Load(object sender, EventArgs e)
         {
