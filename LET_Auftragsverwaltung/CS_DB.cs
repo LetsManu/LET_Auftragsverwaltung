@@ -26,7 +26,7 @@ namespace LET_Auftragsverwaltung
         {
             get
             {
-                if (Is_this_mb) return "auftrags_";
+                if (Is_this_mb) return "auftrags";
                 else return "auftrags";
             }
         }

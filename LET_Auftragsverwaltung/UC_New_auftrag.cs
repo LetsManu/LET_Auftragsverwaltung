@@ -213,7 +213,7 @@ namespace LET_Auftragsverwaltung
 
 
 
-        private void btn_auftrag_add_Click(object sender, EventArgs e)
+        private void Btn_auftrag_add_Click(object sender, EventArgs e)
         {
             if (!this.DesignMode)
             {
