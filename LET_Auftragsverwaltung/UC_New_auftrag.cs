@@ -307,9 +307,9 @@ namespace LET_Auftragsverwaltung
 
 
                     SQL_methods.SQL_exec(string.Format(
-                        "INSERT INTO auftraege (auftraege.`Auftrags_NR`, auftraege.`Fertigungsstatus`, auftraege.Projektverantwortlicher, auftraege.Planer_Techniker, auftraege.Erstelldatum, auftraege.AB_AZ, auftraege.Montage_Datum, auftraege.Projektbezeichnung, auftraege.`Schatten`,  auftraege.Notitz_Kauf, auftraege.Notitz_Tech) VALUES ('{0}', 6, {1}, {2}, '{3}', {4}, '{5}', {6}, '{7}', '{8}', '{9}')",
+                        "INSERT INTO auftraege (auftraege.`Auftrags_NR`, auftraege.`Fertigungsstatus`, auftraege.Projektverantwortlicher, auftraege.Planer_Techniker, auftraege.Erstelldatum, auftraege.AB_AZ, auftraege.Montage_Datum, auftraege.Projektbezeichnung, auftraege.`Schatten`,  auftraege.Notitz_Kauf, auftraege.Notitz_Tech) VALUES ('{0}', 6, {1}, {2}, '{3}', {4}, '{5}', '{6}', {7}, '{8}', '{9}')",
                         txt_auftrag_nr.Text, cbx_verant.SelectedValue, cbx_tech.SelectedValue,
-                        date_erstell.Value.ToString("yyyy-MM-dd"), date_mont.Value.ToString("yyyy-MM-dd"), a_ID,
+                        date_erstell.Value.ToString("yyyy-MM-dd"), a_ID, date_mont.Value.ToString("yyyy-MM-dd"),
                         txt_auf_proj_ken.Text, schatten_ID, txt_info_kauf.Text, txt_info_tech.Text));
 
                     SQL_methods.Open();
