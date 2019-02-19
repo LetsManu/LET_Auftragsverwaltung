@@ -12,8 +12,11 @@ namespace LET_Auftragsverwaltung
 {
     public partial class Form_Best : Form
     {
-        public Form_Best()
+        public int a_ID = 0;
+        public Form_Best(int a_ID_)
         {
+            a_ID = a_ID_;
+
             InitializeComponent();
         }
     }

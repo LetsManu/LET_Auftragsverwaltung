@@ -14,10 +14,11 @@ namespace LET_Auftragsverwaltung
     public partial class UC_Best : UserControl
     {
 
-        int t_a_id = 55;
+        int t_a_id = 0;
 
-        public UC_Best()
+        public UC_Best(int a_ID_)
         {
+            t_a_id = a_ID_;
 
             InitializeComponent();
             UC_Best_Check();

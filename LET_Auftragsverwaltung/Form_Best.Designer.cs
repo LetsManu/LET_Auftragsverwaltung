@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.uC_Best1 = new LET_Auftragsverwaltung.UC_Best();
+            this.uC_Best1 = new LET_Auftragsverwaltung.UC_Best(a_ID);
             this.SuspendLayout();
             // 
             // uC_Best1

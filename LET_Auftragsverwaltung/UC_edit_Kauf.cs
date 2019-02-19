@@ -711,7 +711,7 @@ namespace LET_Auftragsverwaltung
 
         private void btn_best_Click(object sender, EventArgs e)
         {
-            Form_Best f_best = new Form_Best();
+            Form_Best f_best = new Form_Best(a_ID);
             f_best.Show();
         }
 
