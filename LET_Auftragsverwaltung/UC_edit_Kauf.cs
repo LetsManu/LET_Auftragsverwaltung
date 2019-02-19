@@ -16,6 +16,8 @@ namespace LET_Auftragsverwaltung
         //ID zur Übergabe
         private int id = 1; //TODO Für Testzwecke durch echte ID ersetzten vor auslieferung
 
+        public int a_ID;
+
         private OdbcConnection Connection
         {
             get
@@ -31,7 +33,8 @@ namespace LET_Auftragsverwaltung
             if (!this.DesignMode)
             {
                 InitializeComponent();
-                id = id_; 
+                id = id_;
+                UC_edit_Kauf_get_a_id();
                 UC_Kauf_Fill_cbx_kauf_edit_auf();
                 UC_Kauf_Fill_cbx_kauf_edit_anz();
                 UC_Kauf_Fill_cbx_kauf_edit_schluss();
@@ -580,7 +583,7 @@ namespace LET_Auftragsverwaltung
             {
                 if (A_ID_IF_Exist())
                 {
-                    int a_ID;
+                    
                     SQL_methods.SQL_exec(string.Format("INSERT INTO AB_AZ (V_Notiz) Values ('{0}')",
                         " "));
                     string sql = "SELECT A_ID FROM ab_az ORDER BY A_ID DESC LIMIT 1";
@@ -615,27 +618,20 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-        private void txt_check_if_requested()
+        public void txt_check_if_requested()
         {
             bool check;
             txt_kauf_auf_best.Visible = false;
             txt_kauf_anz_best.Visible = false;
             txt_schluss_best.Visible = false;
 
-            string sql = "SELECT AB_AZ FROM auftraege WHERE ID = " + id;
-            OdbcCommand cmd = new OdbcCommand(sql, Connection);
-            SQL_methods.Open();
-            OdbcDataReader sql_read = cmd.ExecuteReader();
-            sql_read.Read();
-            int a_ID = Convert.ToInt32(sql_read[0]);
-
-            sql = string.Format("SELECT V_Best FROM ab_az WHERE A_ID = " + a_ID);
+            string sql = string.Format("SELECT V_Best FROM ab_az WHERE A_ID = " + a_ID);
 
             OdbcConnection con = DB.Connection;
 
-            cmd = new OdbcCommand(sql, con);
+            OdbcCommand cmd = new OdbcCommand(sql, con);
 
-            con.Open();
+            SQL_methods.Open();
 
             OdbcDataReader sql_reader = cmd.ExecuteReader();
 
@@ -645,9 +641,9 @@ namespace LET_Auftragsverwaltung
 
             sql_reader.Close();
 
-            con.Close();
-
             
+
+
             if (check)
             {
                 txt_kauf_auf_best.Visible = true;
@@ -659,7 +655,7 @@ namespace LET_Auftragsverwaltung
 
             cmd = new OdbcCommand(sql, con);
 
-            con.Open();
+            SQL_methods.Open();
 
             sql_reader = cmd.ExecuteReader();
 
@@ -682,7 +678,7 @@ namespace LET_Auftragsverwaltung
 
             cmd = new OdbcCommand(sql, con);
 
-            con.Open();
+            SQL_methods.Open();
 
             sql_reader = cmd.ExecuteReader();
 
@@ -692,7 +688,7 @@ namespace LET_Auftragsverwaltung
 
             sql_reader.Close();
 
-            con.Close();
+            
 
             if (check)
             {
@@ -715,7 +711,18 @@ namespace LET_Auftragsverwaltung
 
         private void btn_best_Click(object sender, EventArgs e)
         {
+            Form_Best f_best = new Form_Best();
+            f_best.Show();
+        }
 
+        private void UC_edit_Kauf_get_a_id()
+        {
+            string sql = "SELECT AB_AZ FROM auftraege WHERE ID = " + id;
+            OdbcCommand cmd = new OdbcCommand(sql, Connection);
+            SQL_methods.Open();
+            OdbcDataReader sql_read = cmd.ExecuteReader();
+            sql_read.Read();
+            a_ID = Convert.ToInt32(sql_read[0]);
         }
     }
 }

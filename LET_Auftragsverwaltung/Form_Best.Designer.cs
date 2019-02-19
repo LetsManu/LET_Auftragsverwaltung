@@ -28,12 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.uC_Best1 = new LET_Auftragsverwaltung.UC_Best();
+            this.SuspendLayout();
+            // 
+            // uC_Best1
+            // 
+            this.uC_Best1.Location = new System.Drawing.Point(12, 12);
+            this.uC_Best1.Name = "uC_Best1";
+            this.uC_Best1.Size = new System.Drawing.Size(401, 139);
+            this.uC_Best1.TabIndex = 0;
+            // 
+            // Form_Best
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(422, 138);
+            this.Controls.Add(this.uC_Best1);
+            this.Name = "Form_Best";
             this.Text = "Form2";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private UC_Best uC_Best1;
     }
 }

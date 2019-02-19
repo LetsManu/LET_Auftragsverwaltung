@@ -16,10 +16,12 @@ namespace LET_Auftragsverwaltung
 
         int t_a_id = 55;
 
-        public UC_Best( )
+        public UC_Best()
         {
+
             InitializeComponent();
             UC_Best_Check();
+
         }
 
         private void UC_Best_Load(object sender, EventArgs e)
@@ -36,6 +38,7 @@ namespace LET_Auftragsverwaltung
             {
                 SQL_methods.SQL_exec("UPDATE ab_az SET V_Best = 1 WHERE A_ID = " + t_a_id);
                 UC_Best_Check();
+                
             }
         }
 
@@ -57,7 +60,7 @@ namespace LET_Auftragsverwaltung
         }
 
 
-        private void UC_Best_Check( )
+        private void UC_Best_Check()
         {
             if (!this.DesignMode)
             {
@@ -69,7 +72,7 @@ namespace LET_Auftragsverwaltung
 
                 OdbcCommand cmd = new OdbcCommand(sql, con);
 
-                con.Open();
+                SQL_methods.Open();
 
                 OdbcDataReader sql_reader = cmd.ExecuteReader();
 
@@ -79,7 +82,7 @@ namespace LET_Auftragsverwaltung
 
                 sql_reader.Close();
 
-                con.Close();
+                
 
                 if (check)
                 {
@@ -91,7 +94,7 @@ namespace LET_Auftragsverwaltung
 
                 cmd = new OdbcCommand(sql, con);
 
-                con.Open();
+                SQL_methods.Open();
 
                 sql_reader = cmd.ExecuteReader();
 
@@ -101,7 +104,7 @@ namespace LET_Auftragsverwaltung
 
                 sql_reader.Close();
 
-                con.Close();
+                
 
                 if (check)
                 {
@@ -113,7 +116,7 @@ namespace LET_Auftragsverwaltung
 
                 cmd = new OdbcCommand(sql, con);
 
-                con.Open();
+                SQL_methods.Open();
 
                 sql_reader = cmd.ExecuteReader();
 
@@ -123,7 +126,7 @@ namespace LET_Auftragsverwaltung
 
                 sql_reader.Close();
 
-                con.Close();
+                
 
                 if (check)
                 {
