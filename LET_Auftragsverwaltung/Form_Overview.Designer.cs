@@ -61,8 +61,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1884, 1011);
-            this.Controls.Add(this.btn_print);
             this.Controls.Add(this.uC_Overview1);
+            this.Controls.Add(this.btn_print);
             this.Name = "Form_Overview";
             this.Text = "Overview";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Overview_FormClosing);

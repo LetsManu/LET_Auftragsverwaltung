@@ -2,6 +2,8 @@
 {
     partial class UC_edit_Auftrag
     {
+        
+
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -13,7 +15,7 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && ( components != null ))
             {
                 components.Dispose();
             }
@@ -26,7 +28,7 @@
         /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+        private void InitializeComponent( )
         {
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btn_del_stoff = new System.Windows.Forms.Button();
@@ -88,9 +90,11 @@
             this.label17 = new System.Windows.Forms.Label();
             this.dtp_sond_best = new System.Windows.Forms.DateTimePicker();
             this.dtp_sond_lief = new System.Windows.Forms.DateTimePicker();
+
             this.uC_edit_Kauf1 = new LET_Auftragsverwaltung.UC_edit_Kauf(id);
+
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbx_new_auf)).BeginInit();
+            ( ( System.ComponentModel.ISupportInitialize ) ( this.pbx_new_auf ) ).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -710,7 +714,7 @@
             this.Size = new System.Drawing.Size(1235, 406);
             this.Load += new System.EventHandler(this.UC_edit_Auftrag_Load);
             this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbx_new_auf)).EndInit();
+            ( ( System.ComponentModel.ISupportInitialize ) ( this.pbx_new_auf ) ).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
