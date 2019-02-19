@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Data.Odbc;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.Odbc;
 
 namespace LET_Auftragsverwaltung
 {
@@ -16,7 +16,7 @@ namespace LET_Auftragsverwaltung
 
         int t_a_id = 55;
 
-        public UC_Best()
+        public UC_Best( )
         {
             InitializeComponent();
             UC_Best_Check();
@@ -24,98 +24,112 @@ namespace LET_Auftragsverwaltung
 
         private void UC_Best_Load(object sender, EventArgs e)
         {
-           
+            if (!this.DesignMode)
+            {
+
+            }
         }
 
         private void btn_best_auf_Click(object sender, EventArgs e)
         {
-            SQL_methods.SQL_exec("UPDATE ab_az SET V_Best = 1 WHERE A_ID = " + t_a_id);
-            UC_Best_Check();
+            if (!this.DesignMode)
+            {
+                SQL_methods.SQL_exec("UPDATE ab_az SET V_Best = 1 WHERE A_ID = " + t_a_id);
+                UC_Best_Check();
+            }
         }
 
         private void btn_best_anz_Click(object sender, EventArgs e)
         {
-            SQL_methods.SQL_exec("UPDATE ab_az SET B_Best = 1 WHERE A_ID = " + t_a_id);
-            UC_Best_Check();
+            if (!this.DesignMode)
+            {
+                SQL_methods.SQL_exec("UPDATE ab_az SET B_Best = 1 WHERE A_ID = " + t_a_id);
+                UC_Best_Check();
+            }
         }
-
         private void btn_best_schl_Click(object sender, EventArgs e)
         {
-            SQL_methods.SQL_exec("UPDATE ab_az SET S_Best = 1 WHERE A_ID = " + t_a_id);
-            UC_Best_Check();
+            if (!this.DesignMode)
+            {
+                SQL_methods.SQL_exec("UPDATE ab_az SET S_Best = 1 WHERE A_ID = " + t_a_id);
+                UC_Best_Check();
+            }
         }
 
 
-        private void UC_Best_Check()
+        private void UC_Best_Check( )
         {
-            bool check = false;
-
-            string sql = string.Format("SELECT V_Best FROM ab_az WHERE A_ID = " + t_a_id);
-
-            OdbcConnection con = DB.Connection;
-
-            OdbcCommand cmd = new OdbcCommand(sql, con);
-
-            con.Open();
-
-            OdbcDataReader sql_reader = cmd.ExecuteReader();
-
-            sql_reader.Read();
-
-            check = Convert.ToBoolean(sql_reader[0]);
-
-            sql_reader.Close();
-
-            con.Close();
-
-            if (check)
+            if (!this.DesignMode)
             {
-                txt_best_auf.Visible = true;
-                btn_best_auf.Enabled = false;
-            }
+                bool check = false;
 
-            sql = string.Format("SELECT B_Best FROM ab_az WHERE A_ID = " + t_a_id);
+                string sql = string.Format("SELECT V_Best FROM ab_az WHERE A_ID = " + t_a_id);
 
-            cmd = new OdbcCommand(sql, con);
+                OdbcConnection con = DB.Connection;
 
-            con.Open();
+                OdbcCommand cmd = new OdbcCommand(sql, con);
 
-            sql_reader = cmd.ExecuteReader();
+                con.Open();
 
-            sql_reader.Read();
+                OdbcDataReader sql_reader = cmd.ExecuteReader();
 
-            check = Convert.ToBoolean(sql_reader[0]);
+                sql_reader.Read();
 
-            sql_reader.Close();
+                check = Convert.ToBoolean(sql_reader[0]);
 
-            con.Close();
+                sql_reader.Close();
 
-            if (check)
-            {
-                txt_best_anz.Visible = true;
-                btn_best_anz.Enabled = false;
-            }
+                con.Close();
 
-            sql = string.Format("SELECT S_Best FROM ab_az WHERE A_ID = " + t_a_id);
+                if (check)
+                {
+                    txt_best_auf.Visible = true;
+                    btn_best_auf.Enabled = false;
+                }
 
-            cmd = new OdbcCommand(sql, con);
+                sql = string.Format("SELECT B_Best FROM ab_az WHERE A_ID = " + t_a_id);
 
-            con.Open();
+                cmd = new OdbcCommand(sql, con);
 
-            sql_reader = cmd.ExecuteReader();
+                con.Open();
 
-            sql_reader.Read();
+                sql_reader = cmd.ExecuteReader();
 
-            check = Convert.ToBoolean(sql_reader[0]);
+                sql_reader.Read();
 
-            sql_reader.Close();
+                check = Convert.ToBoolean(sql_reader[0]);
 
-            con.Close();
+                sql_reader.Close();
 
-            if (check)
-            {
-                txt_best_schl.Visible = true;
-                btn_best_schl.Enabled = false;
+                con.Close();
+
+                if (check)
+                {
+                    txt_best_anz.Visible = true;
+                    btn_best_anz.Enabled = false;
+                }
+
+                sql = string.Format("SELECT S_Best FROM ab_az WHERE A_ID = " + t_a_id);
+
+                cmd = new OdbcCommand(sql, con);
+
+                con.Open();
+
+                sql_reader = cmd.ExecuteReader();
+
+                sql_reader.Read();
+
+                check = Convert.ToBoolean(sql_reader[0]);
+
+                sql_reader.Close();
+
+                con.Close();
+
+                if (check)
+                {
+                    txt_best_schl.Visible = true;
+                    btn_best_schl.Enabled = false;
+                }
             }
         }
     }
