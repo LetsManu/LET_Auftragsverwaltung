@@ -40,9 +40,16 @@ namespace LET_Auftragsverwaltung
         {
             id = id_;
             InitializeComponent();
-
         }
-        
+
+        /// <summary>
+        /// Nur für den Designer, nicht verwenden!!!
+        /// </summary>
+        public UC_edit_Auftrag()
+        {
+            InitializeComponent();
+        }
+
 
         private void UC_edit_Auftrag_Load(object sender, EventArgs e)
         {
@@ -409,10 +416,11 @@ namespace LET_Auftragsverwaltung
 
         private void cbx_edit_auf_lief_DropDownClosed(object sender, EventArgs e)
         {
-
-            cbx_edit_auf_stoff.Enabled = true;
-            UC_New_auftrag_fill_cbx_stoff_lief();
-
+            if (!this.DesignMode)
+            {
+                cbx_edit_auf_stoff.Enabled = true;
+                UC_New_auftrag_fill_cbx_stoff_lief();
+            }
         }
 
 
@@ -438,352 +446,385 @@ namespace LET_Auftragsverwaltung
 
         private void btn_ab_az_an_Click(object sender, EventArgs e)
         {
-            try
+            if (!this.DesignMode)
             {
-                int a_ID;
-                SQL_methods.SQL_exec(string.Format("INSERT INTO AB_AZ (V_Date) Values ('{0}')",
-                    DateTime.Now.Date.ToString("yyyy-MM-dd")));
-                string sql = "SELECT A_ID FROM ab_az ORDER BY A_ID DESC LIMIT 1";
-                OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                SQL_methods.Open();
-                OdbcDataReader sql_read = cmd.ExecuteReader();
-                sql_read.Read();
-                a_ID = Convert.ToInt32(sql_read[0].ToString());
+                try
+                {
+                    int a_ID;
+                    SQL_methods.SQL_exec(string.Format("INSERT INTO AB_AZ (V_Date) Values ('{0}')",
+                        DateTime.Now.Date.ToString("yyyy-MM-dd")));
+                    string sql = "SELECT A_ID FROM ab_az ORDER BY A_ID DESC LIMIT 1";
+                    OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                    SQL_methods.Open();
+                    OdbcDataReader sql_read = cmd.ExecuteReader();
+                    sql_read.Read();
+                    a_ID = Convert.ToInt32(sql_read[0].ToString());
 
-                SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
+                    SQL_methods.SQL_exec(string.Format("UPDATE auftraege SET AB_AZ = {0} WHERE ID = {1}", a_ID, id));
 
-               
 
-            }
-            catch (Exception f)
-            {
-                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT AB_AZ Anfordern): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+                catch (Exception f)
+                {
+                    MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT AB_AZ Anfordern): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            try
+            if (!this.DesignMode)
             {
-                int a_ID = 0;
+                try
+                {
+                    int a_ID = 0;
 
-                string sql = "SELECT AB_AZ FROM auftraege Where ID = " + id;
-                OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                SQL_methods.Open();
-                OdbcDataReader sql_Reader = cmd.ExecuteReader();
-                sql_Reader.Read();
-                a_ID = Convert.ToInt32(sql_Reader[0].ToString());
+                    string sql = "SELECT AB_AZ FROM auftraege Where ID = " + id;
+                    OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                    SQL_methods.Open();
+                    OdbcDataReader sql_Reader = cmd.ExecuteReader();
+                    sql_Reader.Read();
+                    a_ID = Convert.ToInt32(sql_Reader[0].ToString());
 
 
-                SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_DATE = '{0}' WHERE A_ID = {1}", DateTime.Now.Date.ToString("yyyy-MM-dd"), a_ID));
+                    SQL_methods.SQL_exec(string.Format("UPDATE AB_AZ SET B_DATE = '{0}' WHERE A_ID = {1}", DateTime.Now.Date.ToString("yyyy-MM-dd"), a_ID));
 
-                
 
-            }
-            catch (Exception f)
-            {
-                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT AB_AZ Bestätigen): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+                catch (Exception f)
+                {
+                    MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT AB_AZ Bestätigen): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
+            if (!this.DesignMode)
             {
-                int s_ID = 0;
-                string sql = "SELECT Schatten FROM auftraege WHERE ID = " + id;
-                OdbcCommand cmd = new OdbcCommand(sql, Connection);
-                SQL_methods.Open();
-                OdbcDataReader sql_reader = cmd.ExecuteReader();
-                sql_reader.Read();
-                s_ID = Convert.ToInt32(sql_reader[0].ToString());
+                try
+                {
+                    int s_ID = 0;
+                    string sql = "SELECT Schatten FROM auftraege WHERE ID = " + id;
+                    OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                    SQL_methods.Open();
+                    OdbcDataReader sql_reader = cmd.ExecuteReader();
+                    sql_reader.Read();
+                    s_ID = Convert.ToInt32(sql_reader[0].ToString());
 
-                SQL_methods.SQL_exec(string.Format("UPDATE schatten SET Schattendatum = '{0}', P_ID = {1}, Notiz = '{2}' WHERE S_ID = {3}", dtp_schatten.Value.ToString("yyyy-MM-dd"), cbx_schatten_pers.SelectedValue, rtx_schatten.Text, s_ID));
+                    SQL_methods.SQL_exec(string.Format("UPDATE schatten SET Schattendatum = '{0}', P_ID = {1}, Notiz = '{2}' WHERE S_ID = {3}", dtp_schatten.Value.ToString("yyyy-MM-dd"), cbx_schatten_pers.SelectedValue, rtx_schatten.Text, s_ID));
 
-                Schatten_Controll();
+                    Schatten_Controll();
 
-            }
+                }
 
-            catch (Exception f)
-            {
-                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: UPDATE Schatten BTN): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                catch (Exception f)
+                {
+                    MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: UPDATE Schatten BTN): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         private void btn_persenning_save_Click(object sender, EventArgs e)
         {
-            try
+            if (!this.DesignMode)
             {
-                int p_ID = 0;
-                string sql = "";
-
-                OdbcCommand cmd;
-                OdbcDataReader sql_reader;
-
-                sql = "SELECT T_P_ID FROM teile WHERE ID = " + id;
-                cmd = new OdbcCommand(sql, Connection);
-                SQL_methods.Open();
-                sql_reader = cmd.ExecuteReader();
-                sql_reader.Read();
-
-                p_ID = Convert.ToInt32(sql_reader[0].ToString());
-                sql_reader.Close();
-
-
-                if (p_ID != 0)
+                try
                 {
+                    int p_ID = 0;
+                    string sql = "";
+
+                    OdbcCommand cmd;
+                    OdbcDataReader sql_reader;
+
                     sql = "SELECT T_P_ID FROM teile WHERE ID = " + id;
                     cmd = new OdbcCommand(sql, Connection);
                     SQL_methods.Open();
                     sql_reader = cmd.ExecuteReader();
                     sql_reader.Read();
+
                     p_ID = Convert.ToInt32(sql_reader[0].ToString());
                     sql_reader.Close();
 
 
-                    SQL_methods.SQL_exec(string.Format(
-                        "UPDATE teile_persenning SET Lieferdatum = '{0}', Bestelldatum = '{1}' WHERE T_P_ID = {2}",
-                        dtp_persenning_lief.Value.ToString("yyyy-MM-dd"),
-                        dtp_persenning_best.Value.ToString("yyyy-MM-dd"), p_ID));
+                    if (p_ID != 0)
+                    {
+                        sql = "SELECT T_P_ID FROM teile WHERE ID = " + id;
+                        cmd = new OdbcCommand(sql, Connection);
+                        SQL_methods.Open();
+                        sql_reader = cmd.ExecuteReader();
+                        sql_reader.Read();
+                        p_ID = Convert.ToInt32(sql_reader[0].ToString());
+                        sql_reader.Close();
+
+
+                        SQL_methods.SQL_exec(string.Format(
+                            "UPDATE teile_persenning SET Lieferdatum = '{0}', Bestelldatum = '{1}' WHERE T_P_ID = {2}",
+                            dtp_persenning_lief.Value.ToString("yyyy-MM-dd"),
+                            dtp_persenning_best.Value.ToString("yyyy-MM-dd"), p_ID));
+                    }
+                    else
+                    {
+                        SQL_methods.SQL_exec(string.Format(
+                            "INSERT INTO teile_persenning (Lieferdatum, Bestelldatum) Values ('{0}', '{1}')",
+                            dtp_persenning_lief.Value.ToString("yyyy-MM-dd"),
+                            dtp_persenning_best.Value.ToString("yyyy-MM-dd")));
+                        sql = "SELECT T_P_ID FROM teile_persenning ORDER BY T_P_ID DESC LIMIT 1";
+                        cmd = new OdbcCommand(sql, Connection);
+                        SQL_methods.Open();
+                        sql_reader = cmd.ExecuteReader();
+                        sql_reader.Read();
+                        p_ID = Convert.ToInt32(sql_reader[0].ToString());
+                        sql_reader.Close();
+
+                        SQL_methods.SQL_exec(string.Format("UPDATE teile SET T_P_ID = {0} WHERE ID = {1}", p_ID, id));
+                    }
+
+                    Persenning_Controll();
+
                 }
-                else
+                catch (Exception f)
                 {
-                    SQL_methods.SQL_exec(string.Format(
-                        "INSERT INTO teile_persenning (Lieferdatum, Bestelldatum) Values ('{0}', '{1}')",
-                        dtp_persenning_lief.Value.ToString("yyyy-MM-dd"),
-                        dtp_persenning_best.Value.ToString("yyyy-MM-dd")));
-                    sql = "SELECT T_P_ID FROM teile_persenning ORDER BY T_P_ID DESC LIMIT 1";
-                    cmd = new OdbcCommand(sql, Connection);
-                    SQL_methods.Open();
-                    sql_reader = cmd.ExecuteReader();
-                    sql_reader.Read();
-                    p_ID = Convert.ToInt32(sql_reader[0].ToString());
-                    sql_reader.Close();
-
-                    SQL_methods.SQL_exec(string.Format("UPDATE teile SET T_P_ID = {0} WHERE ID = {1}", p_ID, id));
+                    MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Persenning): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-                Persenning_Controll();
-
-            }
-            catch (Exception f)
-            {
-                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Persenning): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void btn_sond_save_Click(object sender, EventArgs e)
         {
-            try
+            if (!this.DesignMode)
             {
-                int s_ID = 0;
-                string sql = "";
-
-                OdbcCommand cmd;
-                OdbcDataReader sql_reader;
-
-                sql = "SELECT T_S_ID FROM teile WHERE ID = " + id;
-                cmd = new OdbcCommand(sql, Connection);
-                SQL_methods.Open();
-                sql_reader = cmd.ExecuteReader();
-                sql_reader.Read();
-
-                s_ID = Convert.ToInt32(sql_reader[0].ToString());
-                sql_reader.Close();
-
-
-                if (s_ID != 0)
+                try
                 {
+                    int s_ID = 0;
+                    string sql = "";
+
+                    OdbcCommand cmd;
+                    OdbcDataReader sql_reader;
+
                     sql = "SELECT T_S_ID FROM teile WHERE ID = " + id;
                     cmd = new OdbcCommand(sql, Connection);
                     SQL_methods.Open();
                     sql_reader = cmd.ExecuteReader();
                     sql_reader.Read();
+
                     s_ID = Convert.ToInt32(sql_reader[0].ToString());
                     sql_reader.Close();
 
-                    SQL_methods.SQL_exec(string.Format(
-                        "UPDATE teile_sonder SET Lieferdatum = '{0}', Bestelldatum = '{1}' WHERE T_S_ID = {2}",
-                        dtp_sond_lief.Value.ToString("yyyy-MM-dd"),
-                        dtp_sond_best.Value.ToString("yyyy-MM-dd"), s_ID));
+
+                    if (s_ID != 0)
+                    {
+                        sql = "SELECT T_S_ID FROM teile WHERE ID = " + id;
+                        cmd = new OdbcCommand(sql, Connection);
+                        SQL_methods.Open();
+                        sql_reader = cmd.ExecuteReader();
+                        sql_reader.Read();
+                        s_ID = Convert.ToInt32(sql_reader[0].ToString());
+                        sql_reader.Close();
+
+                        SQL_methods.SQL_exec(string.Format(
+                            "UPDATE teile_sonder SET Lieferdatum = '{0}', Bestelldatum = '{1}' WHERE T_S_ID = {2}",
+                            dtp_sond_lief.Value.ToString("yyyy-MM-dd"),
+                            dtp_sond_best.Value.ToString("yyyy-MM-dd"), s_ID));
+                    }
+                    else
+                    {
+                        SQL_methods.SQL_exec(string.Format(
+                            "INSERT INTO teile_sonder (Lieferdatum, Bestelldatum) Values ('{0}', '{1}')",
+                            dtp_sond_lief.Value.ToString("yyyy-MM-dd"),
+                            dtp_sond_best.Value.ToString("yyyy-MM-dd")));
+                        sql = "SELECT T_S_ID FROM teile_sonder ORDER BY T_S_ID DESC LIMIT 1";
+                        cmd = new OdbcCommand(sql, Connection);
+                        SQL_methods.Open();
+                        sql_reader = cmd.ExecuteReader();
+                        sql_reader.Read();
+                        s_ID = Convert.ToInt32(sql_reader[0].ToString());
+                        sql_reader.Close();
+
+                        SQL_methods.SQL_exec(string.Format("UPDATE teile SET T_S_ID = {0} WHERE ID = {1}", s_ID, id));
+                    }
+
+                    Sonderteile_Controll();
+
                 }
-                else
+                catch (Exception f)
                 {
-                    SQL_methods.SQL_exec(string.Format(
-                        "INSERT INTO teile_sonder (Lieferdatum, Bestelldatum) Values ('{0}', '{1}')",
-                        dtp_sond_lief.Value.ToString("yyyy-MM-dd"),
-                        dtp_sond_best.Value.ToString("yyyy-MM-dd")));
-                    sql = "SELECT T_S_ID FROM teile_sonder ORDER BY T_S_ID DESC LIMIT 1";
-                    cmd = new OdbcCommand(sql, Connection);
-                    SQL_methods.Open();
-                    sql_reader = cmd.ExecuteReader();
-                    sql_reader.Read();
-                    s_ID = Convert.ToInt32(sql_reader[0].ToString());
-                    sql_reader.Close();
-
-                    SQL_methods.SQL_exec(string.Format("UPDATE teile SET T_S_ID = {0} WHERE ID = {1}", s_ID, id));
+                    MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Persenning): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-                Sonderteile_Controll();
-
-            }
-            catch (Exception f)
-            {
-                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Persenning): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
 
 
-       
+
 
         private void Schatten_Controll( )
         {
-            object obj_db;
-            string sql = "SELECT Schatten FROM auftraege WHERE ID = " + id;
-            OdbcCommand cmd = new OdbcCommand(sql, Connection);
-            SQL_methods.Open();
-            OdbcDataReader sql_reader = cmd.ExecuteReader();
-            sql_reader.Read();
-            string sql2 = "SELECT Schattendatum, P_ID, Notiz FROM schatten WHERE S_ID = " +
-                          Convert.ToInt32(sql_reader[0].ToString());
-            sql_reader.Close();
-            OdbcCommand cmd2 = new OdbcCommand(sql2, Connection);
-            obj_db = cmd2.ExecuteScalar();
-
-            if (obj_db != DBNull.Value)
+            if (!this.DesignMode)
             {
-                sql_reader = cmd2.ExecuteReader();
+                object obj_db;
+                string sql = "SELECT Schatten FROM auftraege WHERE ID = " + id;
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                SQL_methods.Open();
+                OdbcDataReader sql_reader = cmd.ExecuteReader();
                 sql_reader.Read();
-                dtp_schatten.Value = DateTime.Parse(sql_reader[0].ToString());
-                cbx_schatten_pers.SelectedValue = Convert.ToInt32(sql_reader[1].ToString());
-                rtx_schatten.Text = sql_reader[2].ToString();
-            }
-            else
-            {
-                dtp_schatten.Value = DateTime.Today.Date;
-            }
+                string sql2 = "SELECT Schattendatum, P_ID, Notiz FROM schatten WHERE S_ID = " +
+                              Convert.ToInt32(sql_reader[0].ToString());
+                sql_reader.Close();
+                OdbcCommand cmd2 = new OdbcCommand(sql2, Connection);
+                obj_db = cmd2.ExecuteScalar();
 
+                if (obj_db != DBNull.Value)
+                {
+                    sql_reader = cmd2.ExecuteReader();
+                    sql_reader.Read();
+                    dtp_schatten.Value = DateTime.Parse(sql_reader[0].ToString());
+                    cbx_schatten_pers.SelectedValue = Convert.ToInt32(sql_reader[1].ToString());
+                    rtx_schatten.Text = sql_reader[2].ToString();
+                }
+                else
+                {
+                    dtp_schatten.Value = DateTime.Today.Date;
+                }
+
+            }
         }
 
         private void Persenning_Controll( )
         {
-            object obj_db;
-            int p_ID;
-            string sql = "SELECT T_P_ID FROM teile WHERE ID = " + id;
-            OdbcCommand cmd = new OdbcCommand(sql, Connection);
-            SQL_methods.Open();
-            OdbcDataReader sql_reader = cmd.ExecuteReader();
-            sql_reader.Read();
-            p_ID = Convert.ToInt32(sql_reader[0].ToString());
-            sql_reader.Close();
-            sql = "SELECT Bestelldatum FROM teile_persenning WHERE T_P_ID = " +
-                  p_ID;
-
-            cmd = new OdbcCommand(sql, Connection);
-
-            obj_db = cmd.ExecuteScalar();
-
-            if (obj_db != DBNull.Value && obj_db != null)
+            if (!this.DesignMode)
             {
-                sql_reader = cmd.ExecuteReader();
+                object obj_db;
+                int p_ID;
+                string sql = "SELECT T_P_ID FROM teile WHERE ID = " + id;
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                SQL_methods.Open();
+                OdbcDataReader sql_reader = cmd.ExecuteReader();
                 sql_reader.Read();
-                dtp_persenning_best.Value = DateTime.Parse(sql_reader[0].ToString());
+                p_ID = Convert.ToInt32(sql_reader[0].ToString());
                 sql_reader.Close();
-                sql = "SELECT Lieferdatum FROM teile_persenning WHERE T_P_ID = " +
+                sql = "SELECT Bestelldatum FROM teile_persenning WHERE T_P_ID = " +
                       p_ID;
+
                 cmd = new OdbcCommand(sql, Connection);
 
                 obj_db = cmd.ExecuteScalar();
+
                 if (obj_db != DBNull.Value && obj_db != null)
                 {
                     sql_reader = cmd.ExecuteReader();
                     sql_reader.Read();
-                    dtp_persenning_lief.Value = DateTime.Parse(sql_reader[0].ToString());
+                    dtp_persenning_best.Value = DateTime.Parse(sql_reader[0].ToString());
                     sql_reader.Close();
+                    sql = "SELECT Lieferdatum FROM teile_persenning WHERE T_P_ID = " +
+                          p_ID;
+                    cmd = new OdbcCommand(sql, Connection);
+
+                    obj_db = cmd.ExecuteScalar();
+                    if (obj_db != DBNull.Value && obj_db != null)
+                    {
+                        sql_reader = cmd.ExecuteReader();
+                        sql_reader.Read();
+                        dtp_persenning_lief.Value = DateTime.Parse(sql_reader[0].ToString());
+                        sql_reader.Close();
+                    }
+                    else
+                    {
+                        dtp_persenning_lief.Value = DateTime.Today;
+                    }
                 }
                 else
                 {
                     dtp_persenning_lief.Value = DateTime.Today;
+                    dtp_persenning_best.Value = DateTime.Today;
                 }
-            }
-            else
-            {
-                dtp_persenning_lief.Value = DateTime.Today;
-                dtp_persenning_best.Value = DateTime.Today;
-            }
 
-
+            }
 
         }
 
         private void Sonderteile_Controll( )
         {
-            object obj_db;
-            int s_ID;
-            string sql = "SELECT T_S_ID FROM teile WHERE ID = " + id;
-            OdbcCommand cmd = new OdbcCommand(sql, Connection);
-            SQL_methods.Open();
-            OdbcDataReader sql_reader = cmd.ExecuteReader();
-            sql_reader.Read();
-            s_ID = Convert.ToInt32(sql_reader[0].ToString());
-            sql_reader.Close();
-            sql = "SELECT Bestelldatum FROM teile_sonder WHERE T_S_ID = " +
-                  s_ID;
-
-            cmd = new OdbcCommand(sql, Connection);
-
-            obj_db = cmd.ExecuteScalar();
-
-            if (obj_db != DBNull.Value && obj_db != null)
+            if (!this.DesignMode)
             {
-                sql_reader = cmd.ExecuteReader();
+                object obj_db;
+                int s_ID;
+                string sql = "SELECT T_S_ID FROM teile WHERE ID = " + id;
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                SQL_methods.Open();
+                OdbcDataReader sql_reader = cmd.ExecuteReader();
                 sql_reader.Read();
-                dtp_sond_best.Value = DateTime.Parse(sql_reader[0].ToString());
+                s_ID = Convert.ToInt32(sql_reader[0].ToString());
                 sql_reader.Close();
-                sql = "SELECT Lieferdatum FROM teile_sonder WHERE T_S_ID = " +
+                sql = "SELECT Bestelldatum FROM teile_sonder WHERE T_S_ID = " +
                       s_ID;
+
                 cmd = new OdbcCommand(sql, Connection);
 
                 obj_db = cmd.ExecuteScalar();
+
                 if (obj_db != DBNull.Value && obj_db != null)
                 {
                     sql_reader = cmd.ExecuteReader();
                     sql_reader.Read();
-                    dtp_sond_lief.Value = DateTime.Parse(sql_reader[0].ToString());
+                    dtp_sond_best.Value = DateTime.Parse(sql_reader[0].ToString());
                     sql_reader.Close();
+                    sql = "SELECT Lieferdatum FROM teile_sonder WHERE T_S_ID = " +
+                          s_ID;
+                    cmd = new OdbcCommand(sql, Connection);
+
+                    obj_db = cmd.ExecuteScalar();
+                    if (obj_db != DBNull.Value && obj_db != null)
+                    {
+                        sql_reader = cmd.ExecuteReader();
+                        sql_reader.Read();
+                        dtp_sond_lief.Value = DateTime.Parse(sql_reader[0].ToString());
+                        sql_reader.Close();
+                    }
+                    else
+                    {
+                        dtp_sond_lief.Value = DateTime.Today;
+                    }
                 }
                 else
                 {
                     dtp_sond_lief.Value = DateTime.Today;
+                    dtp_sond_best.Value = DateTime.Today;
                 }
             }
-            else
-            {
-                dtp_sond_lief.Value = DateTime.Today;
-                dtp_sond_best.Value = DateTime.Today;
-            }
-
 
         }
 
         private void tab_schatten_Enter(object sender, EventArgs e)
         {
-            Schatten_Controll();
+            if (!this.DesignMode)
+            {
+                Schatten_Controll();
+            }
         }
 
         private void tab_persennning_Enter(object sender, EventArgs e)
         {
-            Persenning_Controll();
+            if (!this.DesignMode)
+            {
+                Persenning_Controll();
+            }
         }
 
         private void tab_ab_az_Enter(object sender, EventArgs e)
         {
-           
+            if (!this.DesignMode)
+            { }
+
         }
 
         private void tab_sond_Enter(object sender, EventArgs e)
         {
-            Sonderteile_Controll();
+            if (!this.DesignMode)
+            {
+                Sonderteile_Controll();
+            }
         }
     }
 }
