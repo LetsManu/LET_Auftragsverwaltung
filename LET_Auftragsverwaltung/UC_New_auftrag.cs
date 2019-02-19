@@ -304,8 +304,6 @@ namespace LET_Auftragsverwaltung
                     sqlReader2.Read();
                     int teile_stoff_ID = Convert.ToInt32(sqlReader2[0]);
 
-
-
                     SQL_methods.SQL_exec(string.Format(
                         "INSERT INTO auftraege (auftraege.`Auftrags_NR`, auftraege.`Fertigungsstatus`, auftraege.Projektverantwortlicher, auftraege.Planer_Techniker, auftraege.Erstelldatum, auftraege.AB_AZ, auftraege.Montage_Datum, auftraege.Projektbezeichnung, auftraege.`Schatten`,  auftraege.Notitz_Kauf, auftraege.Notitz_Tech) VALUES ('{0}', 6, {1}, {2}, '{3}', {4}, '{5}', '{6}', {7}, '{8}', '{9}')",
                         txt_auftrag_nr.Text, cbx_verant.SelectedValue, cbx_tech.SelectedValue,
@@ -338,6 +336,8 @@ namespace LET_Auftragsverwaltung
                             "INSERT INTO auftraege_auftragsart (ID, Art_ID) VALUES ({0}, {1})",
                             auf_id, art_ID));
                     }
+
+                    
 
                 }
                 catch (Exception f)

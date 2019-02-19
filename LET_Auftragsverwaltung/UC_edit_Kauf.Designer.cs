@@ -62,6 +62,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_edit_kauf_text_save = new System.Windows.Forms.Button();
+            this.btn_best = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -409,10 +410,21 @@
             this.btn_edit_kauf_text_save.UseVisualStyleBackColor = true;
             this.btn_edit_kauf_text_save.Click += new System.EventHandler(this.btn_edit_kauf_text_save_Click);
             // 
+            // btn_best
+            // 
+            this.btn_best.Location = new System.Drawing.Point(3, 300);
+            this.btn_best.Name = "btn_best";
+            this.btn_best.Size = new System.Drawing.Size(178, 23);
+            this.btn_best.TabIndex = 6;
+            this.btn_best.Text = "Bestätigungsmanager";
+            this.btn_best.UseVisualStyleBackColor = true;
+            this.btn_best.Click += new System.EventHandler(this.btn_best_Click);
+            // 
             // UC_edit_Kauf
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btn_best);
             this.Controls.Add(this.btn_edit_kauf_text_save);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -421,7 +433,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "UC_edit_Kauf";
-            this.Size = new System.Drawing.Size(903, 329);
+            this.Size = new System.Drawing.Size(903, 327);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -469,5 +481,6 @@
         private System.Windows.Forms.Button btn_date_kauf_edit_anz;
         private System.Windows.Forms.Button btn_date_kauf_edit_schluss;
         private System.Windows.Forms.Button btn_edit_kauf_text_save;
+        private System.Windows.Forms.Button btn_best;
     }
 }

@@ -617,6 +617,7 @@ namespace LET_Auftragsverwaltung
 
         private void txt_check_if_requested()
         {
+            bool check;
             txt_kauf_auf_best.Visible = false;
             txt_kauf_anz_best.Visible = false;
             txt_schluss_best.Visible = false;
@@ -627,30 +628,73 @@ namespace LET_Auftragsverwaltung
             OdbcDataReader sql_read = cmd.ExecuteReader();
             sql_read.Read();
             int a_ID = Convert.ToInt32(sql_read[0]);
-            sql = "SELECT V_Date FROM ab_az WHERE A_ID = " + a_ID;
-            sql_read.Close();
-            cmd.Dispose();
-            cmd = new OdbcCommand(sql, Connection);
-            if (cmd.ExecuteScalar() != DBNull.Value)
+
+            sql = string.Format("SELECT V_Best FROM ab_az WHERE A_ID = " + a_ID);
+
+            OdbcConnection con = DB.Connection;
+
+            cmd = new OdbcCommand(sql, con);
+
+            con.Open();
+
+            OdbcDataReader sql_reader = cmd.ExecuteReader();
+
+            sql_reader.Read();
+
+            check = Convert.ToBoolean(sql_reader[0]);
+
+            sql_reader.Close();
+
+            con.Close();
+
+            
+            if (check)
             {
                 txt_kauf_auf_best.Visible = true;
             }
 
-            sql = "SELECT B_Date FROM ab_az WHERE A_ID = " + a_ID;
-            sql_read.Close();
-            cmd.Dispose();
-            cmd = new OdbcCommand(sql, Connection);          
-            if (cmd.ExecuteScalar() != DBNull.Value)
+            sql = string.Format("SELECT B_Best FROM ab_az WHERE A_ID = " + a_ID);
+
+            
+
+            cmd = new OdbcCommand(sql, con);
+
+            con.Open();
+
+            sql_reader = cmd.ExecuteReader();
+
+            sql_reader.Read();
+
+            check = Convert.ToBoolean(sql_reader[0]);
+
+            sql_reader.Close();
+
+            con.Close();
+
+            if (check)
             {
                 txt_kauf_anz_best.Visible = true;
             }
 
-            sql = "SELECT S_Date FROM ab_az WHERE A_ID = " + a_ID;
-            sql_read.Close();
-            cmd.Dispose();
-            cmd = new OdbcCommand(sql, Connection);
-            
-            if (cmd.ExecuteScalar() != DBNull.Value)
+            sql = string.Format("SELECT S_Best FROM ab_az WHERE A_ID = " + a_ID);
+
+
+
+            cmd = new OdbcCommand(sql, con);
+
+            con.Open();
+
+            sql_reader = cmd.ExecuteReader();
+
+            sql_reader.Read();
+
+            check = Convert.ToBoolean(sql_reader[0]);
+
+            sql_reader.Close();
+
+            con.Close();
+
+            if (check)
             {
                 txt_schluss_best.Visible = true;
             }
@@ -667,6 +711,11 @@ namespace LET_Auftragsverwaltung
                 return true;
             }
                 return false;
+        }
+
+        private void btn_best_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
