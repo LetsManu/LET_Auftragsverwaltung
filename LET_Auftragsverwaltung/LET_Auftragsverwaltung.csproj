@@ -211,6 +211,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_Best.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Best.Designer.cs">
+      <DependentUpon>Form_Best.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Edit_Auftrag.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -255,6 +261,12 @@
     </Compile>
     <Compile Include="Ribbon_Home.Designer.cs">
       <DependentUpon>Ribbon_Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_Best.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_Best.Designer.cs">
+      <DependentUpon>UC_Best.cs</DependentUpon>
     </Compile>
     <Compile Include="UC_Bestellungen.cs">
       <SubType>UserControl</SubType>
@@ -338,6 +350,9 @@
     <EmbeddedResource Include="Ribbon_Home.resx">
       <DependentUpon>Ribbon_Home.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UC_Best.resx">
+      <DependentUpon>UC_Best.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UC_Bestellungen.resx">
       <DependentUpon>UC_Bestellungen.cs</DependentUpon>
     </EmbeddedResource>
@@ -363,6 +378,7 @@
       <DependentUpon>UC_Parameter.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="LET_Auftragsverwaltung_1_TemporaryKey.pfx" />
     <None Include="LET_Auftragsverwaltung_5_TemporaryKey.pfx" />
     <None Include="LET_Auftragsverwaltung_TemporaryKey.pfx" />
     <None Include="packages.config" />
@@ -403,10 +419,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>LET_Auftragsverwaltung_5_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>LET_Auftragsverwaltung_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>ADC8D45C4D7150440E5762FC7CB18E24B4C497CF</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>8BF18FA91E40C98A9482A26289DD3AD538772F71</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
