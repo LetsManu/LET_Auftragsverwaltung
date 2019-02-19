@@ -15,7 +15,7 @@ namespace LET_Auftragsverwaltung
     {
         //ID zur Übergabe
         private int id = 1; //TODO Für Testzwecke durch echte ID ersetzten vor auslieferung
-
+        public static bool controll_state = false;//state
         public int a_ID;
 
         private OdbcConnection Connection
@@ -723,6 +723,15 @@ namespace LET_Auftragsverwaltung
             OdbcDataReader sql_read = cmd.ExecuteReader();
             sql_read.Read();
             a_ID = Convert.ToInt32(sql_read[0]);
+        }
+
+        private void tmr_200ms_Tick(object sender, EventArgs e)
+        {
+            if(controll_state)
+            {
+                txt_check_if_requested();
+                controll_state = false;
+            }
         }
     }
 }

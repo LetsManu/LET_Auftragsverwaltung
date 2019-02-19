@@ -39,7 +39,7 @@ namespace LET_Auftragsverwaltung
             {
                 SQL_methods.SQL_exec("UPDATE ab_az SET V_Best = 1 WHERE A_ID = " + t_a_id);
                 UC_Best_Check();
-                
+                UC_edit_Kauf.controll_state = true;
             }
         }
 
@@ -49,6 +49,7 @@ namespace LET_Auftragsverwaltung
             {
                 SQL_methods.SQL_exec("UPDATE ab_az SET B_Best = 1 WHERE A_ID = " + t_a_id);
                 UC_Best_Check();
+                UC_edit_Kauf.controll_state = true;
             }
         }
         private void btn_best_schl_Click(object sender, EventArgs e)
@@ -57,6 +58,7 @@ namespace LET_Auftragsverwaltung
             {
                 SQL_methods.SQL_exec("UPDATE ab_az SET S_Best = 1 WHERE A_ID = " + t_a_id);
                 UC_Best_Check();
+                UC_edit_Kauf.controll_state = true;
             }
         }
 
