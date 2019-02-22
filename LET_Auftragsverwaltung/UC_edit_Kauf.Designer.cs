@@ -65,6 +65,7 @@
             this.btn_edit_kauf_text_save = new System.Windows.Forms.Button();
             this.btn_best = new System.Windows.Forms.Button();
             this.tmr_break = new System.Windows.Forms.Timer(this.components);
+            this.tti_edit_Kauf = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -94,6 +95,7 @@
             this.btn_date_kauf_edit_auf.Size = new System.Drawing.Size(178, 23);
             this.btn_date_kauf_edit_auf.TabIndex = 12;
             this.btn_date_kauf_edit_auf.Text = "Aktuelles Datum";
+            this.tti_edit_Kauf.SetToolTip(this.btn_date_kauf_edit_auf, "Speichert das aktuelle Datum ein.");
             this.btn_date_kauf_edit_auf.UseVisualStyleBackColor = true;
             this.btn_date_kauf_edit_auf.Click += new System.EventHandler(this.btn_date_kauf_edit_auf_Click);
             // 
@@ -116,6 +118,7 @@
             this.btn_save_kauf_edit_auf.Size = new System.Drawing.Size(178, 23);
             this.btn_save_kauf_edit_auf.TabIndex = 5;
             this.btn_save_kauf_edit_auf.Text = "Anfordern bei Sandra";
+            this.tti_edit_Kauf.SetToolTip(this.btn_save_kauf_edit_auf, "Sendet die Anfrage los.");
             this.btn_save_kauf_edit_auf.UseVisualStyleBackColor = true;
             this.btn_save_kauf_edit_auf.Click += new System.EventHandler(this.btn_save_kauf_edit_auf_Click);
             // 
@@ -126,6 +129,7 @@
             this.txt_kauf_edit_auf.Size = new System.Drawing.Size(178, 96);
             this.txt_kauf_edit_auf.TabIndex = 3;
             this.txt_kauf_edit_auf.Text = "";
+            this.tti_edit_Kauf.SetToolTip(this.txt_kauf_edit_auf, "Notiz für diese Anforderung.");
             // 
             // cbx_kauf_edit_auf
             // 
@@ -134,6 +138,7 @@
             this.cbx_kauf_edit_auf.Name = "cbx_kauf_edit_auf";
             this.cbx_kauf_edit_auf.Size = new System.Drawing.Size(178, 21);
             this.cbx_kauf_edit_auf.TabIndex = 3;
+            this.tti_edit_Kauf.SetToolTip(this.cbx_kauf_edit_auf, "Person die die Anfrage anfordert.");
             this.cbx_kauf_edit_auf.SelectedIndexChanged += new System.EventHandler(this.cbx_kauf_edit_auf_SelectedIndexChanged);
             // 
             // date_kauf_edit_auf
@@ -142,6 +147,7 @@
             this.date_kauf_edit_auf.Name = "date_kauf_edit_auf";
             this.date_kauf_edit_auf.Size = new System.Drawing.Size(178, 20);
             this.date_kauf_edit_auf.TabIndex = 2;
+            this.tti_edit_Kauf.SetToolTip(this.date_kauf_edit_auf, "Datum der Auftragsbestätigung");
             this.date_kauf_edit_auf.CloseUp += new System.EventHandler(this.date_kauf_edit_auf_CloseUp);
             this.date_kauf_edit_auf.ValueChanged += new System.EventHandler(this.date_kauf_edit_auf_ValueChanged);
             // 
@@ -197,6 +203,7 @@
             this.btn_date_kauf_edit_anz.Size = new System.Drawing.Size(180, 23);
             this.btn_date_kauf_edit_anz.TabIndex = 13;
             this.btn_date_kauf_edit_anz.Text = "Aktuelles Datum";
+            this.tti_edit_Kauf.SetToolTip(this.btn_date_kauf_edit_anz, "Speichert das aktuelle Datum ein.");
             this.btn_date_kauf_edit_anz.UseVisualStyleBackColor = true;
             this.btn_date_kauf_edit_anz.Click += new System.EventHandler(this.btn_date_kauf_edit_anz_Click);
             // 
@@ -219,6 +226,7 @@
             this.btn_save_kauf_edit_anz.Size = new System.Drawing.Size(178, 23);
             this.btn_save_kauf_edit_anz.TabIndex = 6;
             this.btn_save_kauf_edit_anz.Text = "Anfordern bei Sandra";
+            this.tti_edit_Kauf.SetToolTip(this.btn_save_kauf_edit_anz, "Sendet die Anfrage los.");
             this.btn_save_kauf_edit_anz.UseVisualStyleBackColor = true;
             this.btn_save_kauf_edit_anz.Click += new System.EventHandler(this.btn_save_kauf_edit_anz_Click);
             // 
@@ -229,6 +237,7 @@
             this.txt_kauf_edit_anz.Size = new System.Drawing.Size(178, 96);
             this.txt_kauf_edit_anz.TabIndex = 4;
             this.txt_kauf_edit_anz.Text = "";
+            this.tti_edit_Kauf.SetToolTip(this.txt_kauf_edit_anz, "Notiz für diese Anforderung.");
             // 
             // cbx_kauf_edit_anz
             // 
@@ -237,6 +246,7 @@
             this.cbx_kauf_edit_anz.Name = "cbx_kauf_edit_anz";
             this.cbx_kauf_edit_anz.Size = new System.Drawing.Size(180, 21);
             this.cbx_kauf_edit_anz.TabIndex = 2;
+            this.tti_edit_Kauf.SetToolTip(this.cbx_kauf_edit_anz, "Person die die Anfrage anfordert.");
             // 
             // label9
             // 
@@ -253,6 +263,7 @@
             this.date_kauf_edit_anz.Name = "date_kauf_edit_anz";
             this.date_kauf_edit_anz.Size = new System.Drawing.Size(180, 20);
             this.date_kauf_edit_anz.TabIndex = 1;
+            this.tti_edit_Kauf.SetToolTip(this.date_kauf_edit_anz, "Datum der Anzahlungsrechnung.");
             this.date_kauf_edit_anz.CloseUp += new System.EventHandler(this.date_kauf_edit_anz_CloseUp);
             this.date_kauf_edit_anz.ValueChanged += new System.EventHandler(this.date_kauf_edit_anz_ValueChanged);
             // 
@@ -298,6 +309,7 @@
             this.btn_date_kauf_edit_schluss.Size = new System.Drawing.Size(178, 23);
             this.btn_date_kauf_edit_schluss.TabIndex = 14;
             this.btn_date_kauf_edit_schluss.Text = "Aktuelles Datum";
+            this.tti_edit_Kauf.SetToolTip(this.btn_date_kauf_edit_schluss, "Speichert das aktuelle Datum ein.");
             this.btn_date_kauf_edit_schluss.UseVisualStyleBackColor = true;
             this.btn_date_kauf_edit_schluss.Click += new System.EventHandler(this.btn_date_kauf_edit_schluss_Click);
             // 
@@ -329,6 +341,7 @@
             this.btn_save_kauf_edit_schluss.Size = new System.Drawing.Size(178, 23);
             this.btn_save_kauf_edit_schluss.TabIndex = 7;
             this.btn_save_kauf_edit_schluss.Text = "Anfordern bei Sandra";
+            this.tti_edit_Kauf.SetToolTip(this.btn_save_kauf_edit_schluss, "Sendet die Anfrage los.");
             this.btn_save_kauf_edit_schluss.UseVisualStyleBackColor = true;
             this.btn_save_kauf_edit_schluss.Click += new System.EventHandler(this.btn_save_kauf_edit_schluss_Click);
             // 
@@ -348,6 +361,7 @@
             this.txt_kauf_edit_schluss.Size = new System.Drawing.Size(178, 96);
             this.txt_kauf_edit_schluss.TabIndex = 5;
             this.txt_kauf_edit_schluss.Text = "";
+            this.tti_edit_Kauf.SetToolTip(this.txt_kauf_edit_schluss, "Notiz für diese Anforderung.");
             // 
             // label10
             // 
@@ -365,6 +379,7 @@
             this.cbx_kauf_edit_schluss.Name = "cbx_kauf_edit_schluss";
             this.cbx_kauf_edit_schluss.Size = new System.Drawing.Size(178, 21);
             this.cbx_kauf_edit_schluss.TabIndex = 4;
+            this.tti_edit_Kauf.SetToolTip(this.cbx_kauf_edit_schluss, "Person die die Anfrage anfordert.");
             // 
             // date_kauf_edit_schluss
             // 
@@ -372,6 +387,7 @@
             this.date_kauf_edit_schluss.Name = "date_kauf_edit_schluss";
             this.date_kauf_edit_schluss.Size = new System.Drawing.Size(178, 20);
             this.date_kauf_edit_schluss.TabIndex = 0;
+            this.tti_edit_Kauf.SetToolTip(this.date_kauf_edit_schluss, "Datum der Schlussrechnung.");
             this.date_kauf_edit_schluss.CloseUp += new System.EventHandler(this.date_kauf_edit_schluss_CloseUp);
             this.date_kauf_edit_schluss.ValueChanged += new System.EventHandler(this.date_kauf_edit_schluss_ValueChanged);
             // 
@@ -409,6 +425,7 @@
             this.btn_edit_kauf_text_save.Size = new System.Drawing.Size(178, 23);
             this.btn_edit_kauf_text_save.TabIndex = 5;
             this.btn_edit_kauf_text_save.Text = "Notizen speichern";
+            this.tti_edit_Kauf.SetToolTip(this.btn_edit_kauf_text_save, "Speichert alle Notizfelder.");
             this.btn_edit_kauf_text_save.UseVisualStyleBackColor = true;
             this.btn_edit_kauf_text_save.Click += new System.EventHandler(this.btn_edit_kauf_text_save_Click);
             // 
@@ -419,6 +436,7 @@
             this.btn_best.Size = new System.Drawing.Size(178, 23);
             this.btn_best.TabIndex = 6;
             this.btn_best.Text = "Bestätigungsmanager";
+            this.tti_edit_Kauf.SetToolTip(this.btn_best, "Öffnet den Bestätigungsmanager.");
             this.btn_best.UseVisualStyleBackColor = true;
             this.btn_best.Click += new System.EventHandler(this.btn_best_Click);
             // 
@@ -490,5 +508,6 @@
         private System.Windows.Forms.Button btn_edit_kauf_text_save;
         private System.Windows.Forms.Button btn_best;
         private System.Windows.Forms.Timer tmr_break;
+        private System.Windows.Forms.ToolTip tti_edit_Kauf;
     }
 }

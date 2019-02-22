@@ -28,15 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btn_best_auf = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txt_best_auf = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txt_best_anz = new System.Windows.Forms.Label();
             this.btn_best_anz = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btn_best_schl = new System.Windows.Forms.Button();
-            this.txt_best_auf = new System.Windows.Forms.Label();
-            this.txt_best_anz = new System.Windows.Forms.Label();
             this.txt_best_schl = new System.Windows.Forms.Label();
+            this.btn_best_schl = new System.Windows.Forms.Button();
+            this.tti_Best = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -49,6 +51,7 @@
             this.btn_best_auf.Size = new System.Drawing.Size(116, 23);
             this.btn_best_auf.TabIndex = 0;
             this.btn_best_auf.Text = "Auftragsbestätigung";
+            this.tti_Best.SetToolTip(this.btn_best_auf, "Bestätigung des Auftrags durchführen");
             this.btn_best_auf.UseVisualStyleBackColor = true;
             this.btn_best_auf.Click += new System.EventHandler(this.btn_best_auf_Click);
             // 
@@ -63,6 +66,18 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Auftragsbestätigung";
             // 
+            // txt_best_auf
+            // 
+            this.txt_best_auf.AutoSize = true;
+            this.txt_best_auf.BackColor = System.Drawing.Color.Transparent;
+            this.txt_best_auf.ForeColor = System.Drawing.Color.Green;
+            this.txt_best_auf.Location = new System.Drawing.Point(6, 16);
+            this.txt_best_auf.Name = "txt_best_auf";
+            this.txt_best_auf.Size = new System.Drawing.Size(114, 13);
+            this.txt_best_auf.TabIndex = 1;
+            this.txt_best_auf.Text = "Wurde schon bestätigt";
+            this.txt_best_auf.Visible = false;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txt_best_anz);
@@ -74,6 +89,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Anzahlungsrechnung";
             // 
+            // txt_best_anz
+            // 
+            this.txt_best_anz.AutoSize = true;
+            this.txt_best_anz.ForeColor = System.Drawing.Color.Green;
+            this.txt_best_anz.Location = new System.Drawing.Point(6, 16);
+            this.txt_best_anz.Name = "txt_best_anz";
+            this.txt_best_anz.Size = new System.Drawing.Size(114, 13);
+            this.txt_best_anz.TabIndex = 2;
+            this.txt_best_anz.Text = "Wurde schon bestätigt";
+            this.txt_best_anz.Visible = false;
+            // 
             // btn_best_anz
             // 
             this.btn_best_anz.Location = new System.Drawing.Point(0, 77);
@@ -81,6 +107,7 @@
             this.btn_best_anz.Size = new System.Drawing.Size(121, 23);
             this.btn_best_anz.TabIndex = 0;
             this.btn_best_anz.Text = "Anzahlungsrechnung";
+            this.tti_Best.SetToolTip(this.btn_best_anz, "Bestätigung des Anzahlung durchführen");
             this.btn_best_anz.UseVisualStyleBackColor = true;
             this.btn_best_anz.Click += new System.EventHandler(this.btn_best_anz_Click);
             // 
@@ -95,39 +122,6 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Schlussrechnung";
             // 
-            // btn_best_schl
-            // 
-            this.btn_best_schl.Location = new System.Drawing.Point(6, 77);
-            this.btn_best_schl.Name = "btn_best_schl";
-            this.btn_best_schl.Size = new System.Drawing.Size(109, 23);
-            this.btn_best_schl.TabIndex = 0;
-            this.btn_best_schl.Text = "Schlussrechnung";
-            this.btn_best_schl.UseVisualStyleBackColor = true;
-            this.btn_best_schl.Click += new System.EventHandler(this.btn_best_schl_Click);
-            // 
-            // txt_best_auf
-            // 
-            this.txt_best_auf.AutoSize = true;
-            this.txt_best_auf.BackColor = System.Drawing.Color.Transparent;
-            this.txt_best_auf.ForeColor = System.Drawing.Color.Green;
-            this.txt_best_auf.Location = new System.Drawing.Point(6, 16);
-            this.txt_best_auf.Name = "txt_best_auf";
-            this.txt_best_auf.Size = new System.Drawing.Size(114, 13);
-            this.txt_best_auf.TabIndex = 1;
-            this.txt_best_auf.Text = "Wurde schon bestätigt";
-            this.txt_best_auf.Visible = false;
-            // 
-            // txt_best_anz
-            // 
-            this.txt_best_anz.AutoSize = true;
-            this.txt_best_anz.ForeColor = System.Drawing.Color.Green;
-            this.txt_best_anz.Location = new System.Drawing.Point(6, 16);
-            this.txt_best_anz.Name = "txt_best_anz";
-            this.txt_best_anz.Size = new System.Drawing.Size(114, 13);
-            this.txt_best_anz.TabIndex = 2;
-            this.txt_best_anz.Text = "Wurde schon bestätigt";
-            this.txt_best_anz.Visible = false;
-            // 
             // txt_best_schl
             // 
             this.txt_best_schl.AutoSize = true;
@@ -138,6 +132,17 @@
             this.txt_best_schl.TabIndex = 3;
             this.txt_best_schl.Text = "Wurde schon bestätigt";
             this.txt_best_schl.Visible = false;
+            // 
+            // btn_best_schl
+            // 
+            this.btn_best_schl.Location = new System.Drawing.Point(6, 77);
+            this.btn_best_schl.Name = "btn_best_schl";
+            this.btn_best_schl.Size = new System.Drawing.Size(109, 23);
+            this.btn_best_schl.TabIndex = 0;
+            this.btn_best_schl.Text = "Schlussrechnung";
+            this.tti_Best.SetToolTip(this.btn_best_schl, "Bestätigung des Schlussrechnung durchführen");
+            this.btn_best_schl.UseVisualStyleBackColor = true;
+            this.btn_best_schl.Click += new System.EventHandler(this.btn_best_schl_Click);
             // 
             // UC_Best
             // 
@@ -170,5 +175,6 @@
         private System.Windows.Forms.Label txt_best_auf;
         private System.Windows.Forms.Label txt_best_anz;
         private System.Windows.Forms.Label txt_best_schl;
+        private System.Windows.Forms.ToolTip tti_Best;
     }
 }

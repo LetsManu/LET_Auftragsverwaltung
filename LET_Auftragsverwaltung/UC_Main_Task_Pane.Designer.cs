@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.aufträgeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.neuerEintragToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,6 +44,7 @@
             this.soonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uC_Connect_Show1 = new LET_Auftragsverwaltung.UC_Connect_Show();
+            this.tti_main_pane = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,6 +68,8 @@
             this.aufträgeToolStripMenuItem.Name = "aufträgeToolStripMenuItem";
             this.aufträgeToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.aufträgeToolStripMenuItem.Text = "Übersicht";
+            this.aufträgeToolStripMenuItem.ToolTipText = "Öffnet die Übersicht aller Auftrage.\r\nBearbeitung der Aufträge ist hier möglich.\r" +
+    "\n";
             this.aufträgeToolStripMenuItem.Click += new System.EventHandler(this.TSMI_Overview_Click);
             // 
             // neuerEintragToolStripMenuItem
@@ -78,11 +82,12 @@
             this.neuerEintragToolStripMenuItem.Name = "neuerEintragToolStripMenuItem";
             this.neuerEintragToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.neuerEintragToolStripMenuItem.Text = "Datei";
+            this.neuerEintragToolStripMenuItem.ToolTipText = "Datebank änderung\r\nEintragung eines neuen Auftrags\r\nExport von Tabellen\r\n";
             // 
             // neuerEintragToolStripMenuItem1
             // 
             this.neuerEintragToolStripMenuItem1.Name = "neuerEintragToolStripMenuItem1";
-            this.neuerEintragToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
+            this.neuerEintragToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.neuerEintragToolStripMenuItem1.Text = "Datenbank";
             this.neuerEintragToolStripMenuItem1.Click += new System.EventHandler(this.TSMI_Parameter_Click);
             // 
@@ -92,7 +97,7 @@
             this.excelToolStripMenuItem,
             this.pDFToolStripMenuItem});
             this.exportÜbersichtToolStripMenuItem.Name = "exportÜbersichtToolStripMenuItem";
-            this.exportÜbersichtToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.exportÜbersichtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exportÜbersichtToolStripMenuItem.Text = "Export Übersicht";
             // 
             // excelToolStripMenuItem
@@ -110,14 +115,14 @@
             // neuerAuftragToolStripMenuItem
             // 
             this.neuerAuftragToolStripMenuItem.Name = "neuerAuftragToolStripMenuItem";
-            this.neuerAuftragToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.neuerAuftragToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.neuerAuftragToolStripMenuItem.Text = "Neuer Auftrag";
             this.neuerAuftragToolStripMenuItem.Click += new System.EventHandler(this.TSMI_new_Auftrag_Click);
             // 
             // eDITAUFTRAGToolStripMenuItem
             // 
             this.eDITAUFTRAGToolStripMenuItem.Name = "eDITAUFTRAGToolStripMenuItem";
-            this.eDITAUFTRAGToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.eDITAUFTRAGToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eDITAUFTRAGToolStripMenuItem.Text = "EDIT AUFTRAG";
             this.eDITAUFTRAGToolStripMenuItem.Click += new System.EventHandler(this.eDITAUFTRAGToolStripMenuItem_Click);
             // 
@@ -145,7 +150,7 @@
             // soonToolStripMenuItem
             // 
             this.soonToolStripMenuItem.Name = "soonToolStripMenuItem";
-            this.soonToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.soonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.soonToolStripMenuItem.Text = "soon";
             // 
             // testToolStripMenuItem
@@ -164,6 +169,7 @@
             this.uC_Connect_Show1.Name = "uC_Connect_Show1";
             this.uC_Connect_Show1.Size = new System.Drawing.Size(430, 45);
             this.uC_Connect_Show1.TabIndex = 2;
+            this.tti_main_pane.SetToolTip(this.uC_Connect_Show1, "Anzeige des Status der Verbindung \r\nzum Dateiserver und zur Datebank");
             // 
             // UC_Main_Task_Pane
             // 
@@ -199,5 +205,6 @@
         private System.Windows.Forms.ToolStripMenuItem neuerAuftragToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eDITAUFTRAGToolStripMenuItem;
         private UC_Connect_Show uC_Connect_Show1;
+        private System.Windows.Forms.ToolTip tti_main_pane;
     }
 }
