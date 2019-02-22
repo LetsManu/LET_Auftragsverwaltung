@@ -118,7 +118,7 @@
             this.groupBox4.Controls.Add(this.pbx_new_auf);
             this.groupBox4.Controls.Add(this.cbx_edit_auf_stoff);
             this.groupBox4.Controls.Add(this.cbx_edit_auf_lief);
-            this.groupBox4.Location = new System.Drawing.Point(807, 3);
+            this.groupBox4.Location = new System.Drawing.Point(785, 19);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(338, 275);
             this.groupBox4.TabIndex = 33;
@@ -136,7 +136,7 @@
             // 
             // btn_add_stoff
             // 
-            this.btn_add_stoff.Location = new System.Drawing.Point(6, 85);
+            this.btn_add_stoff.Location = new System.Drawing.Point(6, 215);
             this.btn_add_stoff.Name = "btn_add_stoff";
             this.btn_add_stoff.Size = new System.Drawing.Size(187, 23);
             this.btn_add_stoff.TabIndex = 4;
@@ -147,7 +147,7 @@
             // lbx_stoff
             // 
             this.lbx_stoff.FormattingEnabled = true;
-            this.lbx_stoff.Location = new System.Drawing.Point(6, 117);
+            this.lbx_stoff.Location = new System.Drawing.Point(6, 19);
             this.lbx_stoff.Name = "lbx_stoff";
             this.lbx_stoff.Size = new System.Drawing.Size(187, 121);
             this.lbx_stoff.TabIndex = 3;
@@ -165,7 +165,7 @@
             // 
             this.cbx_edit_auf_stoff.Enabled = false;
             this.cbx_edit_auf_stoff.FormattingEnabled = true;
-            this.cbx_edit_auf_stoff.Location = new System.Drawing.Point(6, 58);
+            this.cbx_edit_auf_stoff.Location = new System.Drawing.Point(6, 188);
             this.cbx_edit_auf_stoff.Name = "cbx_edit_auf_stoff";
             this.cbx_edit_auf_stoff.Size = new System.Drawing.Size(187, 21);
             this.cbx_edit_auf_stoff.TabIndex = 1;
@@ -173,7 +173,7 @@
             // cbx_edit_auf_lief
             // 
             this.cbx_edit_auf_lief.FormattingEnabled = true;
-            this.cbx_edit_auf_lief.Location = new System.Drawing.Point(6, 26);
+            this.cbx_edit_auf_lief.Location = new System.Drawing.Point(6, 159);
             this.cbx_edit_auf_lief.Name = "cbx_edit_auf_lief";
             this.cbx_edit_auf_lief.Size = new System.Drawing.Size(187, 21);
             this.cbx_edit_auf_lief.TabIndex = 0;
@@ -356,9 +356,9 @@
             this.groupBox2.Controls.Add(this.cbx_auftrag);
             this.groupBox2.Controls.Add(this.btn_auftrag_add);
             this.groupBox2.Controls.Add(this.btn_auftag_delete);
-            this.groupBox2.Location = new System.Drawing.Point(590, 3);
+            this.groupBox2.Location = new System.Drawing.Point(573, 19);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(206, 192);
+            this.groupBox2.Size = new System.Drawing.Size(206, 190);
             this.groupBox2.TabIndex = 30;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Auftragsart";
@@ -366,7 +366,7 @@
             // lbx_auftrag
             // 
             this.lbx_auftrag.FormattingEnabled = true;
-            this.lbx_auftrag.Location = new System.Drawing.Point(7, 48);
+            this.lbx_auftrag.Location = new System.Drawing.Point(6, 19);
             this.lbx_auftrag.Name = "lbx_auftrag";
             this.lbx_auftrag.Size = new System.Drawing.Size(188, 69);
             this.lbx_auftrag.TabIndex = 6;
@@ -374,14 +374,14 @@
             // cbx_auftrag
             // 
             this.cbx_auftrag.FormattingEnabled = true;
-            this.cbx_auftrag.Location = new System.Drawing.Point(7, 126);
+            this.cbx_auftrag.Location = new System.Drawing.Point(6, 97);
             this.cbx_auftrag.Name = "cbx_auftrag";
             this.cbx_auftrag.Size = new System.Drawing.Size(188, 21);
             this.cbx_auftrag.TabIndex = 13;
             // 
             // btn_auftrag_add
             // 
-            this.btn_auftrag_add.Location = new System.Drawing.Point(6, 153);
+            this.btn_auftrag_add.Location = new System.Drawing.Point(5, 124);
             this.btn_auftrag_add.Name = "btn_auftrag_add";
             this.btn_auftrag_add.Size = new System.Drawing.Size(188, 23);
             this.btn_auftrag_add.TabIndex = 14;
@@ -391,7 +391,7 @@
             // 
             // btn_auftag_delete
             // 
-            this.btn_auftag_delete.Location = new System.Drawing.Point(7, 19);
+            this.btn_auftag_delete.Location = new System.Drawing.Point(5, 153);
             this.btn_auftag_delete.Name = "btn_auftag_delete";
             this.btn_auftag_delete.Size = new System.Drawing.Size(188, 23);
             this.btn_auftag_delete.TabIndex = 15;
@@ -402,13 +402,15 @@
             // Auftraginfos
             // 
             this.Auftraginfos.Controls.Add(this.label5);
+            this.Auftraginfos.Controls.Add(this.groupBox4);
+            this.Auftraginfos.Controls.Add(this.groupBox2);
             this.Auftraginfos.Controls.Add(this.cbx_auftragsstatus);
             this.Auftraginfos.Controls.Add(this.btn_edit_infos);
             this.Auftraginfos.Controls.Add(this.groupBox1);
             this.Auftraginfos.Controls.Add(this.groupBox3);
             this.Auftraginfos.Location = new System.Drawing.Point(6, 3);
             this.Auftraginfos.Name = "Auftraginfos";
-            this.Auftraginfos.Size = new System.Drawing.Size(573, 363);
+            this.Auftraginfos.Size = new System.Drawing.Size(1148, 363);
             this.Auftraginfos.TabIndex = 34;
             this.Auftraginfos.TabStop = false;
             this.Auftraginfos.Text = "Auftraginfos";
@@ -432,7 +434,7 @@
             // 
             // btn_edit_infos
             // 
-            this.btn_edit_infos.Location = new System.Drawing.Point(394, 323);
+            this.btn_edit_infos.Location = new System.Drawing.Point(950, 323);
             this.btn_edit_infos.Name = "btn_edit_infos";
             this.btn_edit_infos.Size = new System.Drawing.Size(173, 23);
             this.btn_edit_infos.TabIndex = 18;
@@ -456,8 +458,6 @@
             // tab_Allgemein
             // 
             this.tab_Allgemein.Controls.Add(this.Auftraginfos);
-            this.tab_Allgemein.Controls.Add(this.groupBox2);
-            this.tab_Allgemein.Controls.Add(this.groupBox4);
             this.tab_Allgemein.Location = new System.Drawing.Point(4, 22);
             this.tab_Allgemein.Name = "tab_Allgemein";
             this.tab_Allgemein.Padding = new System.Windows.Forms.Padding(3);
@@ -476,13 +476,6 @@
             this.tab_kauf.TabIndex = 5;
             this.tab_kauf.Text = "Kaufmänisch";
             this.tab_kauf.UseVisualStyleBackColor = true;
-            // 
-            // uC_edit_Kauf1
-            // 
-            this.uC_edit_Kauf1.Location = new System.Drawing.Point(3, 3);
-            this.uC_edit_Kauf1.Name = "uC_edit_Kauf1";
-            this.uC_edit_Kauf1.Size = new System.Drawing.Size(903, 329);
-            this.uC_edit_Kauf1.TabIndex = 0;
             // 
             // tab_persennning
             // 
@@ -705,6 +698,14 @@
             this.dtp_sond_lief.Size = new System.Drawing.Size(200, 20);
             this.dtp_sond_lief.TabIndex = 1;
             // 
+            // uC_edit_Kauf1
+            // 
+            this.uC_edit_Kauf1.AutoSize = true;
+            this.uC_edit_Kauf1.Location = new System.Drawing.Point(3, 3);
+            this.uC_edit_Kauf1.Name = "uC_edit_Kauf1";
+            this.uC_edit_Kauf1.Size = new System.Drawing.Size(664, 230);
+            this.uC_edit_Kauf1.TabIndex = 0;
+            // 
             // UC_edit_Auftrag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -725,6 +726,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tab_Allgemein.ResumeLayout(false);
             this.tab_kauf.ResumeLayout(false);
+            this.tab_kauf.PerformLayout();
             this.tab_persennning.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
