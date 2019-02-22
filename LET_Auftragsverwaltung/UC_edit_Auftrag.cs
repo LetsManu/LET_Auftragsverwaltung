@@ -826,5 +826,35 @@ namespace LET_Auftragsverwaltung
                 Sonderteile_Controll();
             }
         }
+
+        private void date_erstell_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbx_auftragsstatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void date_mont_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -52,6 +52,17 @@
             this.cbx_tech = new System.Windows.Forms.ComboBox();
             this.cbx_verant = new System.Windows.Forms.ComboBox();
             this.Auftraginfos = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn_add_segel = new System.Windows.Forms.Button();
+            this.lBx_segel = new System.Windows.Forms.ListBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cBx_stoff_hersteller = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.cBx_stoff_kennung = new System.Windows.Forms.ComboBox();
+            this.cBx_segelform = new System.Windows.Forms.ComboBox();
+            this.tBx_segel_name = new System.Windows.Forms.TextBox();
             this.btn_edit_infos = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tab_Allgemein = new System.Windows.Forms.TabPage();
@@ -81,20 +92,12 @@
             this.dtp_sond_best = new System.Windows.Forms.DateTimePicker();
             this.dtp_sond_lief = new System.Windows.Forms.DateTimePicker();
             this.tti_edit_Auftrag = new System.Windows.Forms.ToolTip(this.components);
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btn_add_segel = new System.Windows.Forms.Button();
-            this.lBx_segel = new System.Windows.Forms.ListBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.cBx_stoff_hersteller = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.cBx_stoff_kennung = new System.Windows.Forms.ComboBox();
-            this.cBx_segelform = new System.Windows.Forms.ComboBox();
-            this.tBx_segel_name = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.cbx_seller_edit = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.Auftraginfos.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tab_Allgemein.SuspendLayout();
             this.tab_kauf.SuspendLayout();
@@ -104,7 +107,6 @@
             this.groupBox7.SuspendLayout();
             this.tab_sond.SuspendLayout();
             this.groupBox9.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -158,6 +160,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label20);
+            this.groupBox3.Controls.Add(this.cbx_seller_edit);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.Projektbezeichnung);
             this.groupBox3.Controls.Add(this.cbx_auftragsstatus);
@@ -182,11 +186,12 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 186);
+            this.label5.Location = new System.Drawing.Point(6, 213);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 13);
             this.label5.TabIndex = 34;
             this.label5.Text = "Auftragsstatus";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // Projektbezeichnung
             // 
@@ -200,11 +205,12 @@
             // cbx_auftragsstatus
             // 
             this.cbx_auftragsstatus.FormattingEnabled = true;
-            this.cbx_auftragsstatus.Location = new System.Drawing.Point(124, 181);
+            this.cbx_auftragsstatus.Location = new System.Drawing.Point(124, 208);
             this.cbx_auftragsstatus.Name = "cbx_auftragsstatus";
             this.cbx_auftragsstatus.Size = new System.Drawing.Size(170, 21);
             this.cbx_auftragsstatus.TabIndex = 33;
             this.tti_edit_Auftrag.SetToolTip(this.cbx_auftragsstatus, "Liste aller Staten die ein Auftrags haben kann.");
+            this.cbx_auftragsstatus.SelectedIndexChanged += new System.EventHandler(this.cbx_auftragsstatus_SelectedIndexChanged);
             // 
             // txt_auf_proj_ken
             // 
@@ -217,20 +223,22 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 162);
+            this.label8.Location = new System.Drawing.Point(6, 189);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(78, 13);
             this.label8.TabIndex = 20;
             this.label8.Text = "Montagedatum";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 135);
+            this.label7.Location = new System.Drawing.Point(6, 162);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(64, 13);
             this.label7.TabIndex = 19;
             this.label7.Text = "Erstelldatum";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label6
             // 
@@ -253,23 +261,25 @@
             // 
             this.date_erstell.CustomFormat = "dd-mm-yyyy";
             this.date_erstell.Enabled = false;
-            this.date_erstell.Location = new System.Drawing.Point(124, 129);
+            this.date_erstell.Location = new System.Drawing.Point(124, 156);
             this.date_erstell.Name = "date_erstell";
             this.date_erstell.Size = new System.Drawing.Size(170, 20);
             this.date_erstell.TabIndex = 1;
             this.tti_edit_Auftrag.SetToolTip(this.date_erstell, "Datum an dem das Projekt erstellt wurde.");
             this.date_erstell.Value = new System.DateTime(2018, 9, 3, 0, 0, 0, 0);
+            this.date_erstell.ValueChanged += new System.EventHandler(this.date_erstell_ValueChanged);
             // 
             // date_mont
             // 
             this.date_mont.CustomFormat = "dd-mm-yyyy";
-            this.date_mont.Location = new System.Drawing.Point(124, 155);
+            this.date_mont.Location = new System.Drawing.Point(124, 182);
             this.date_mont.Name = "date_mont";
             this.date_mont.Size = new System.Drawing.Size(170, 20);
             this.date_mont.TabIndex = 2;
             this.tti_edit_Auftrag.SetToolTip(this.date_mont, "Montage Datum. Wird automatisch 1 Monat nach dem erstell Datum gesetz.\r\nKann auf " +
         "das gewümschte Datum geändert werden.\r\n\r\n\r\n");
             this.date_mont.Value = new System.DateTime(2018, 9, 3, 0, 0, 0, 0);
+            this.date_mont.ValueChanged += new System.EventHandler(this.date_mont_ValueChanged);
             // 
             // label2
             // 
@@ -318,288 +328,6 @@
             this.Auftraginfos.TabIndex = 34;
             this.Auftraginfos.TabStop = false;
             this.Auftraginfos.Text = "Auftraginfos";
-            // 
-            // btn_edit_infos
-            // 
-            this.btn_edit_infos.Location = new System.Drawing.Point(760, 339);
-            this.btn_edit_infos.Name = "btn_edit_infos";
-            this.btn_edit_infos.Size = new System.Drawing.Size(173, 23);
-            this.btn_edit_infos.TabIndex = 18;
-            this.btn_edit_infos.Text = "Änderungen Speichern";
-            this.btn_edit_infos.UseVisualStyleBackColor = true;
-            this.btn_edit_infos.Click += new System.EventHandler(this.btn_edit_infos_Click);
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tab_Allgemein);
-            this.tabControl1.Controls.Add(this.tab_kauf);
-            this.tabControl1.Controls.Add(this.tab_persennning);
-            this.tabControl1.Controls.Add(this.tab_schatten);
-            this.tabControl1.Controls.Add(this.tab_sond);
-            this.tabControl1.Location = new System.Drawing.Point(2, 5);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(947, 400);
-            this.tabControl1.TabIndex = 35;
-            // 
-            // tab_Allgemein
-            // 
-            this.tab_Allgemein.Controls.Add(this.Auftraginfos);
-            this.tab_Allgemein.Controls.Add(this.btn_edit_infos);
-            this.tab_Allgemein.Location = new System.Drawing.Point(4, 22);
-            this.tab_Allgemein.Name = "tab_Allgemein";
-            this.tab_Allgemein.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Allgemein.Size = new System.Drawing.Size(939, 374);
-            this.tab_Allgemein.TabIndex = 0;
-            this.tab_Allgemein.Text = "Allgemein";
-            this.tab_Allgemein.UseVisualStyleBackColor = true;
-            this.tab_Allgemein.Click += new System.EventHandler(this.tab_Allgemein_Click);
-            // 
-            // tab_kauf
-            // 
-            this.tab_kauf.Controls.Add(this.uC_edit_Kauf1);
-            this.tab_kauf.Location = new System.Drawing.Point(4, 22);
-            this.tab_kauf.Name = "tab_kauf";
-            this.tab_kauf.Size = new System.Drawing.Size(1225, 374);
-            this.tab_kauf.TabIndex = 5;
-            this.tab_kauf.Text = "Kaufmänisch";
-            this.tab_kauf.UseVisualStyleBackColor = true;
-            // 
-            // uC_edit_Kauf1
-            // 
-            this.uC_edit_Kauf1.AutoSize = true;
-            this.uC_edit_Kauf1.Location = new System.Drawing.Point(3, 3);
-            this.uC_edit_Kauf1.Name = "uC_edit_Kauf1";
-            this.uC_edit_Kauf1.Size = new System.Drawing.Size(664, 230);
-            this.uC_edit_Kauf1.TabIndex = 0;
-            // 
-            // tab_persennning
-            // 
-            this.tab_persennning.Controls.Add(this.groupBox8);
-            this.tab_persennning.Location = new System.Drawing.Point(4, 22);
-            this.tab_persennning.Name = "tab_persennning";
-            this.tab_persennning.Size = new System.Drawing.Size(1225, 374);
-            this.tab_persennning.TabIndex = 2;
-            this.tab_persennning.Text = "Persenning";
-            this.tab_persennning.UseVisualStyleBackColor = true;
-            this.tab_persennning.Enter += new System.EventHandler(this.tab_persennning_Enter);
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.btn_persenning_save);
-            this.groupBox8.Controls.Add(this.label14);
-            this.groupBox8.Controls.Add(this.label15);
-            this.groupBox8.Controls.Add(this.dtp_persenning_best);
-            this.groupBox8.Controls.Add(this.dtp_persenning_lief);
-            this.groupBox8.Location = new System.Drawing.Point(3, 3);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(312, 115);
-            this.groupBox8.TabIndex = 2;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Persenning";
-            // 
-            // btn_persenning_save
-            // 
-            this.btn_persenning_save.Location = new System.Drawing.Point(183, 83);
-            this.btn_persenning_save.Name = "btn_persenning_save";
-            this.btn_persenning_save.Size = new System.Drawing.Size(123, 23);
-            this.btn_persenning_save.TabIndex = 3;
-            this.btn_persenning_save.Text = "Speichern";
-            this.btn_persenning_save.UseVisualStyleBackColor = true;
-            this.btn_persenning_save.Click += new System.EventHandler(this.btn_persenning_save_Click);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(30, 19);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(70, 13);
-            this.label14.TabIndex = 3;
-            this.label14.Text = "Bestelldatum:";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(35, 57);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(65, 13);
-            this.label15.TabIndex = 4;
-            this.label15.Text = "Lieferdatum:";
-            // 
-            // dtp_persenning_best
-            // 
-            this.dtp_persenning_best.Location = new System.Drawing.Point(106, 19);
-            this.dtp_persenning_best.Name = "dtp_persenning_best";
-            this.dtp_persenning_best.Size = new System.Drawing.Size(200, 20);
-            this.dtp_persenning_best.TabIndex = 0;
-            this.tti_edit_Auftrag.SetToolTip(this.dtp_persenning_best, "Datum der Bestellung");
-            // 
-            // dtp_persenning_lief
-            // 
-            this.dtp_persenning_lief.Location = new System.Drawing.Point(106, 57);
-            this.dtp_persenning_lief.Name = "dtp_persenning_lief";
-            this.dtp_persenning_lief.Size = new System.Drawing.Size(200, 20);
-            this.dtp_persenning_lief.TabIndex = 1;
-            this.tti_edit_Auftrag.SetToolTip(this.dtp_persenning_lief, "Datum der Lieferung");
-            // 
-            // tab_schatten
-            // 
-            this.tab_schatten.Controls.Add(this.groupBox7);
-            this.tab_schatten.Location = new System.Drawing.Point(4, 22);
-            this.tab_schatten.Name = "tab_schatten";
-            this.tab_schatten.Size = new System.Drawing.Size(1225, 374);
-            this.tab_schatten.TabIndex = 3;
-            this.tab_schatten.Text = "Schatten";
-            this.tab_schatten.UseVisualStyleBackColor = true;
-            this.tab_schatten.Enter += new System.EventHandler(this.tab_schatten_Enter);
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.label13);
-            this.groupBox7.Controls.Add(this.label12);
-            this.groupBox7.Controls.Add(this.rtx_schatten);
-            this.groupBox7.Controls.Add(this.btn_schatten_save);
-            this.groupBox7.Controls.Add(this.dtp_schatten);
-            this.groupBox7.Controls.Add(this.cbx_schatten_pers);
-            this.groupBox7.Controls.Add(this.label11);
-            this.groupBox7.Location = new System.Drawing.Point(3, 3);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(303, 215);
-            this.groupBox7.TabIndex = 3;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Schattenplanung";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(22, 25);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(83, 13);
-            this.label13.TabIndex = 4;
-            this.label13.Text = "Planungsdatum:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(56, 75);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(49, 13);
-            this.label12.TabIndex = 4;
-            this.label12.Text = "Notitzen:";
-            // 
-            // rtx_schatten
-            // 
-            this.rtx_schatten.Location = new System.Drawing.Point(108, 72);
-            this.rtx_schatten.Name = "rtx_schatten";
-            this.rtx_schatten.Size = new System.Drawing.Size(189, 98);
-            this.rtx_schatten.TabIndex = 4;
-            this.rtx_schatten.Text = "";
-            this.tti_edit_Auftrag.SetToolTip(this.rtx_schatten, "Notiz für die Schattenplanung");
-            // 
-            // btn_schatten_save
-            // 
-            this.btn_schatten_save.Location = new System.Drawing.Point(108, 176);
-            this.btn_schatten_save.Name = "btn_schatten_save";
-            this.btn_schatten_save.Size = new System.Drawing.Size(189, 23);
-            this.btn_schatten_save.TabIndex = 3;
-            this.btn_schatten_save.Text = "Speichern";
-            this.btn_schatten_save.UseVisualStyleBackColor = true;
-            this.btn_schatten_save.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // dtp_schatten
-            // 
-            this.dtp_schatten.Location = new System.Drawing.Point(108, 19);
-            this.dtp_schatten.Name = "dtp_schatten";
-            this.dtp_schatten.Size = new System.Drawing.Size(189, 20);
-            this.dtp_schatten.TabIndex = 0;
-            this.tti_edit_Auftrag.SetToolTip(this.dtp_schatten, "Datum der Plannung");
-            // 
-            // cbx_schatten_pers
-            // 
-            this.cbx_schatten_pers.FormattingEnabled = true;
-            this.cbx_schatten_pers.Location = new System.Drawing.Point(108, 45);
-            this.cbx_schatten_pers.Name = "cbx_schatten_pers";
-            this.cbx_schatten_pers.Size = new System.Drawing.Size(189, 21);
-            this.cbx_schatten_pers.TabIndex = 2;
-            this.tti_edit_Auftrag.SetToolTip(this.cbx_schatten_pers, "Liste aller verfügbaren zuständigen Personen.");
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 48);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(99, 13);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "Zuständige Person:";
-            // 
-            // tab_sond
-            // 
-            this.tab_sond.Controls.Add(this.groupBox9);
-            this.tab_sond.Location = new System.Drawing.Point(4, 22);
-            this.tab_sond.Name = "tab_sond";
-            this.tab_sond.Size = new System.Drawing.Size(1225, 374);
-            this.tab_sond.TabIndex = 4;
-            this.tab_sond.Text = "Sonderteile";
-            this.tab_sond.UseVisualStyleBackColor = true;
-            this.tab_sond.Enter += new System.EventHandler(this.tab_sond_Enter);
-            // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.btn_sond_save);
-            this.groupBox9.Controls.Add(this.label16);
-            this.groupBox9.Controls.Add(this.label17);
-            this.groupBox9.Controls.Add(this.dtp_sond_best);
-            this.groupBox9.Controls.Add(this.dtp_sond_lief);
-            this.groupBox9.Location = new System.Drawing.Point(3, 3);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(312, 115);
-            this.groupBox9.TabIndex = 3;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Sonderteile";
-            // 
-            // btn_sond_save
-            // 
-            this.btn_sond_save.Location = new System.Drawing.Point(183, 83);
-            this.btn_sond_save.Name = "btn_sond_save";
-            this.btn_sond_save.Size = new System.Drawing.Size(123, 23);
-            this.btn_sond_save.TabIndex = 3;
-            this.btn_sond_save.Text = "Speichern";
-            this.btn_sond_save.UseVisualStyleBackColor = true;
-            this.btn_sond_save.Click += new System.EventHandler(this.btn_sond_save_Click);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(30, 19);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(70, 13);
-            this.label16.TabIndex = 3;
-            this.label16.Text = "Bestelldatum:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(35, 57);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(65, 13);
-            this.label17.TabIndex = 4;
-            this.label17.Text = "Lieferdatum:";
-            // 
-            // dtp_sond_best
-            // 
-            this.dtp_sond_best.Location = new System.Drawing.Point(106, 19);
-            this.dtp_sond_best.Name = "dtp_sond_best";
-            this.dtp_sond_best.Size = new System.Drawing.Size(200, 20);
-            this.dtp_sond_best.TabIndex = 0;
-            this.tti_edit_Auftrag.SetToolTip(this.dtp_sond_best, "Bestelldatum der Sonderteile");
-            // 
-            // dtp_sond_lief
-            // 
-            this.dtp_sond_lief.Location = new System.Drawing.Point(106, 57);
-            this.dtp_sond_lief.Name = "dtp_sond_lief";
-            this.dtp_sond_lief.Size = new System.Drawing.Size(200, 20);
-            this.dtp_sond_lief.TabIndex = 1;
-            this.tti_edit_Auftrag.SetToolTip(this.dtp_sond_lief, "Liederdatm der Sonderteile");
             // 
             // groupBox2
             // 
@@ -704,6 +432,306 @@
             this.tBx_segel_name.Size = new System.Drawing.Size(207, 20);
             this.tBx_segel_name.TabIndex = 0;
             // 
+            // btn_edit_infos
+            // 
+            this.btn_edit_infos.Location = new System.Drawing.Point(760, 339);
+            this.btn_edit_infos.Name = "btn_edit_infos";
+            this.btn_edit_infos.Size = new System.Drawing.Size(173, 23);
+            this.btn_edit_infos.TabIndex = 18;
+            this.btn_edit_infos.Text = "Änderungen Speichern";
+            this.btn_edit_infos.UseVisualStyleBackColor = true;
+            this.btn_edit_infos.Click += new System.EventHandler(this.btn_edit_infos_Click);
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tab_Allgemein);
+            this.tabControl1.Controls.Add(this.tab_kauf);
+            this.tabControl1.Controls.Add(this.tab_persennning);
+            this.tabControl1.Controls.Add(this.tab_schatten);
+            this.tabControl1.Controls.Add(this.tab_sond);
+            this.tabControl1.Location = new System.Drawing.Point(2, 5);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(947, 400);
+            this.tabControl1.TabIndex = 35;
+            // 
+            // tab_Allgemein
+            // 
+            this.tab_Allgemein.Controls.Add(this.Auftraginfos);
+            this.tab_Allgemein.Controls.Add(this.btn_edit_infos);
+            this.tab_Allgemein.Location = new System.Drawing.Point(4, 22);
+            this.tab_Allgemein.Name = "tab_Allgemein";
+            this.tab_Allgemein.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_Allgemein.Size = new System.Drawing.Size(939, 374);
+            this.tab_Allgemein.TabIndex = 0;
+            this.tab_Allgemein.Text = "Allgemein";
+            this.tab_Allgemein.UseVisualStyleBackColor = true;
+            this.tab_Allgemein.Click += new System.EventHandler(this.tab_Allgemein_Click);
+            // 
+            // tab_kauf
+            // 
+            this.tab_kauf.Controls.Add(this.uC_edit_Kauf1);
+            this.tab_kauf.Location = new System.Drawing.Point(4, 22);
+            this.tab_kauf.Name = "tab_kauf";
+            this.tab_kauf.Size = new System.Drawing.Size(939, 374);
+            this.tab_kauf.TabIndex = 5;
+            this.tab_kauf.Text = "Kaufmänisch";
+            this.tab_kauf.UseVisualStyleBackColor = true;
+            // 
+            // uC_edit_Kauf1
+            // 
+            this.uC_edit_Kauf1.AutoSize = true;
+            this.uC_edit_Kauf1.Location = new System.Drawing.Point(3, 3);
+            this.uC_edit_Kauf1.Name = "uC_edit_Kauf1";
+            this.uC_edit_Kauf1.Size = new System.Drawing.Size(664, 230);
+            this.uC_edit_Kauf1.TabIndex = 0;
+            // 
+            // tab_persennning
+            // 
+            this.tab_persennning.Controls.Add(this.groupBox8);
+            this.tab_persennning.Location = new System.Drawing.Point(4, 22);
+            this.tab_persennning.Name = "tab_persennning";
+            this.tab_persennning.Size = new System.Drawing.Size(939, 374);
+            this.tab_persennning.TabIndex = 2;
+            this.tab_persennning.Text = "Persenning";
+            this.tab_persennning.UseVisualStyleBackColor = true;
+            this.tab_persennning.Enter += new System.EventHandler(this.tab_persennning_Enter);
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.btn_persenning_save);
+            this.groupBox8.Controls.Add(this.label14);
+            this.groupBox8.Controls.Add(this.label15);
+            this.groupBox8.Controls.Add(this.dtp_persenning_best);
+            this.groupBox8.Controls.Add(this.dtp_persenning_lief);
+            this.groupBox8.Location = new System.Drawing.Point(3, 3);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(312, 115);
+            this.groupBox8.TabIndex = 2;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Persenning";
+            // 
+            // btn_persenning_save
+            // 
+            this.btn_persenning_save.Location = new System.Drawing.Point(183, 83);
+            this.btn_persenning_save.Name = "btn_persenning_save";
+            this.btn_persenning_save.Size = new System.Drawing.Size(123, 23);
+            this.btn_persenning_save.TabIndex = 3;
+            this.btn_persenning_save.Text = "Speichern";
+            this.btn_persenning_save.UseVisualStyleBackColor = true;
+            this.btn_persenning_save.Click += new System.EventHandler(this.btn_persenning_save_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(30, 19);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(70, 13);
+            this.label14.TabIndex = 3;
+            this.label14.Text = "Bestelldatum:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(35, 57);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(65, 13);
+            this.label15.TabIndex = 4;
+            this.label15.Text = "Lieferdatum:";
+            // 
+            // dtp_persenning_best
+            // 
+            this.dtp_persenning_best.Location = new System.Drawing.Point(106, 19);
+            this.dtp_persenning_best.Name = "dtp_persenning_best";
+            this.dtp_persenning_best.Size = new System.Drawing.Size(200, 20);
+            this.dtp_persenning_best.TabIndex = 0;
+            this.tti_edit_Auftrag.SetToolTip(this.dtp_persenning_best, "Datum der Bestellung");
+            // 
+            // dtp_persenning_lief
+            // 
+            this.dtp_persenning_lief.Location = new System.Drawing.Point(106, 57);
+            this.dtp_persenning_lief.Name = "dtp_persenning_lief";
+            this.dtp_persenning_lief.Size = new System.Drawing.Size(200, 20);
+            this.dtp_persenning_lief.TabIndex = 1;
+            this.tti_edit_Auftrag.SetToolTip(this.dtp_persenning_lief, "Datum der Lieferung");
+            // 
+            // tab_schatten
+            // 
+            this.tab_schatten.Controls.Add(this.groupBox7);
+            this.tab_schatten.Location = new System.Drawing.Point(4, 22);
+            this.tab_schatten.Name = "tab_schatten";
+            this.tab_schatten.Size = new System.Drawing.Size(939, 374);
+            this.tab_schatten.TabIndex = 3;
+            this.tab_schatten.Text = "Schatten";
+            this.tab_schatten.UseVisualStyleBackColor = true;
+            this.tab_schatten.Enter += new System.EventHandler(this.tab_schatten_Enter);
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.label13);
+            this.groupBox7.Controls.Add(this.label12);
+            this.groupBox7.Controls.Add(this.rtx_schatten);
+            this.groupBox7.Controls.Add(this.btn_schatten_save);
+            this.groupBox7.Controls.Add(this.dtp_schatten);
+            this.groupBox7.Controls.Add(this.cbx_schatten_pers);
+            this.groupBox7.Controls.Add(this.label11);
+            this.groupBox7.Location = new System.Drawing.Point(3, 3);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(303, 215);
+            this.groupBox7.TabIndex = 3;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Schattenplanung";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(22, 25);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(83, 13);
+            this.label13.TabIndex = 4;
+            this.label13.Text = "Planungsdatum:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(56, 75);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(49, 13);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "Notitzen:";
+            // 
+            // rtx_schatten
+            // 
+            this.rtx_schatten.Location = new System.Drawing.Point(108, 72);
+            this.rtx_schatten.Name = "rtx_schatten";
+            this.rtx_schatten.Size = new System.Drawing.Size(189, 98);
+            this.rtx_schatten.TabIndex = 4;
+            this.rtx_schatten.Text = "";
+            this.tti_edit_Auftrag.SetToolTip(this.rtx_schatten, "Notiz für die Schattenplanung");
+            // 
+            // btn_schatten_save
+            // 
+            this.btn_schatten_save.Location = new System.Drawing.Point(108, 176);
+            this.btn_schatten_save.Name = "btn_schatten_save";
+            this.btn_schatten_save.Size = new System.Drawing.Size(189, 23);
+            this.btn_schatten_save.TabIndex = 3;
+            this.btn_schatten_save.Text = "Speichern";
+            this.btn_schatten_save.UseVisualStyleBackColor = true;
+            this.btn_schatten_save.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // dtp_schatten
+            // 
+            this.dtp_schatten.Location = new System.Drawing.Point(108, 19);
+            this.dtp_schatten.Name = "dtp_schatten";
+            this.dtp_schatten.Size = new System.Drawing.Size(189, 20);
+            this.dtp_schatten.TabIndex = 0;
+            this.tti_edit_Auftrag.SetToolTip(this.dtp_schatten, "Datum der Plannung");
+            // 
+            // cbx_schatten_pers
+            // 
+            this.cbx_schatten_pers.FormattingEnabled = true;
+            this.cbx_schatten_pers.Location = new System.Drawing.Point(108, 45);
+            this.cbx_schatten_pers.Name = "cbx_schatten_pers";
+            this.cbx_schatten_pers.Size = new System.Drawing.Size(189, 21);
+            this.cbx_schatten_pers.TabIndex = 2;
+            this.tti_edit_Auftrag.SetToolTip(this.cbx_schatten_pers, "Liste aller verfügbaren zuständigen Personen.");
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 48);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(99, 13);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "Zuständige Person:";
+            // 
+            // tab_sond
+            // 
+            this.tab_sond.Controls.Add(this.groupBox9);
+            this.tab_sond.Location = new System.Drawing.Point(4, 22);
+            this.tab_sond.Name = "tab_sond";
+            this.tab_sond.Size = new System.Drawing.Size(939, 374);
+            this.tab_sond.TabIndex = 4;
+            this.tab_sond.Text = "Sonderteile";
+            this.tab_sond.UseVisualStyleBackColor = true;
+            this.tab_sond.Enter += new System.EventHandler(this.tab_sond_Enter);
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.btn_sond_save);
+            this.groupBox9.Controls.Add(this.label16);
+            this.groupBox9.Controls.Add(this.label17);
+            this.groupBox9.Controls.Add(this.dtp_sond_best);
+            this.groupBox9.Controls.Add(this.dtp_sond_lief);
+            this.groupBox9.Location = new System.Drawing.Point(3, 3);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(312, 115);
+            this.groupBox9.TabIndex = 3;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Sonderteile";
+            // 
+            // btn_sond_save
+            // 
+            this.btn_sond_save.Location = new System.Drawing.Point(183, 83);
+            this.btn_sond_save.Name = "btn_sond_save";
+            this.btn_sond_save.Size = new System.Drawing.Size(123, 23);
+            this.btn_sond_save.TabIndex = 3;
+            this.btn_sond_save.Text = "Speichern";
+            this.btn_sond_save.UseVisualStyleBackColor = true;
+            this.btn_sond_save.Click += new System.EventHandler(this.btn_sond_save_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(30, 19);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(70, 13);
+            this.label16.TabIndex = 3;
+            this.label16.Text = "Bestelldatum:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(35, 57);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(65, 13);
+            this.label17.TabIndex = 4;
+            this.label17.Text = "Lieferdatum:";
+            // 
+            // dtp_sond_best
+            // 
+            this.dtp_sond_best.Location = new System.Drawing.Point(106, 19);
+            this.dtp_sond_best.Name = "dtp_sond_best";
+            this.dtp_sond_best.Size = new System.Drawing.Size(200, 20);
+            this.dtp_sond_best.TabIndex = 0;
+            this.tti_edit_Auftrag.SetToolTip(this.dtp_sond_best, "Bestelldatum der Sonderteile");
+            // 
+            // dtp_sond_lief
+            // 
+            this.dtp_sond_lief.Location = new System.Drawing.Point(106, 57);
+            this.dtp_sond_lief.Name = "dtp_sond_lief";
+            this.dtp_sond_lief.Size = new System.Drawing.Size(200, 20);
+            this.dtp_sond_lief.TabIndex = 1;
+            this.tti_edit_Auftrag.SetToolTip(this.dtp_sond_lief, "Liederdatm der Sonderteile");
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(6, 133);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(53, 13);
+            this.label20.TabIndex = 35;
+            this.label20.Text = "Verkäufer";
+            // 
+            // cbx_seller_edit
+            // 
+            this.cbx_seller_edit.FormattingEnabled = true;
+            this.cbx_seller_edit.Location = new System.Drawing.Point(124, 129);
+            this.cbx_seller_edit.Name = "cbx_seller_edit";
+            this.cbx_seller_edit.Size = new System.Drawing.Size(170, 21);
+            this.cbx_seller_edit.TabIndex = 36;
+            this.tti_edit_Auftrag.SetToolTip(this.cbx_seller_edit, "Liste aller verfügbaren Techniker.");
+            // 
             // UC_edit_Auftrag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -717,6 +745,8 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.Auftraginfos.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tab_Allgemein.ResumeLayout(false);
             this.tab_kauf.ResumeLayout(false);
@@ -730,8 +760,6 @@
             this.tab_sond.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -798,5 +826,7 @@
         private System.Windows.Forms.ComboBox cBx_stoff_kennung;
         private System.Windows.Forms.ComboBox cBx_segelform;
         private System.Windows.Forms.TextBox tBx_segel_name;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.ComboBox cbx_seller_edit;
     }
 }
