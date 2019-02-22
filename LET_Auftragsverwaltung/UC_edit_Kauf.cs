@@ -15,7 +15,7 @@ namespace LET_Auftragsverwaltung
     {
         //ID zur Übergabe
         private int id = 1; //TODO Für Testzwecke durch echte ID ersetzten vor auslieferung
-
+        public static bool controll_state = false;//state
         public int a_ID;
 
         private OdbcConnection Connection
