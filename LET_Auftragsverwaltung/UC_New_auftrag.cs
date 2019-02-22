@@ -414,6 +414,7 @@ namespace LET_Auftragsverwaltung
                         "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 is_startup = false;
+                UC_New_auftrag_fill_cbx_stoff_kennung();
             }
         }
 
