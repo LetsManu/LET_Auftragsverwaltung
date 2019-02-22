@@ -460,7 +460,7 @@ namespace LET_Auftragsverwaltung
 
         private void btn_add_segel_Click(object sender, EventArgs e)
         {
-            if (!Not_filled(tBx_segel_name) && !Not_filled(cBx_segelform) && !Not_filled(cBx_stoff_hersteller) && !Not_filled(cBx_stoff_kennung))
+            if (!Global.Not_filled(tBx_segel_name) && !Global.Not_filled(cBx_segelform) && !Global.Not_filled(cBx_stoff_hersteller) && !Global.Not_filled(cBx_stoff_kennung))
             {
                 SQL_methods.SQL_exec(string.Format("INSERT INTO segel (segel.name,segel.form,segel.stoff_hersteller,segel.stoff_kennung)VALUES ('{0}','{1}',{2},{3})", tBx_segel_name.Text, cBx_segelform.Text, cBx_stoff_hersteller.SelectedValue, cBx_stoff_kennung.SelectedValue));
 
@@ -478,63 +478,9 @@ namespace LET_Auftragsverwaltung
 
         }
 
-        private bool Not_filled(TextBox tbx)
-        {
-            if (tbx == null || tbx.Text == "" || tbx.Text == null)
-            {
-                MessageBox.Show("Das Feld " + tbx.Name + "ist leer, bitte Korrekte Werte eintragen.", "Warnung", MessageBoxButtons.OK);
-                return true;
-            }
-            return false;
-        }
-
-        private bool Not_filled(ComboBox cbx)
-        {
-            if (cbx == null || cbx.Text == "" || cbx.Text == null)
-            {
-                MessageBox.Show("Das Feld " + cbx.Name + "ist leer, bitte Korrekte Werte eintragen.", "Warnung", MessageBoxButtons.OK);
-                return true;
-            }
-            return false;
-        }
-
         private void cBx_stoff_hersteller_SelectedIndexChanged(object sender, EventArgs e)
         {
             UC_New_auftrag_fill_cbx_stoff_kennung();
-        }
-    }
-
-    class Segel
-    {
-        private string name;
-        private string shape;
-        private int id_hersteller;
-        private int id_stoff;
-        private int id;
-
-        public Segel( )
-        {
-        }
-
-        public Segel(string name_, string shape_, int id_hersteller_, int id_stoff_, int id_)
-        {
-            ID = id_;
-            Name = name_ ?? throw new ArgumentNullException(nameof(name_));
-            Shape = shape_ ?? throw new ArgumentNullException(nameof(shape_));
-            Id_hersteller = id_hersteller_;
-            Id_stoff = id_stoff_;
-        }
-
-        public string Name { get => name; set => name = value; }
-        public string Shape { get => shape; set => shape = value; }
-        public int Id_hersteller { get => id_hersteller; set => id_hersteller = value; }
-        public int Id_stoff { get => id_stoff; set => id_stoff = value; }
-        public int ID { get => id; set => id = value; }
-
-        public override string ToString( )
-        {
-            //return Name + ", " + Shape;
-            return Name + ", " + Shape + ", " + Id_hersteller.ToString() + ", " + Id_stoff.ToString() + ", " + ID.ToString();
         }
     }
 }
