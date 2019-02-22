@@ -330,15 +330,15 @@ namespace LET_Auftragsverwaltung
                     SQL_methods.SQL_exec(string.Format("INSERT INTO auftrags.teile (teile.ID, teile.T_St_ID) VALUES ({0}, {1})",
                         auf_id, teile_stoff_ID));
 
-                    /*
-                    for (int i = 0; i < lbx_auftrag.Items.Count; i++)
+                    
+                    for (int i = 0; i < lBx_segel.Items.Count; i++)
                     {
-                        int art_ID = (lbx_auftrag.Items[i] as Object_auf).ID;
+                        int segel_ID = ( (Segel)lBx_segel.Items[i]).ID;
                         SQL_methods.SQL_exec(string.Format(
-                            "INSERT INTO auftraege_auftragsart (ID, Art_ID) VALUES ({0}, {1})",
-                            auf_id, art_ID));
+                            "INSERT INTO auftraege_segel (id_auftrag,id_segel) VALUES ({0}, {1})",
+                            auf_id, segel_ID));
                     }
-                    */
+                    
 
 
                 }
@@ -361,6 +361,7 @@ namespace LET_Auftragsverwaltung
             cbx_new_auf_stoff.Enabled = true;
             UC_New_auftrag_fill_cbx_stoff_lief();
         }*/
+        /*
         //tets
         public class Object_auf
         {
@@ -379,7 +380,7 @@ namespace LET_Auftragsverwaltung
             }
 
 
-        }
+        }*/
 
         private void UC_New_auftrag_fill_cbx_lief( )
         {
@@ -457,7 +458,17 @@ namespace LET_Auftragsverwaltung
         {
             if (!Not_filled(tBx_segel_name) && !Not_filled(cBx_segelform) && !Not_filled(cBx_stoff_hersteller) && !Not_filled(cBx_stoff_kennung))
             {
-                Segel segel = new Segel(tBx_segel_name.Text, cBx_segelform.Text, ( int ) cBx_stoff_hersteller.SelectedValue, ( int ) cBx_stoff_kennung.SelectedValue);
+                SQL_methods.SQL_exec(string.Format("INSERT INTO segel (segel.name,segel.form,segel.stoff_hersteller,segel.stoff_kennung)VALUES ('{0}','{1}',{2},{3})",tBx_segel_name.Text,cBx_segelform.Text,cBx_stoff_hersteller.SelectedValue,cBx_stoff_kennung.SelectedValue));
+
+                string sql = "SELECT * FROM segel ORDER BY segel.id DESC LIMIT 1";
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                SQL_methods.Open();
+                OdbcDataReader sqlReader = cmd.ExecuteReader();
+                sqlReader.Read();
+                int segel_id = Convert.ToInt32(sqlReader[0]);
+                sqlReader.Close();
+
+                Segel segel = new Segel(tBx_segel_name.Text, cBx_segelform.Text, ( int ) cBx_stoff_hersteller.SelectedValue, ( int ) cBx_stoff_kennung.SelectedValue, segel_id);
                 lBx_segel.Items.Add(segel);
             }
 
@@ -495,13 +506,15 @@ namespace LET_Auftragsverwaltung
         private string shape;
         private int id_hersteller;
         private int id_stoff;
+        private int id;
 
         public Segel( )
         {
         }
 
-        public Segel(string name_, string shape_, int id_hersteller_, int id_stoff_)
+        public Segel(string name_, string shape_, int id_hersteller_, int id_stoff_, int id_)
         {
+            ID = id_;
             Name = name_ ?? throw new ArgumentNullException(nameof(name_));
             Shape = shape_ ?? throw new ArgumentNullException(nameof(shape_));
             Id_hersteller = id_hersteller_;
@@ -512,11 +525,12 @@ namespace LET_Auftragsverwaltung
         public string Shape { get => shape; set => shape = value; }
         public int Id_hersteller { get => id_hersteller; set => id_hersteller = value; }
         public int Id_stoff { get => id_stoff; set => id_stoff = value; }
+        public int ID { get => id; set => id = value; }
 
         public override string ToString( )
         {
-            return Name + ", " + Shape;
-            //return Name + ", " + Shape + ", " + Id_hersteller.ToString() + ", " +Id_stoff.ToString();
+            //return Name + ", " + Shape;
+            return Name + ", " + Shape + ", " + Id_hersteller.ToString() + ", " +Id_stoff.ToString() + ", " + ID.ToString();
         }
     }
 }
