@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.uC_edit_Auftrag1 = new LET_Auftragsverwaltung.UC_edit_Auftrag(this.id);
+            //this.uC_edit_Auftrag1 = new LET_Auftragsverwaltung.UC_edit_Auftrag(this.id);
+            this.uC_edit_Auftrag1 = new LET_Auftragsverwaltung.UC_edit_Auftrag();
             this.SuspendLayout();
             // 
             // uC_edit_Auftrag1

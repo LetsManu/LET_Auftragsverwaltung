@@ -60,10 +60,10 @@ namespace LET_Auftragsverwaltung
                 UC_edit_Auftrag_fill_cbx_status();
                 UC_Edit_Auftrag_fill_cbx_verant();
                 UC_Editt_auftrag_fill_cbx_tech();
-                UC_Edit_Auftrag_fill_lbx_auftrag();
-                UC_Edit_Auftrag_fill_cbx_art();
-                UC_edit_auftrag_fill_cbx_lief();
-                UC_Edit_Auftrag_fill_lbx_stoff();
+                //UC_Edit_Auftrag_fill_lbx_auftrag();
+                //UC_Edit_Auftrag_fill_cbx_art();
+                //UC_edit_auftrag_fill_cbx_lief();
+                //UC_Edit_Auftrag_fill_lbx_stoff();
                 UC_Edit_Auftrag_fill_cbx_schatten_pers();
 
                 #endregion
@@ -179,7 +179,7 @@ namespace LET_Auftragsverwaltung
             }
 
         }
-
+        /*
         private void UC_Edit_Auftrag_fill_lbx_auftrag( )
         {
             if (!this.DesignMode)
@@ -315,7 +315,7 @@ namespace LET_Auftragsverwaltung
                     }
                 }
             }
-        }
+        }*/
 
         private void UC_Edit_Auftrag_fill_cbx_schatten_pers( )
         {
@@ -375,7 +375,7 @@ namespace LET_Auftragsverwaltung
         private void tab_Allgemein_Click(object sender, EventArgs e)
         {
         }
-
+        /*
         private void btn_auftag_delete_Click(object sender, EventArgs e)
         {
             if (!this.DesignMode)
@@ -423,9 +423,9 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-
+*/
         #endregion
-
+            /*
         private void btn_add_stoff_Click(object sender, EventArgs e)
         {
             if (!this.DesignMode)
@@ -442,7 +442,7 @@ namespace LET_Auftragsverwaltung
                     MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: INSERT LBX Auftrag Auftragsart): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
+        }*/
 
         private void btn_ab_az_an_Click(object sender, EventArgs e)
         {
