@@ -554,6 +554,7 @@
             this.dtp_persenning_best.Name = "dtp_persenning_best";
             this.dtp_persenning_best.Size = new System.Drawing.Size(200, 20);
             this.dtp_persenning_best.TabIndex = 0;
+            this.tti_edit_Auftrag.SetToolTip(this.dtp_persenning_best, "Datum der Bestellung");
             // 
             // dtp_persenning_lief
             // 
@@ -561,6 +562,7 @@
             this.dtp_persenning_lief.Name = "dtp_persenning_lief";
             this.dtp_persenning_lief.Size = new System.Drawing.Size(200, 20);
             this.dtp_persenning_lief.TabIndex = 1;
+            this.tti_edit_Auftrag.SetToolTip(this.dtp_persenning_lief, "Datum der Lieferung");
             // 
             // tab_schatten
             // 
@@ -614,6 +616,7 @@
             this.rtx_schatten.Size = new System.Drawing.Size(189, 98);
             this.rtx_schatten.TabIndex = 4;
             this.rtx_schatten.Text = "";
+            this.tti_edit_Auftrag.SetToolTip(this.rtx_schatten, "Notiz für die Schattenplanung");
             // 
             // btn_schatten_save
             // 
@@ -631,6 +634,7 @@
             this.dtp_schatten.Name = "dtp_schatten";
             this.dtp_schatten.Size = new System.Drawing.Size(189, 20);
             this.dtp_schatten.TabIndex = 0;
+            this.tti_edit_Auftrag.SetToolTip(this.dtp_schatten, "Datum der Plannung");
             // 
             // cbx_schatten_pers
             // 
@@ -639,6 +643,7 @@
             this.cbx_schatten_pers.Name = "cbx_schatten_pers";
             this.cbx_schatten_pers.Size = new System.Drawing.Size(189, 21);
             this.cbx_schatten_pers.TabIndex = 2;
+            this.tti_edit_Auftrag.SetToolTip(this.cbx_schatten_pers, "Liste aller verfügbaren zuständigen Personen.");
             // 
             // label11
             // 
@@ -708,6 +713,7 @@
             this.dtp_sond_best.Name = "dtp_sond_best";
             this.dtp_sond_best.Size = new System.Drawing.Size(200, 20);
             this.dtp_sond_best.TabIndex = 0;
+            this.tti_edit_Auftrag.SetToolTip(this.dtp_sond_best, "Bestelldatum der Sonderteile");
             // 
             // dtp_sond_lief
             // 
@@ -715,6 +721,7 @@
             this.dtp_sond_lief.Name = "dtp_sond_lief";
             this.dtp_sond_lief.Size = new System.Drawing.Size(200, 20);
             this.dtp_sond_lief.TabIndex = 1;
+            this.tti_edit_Auftrag.SetToolTip(this.dtp_sond_lief, "Liederdatm der Sonderteile");
             // 
             // UC_edit_Auftrag
             // 
