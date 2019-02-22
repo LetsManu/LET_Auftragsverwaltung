@@ -57,7 +57,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.tti_asd = new System.Windows.Forms.ToolTip(this.components);
+            this.tti_new_auftrag = new System.Windows.Forms.ToolTip(this.components);
             this.tBx_segel_name = new System.Windows.Forms.TextBox();
             this.cBx_segelform = new System.Windows.Forms.ComboBox();
             this.cBx_stoff_kennung = new System.Windows.Forms.ComboBox();
@@ -95,7 +95,6 @@
             this.txt_info_kauf.TabIndex = 5;
             this.txt_info_kauf.Text = "";
             this.tti_new_auftrag.SetToolTip(this.txt_info_kauf, "Notizen für den kaufmänischen Bereich.");
-            this.txt_info_kauf.TextChanged += new System.EventHandler(this.txt_info_kauf_TextChanged);
             // 
             // txt_auftrag_nr
             // 
@@ -295,14 +294,8 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Segel";
             // 
-            // listBox1
             // btn_add_segel
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(9, 134);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(248, 160);
-            this.listBox1.TabIndex = 28;
             this.btn_add_segel.Location = new System.Drawing.Point(170, 136);
             this.btn_add_segel.Name = "btn_add_segel";
             this.btn_add_segel.Size = new System.Drawing.Size(87, 23);
@@ -327,14 +320,7 @@
             this.lBx_segel.TabIndex = 28;
             // 
             // label11
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(83, 84);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(174, 21);
-            this.comboBox3.TabIndex = 26;
-            this.tti_new_auftrag.SetToolTip(this.comboBox3, "Liste aller verfügaren Stoffhersteller");
+            //
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(6, 87);
             this.label11.Name = "label11";
@@ -369,15 +355,9 @@
             this.label5.TabIndex = 23;
             this.label5.Text = "Segel Name";
             // 
-            // comboBox2
+
             // label5
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(83, 109);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(174, 21);
-            this.comboBox2.TabIndex = 2;
-            this.tti_new_auftrag.SetToolTip(this.comboBox2, "List aller Stoffef des Herstellers.");
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(6, 33);
             this.label5.Name = "label5";
@@ -391,7 +371,6 @@
             this.tBx_segel_name.Name = "tBx_segel_name";
             this.tBx_segel_name.Size = new System.Drawing.Size(170, 20);
             this.tBx_segel_name.TabIndex = 0;
-            this.tti_asd.SetToolTip(this.tBx_segel_name, "sdfsdfiuo");
             // 
             // cBx_segelform
             // 
@@ -403,26 +382,14 @@
             // 
             // cBx_stoff_kennung
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(83, 57);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(174, 21);
-            this.comboBox1.TabIndex = 1;
-            this.tti_new_auftrag.SetToolTip(this.comboBox1, "Die Art der Segelform kann hier angegeben werden.");
             this.cBx_stoff_kennung.FormattingEnabled = true;
             this.cBx_stoff_kennung.Location = new System.Drawing.Point(88, 109);
             this.cBx_stoff_kennung.Name = "cBx_stoff_kennung";
             this.cBx_stoff_kennung.Size = new System.Drawing.Size(169, 21);
             this.cBx_stoff_kennung.TabIndex = 2;
             // 
-            // textBox1
             // cBx_stoff_hersteller
             // 
-            this.textBox1.Location = new System.Drawing.Point(82, 30);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(175, 20);
-            this.textBox1.TabIndex = 0;
-            this.tti_new_auftrag.SetToolTip(this.textBox1, "Bezeichnung des Segels");
             this.cBx_stoff_hersteller.FormattingEnabled = true;
             this.cBx_stoff_hersteller.Location = new System.Drawing.Point(88, 84);
             this.cBx_stoff_hersteller.Name = "cBx_stoff_hersteller";

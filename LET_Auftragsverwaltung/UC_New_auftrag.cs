@@ -16,6 +16,7 @@ namespace LET_Auftragsverwaltung
 {
     public partial class UC_New_auftrag : UserControl
     {
+        bool is_startup = false;
         private OdbcConnection Connection
         {
             get
@@ -330,15 +331,15 @@ namespace LET_Auftragsverwaltung
                     SQL_methods.SQL_exec(string.Format("INSERT INTO auftrags.teile (teile.ID, teile.T_St_ID) VALUES ({0}, {1})",
                         auf_id, teile_stoff_ID));
 
-                    
+
                     for (int i = 0; i < lBx_segel.Items.Count; i++)
                     {
-                        int segel_ID = ( (Segel)lBx_segel.Items[i]).ID;
+                        int segel_ID = ( ( Segel ) lBx_segel.Items[i] ).ID;
                         SQL_methods.SQL_exec(string.Format(
                             "INSERT INTO auftraege_segel (id_auftrag,id_segel) VALUES ({0}, {1})",
                             auf_id, segel_ID));
                     }
-                    
+
 
 
                 }
@@ -388,9 +389,10 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
+                    is_startup = true;
                     cBx_stoff_hersteller.Items.Clear();
 
-                    DataTable dtLief = SQL_methods.Fill_Box("SELECT L_ID, Lieferant FROM Lieferant WHERE deaktiviert<>true");
+                    DataTable dtLief = SQL_methods.Fill_Box("SELECT L_ID, Lieferant FROM Lieferant WHERE lieferant.deaktiviert<>true");
 
                     cBx_stoff_hersteller.DataSource = dtLief;
                     cBx_stoff_hersteller.ValueMember = "L_ID";
@@ -411,6 +413,7 @@ namespace LET_Auftragsverwaltung
                     MessageBox.Show("Fehler in der SQL Abfrage(Neue Auftrag: Fill CBX Lief): \n\n" + f.Message,
                         "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                is_startup = false;
             }
         }
 
@@ -418,7 +421,7 @@ namespace LET_Auftragsverwaltung
         {
             if (!this.DesignMode)
             {
-                if (cBx_stoff_hersteller.Items.Count > 0)
+                if (cBx_stoff_hersteller.Items.Count > 0 && !is_startup)
                 {
                     try
                     {
@@ -447,7 +450,7 @@ namespace LET_Auftragsverwaltung
                     catch (Exception f)
                     {
                         MessageBox.Show("Fehler in der SQL Abfrage(Neue Auftrag: Fill CBX Stoff): \n\n" + f.Message,
-                            "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     }
                 }
@@ -458,7 +461,7 @@ namespace LET_Auftragsverwaltung
         {
             if (!Not_filled(tBx_segel_name) && !Not_filled(cBx_segelform) && !Not_filled(cBx_stoff_hersteller) && !Not_filled(cBx_stoff_kennung))
             {
-                SQL_methods.SQL_exec(string.Format("INSERT INTO segel (segel.name,segel.form,segel.stoff_hersteller,segel.stoff_kennung)VALUES ('{0}','{1}',{2},{3})",tBx_segel_name.Text,cBx_segelform.Text,cBx_stoff_hersteller.SelectedValue,cBx_stoff_kennung.SelectedValue));
+                SQL_methods.SQL_exec(string.Format("INSERT INTO segel (segel.name,segel.form,segel.stoff_hersteller,segel.stoff_kennung)VALUES ('{0}','{1}',{2},{3})", tBx_segel_name.Text, cBx_segelform.Text, cBx_stoff_hersteller.SelectedValue, cBx_stoff_kennung.SelectedValue));
 
                 string sql = "SELECT * FROM segel ORDER BY segel.id DESC LIMIT 1";
                 OdbcCommand cmd = new OdbcCommand(sql, Connection);
@@ -530,7 +533,7 @@ namespace LET_Auftragsverwaltung
         public override string ToString( )
         {
             //return Name + ", " + Shape;
-            return Name + ", " + Shape + ", " + Id_hersteller.ToString() + ", " +Id_stoff.ToString() + ", " + ID.ToString();
+            return Name + ", " + Shape + ", " + Id_hersteller.ToString() + ", " + Id_stoff.ToString() + ", " + ID.ToString();
         }
     }
 }
