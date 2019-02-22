@@ -35,8 +35,8 @@ namespace LET_Auftragsverwaltung
         {
             UC_New_auftrag_fill_cbx_verant();
             UC_New_auftrag_fill_cbx_tech();
-            UC_New_auftrag_fill_cbx_auf();
-            UC_New_auftrag_fill_cbx_lief();
+            //UC_New_auftrag_fill_cbx_auf();
+            //UC_New_auftrag_fill_cbx_lief();
             date_erstell.Value = DateTime.Today;
             date_mont.Value = DateTime.Today.AddDays(28);
         }
@@ -123,6 +123,7 @@ namespace LET_Auftragsverwaltung
 
         }
 
+        /*
         private void UC_New_auftrag_fill_cbx_auf()
         {
             if (!this.DesignMode)
@@ -152,8 +153,8 @@ namespace LET_Auftragsverwaltung
 
                 }
             }
-        }
-
+        }*/
+        /*
         private void UC_New_auftrag_fill_cbx_lief()
         {
             if (!this.DesignMode)
@@ -178,8 +179,8 @@ namespace LET_Auftragsverwaltung
                         "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
-
+        }*/
+        /*
         private void UC_New_auftrag_fill_cbx_stoff_lief()
         {
             if (!this.DesignMode)
@@ -208,11 +209,11 @@ namespace LET_Auftragsverwaltung
                 }
             }
         }
+        */
 
 
 
-
-
+            /*
         private void Btn_auftrag_add_Click(object sender, EventArgs e)
         {
             if (!this.DesignMode)
@@ -261,15 +262,15 @@ namespace LET_Auftragsverwaltung
                 }
             }
 
-        }
-
+        }*/
+        /*
 
         private void btn_auftag_delete_Click(object sender, EventArgs e)
         {
             lbx_auftrag.Items.Remove(lbx_auftrag.Items[lbx_auftrag.SelectedIndex]);
 
-        }
-
+        }*/
+        
         private void Btn_new_auf_save_Click(object sender, EventArgs e)
         {
             if (!this.DesignMode)
@@ -294,9 +295,9 @@ namespace LET_Auftragsverwaltung
                     sqlReader2.Read();
                     int schatten_ID = Convert.ToInt32(sqlReader2[0]);
                     sqlReader2.Close();
-                    SQL_methods.SQL_exec(String.Format("INSERT INTO auftrags.teile_stoff (teile_stoff.ST_ID) VALUES ({0})",
+                    /*SQL_methods.SQL_exec(String.Format("INSERT INTO auftrags.teile_stoff (teile_stoff.ST_ID) VALUES ({0})",
                         cbx_new_auf_stoff.SelectedValue));
-                    SQL_methods.Open();
+                    SQL_methods.Open();*/
 
                     sql = "SELECT * FROM teile_stoff ORDER BY teile_stoff.T_ST_ID DESC LIMIT 1";
                     cmd = new OdbcCommand(sql, Connection);
@@ -328,7 +329,7 @@ namespace LET_Auftragsverwaltung
                     SQL_methods.SQL_exec(string.Format("INSERT INTO auftrags.teile (teile.ID, teile.T_St_ID) VALUES ({0}, {1})",
                         auf_id, teile_stoff_ID));
 
-
+                    /*
                     for (int i = 0; i < lbx_auftrag.Items.Count; i++)
                     {
                         int art_ID = (lbx_auftrag.Items[i] as Object_auf).ID;
@@ -336,7 +337,7 @@ namespace LET_Auftragsverwaltung
                             "INSERT INTO auftraege_auftragsart (ID, Art_ID) VALUES ({0}, {1})",
                             auf_id, art_ID));
                     }
-
+                    */
                     
 
                 }
@@ -353,12 +354,12 @@ namespace LET_Auftragsverwaltung
                 }
             }
         }
-
+        /*
         private void cbx_new_auf_lief_DropDownClosed(object sender, EventArgs e)
         {
             cbx_new_auf_stoff.Enabled = true;
             UC_New_auftrag_fill_cbx_stoff_lief();
-        }
+        }*/
         //tets
         public class Object_auf
         {
