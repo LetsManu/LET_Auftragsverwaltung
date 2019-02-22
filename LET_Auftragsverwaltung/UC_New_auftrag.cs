@@ -380,5 +380,9 @@ namespace LET_Auftragsverwaltung
 
         }
 
+        private void txt_info_kauf_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

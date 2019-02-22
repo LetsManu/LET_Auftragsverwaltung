@@ -73,6 +73,7 @@
             this.date_erstell.Name = "date_erstell";
             this.date_erstell.Size = new System.Drawing.Size(144, 20);
             this.date_erstell.TabIndex = 1;
+            this.tti_new_auftrag.SetToolTip(this.date_erstell, "Datum an dem das Projekt erstellt wurde.");
             this.date_erstell.Value = new System.DateTime(2018, 9, 5, 14, 26, 25, 0);
             // 
             // date_mont
@@ -82,6 +83,8 @@
             this.date_mont.Name = "date_mont";
             this.date_mont.Size = new System.Drawing.Size(144, 20);
             this.date_mont.TabIndex = 2;
+            this.tti_new_auftrag.SetToolTip(this.date_mont, "Montage Datum. Wird automatisch 1 Monat nach dem erstell Datum gesetz.\r\nKann auf " +
+        "das gewümschte Datum geändert werden.\r\n");
             // 
             // txt_info_kauf
             // 
@@ -90,6 +93,8 @@
             this.txt_info_kauf.Size = new System.Drawing.Size(248, 111);
             this.txt_info_kauf.TabIndex = 5;
             this.txt_info_kauf.Text = "";
+            this.tti_new_auftrag.SetToolTip(this.txt_info_kauf, "Notizen für den kaufmänischen Bereich.");
+            this.txt_info_kauf.TextChanged += new System.EventHandler(this.txt_info_kauf_TextChanged);
             // 
             // txt_auftrag_nr
             // 
@@ -97,6 +102,7 @@
             this.txt_auftrag_nr.Name = "txt_auftrag_nr";
             this.txt_auftrag_nr.Size = new System.Drawing.Size(144, 20);
             this.txt_auftrag_nr.TabIndex = 9;
+            this.tti_new_auftrag.SetToolTip(this.txt_auftrag_nr, "Nummder des Auftrags, wenn nicht vorhanden kann dieser nachgetragen werden.");
             // 
             // label2
             // 
@@ -123,6 +129,7 @@
             this.cbx_verant.Name = "cbx_verant";
             this.cbx_verant.Size = new System.Drawing.Size(144, 21);
             this.cbx_verant.TabIndex = 16;
+            this.tti_new_auftrag.SetToolTip(this.cbx_verant, "Liste aller verfügbaren Verantwortlichen");
             // 
             // cbx_tech
             // 
@@ -131,6 +138,7 @@
             this.cbx_tech.Name = "cbx_tech";
             this.cbx_tech.Size = new System.Drawing.Size(144, 21);
             this.cbx_tech.TabIndex = 17;
+            this.tti_new_auftrag.SetToolTip(this.cbx_tech, "Liste aller verfügbaren Techniker.");
             // 
             // btn_new_auf_save
             // 
@@ -181,6 +189,7 @@
             this.cBx_seller.Name = "cBx_seller";
             this.cBx_seller.Size = new System.Drawing.Size(144, 21);
             this.cBx_seller.TabIndex = 24;
+            this.tti_new_auftrag.SetToolTip(this.cBx_seller, "Liste aller verfügbaren Verkäufer.");
             // 
             // Projektbezeichnung
             // 
@@ -197,6 +206,7 @@
             this.txt_auf_proj_ken.Name = "txt_auf_proj_ken";
             this.txt_auf_proj_ken.Size = new System.Drawing.Size(144, 20);
             this.txt_auf_proj_ken.TabIndex = 21;
+            this.tti_new_auftrag.SetToolTip(this.txt_auf_proj_ken, "Bezeichnung des Projekts, wenn nicht vorhanden kann dieser nachgetragen werden.");
             // 
             // label8
             // 
@@ -232,6 +242,7 @@
             this.txt_info_tech.Size = new System.Drawing.Size(248, 111);
             this.txt_info_tech.TabIndex = 24;
             this.txt_info_tech.Text = "";
+            this.tti_new_auftrag.SetToolTip(this.txt_info_tech, "Notizen für den technischen Bereich.");
             // 
             // label1
             // 
@@ -306,6 +317,7 @@
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(174, 21);
             this.comboBox3.TabIndex = 26;
+            this.tti_new_auftrag.SetToolTip(this.comboBox3, "Liste aller verfügaren Stoffhersteller");
             // 
             // label10
             // 
@@ -341,6 +353,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(174, 21);
             this.comboBox2.TabIndex = 2;
+            this.tti_new_auftrag.SetToolTip(this.comboBox2, "List aller Stoffef des Herstellers.");
             // 
             // comboBox1
             // 
@@ -349,6 +362,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(174, 21);
             this.comboBox1.TabIndex = 1;
+            this.tti_new_auftrag.SetToolTip(this.comboBox1, "Die Art der Segelform kann hier angegeben werden.");
             // 
             // textBox1
             // 
@@ -356,7 +370,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(175, 20);
             this.textBox1.TabIndex = 0;
-            this.tti_new_auftrag.SetToolTip(this.textBox1, "sdfsdfiuo");
+            this.tti_new_auftrag.SetToolTip(this.textBox1, "Bezeichnung des Segels");
             // 
             // UC_New_auftrag
             // 
