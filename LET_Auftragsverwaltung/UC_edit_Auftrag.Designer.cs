@@ -468,8 +468,10 @@
             this.tab_Allgemein.Click += new System.EventHandler(this.tab_Allgemein_Click);
             // 
             // tab_kauf
-            // 
+            //
+            
             this.tab_kauf.Controls.Add(this.uC_edit_Kauf1);
+  
             this.tab_kauf.Location = new System.Drawing.Point(4, 22);
             this.tab_kauf.Name = "tab_kauf";
             this.tab_kauf.Size = new System.Drawing.Size(1225, 374);

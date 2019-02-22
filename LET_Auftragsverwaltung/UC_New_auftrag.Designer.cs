@@ -39,6 +39,8 @@
             this.cbx_tech = new System.Windows.Forms.ComboBox();
             this.btn_new_auf_save = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cBx_seller = new System.Windows.Forms.ComboBox();
             this.Projektbezeichnung = new System.Windows.Forms.Label();
             this.txt_auf_proj_ken = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -49,18 +51,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.tti_asd = new System.Windows.Forms.ToolTip(this.components);
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.label11 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.cBx_seller = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tti_new_auftrag = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -165,6 +165,23 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Allgemein";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 86);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(53, 13);
+            this.label12.TabIndex = 23;
+            this.label12.Text = "Verkäufer";
+            // 
+            // cBx_seller
+            // 
+            this.cBx_seller.FormattingEnabled = true;
+            this.cBx_seller.Location = new System.Drawing.Point(113, 82);
+            this.cBx_seller.Name = "cBx_seller";
+            this.cBx_seller.Size = new System.Drawing.Size(144, 21);
+            this.cBx_seller.TabIndex = 24;
+            // 
             // Projektbezeichnung
             // 
             this.Projektbezeichnung.AutoSize = true;
@@ -265,56 +282,13 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Segel";
             // 
-            // textBox1
+            // listBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(82, 30);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(175, 20);
-            this.textBox1.TabIndex = 0;
-            this.tti_asd.SetToolTip(this.textBox1, "sdfsdfiuo");
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(83, 57);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(174, 21);
-            this.comboBox1.TabIndex = 1;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(83, 109);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(174, 21);
-            this.comboBox2.TabIndex = 2;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 33);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 13);
-            this.label5.TabIndex = 23;
-            this.label5.Text = "Segel Name";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 112);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(75, 13);
-            this.label9.TabIndex = 24;
-            this.label9.Text = "Stoff Kennung";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 60);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(54, 13);
-            this.label10.TabIndex = 25;
-            this.label10.Text = "Segelform";
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(9, 134);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(248, 160);
+            this.listBox1.TabIndex = 28;
             // 
             // label11
             // 
@@ -333,30 +307,56 @@
             this.comboBox3.Size = new System.Drawing.Size(174, 21);
             this.comboBox3.TabIndex = 26;
             // 
-            // listBox1
+            // label10
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(9, 134);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(248, 160);
-            this.listBox1.TabIndex = 28;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 60);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(54, 13);
+            this.label10.TabIndex = 25;
+            this.label10.Text = "Segelform";
             // 
-            // label12
+            // label9
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 86);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(53, 13);
-            this.label12.TabIndex = 23;
-            this.label12.Text = "Verkäufer";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 112);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(75, 13);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "Stoff Kennung";
             // 
-            // cBx_seller
+            // label5
             // 
-            this.cBx_seller.FormattingEnabled = true;
-            this.cBx_seller.Location = new System.Drawing.Point(113, 82);
-            this.cBx_seller.Name = "cBx_seller";
-            this.cBx_seller.Size = new System.Drawing.Size(144, 21);
-            this.cBx_seller.TabIndex = 24;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 33);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 13);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Segel Name";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(83, 109);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(174, 21);
+            this.comboBox2.TabIndex = 2;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(83, 57);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(174, 21);
+            this.comboBox1.TabIndex = 1;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(82, 30);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(175, 20);
+            this.textBox1.TabIndex = 0;
+            this.tti_new_auftrag.SetToolTip(this.textBox1, "sdfsdfiuo");
             // 
             // UC_New_auftrag
             // 
@@ -406,7 +406,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ToolTip tti_asd;
+        private System.Windows.Forms.ToolTip tti_new_auftrag;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cBx_seller;
         private System.Windows.Forms.ListBox listBox1;
