@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_date_kauf_edit_auf = new System.Windows.Forms.Button();
             this.txt_kauf_auf_best = new System.Windows.Forms.Label();
@@ -63,6 +64,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btn_edit_kauf_text_save = new System.Windows.Forms.Button();
             this.btn_best = new System.Windows.Forms.Button();
+            this.tmr_break = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -420,6 +422,11 @@
             this.btn_best.UseVisualStyleBackColor = true;
             this.btn_best.Click += new System.EventHandler(this.btn_best_Click);
             // 
+            // tmr_break
+            // 
+            this.tmr_break.Interval = 3000;
+            this.tmr_break.Tick += new System.EventHandler(this.tmr_break_Tick);
+            // 
             // UC_edit_Kauf
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -482,5 +489,6 @@
         private System.Windows.Forms.Button btn_date_kauf_edit_schluss;
         private System.Windows.Forms.Button btn_edit_kauf_text_save;
         private System.Windows.Forms.Button btn_best;
+        private System.Windows.Forms.Timer tmr_break;
     }
 }
