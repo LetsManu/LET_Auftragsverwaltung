@@ -39,6 +39,8 @@
             this.cbx_tech = new System.Windows.Forms.ComboBox();
             this.btn_new_auf_save = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cBx_seller = new System.Windows.Forms.ComboBox();
             this.Projektbezeichnung = new System.Windows.Forms.Label();
             this.txt_auf_proj_ken = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -49,18 +51,17 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.tti_asd = new System.Windows.Forms.ToolTip(this.components);
+            this.btn_add_segel = new System.Windows.Forms.Button();
+            this.lBx_segel = new System.Windows.Forms.ListBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.cBx_seller = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tti_asd = new System.Windows.Forms.ToolTip(this.components);
+            this.tBx_segel_name = new System.Windows.Forms.TextBox();
+            this.cBx_segelform = new System.Windows.Forms.ComboBox();
+            this.cBx_stoff_kennung = new System.Windows.Forms.ComboBox();
+            this.cBx_stoff_hersteller = new System.Windows.Forms.ComboBox();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -165,6 +166,23 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Allgemein";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 86);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(53, 13);
+            this.label12.TabIndex = 23;
+            this.label12.Text = "Verkäufer";
+            // 
+            // cBx_seller
+            // 
+            this.cBx_seller.FormattingEnabled = true;
+            this.cBx_seller.Location = new System.Drawing.Point(113, 82);
+            this.cBx_seller.Name = "cBx_seller";
+            this.cBx_seller.Size = new System.Drawing.Size(144, 21);
+            this.cBx_seller.TabIndex = 24;
+            // 
             // Projektbezeichnung
             // 
             this.Projektbezeichnung.AutoSize = true;
@@ -249,15 +267,16 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.listBox1);
+            this.groupBox2.Controls.Add(this.btn_add_segel);
+            this.groupBox2.Controls.Add(this.lBx_segel);
             this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.comboBox3);
+            this.groupBox2.Controls.Add(this.cBx_stoff_hersteller);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.comboBox2);
-            this.groupBox2.Controls.Add(this.comboBox1);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.cBx_stoff_kennung);
+            this.groupBox2.Controls.Add(this.cBx_segelform);
+            this.groupBox2.Controls.Add(this.tBx_segel_name);
             this.groupBox2.Location = new System.Drawing.Point(557, 48);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(263, 299);
@@ -265,56 +284,23 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Segel";
             // 
-            // textBox1
+            // btn_add_segel
             // 
-            this.textBox1.Location = new System.Drawing.Point(82, 30);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(175, 20);
-            this.textBox1.TabIndex = 0;
-            this.tti_asd.SetToolTip(this.textBox1, "sdfsdfiuo");
+            this.btn_add_segel.Location = new System.Drawing.Point(170, 136);
+            this.btn_add_segel.Name = "btn_add_segel";
+            this.btn_add_segel.Size = new System.Drawing.Size(87, 23);
+            this.btn_add_segel.TabIndex = 29;
+            this.btn_add_segel.Text = "Hinzufügen";
+            this.btn_add_segel.UseVisualStyleBackColor = true;
+            this.btn_add_segel.Click += new System.EventHandler(this.btn_add_segel_Click);
             // 
-            // comboBox1
+            // lBx_segel
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(83, 57);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(174, 21);
-            this.comboBox1.TabIndex = 1;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(83, 109);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(174, 21);
-            this.comboBox2.TabIndex = 2;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 33);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 13);
-            this.label5.TabIndex = 23;
-            this.label5.Text = "Segel Name";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 112);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(75, 13);
-            this.label9.TabIndex = 24;
-            this.label9.Text = "Stoff Kennung";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 60);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(54, 13);
-            this.label10.TabIndex = 25;
-            this.label10.Text = "Segelform";
+            this.lBx_segel.FormattingEnabled = true;
+            this.lBx_segel.Location = new System.Drawing.Point(6, 172);
+            this.lBx_segel.Name = "lBx_segel";
+            this.lBx_segel.Size = new System.Drawing.Size(248, 121);
+            this.lBx_segel.TabIndex = 28;
             // 
             // label11
             // 
@@ -325,38 +311,65 @@
             this.label11.TabIndex = 27;
             this.label11.Text = "Stoff Hersteller";
             // 
-            // comboBox3
+            // label10
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(83, 84);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(174, 21);
-            this.comboBox3.TabIndex = 26;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 60);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(54, 13);
+            this.label10.TabIndex = 25;
+            this.label10.Text = "Segelform";
             // 
-            // listBox1
+            // label9
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(9, 134);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(248, 160);
-            this.listBox1.TabIndex = 28;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 112);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(75, 13);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "Stoff Kennung";
             // 
-            // label12
+            // label5
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 86);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(53, 13);
-            this.label12.TabIndex = 23;
-            this.label12.Text = "Verkäufer";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 33);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 13);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Segel Name";
             // 
-            // cBx_seller
+            // tBx_segel_name
             // 
-            this.cBx_seller.FormattingEnabled = true;
-            this.cBx_seller.Location = new System.Drawing.Point(113, 82);
-            this.cBx_seller.Name = "cBx_seller";
-            this.cBx_seller.Size = new System.Drawing.Size(144, 21);
-            this.cBx_seller.TabIndex = 24;
+            this.tBx_segel_name.Location = new System.Drawing.Point(87, 30);
+            this.tBx_segel_name.Name = "tBx_segel_name";
+            this.tBx_segel_name.Size = new System.Drawing.Size(170, 20);
+            this.tBx_segel_name.TabIndex = 0;
+            this.tti_asd.SetToolTip(this.tBx_segel_name, "sdfsdfiuo");
+            // 
+            // cBx_segelform
+            // 
+            this.cBx_segelform.FormattingEnabled = true;
+            this.cBx_segelform.Location = new System.Drawing.Point(88, 57);
+            this.cBx_segelform.Name = "cBx_segelform";
+            this.cBx_segelform.Size = new System.Drawing.Size(169, 21);
+            this.cBx_segelform.TabIndex = 1;
+            // 
+            // cBx_stoff_kennung
+            // 
+            this.cBx_stoff_kennung.FormattingEnabled = true;
+            this.cBx_stoff_kennung.Location = new System.Drawing.Point(88, 109);
+            this.cBx_stoff_kennung.Name = "cBx_stoff_kennung";
+            this.cBx_stoff_kennung.Size = new System.Drawing.Size(169, 21);
+            this.cBx_stoff_kennung.TabIndex = 2;
+            // 
+            // cBx_stoff_hersteller
+            // 
+            this.cBx_stoff_hersteller.FormattingEnabled = true;
+            this.cBx_stoff_hersteller.Location = new System.Drawing.Point(88, 84);
+            this.cBx_stoff_hersteller.Name = "cBx_stoff_hersteller";
+            this.cBx_stoff_hersteller.Size = new System.Drawing.Size(169, 21);
+            this.cBx_stoff_hersteller.TabIndex = 26;
+            this.cBx_stoff_hersteller.SelectedIndexChanged += new System.EventHandler(this.cBx_stoff_hersteller_SelectedIndexChanged);
             // 
             // UC_New_auftrag
             // 
@@ -400,17 +413,18 @@
         private System.Windows.Forms.TextBox txt_auf_proj_ken;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ToolTip tti_asd;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cBx_seller;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lBx_segel;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Button btn_add_segel;
+        private System.Windows.Forms.ComboBox cBx_stoff_hersteller;
+        private System.Windows.Forms.ComboBox cBx_stoff_kennung;
+        private System.Windows.Forms.ComboBox cBx_segelform;
+        private System.Windows.Forms.TextBox tBx_segel_name;
     }
 }

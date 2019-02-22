@@ -33,16 +33,16 @@
             // 
             // uC_New_auftrag1
             // 
-            this.uC_New_auftrag1.Location = new System.Drawing.Point(-3, -2);
+            this.uC_New_auftrag1.Location = new System.Drawing.Point(-5, -42);
             this.uC_New_auftrag1.Name = "uC_New_auftrag1";
-            this.uC_New_auftrag1.Size = new System.Drawing.Size(800, 452);
+            this.uC_New_auftrag1.Size = new System.Drawing.Size(837, 452);
             this.uC_New_auftrag1.TabIndex = 0;
             // 
             // Form_New_Auftrag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(824, 353);
             this.Controls.Add(this.uC_New_auftrag1);
             this.Name = "Form_New_Auftrag";
             this.Text = "Form_New_Auftrag";
