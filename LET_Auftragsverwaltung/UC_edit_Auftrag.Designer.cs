@@ -30,6 +30,7 @@
         /// </summary>
         private void InitializeComponent( )
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btn_del_stoff = new System.Windows.Forms.Button();
             this.btn_add_stoff = new System.Windows.Forms.Button();
@@ -67,6 +68,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tab_Allgemein = new System.Windows.Forms.TabPage();
             this.tab_kauf = new System.Windows.Forms.TabPage();
+            this.uC_edit_Kauf1 = new LET_Auftragsverwaltung.UC_edit_Kauf();
             this.tab_persennning = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.btn_persenning_save = new System.Windows.Forms.Button();
@@ -90,11 +92,9 @@
             this.label17 = new System.Windows.Forms.Label();
             this.dtp_sond_best = new System.Windows.Forms.DateTimePicker();
             this.dtp_sond_lief = new System.Windows.Forms.DateTimePicker();
-
-            this.uC_edit_Kauf1 = new LET_Auftragsverwaltung.UC_edit_Kauf(id);
-
+            this.tti_edit_Auftrag = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox4.SuspendLayout();
-            ( ( System.ComponentModel.ISupportInitialize ) ( this.pbx_new_auf ) ).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbx_new_auf)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -199,6 +199,7 @@
             this.txt_info_kauf.Size = new System.Drawing.Size(257, 108);
             this.txt_info_kauf.TabIndex = 5;
             this.txt_info_kauf.Text = "";
+            this.tti_edit_Auftrag.SetToolTip(this.txt_info_kauf, "Notizen für den technischen Bereich.");
             // 
             // label1
             // 
@@ -225,6 +226,7 @@
             this.txt_info_tech.Size = new System.Drawing.Size(257, 109);
             this.txt_info_tech.TabIndex = 24;
             this.txt_info_tech.Text = "";
+            this.tti_edit_Auftrag.SetToolTip(this.txt_info_tech, "Notizen für den kaufmänischen Bereich.");
             // 
             // groupBox3
             // 
@@ -262,6 +264,7 @@
             this.txt_auf_proj_ken.Name = "txt_auf_proj_ken";
             this.txt_auf_proj_ken.Size = new System.Drawing.Size(124, 20);
             this.txt_auf_proj_ken.TabIndex = 21;
+            this.tti_edit_Auftrag.SetToolTip(this.txt_auf_proj_ken, "Bezeichnung des Projekts, wenn nicht vorhanden kann dieser nachgetragen werden.");
             // 
             // label8
             // 
@@ -296,6 +299,7 @@
             this.txt_auftrag_nr.Name = "txt_auftrag_nr";
             this.txt_auftrag_nr.Size = new System.Drawing.Size(124, 20);
             this.txt_auftrag_nr.TabIndex = 9;
+            this.tti_edit_Auftrag.SetToolTip(this.txt_auftrag_nr, "Nummder des Auftrags, wenn nicht vorhanden kann dieser nachgetragen werden.");
             // 
             // date_erstell
             // 
@@ -305,6 +309,7 @@
             this.date_erstell.Name = "date_erstell";
             this.date_erstell.Size = new System.Drawing.Size(124, 20);
             this.date_erstell.TabIndex = 1;
+            this.tti_edit_Auftrag.SetToolTip(this.date_erstell, "Datum an dem das Projekt erstellt wurde.");
             this.date_erstell.Value = new System.DateTime(2018, 9, 3, 0, 0, 0, 0);
             // 
             // date_mont
@@ -314,6 +319,8 @@
             this.date_mont.Name = "date_mont";
             this.date_mont.Size = new System.Drawing.Size(124, 20);
             this.date_mont.TabIndex = 2;
+            this.tti_edit_Auftrag.SetToolTip(this.date_mont, "Montage Datum. Wird automatisch 1 Monat nach dem erstell Datum gesetz.\r\nKann auf " +
+        "das gewümschte Datum geändert werden.\r\n\r\n\r\n");
             this.date_mont.Value = new System.DateTime(2018, 9, 3, 0, 0, 0, 0);
             // 
             // label2
@@ -341,6 +348,7 @@
             this.cbx_tech.Name = "cbx_tech";
             this.cbx_tech.Size = new System.Drawing.Size(124, 21);
             this.cbx_tech.TabIndex = 17;
+            this.tti_edit_Auftrag.SetToolTip(this.cbx_tech, "Liste aller verfügbaren Techniker.");
             // 
             // cbx_verant
             // 
@@ -349,6 +357,7 @@
             this.cbx_verant.Name = "cbx_verant";
             this.cbx_verant.Size = new System.Drawing.Size(124, 21);
             this.cbx_verant.TabIndex = 16;
+            this.tti_edit_Auftrag.SetToolTip(this.cbx_verant, "Liste aller verfügbaren Verantwortlichen");
             // 
             // groupBox2
             // 
@@ -431,6 +440,7 @@
             this.cbx_auftragsstatus.Name = "cbx_auftragsstatus";
             this.cbx_auftragsstatus.Size = new System.Drawing.Size(124, 21);
             this.cbx_auftragsstatus.TabIndex = 33;
+            this.tti_edit_Auftrag.SetToolTip(this.cbx_auftragsstatus, "Liste aller Staten die ein Auftrags haben kann.");
             // 
             // btn_edit_infos
             // 
@@ -468,16 +478,22 @@
             this.tab_Allgemein.Click += new System.EventHandler(this.tab_Allgemein_Click);
             // 
             // tab_kauf
-            //
-            
+            // 
             this.tab_kauf.Controls.Add(this.uC_edit_Kauf1);
-  
             this.tab_kauf.Location = new System.Drawing.Point(4, 22);
             this.tab_kauf.Name = "tab_kauf";
             this.tab_kauf.Size = new System.Drawing.Size(1225, 374);
             this.tab_kauf.TabIndex = 5;
             this.tab_kauf.Text = "Kaufmänisch";
             this.tab_kauf.UseVisualStyleBackColor = true;
+            // 
+            // uC_edit_Kauf1
+            // 
+            this.uC_edit_Kauf1.AutoSize = true;
+            this.uC_edit_Kauf1.Location = new System.Drawing.Point(3, 3);
+            this.uC_edit_Kauf1.Name = "uC_edit_Kauf1";
+            this.uC_edit_Kauf1.Size = new System.Drawing.Size(664, 230);
+            this.uC_edit_Kauf1.TabIndex = 0;
             // 
             // tab_persennning
             // 
@@ -700,14 +716,6 @@
             this.dtp_sond_lief.Size = new System.Drawing.Size(200, 20);
             this.dtp_sond_lief.TabIndex = 1;
             // 
-            // uC_edit_Kauf1
-            // 
-            this.uC_edit_Kauf1.AutoSize = true;
-            this.uC_edit_Kauf1.Location = new System.Drawing.Point(3, 3);
-            this.uC_edit_Kauf1.Name = "uC_edit_Kauf1";
-            this.uC_edit_Kauf1.Size = new System.Drawing.Size(664, 230);
-            this.uC_edit_Kauf1.TabIndex = 0;
-            // 
             // UC_edit_Auftrag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -717,7 +725,7 @@
             this.Size = new System.Drawing.Size(1235, 406);
             this.Load += new System.EventHandler(this.UC_edit_Auftrag_Load);
             this.groupBox4.ResumeLayout(false);
-            ( ( System.ComponentModel.ISupportInitialize ) ( this.pbx_new_auf ) ).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbx_new_auf)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -805,5 +813,6 @@
         private System.Windows.Forms.DateTimePicker dtp_sond_lief;
         private System.Windows.Forms.TabPage tab_kauf;
         private UC_edit_Kauf uC_edit_Kauf1;
+        private System.Windows.Forms.ToolTip tti_edit_Auftrag;
     }
 }
