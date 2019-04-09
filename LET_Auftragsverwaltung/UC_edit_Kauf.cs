@@ -48,10 +48,6 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-        public UC_edit_Kauf()
-        {
-            //TODO wird vom VS Designer gebraucht der designer is so a bullshit?!?!?!?!?!??!?!?!?!!?!!!!!!!!!!!!!!
-        }
 
         private void cbx_kauf_edit_auf_SelectedIndexChanged(object sender, EventArgs e)
         {

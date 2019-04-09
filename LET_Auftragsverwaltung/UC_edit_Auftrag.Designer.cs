@@ -69,7 +69,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tab_Allgemein = new System.Windows.Forms.TabPage();
             this.tab_kauf = new System.Windows.Forms.TabPage();
-            this.uC_edit_Kauf1 = new LET_Auftragsverwaltung.UC_edit_Kauf();
+            this.uC_edit_Kauf1 = new LET_Auftragsverwaltung.UC_edit_Kauf(id);
             this.tab_persennning = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.btn_persenning_save = new System.Windows.Forms.Button();
@@ -476,7 +476,7 @@
             this.tab_Allgemein.Location = new System.Drawing.Point(4, 22);
             this.tab_Allgemein.Name = "tab_Allgemein";
             this.tab_Allgemein.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Allgemein.Size = new System.Drawing.Size(939, 374);
+            this.tab_Allgemein.Size = new System.Drawing.Size(942, 361);
             this.tab_Allgemein.TabIndex = 0;
             this.tab_Allgemein.Text = "Allgemein";
             this.tab_Allgemein.UseVisualStyleBackColor = true;
@@ -505,7 +505,7 @@
             this.tab_persennning.Controls.Add(this.groupBox8);
             this.tab_persennning.Location = new System.Drawing.Point(4, 22);
             this.tab_persennning.Name = "tab_persennning";
-            this.tab_persennning.Size = new System.Drawing.Size(939, 374);
+            this.tab_persennning.Size = new System.Drawing.Size(942, 361);
             this.tab_persennning.TabIndex = 2;
             this.tab_persennning.Text = "Persenning";
             this.tab_persennning.UseVisualStyleBackColor = true;
@@ -574,7 +574,7 @@
             this.tab_schatten.Controls.Add(this.groupBox7);
             this.tab_schatten.Location = new System.Drawing.Point(4, 22);
             this.tab_schatten.Name = "tab_schatten";
-            this.tab_schatten.Size = new System.Drawing.Size(939, 374);
+            this.tab_schatten.Size = new System.Drawing.Size(942, 361);
             this.tab_schatten.TabIndex = 3;
             this.tab_schatten.Text = "Schatten";
             this.tab_schatten.UseVisualStyleBackColor = true;
@@ -664,7 +664,7 @@
             this.tab_sond.Controls.Add(this.groupBox9);
             this.tab_sond.Location = new System.Drawing.Point(4, 22);
             this.tab_sond.Name = "tab_sond";
-            this.tab_sond.Size = new System.Drawing.Size(939, 374);
+            this.tab_sond.Size = new System.Drawing.Size(942, 361);
             this.tab_sond.TabIndex = 4;
             this.tab_sond.Text = "Sonderteile";
             this.tab_sond.UseVisualStyleBackColor = true;

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.uC_edit_Kauf1 = new LET_Auftragsverwaltung.UC_edit_Kauf();
+            this.uC_edit_Kauf1 = new LET_Auftragsverwaltung.UC_edit_Kauf(1);
             this.SuspendLayout();
             // 
             // uC_edit_Kauf1
