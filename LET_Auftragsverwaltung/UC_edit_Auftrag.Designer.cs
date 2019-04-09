@@ -69,7 +69,9 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tab_Allgemein = new System.Windows.Forms.TabPage();
             this.tab_kauf = new System.Windows.Forms.TabPage();
-            this.uC_edit_Kauf1 = new LET_Auftragsverwaltung.UC_edit_Kauf(id);
+            this.uC_edit_Kauf = new LET_Auftragsverwaltung.UC_edit_Kauf(id);
+            //this.uC_edit_Kauf = new LET_Auftragsverwaltung.UC_edit_Kauf(1);
+            //DESIGN UC_Edit_auftrag
             this.tab_persennning = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.btn_persenning_save = new System.Windows.Forms.Button();
@@ -484,7 +486,7 @@
             // 
             // tab_kauf
             // 
-            this.tab_kauf.Controls.Add(this.uC_edit_Kauf1);
+            this.tab_kauf.Controls.Add(this.uC_edit_Kauf);
             this.tab_kauf.Location = new System.Drawing.Point(4, 22);
             this.tab_kauf.Name = "tab_kauf";
             this.tab_kauf.Size = new System.Drawing.Size(942, 361);
@@ -494,11 +496,11 @@
             // 
             // uC_edit_Kauf1
             // 
-            this.uC_edit_Kauf1.AutoSize = true;
-            this.uC_edit_Kauf1.Location = new System.Drawing.Point(3, 3);
-            this.uC_edit_Kauf1.Name = "uC_edit_Kauf1";
-            this.uC_edit_Kauf1.Size = new System.Drawing.Size(936, 355);
-            this.uC_edit_Kauf1.TabIndex = 0;
+            this.uC_edit_Kauf.AutoSize = true;
+            this.uC_edit_Kauf.Location = new System.Drawing.Point(3, 3);
+            this.uC_edit_Kauf.Name = "uC_edit_Kauf";
+            this.uC_edit_Kauf.Size = new System.Drawing.Size(936, 355);
+            this.uC_edit_Kauf.TabIndex = 0;
             // 
             // tab_persennning
             // 
@@ -809,7 +811,7 @@
         private System.Windows.Forms.DateTimePicker dtp_sond_best;
         private System.Windows.Forms.DateTimePicker dtp_sond_lief;
         private System.Windows.Forms.TabPage tab_kauf;
-        private UC_edit_Kauf uC_edit_Kauf1;
+        private UC_edit_Kauf uC_edit_Kauf;
         private System.Windows.Forms.ToolTip tti_edit_Auftrag;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btn_add_segel;
