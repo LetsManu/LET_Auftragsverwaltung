@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_New_Auftrag));
             this.uC_New_auftrag1 = new LET_Auftragsverwaltung.UC_New_auftrag();
             this.SuspendLayout();
             // 
@@ -44,8 +45,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(824, 353);
             this.Controls.Add(this.uC_New_auftrag1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_New_Auftrag";
-            this.Text = "Form_New_Auftrag";
+            this.Text = "Neuen Auftrag anlegen";
             this.ResumeLayout(false);
 
         }
