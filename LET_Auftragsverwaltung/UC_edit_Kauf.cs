@@ -45,6 +45,10 @@ namespace LET_Auftragsverwaltung
                 UC_Kauf_Text_Anz();
                 UC_Kauf_Text_Schluss();
                 txt_check_if_requested();
+
+                txt_kauf_anz_best.Visible = false;
+                txt_kauf_auf_best.Visible = false;
+                txt_schluss_best.Visible = false;
             }
         }
 

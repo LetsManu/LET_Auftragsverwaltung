@@ -20,21 +20,28 @@ namespace LET_Auftragsverwaltung
 
             InitializeComponent();
 
-            this.BringToFront();
-
-            SQL_methods.Open();
-            string sql = "SELECT concat(concat(auftraege.Auftrags_NR, ', '), auftraege.Projektbezeichnung) AS title FROM auftraege WHERE auftraege.id = " + id;
-            OdbcCommand cmd = new OdbcCommand(sql, DB.Connection);
-            OdbcDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            if (!this.DesignMode)
             {
-                this.Text = Convert.ToString(reader[0]);
+
+                this.BringToFront();
+
+                SQL_methods.Open();
+                string sql = "SELECT concat(concat(auftraege.Auftrags_NR, ', '), auftraege.Projektbezeichnung) AS title FROM auftraege WHERE auftraege.id = " + id;
+                OdbcCommand cmd = new OdbcCommand(sql, DB.Connection);
+                OdbcDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    this.Text = Convert.ToString(reader[0]);
+                }
             }
         }
 
         private void Form_Edit_Auftrag_Leave(object sender, EventArgs e)
         {
-            UC_Overview.Update_Overview();
+            if (this.DesignMode)
+            {
+                UC_Overview.Update_Overview();
+            }
         }
     }
 }

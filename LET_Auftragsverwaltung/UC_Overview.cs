@@ -86,7 +86,18 @@ namespace LET_Auftragsverwaltung
             {
                 reload = false;
 
-             //oLV_Overview.Items.Clear();  //is nor working because then the olv never shows anything
+                data.Clear();
+
+                /*
+                //oLV_Overview.Items.Clear();  //is nor working because then the olv never shows anything
+                System.Collections.IList list = oLV_Overview.Items;
+                for (int i = 0; i < list.Count; i++)
+                {
+                    ListViewItem result = (ListViewItem)list[i];
+                    oLV_Overview.Items.Remove(result);
+                }
+                oLV_Overview.Update();*/
+                
 
                 //oLV_Overview.UseCellFormatEvents = true;
                 foreach (var result in oLV_Overview.AllColumns)

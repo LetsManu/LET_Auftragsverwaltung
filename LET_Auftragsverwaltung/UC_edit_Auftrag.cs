@@ -400,10 +400,17 @@ namespace LET_Auftragsverwaltung
                 {
                     SQL_methods.SQL_exec(string.Format(
                         "UPDATE auftraege SET Auftrags_NR = '{0}', Fertigungsstatus = {1}, Projektverantwortlicher = {2}, Planer_Techniker = {3}, Projektbezeichnung = '{4}', Montage_Datum  = '{5}', Notitz_Kauf = '{6}', Notitz_Tech = '{7}', Erstelldatum = '{8}', Verkäufer = {9} WHERE ID = {10}",
-                        txt_auftrag_nr.Text, cbx_auftragsstatus.SelectedValue, cbx_verant.SelectedValue,
+                        txt_auftrag_nr.Text, 
+                        cbx_auftragsstatus.SelectedValue, 
+                        cbx_verant.SelectedValue,
                         cbx_tech.SelectedValue,
-                        txt_auf_proj_ken.Text, date_mont.Value.ToString("yyyy-MM-dd"), txt_info_kauf.Text,
-                        txt_info_tech.Text, date_erstell.Value.ToString("yyyy-MM-dd"), id));
+                        txt_auf_proj_ken.Text, 
+                        date_mont.Value.ToString("yyyy-MM-dd"), 
+                        txt_info_kauf.Text,
+                        txt_info_tech.Text, 
+                        date_erstell.Value.ToString("yyyy-MM-dd"), 
+                        cbx_seller_edit.SelectedValue,
+                        id));
 
                     for (int i = 0; i < lBx_segel.Items.Count; i++)
                     {

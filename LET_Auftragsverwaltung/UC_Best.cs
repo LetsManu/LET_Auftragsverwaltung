@@ -18,11 +18,13 @@ namespace LET_Auftragsverwaltung
 
         public UC_Best(int a_ID_)
         {
-            a_id = a_ID_;
 
-            InitializeComponent();
-            UC_Best_Check();
+                a_id = a_ID_;
 
+                InitializeComponent();
+                UC_Best_Check();
+
+            
         }
 
         private void UC_Best_Load(object sender, EventArgs e)
@@ -85,7 +87,7 @@ namespace LET_Auftragsverwaltung
 
                 sql_reader.Close();
 
-                
+
 
                 if (check)
                 {
@@ -107,7 +109,7 @@ namespace LET_Auftragsverwaltung
 
                 sql_reader.Close();
 
-                
+
 
                 if (check)
                 {
@@ -129,7 +131,7 @@ namespace LET_Auftragsverwaltung
 
                 sql_reader.Close();
 
-                
+
 
                 if (check)
                 {

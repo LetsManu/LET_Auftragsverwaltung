@@ -28,23 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.uC_edit_Auftrag1 = new LET_Auftragsverwaltung.UC_edit_Auftrag(this.id);
-           // this.uC_edit_Auftrag1 = new LET_Auftragsverwaltung.UC_edit_Auftrag();
+            this.uC_edit_Auftrag = new LET_Auftragsverwaltung.UC_edit_Auftrag(this.id);
+            //this.uC_edit_Auftrag = new LET_Auftragsverwaltung.UC_edit_Auftrag(1); 
+            //DESIGN Form_Edit_auftrag
+
             this.SuspendLayout();
             // 
             // uC_edit_Auftrag1
             // 
-            this.uC_edit_Auftrag1.Location = new System.Drawing.Point(2, 2);
-            this.uC_edit_Auftrag1.Name = "uC_edit_Auftrag1";
-            this.uC_edit_Auftrag1.Size = new System.Drawing.Size(1235, 406);
-            this.uC_edit_Auftrag1.TabIndex = 0;
+            this.uC_edit_Auftrag.Location = new System.Drawing.Point(2, 2);
+            this.uC_edit_Auftrag.Name = "uC_edit_Auftrag1";
+            this.uC_edit_Auftrag.Size = new System.Drawing.Size(1235, 406);
+            this.uC_edit_Auftrag.TabIndex = 0;
             // 
             // Form_Edit_Auftrag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1238, 408);
-            this.Controls.Add(this.uC_edit_Auftrag1);
+            this.ClientSize = new System.Drawing.Size(956, 395);
+            this.Controls.Add(this.uC_edit_Auftrag);
             this.Name = "Form_Edit_Auftrag";
             this.Text = "Form_Edit_Auftrag";
             this.Leave += new System.EventHandler(this.Form_Edit_Auftrag_Leave);
@@ -54,6 +56,6 @@
 
         #endregion
 
-        private UC_edit_Auftrag uC_edit_Auftrag1;
+        private UC_edit_Auftrag uC_edit_Auftrag;
     }
 }
