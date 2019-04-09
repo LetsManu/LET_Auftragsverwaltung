@@ -69,6 +69,7 @@ namespace LET_Auftragsverwaltung
                 //UC_edit_auftrag_fill_cbx_lief();
                 //UC_Edit_Auftrag_fill_lbx_stoff();
                 UC_Edit_Auftrag_fill_cbx_schatten_pers();
+                UC_Edit_Auftrag_fill_cbx_seller();
 
                 #endregion
 
@@ -144,6 +145,32 @@ namespace LET_Auftragsverwaltung
                 }
             }
         }
+
+        private void UC_Edit_Auftrag_fill_cbx_seller()
+        {
+            try
+            {
+
+                DataTable dtSeller = SQL_methods.Fill_Box("SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 7");
+
+
+
+                cbx_seller_edit.DataSource = dtSeller;
+                cbx_seller_edit.ValueMember = "P_ID";
+                cbx_seller_edit.DisplayMember = "Name";
+
+
+                if (cbx_seller_edit.Items.Count > 0)
+                {
+                    cbx_seller_edit.SelectedIndex = 0;
+                }
+            }
+            catch (Exception f)
+            {
+                MessageBox.Show("Fehler in der SQL Abfrage(Edit Auftrag: Fill CBX Seller): \n\n" + f.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+    
 
         private void UC_Edit_Auftrag_fill_cbx_verant( )
         {
@@ -372,7 +399,7 @@ namespace LET_Auftragsverwaltung
                 try
                 {
                     SQL_methods.SQL_exec(string.Format(
-                        "UPDATE auftraege SET Auftrags_NR = '{0}', Fertigungsstatus = {1}, Projektverantwortlicher = {2}, Planer_Techniker = {3}, Projektbezeichnung = '{4}', Montage_Datum  = '{5}', Notitz_Kauf = '{6}', Notitz_Tech = '{7}', Erstelldatum = '{8}' WHERE ID = {9}",
+                        "UPDATE auftraege SET Auftrags_NR = '{0}', Fertigungsstatus = {1}, Projektverantwortlicher = {2}, Planer_Techniker = {3}, Projektbezeichnung = '{4}', Montage_Datum  = '{5}', Notitz_Kauf = '{6}', Notitz_Tech = '{7}', Erstelldatum = '{8}', Verkäufer = {9} WHERE ID = {10}",
                         txt_auftrag_nr.Text, cbx_auftragsstatus.SelectedValue, cbx_verant.SelectedValue,
                         cbx_tech.SelectedValue,
                         txt_auf_proj_ken.Text, date_mont.Value.ToString("yyyy-MM-dd"), txt_info_kauf.Text,
