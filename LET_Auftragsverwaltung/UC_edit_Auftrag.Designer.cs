@@ -466,7 +466,7 @@
             this.tabControl1.Location = new System.Drawing.Point(2, 5);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(947, 400);
+            this.tabControl1.Size = new System.Drawing.Size(950, 387);
             this.tabControl1.TabIndex = 35;
             // 
             // tab_Allgemein
@@ -487,7 +487,7 @@
             this.tab_kauf.Controls.Add(this.uC_edit_Kauf1);
             this.tab_kauf.Location = new System.Drawing.Point(4, 22);
             this.tab_kauf.Name = "tab_kauf";
-            this.tab_kauf.Size = new System.Drawing.Size(939, 374);
+            this.tab_kauf.Size = new System.Drawing.Size(942, 361);
             this.tab_kauf.TabIndex = 5;
             this.tab_kauf.Text = "Kaufmänisch";
             this.tab_kauf.UseVisualStyleBackColor = true;
@@ -497,7 +497,7 @@
             this.uC_edit_Kauf1.AutoSize = true;
             this.uC_edit_Kauf1.Location = new System.Drawing.Point(3, 3);
             this.uC_edit_Kauf1.Name = "uC_edit_Kauf1";
-            this.uC_edit_Kauf1.Size = new System.Drawing.Size(664, 230);
+            this.uC_edit_Kauf1.Size = new System.Drawing.Size(936, 355);
             this.uC_edit_Kauf1.TabIndex = 0;
             // 
             // tab_persennning
@@ -734,7 +734,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl1);
             this.Name = "UC_edit_Auftrag";
-            this.Size = new System.Drawing.Size(952, 395);
+            this.Size = new System.Drawing.Size(1328, 715);
             this.Load += new System.EventHandler(this.UC_edit_Auftrag_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
