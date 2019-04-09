@@ -14,11 +14,11 @@ namespace LET_Auftragsverwaltung
     class DB
     {
         private static OdbcConnection connection = null;
-        private static bool Is_this_mb = "M80-AC016500071" == System_Info.GetMotherBoardID();
+        private static readonly bool Is_this_mb = "unique ID" == System_Info.GetMotherBoardID();
 
         public static OdbcConnection Connection => connection ?? (connection = new OdbcConnection(Connectionstring));
 
-        private static string Login_name => "root";
+        private static string Login_name => "login name";
 
         private static string Connectionstring => $"Driver={"MySQL ODBC 5.3 Unicode Driver"};Server={Server_IP};Port={Port};Database={Database};User={Login_name};Password={Login_pw};Option=3;";
 
@@ -26,8 +26,8 @@ namespace LET_Auftragsverwaltung
         {
             get
             {
-                if (Is_this_mb) return "auftrags";
-                else return "auftrags";
+                if (Is_this_mb) return "db name";
+                else return "db name2";
             }
         }
 
@@ -35,8 +35,8 @@ namespace LET_Auftragsverwaltung
         {
             get
             {
-                if (Is_this_mb) return "";
-                else return "cola0815";
+                if (Is_this_mb) return "password";
+                else return "password2";
             }
         }
 
@@ -45,7 +45,7 @@ namespace LET_Auftragsverwaltung
             get
             {
                 if (Is_this_mb) return "localhost";
-                else return "192.168.16.211";
+                else return "10.0.0.1";
             }
         }
 
@@ -54,7 +54,7 @@ namespace LET_Auftragsverwaltung
             get
             {
                 if (Is_this_mb) return "3306";
-                else return "3306";    //1337            
+                else return "3306";             
             }
         }
     }

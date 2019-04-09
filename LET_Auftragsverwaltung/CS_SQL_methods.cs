@@ -15,10 +15,10 @@ namespace LET_Auftragsverwaltung
         static private OdbcConnection Connection => DB.Connection;
 
         /// <summary>
-        /// Füllt DataTables mit der gewünschten SQL-Query
+        /// Fill DataTables with returnvalues of SQL command
         /// </summary>
-        /// <param name="sql"></param>
-        /// <returns></returns>
+        /// <param name="sql">sql command</param>
+        /// <returns>Datatable with the returnvalues the sql command</returns>
         static public DataTable Fill_Box(string sql)
         {
 
@@ -30,9 +30,9 @@ namespace LET_Auftragsverwaltung
         }
 
         /// <summary>
-        /// Führt den SQL-Befehl aus. Es wird kein Con.Open benötigt!
+        /// Executes SQL command, use of Con.open is not required.
         /// </summary>
-        /// <param name="sql"></param>
+        /// <param name="sql">sql command</param>
         static public void SQL_exec(string sql)
         {
             Open();
@@ -44,12 +44,12 @@ namespace LET_Auftragsverwaltung
 
 
         /// <summary>
-        /// Benützen um Connection zu öffnen
-        /// Wenn NUR diese Methode zum öffnen benützt wird braucht man KEIN Close mehr!
+        /// Used to open the Connection, without needing to close it.
+        /// Only uses it when it doesn't matter if the Connection is longer opened than needed
         /// </summary>
         static public void Open( )
         {
-            Connection.Close(); //TODO add Exception thingy
+            Connection.Close(); 
             //TODO Connection.State
             Connection.Open();
         }

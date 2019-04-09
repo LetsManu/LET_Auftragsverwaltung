@@ -336,7 +336,7 @@ namespace LET_Auftragsverwaltung
                     {
                         int segel_ID = ( ( Segel ) lBx_segel.Items[i] ).ID;
                         SQL_methods.SQL_exec(string.Format(
-                            "INSERT INTO auftraege_segel (id_auftrag,id_segel) VALUES ({0}, {1})",
+                            "INSERT INTO  auftraege_segel (id_auftrag, id_segel)SELECT {0},{1} FROM dual WHERE NOT EXISTS (SELECT * FROM auftraege_segel WHERE id_auftrag = {0} AND id_segel = {1});",
                             auf_id, segel_ID));
                     }
 

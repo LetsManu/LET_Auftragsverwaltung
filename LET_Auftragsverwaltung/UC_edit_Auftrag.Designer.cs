@@ -37,6 +37,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txt_info_tech = new System.Windows.Forms.RichTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.cbx_seller_edit = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.Projektbezeichnung = new System.Windows.Forms.Label();
             this.cbx_auftragsstatus = new System.Windows.Forms.ComboBox();
@@ -92,8 +94,6 @@
             this.dtp_sond_best = new System.Windows.Forms.DateTimePicker();
             this.dtp_sond_lief = new System.Windows.Forms.DateTimePicker();
             this.tti_edit_Auftrag = new System.Windows.Forms.ToolTip(this.components);
-            this.label20 = new System.Windows.Forms.Label();
-            this.cbx_seller_edit = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.Auftraginfos.SuspendLayout();
@@ -183,6 +183,24 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Allgemein";
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(6, 133);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(53, 13);
+            this.label20.TabIndex = 35;
+            this.label20.Text = "Verkäufer";
+            // 
+            // cbx_seller_edit
+            // 
+            this.cbx_seller_edit.FormattingEnabled = true;
+            this.cbx_seller_edit.Location = new System.Drawing.Point(124, 129);
+            this.cbx_seller_edit.Name = "cbx_seller_edit";
+            this.cbx_seller_edit.Size = new System.Drawing.Size(170, 21);
+            this.cbx_seller_edit.TabIndex = 36;
+            this.tti_edit_Auftrag.SetToolTip(this.cbx_seller_edit, "Liste aller verfügbaren Techniker.");
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -191,7 +209,6 @@
             this.label5.Size = new System.Drawing.Size(74, 13);
             this.label5.TabIndex = 34;
             this.label5.Text = "Auftragsstatus";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // Projektbezeichnung
             // 
@@ -210,7 +227,6 @@
             this.cbx_auftragsstatus.Size = new System.Drawing.Size(170, 21);
             this.cbx_auftragsstatus.TabIndex = 33;
             this.tti_edit_Auftrag.SetToolTip(this.cbx_auftragsstatus, "Liste aller Staten die ein Auftrags haben kann.");
-            this.cbx_auftragsstatus.SelectedIndexChanged += new System.EventHandler(this.cbx_auftragsstatus_SelectedIndexChanged);
             // 
             // txt_auf_proj_ken
             // 
@@ -228,7 +244,6 @@
             this.label8.Size = new System.Drawing.Size(78, 13);
             this.label8.TabIndex = 20;
             this.label8.Text = "Montagedatum";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label7
             // 
@@ -238,7 +253,6 @@
             this.label7.Size = new System.Drawing.Size(64, 13);
             this.label7.TabIndex = 19;
             this.label7.Text = "Erstelldatum";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label6
             // 
@@ -267,7 +281,6 @@
             this.date_erstell.TabIndex = 1;
             this.tti_edit_Auftrag.SetToolTip(this.date_erstell, "Datum an dem das Projekt erstellt wurde.");
             this.date_erstell.Value = new System.DateTime(2018, 9, 3, 0, 0, 0, 0);
-            this.date_erstell.ValueChanged += new System.EventHandler(this.date_erstell_ValueChanged);
             // 
             // date_mont
             // 
@@ -279,7 +292,6 @@
             this.tti_edit_Auftrag.SetToolTip(this.date_mont, "Montage Datum. Wird automatisch 1 Monat nach dem erstell Datum gesetz.\r\nKann auf " +
         "das gewümschte Datum geändert werden.\r\n\r\n\r\n");
             this.date_mont.Value = new System.DateTime(2018, 9, 3, 0, 0, 0, 0);
-            this.date_mont.ValueChanged += new System.EventHandler(this.date_mont_ValueChanged);
             // 
             // label2
             // 
@@ -356,6 +368,7 @@
             this.btn_add_segel.TabIndex = 29;
             this.btn_add_segel.Text = "Hinzufügen";
             this.btn_add_segel.UseVisualStyleBackColor = true;
+            this.btn_add_segel.Click += new System.EventHandler(this.btn_add_segel_Click);
             // 
             // lBx_segel
             // 
@@ -381,6 +394,7 @@
             this.cBx_stoff_hersteller.Name = "cBx_stoff_hersteller";
             this.cBx_stoff_hersteller.Size = new System.Drawing.Size(206, 21);
             this.cBx_stoff_hersteller.TabIndex = 26;
+            this.cBx_stoff_hersteller.SelectedIndexChanged += new System.EventHandler(this.cBx_stoff_hersteller_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -713,24 +727,6 @@
             this.dtp_sond_lief.Size = new System.Drawing.Size(200, 20);
             this.dtp_sond_lief.TabIndex = 1;
             this.tti_edit_Auftrag.SetToolTip(this.dtp_sond_lief, "Liederdatm der Sonderteile");
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(6, 133);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(53, 13);
-            this.label20.TabIndex = 35;
-            this.label20.Text = "Verkäufer";
-            // 
-            // cbx_seller_edit
-            // 
-            this.cbx_seller_edit.FormattingEnabled = true;
-            this.cbx_seller_edit.Location = new System.Drawing.Point(124, 129);
-            this.cbx_seller_edit.Name = "cbx_seller_edit";
-            this.cbx_seller_edit.Size = new System.Drawing.Size(170, 21);
-            this.cbx_seller_edit.TabIndex = 36;
-            this.tti_edit_Auftrag.SetToolTip(this.cbx_seller_edit, "Liste aller verfügbaren Techniker.");
             // 
             // UC_edit_Auftrag
             // 

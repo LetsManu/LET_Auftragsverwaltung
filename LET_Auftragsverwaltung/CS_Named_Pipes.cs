@@ -14,9 +14,9 @@ namespace LET_Auftragsverwaltung
 {
     static class Named_Pipes
     {
-        public static void Start( )
+        public static void Start()
         {
-            Task.Factory.StartNew(( ) =>
+            Task.Factory.StartNew(() =>
             {
                 StreamReader reader;
                 StreamWriter writer;
@@ -31,13 +31,13 @@ namespace LET_Auftragsverwaltung
                         var line = reader.ReadLine();
                         if (line != null)
                         {
-                            writer.WriteLine("Thank ya, you are our man!");
+                            writer.WriteLine("Thanks");
                             writer.Flush();
                             var split_line = line.Split(';');
                             switch (split_line[0])
                             {
                                 case "Edit_Auftrag":
-                                    if (split_line.Last() == "LET_ENDE")    //All ifs are to ensure the string comes from an safe source (at least somewhat safe...)
+                                    if (split_line.Last() == "LET_ENDE")
                                     {
                                         if (split_line[3] == "LET_SPACE")
                                         {
@@ -53,7 +53,7 @@ namespace LET_Auftragsverwaltung
                                     }
                                     break;
                                 default:
-
+                                    writer.WriteLine("not my job atm, sorry.");
                                     break;
                             }
                         }

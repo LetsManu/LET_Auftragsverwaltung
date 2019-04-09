@@ -35,6 +35,7 @@ namespace LET_Auftragsverwaltung
 
         //ID zur Übergabe
         private int id = 0;
+        private bool is_startup = false;
 
         public UC_edit_Auftrag(int id_)
         {
@@ -57,9 +58,12 @@ namespace LET_Auftragsverwaltung
             {
                 #region FillKlassen
 
+                UC_New_auftrag_fill_cbx_lief();
+                UC_New_auftrag_fill_cbx_stoff_kennung();
                 UC_edit_Auftrag_fill_cbx_status();
                 UC_Edit_Auftrag_fill_cbx_verant();
                 UC_Editt_auftrag_fill_cbx_tech();
+                UC_Edit_Auftrag_fill_segel();
                 //UC_Edit_Auftrag_fill_lbx_auftrag();
                 //UC_Edit_Auftrag_fill_cbx_art();
                 //UC_edit_auftrag_fill_cbx_lief();
@@ -75,7 +79,7 @@ namespace LET_Auftragsverwaltung
                 OdbcDataReader sqlReader = cmd.ExecuteReader();
                 if (sqlReader.Read())
                 {
-                    txt_auftrag_nr.Text = ( string ) sqlReader[1];
+                    txt_auftrag_nr.Text = ( string ) sqlReader[1];//TODO why begins with 1 and not 0? cause 0 is ID apparently
                     cbx_auftragsstatus.SelectedValue = sqlReader[2];
                     date_erstell.Value = Convert.ToDateTime(sqlReader[3]);
                     cbx_verant.SelectedValue = sqlReader[6];
@@ -92,7 +96,22 @@ namespace LET_Auftragsverwaltung
             }
         }
 
+
+
         #region Definition Fill Klassen
+
+        private void UC_Edit_Auftrag_fill_segel( )
+        {
+            string sql = "SELECT segel.name AS name, segel.form AS form, stoff.Stoff AS stoff, lieferant.Lieferant AS lieferant, segel.id AS id FROM auftraege_segel INNER JOIN segel ON auftraege_segel.id_segel = segel.id INNER JOIN stoff ON segel.stoff_kennung = stoff.ST_ID INNER JOIN stoff_lieferant ON stoff.ST_ID = stoff_lieferant.ST_ID INNER JOIN lieferant ON stoff_lieferant.L_ID = lieferant.L_ID WHERE auftraege_segel.id_auftrag = " + id;
+            OdbcCommand cmd = new OdbcCommand(sql, Connection);
+            SQL_methods.Open();
+            OdbcDataReader sqlReader = cmd.ExecuteReader();
+            while (sqlReader.Read())
+            {
+                Segel segel = new Segel(( string ) sqlReader["name"], ( string ) sqlReader["form"], ( string ) sqlReader["stoff"], (string)sqlReader["lieferant"], (int)sqlReader["id"]);
+                lBx_segel.Items.Add(segel);
+            }
+        }
 
         private void UC_edit_Auftrag_fill_cbx_status( )
         {
@@ -205,6 +224,7 @@ namespace LET_Auftragsverwaltung
             }
 
         }
+        
 
         private void UC_Edit_Auftrag_fill_cbx_art( )
         {
@@ -357,6 +377,14 @@ namespace LET_Auftragsverwaltung
                         cbx_tech.SelectedValue,
                         txt_auf_proj_ken.Text, date_mont.Value.ToString("yyyy-MM-dd"), txt_info_kauf.Text,
                         txt_info_tech.Text, date_erstell.Value.ToString("yyyy-MM-dd"), id));
+
+                    for (int i = 0; i < lBx_segel.Items.Count; i++)
+                    {
+                        int segel_ID = ( ( Segel ) lBx_segel.Items[i] ).ID;
+                        SQL_methods.SQL_exec(string.Format(
+                            "INSERT INTO  auftraege_segel (id_auftrag, id_segel)SELECT {0},{1} FROM dual WHERE NOT EXISTS (SELECT * FROM auftraege_segel WHERE id_auftrag = {0} AND id_segel = {1});",
+                            id, segel_ID));
+                    }
                 }
                 catch (Exception f)
                 {
@@ -827,34 +855,105 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-        private void date_erstell_ValueChanged(object sender, EventArgs e)
+        private void UC_New_auftrag_fill_cbx_lief( )
         {
+            if (!this.DesignMode)
+            {
+                try
+                {
+                    is_startup = true;
+                    cBx_stoff_hersteller.DataSource = null; //--- 
+                    cBx_stoff_hersteller.Items.Clear();
+
+                    DataTable dtLief = SQL_methods.Fill_Box("SELECT L_ID, Lieferant FROM Lieferant WHERE lieferant.deaktiviert<>true");
+
+                    cBx_stoff_hersteller.DataSource = dtLief;
+                    cBx_stoff_hersteller.ValueMember = "L_ID";
+                    cBx_stoff_hersteller.DisplayMember = "Lieferant";
+
+
+                    if (cBx_stoff_hersteller.Items.Count > 0)
+                    {
+                        cBx_stoff_hersteller.SelectedIndex = 0;
+                    }
+                    else
+                    {
+                        cBx_stoff_hersteller.Items.Clear();
+                    }
+                }
+                catch (Exception f)
+                {
+                    MessageBox.Show("Fehler in der SQL Abfrage(Neue Auftrag: Fill CBX Lief): \n\n" + f.Message,
+                        "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                is_startup = false;
+                UC_New_auftrag_fill_cbx_stoff_kennung();
+            }
+        }
+
+        private void UC_New_auftrag_fill_cbx_stoff_kennung( )
+        {
+            if (!this.DesignMode)
+            {
+                if (cBx_stoff_hersteller.Items.Count > 0 && !is_startup)
+                {
+                    try
+                    {
+                        DataTable dtStoff = SQL_methods.Fill_Box(string.Format(
+                            "SELECT stoff.ST_ID,stoff.`Stoff` FROM stoff INNER JOIN stoff_lieferant ON stoff.ST_ID = stoff_lieferant.ST_ID WHERE stoff_lieferant.L_ID = {0}",
+                            cBx_stoff_hersteller.SelectedValue));
+
+                        cBx_stoff_kennung.DataSource = dtStoff;
+                        cBx_stoff_kennung.ValueMember = "ST_ID";
+                        cBx_stoff_kennung.DisplayMember = "Stoff";
+
+
+                        if (cBx_stoff_kennung.Items.Count > 0)
+                        {
+                            cBx_stoff_kennung.SelectedIndex = 0;
+                        }
+                        else
+                        {
+                            foreach (var item in cBx_stoff_kennung.Items)
+                            {
+                                cBx_stoff_kennung.Items.Remove(item);
+                            }
+                            cBx_stoff_kennung.Text = "";
+                        }
+                    }
+                    catch (Exception f)
+                    {
+                        MessageBox.Show("Fehler in der SQL Abfrage(Neue Auftrag: Fill CBX Stoff): \n\n" + f.Message,
+                                        "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
+                }
+            }
+        }
+
+        private void btn_add_segel_Click(object sender, EventArgs e)
+        {
+            if (!Global.Not_filled(tBx_segel_name) && !Global.Not_filled(cBx_segelform) && !Global.Not_filled(cBx_stoff_hersteller) && !Global.Not_filled(cBx_stoff_kennung))
+            {
+                SQL_methods.SQL_exec(string.Format("INSERT INTO segel (segel.name,segel.form,segel.stoff_hersteller,segel.stoff_kennung)VALUES ('{0}','{1}',{2},{3})", tBx_segel_name.Text, cBx_segelform.Text, cBx_stoff_hersteller.SelectedValue, cBx_stoff_kennung.SelectedValue));
+
+                string sql = "SELECT * FROM segel ORDER BY segel.id DESC LIMIT 1";
+                OdbcCommand cmd = new OdbcCommand(sql, Connection);
+                SQL_methods.Open();
+                OdbcDataReader sqlReader = cmd.ExecuteReader();
+                sqlReader.Read();
+                int segel_id = Convert.ToInt32(sqlReader[0]);
+                sqlReader.Close();
+
+                Segel segel = new Segel(tBx_segel_name.Text, cBx_segelform.Text, ( int ) cBx_stoff_hersteller.SelectedValue, ( int ) cBx_stoff_kennung.SelectedValue, segel_id);
+                lBx_segel.Items.Add(segel);
+            }
 
         }
 
-        private void cbx_auftragsstatus_SelectedIndexChanged(object sender, EventArgs e)
+        private void cBx_stoff_hersteller_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void date_mont_ValueChanged(object sender, EventArgs e)
-        {
-
+            UC_New_auftrag_fill_cbx_stoff_kennung();
         }
     }
 }
