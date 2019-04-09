@@ -54,14 +54,14 @@
             this.btn_add_segel = new System.Windows.Forms.Button();
             this.lBx_segel = new System.Windows.Forms.ListBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.cBx_stoff_hersteller = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.tti_new_auftrag = new System.Windows.Forms.ToolTip(this.components);
-            this.tBx_segel_name = new System.Windows.Forms.TextBox();
-            this.cBx_segelform = new System.Windows.Forms.ComboBox();
             this.cBx_stoff_kennung = new System.Windows.Forms.ComboBox();
-            this.cBx_stoff_hersteller = new System.Windows.Forms.ComboBox();
+            this.cBx_segelform = new System.Windows.Forms.ComboBox();
+            this.tBx_segel_name = new System.Windows.Forms.TextBox();
+            this.tti_new_auftrag = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -73,7 +73,7 @@
             this.date_erstell.Location = new System.Drawing.Point(113, 163);
             this.date_erstell.Name = "date_erstell";
             this.date_erstell.Size = new System.Drawing.Size(144, 20);
-            this.date_erstell.TabIndex = 1;
+            this.date_erstell.TabIndex = 6;
             this.tti_new_auftrag.SetToolTip(this.date_erstell, "Datum an dem das Projekt erstellt wurde.");
             this.date_erstell.Value = new System.DateTime(2018, 9, 5, 14, 26, 25, 0);
             // 
@@ -83,7 +83,7 @@
             this.date_mont.Location = new System.Drawing.Point(113, 189);
             this.date_mont.Name = "date_mont";
             this.date_mont.Size = new System.Drawing.Size(144, 20);
-            this.date_mont.TabIndex = 2;
+            this.date_mont.TabIndex = 7;
             this.tti_new_auftrag.SetToolTip(this.date_mont, "Montage Datum. Wird automatisch 1 Monat nach dem erstell Datum gesetz.\r\nKann auf " +
         "das gewümschte Datum geändert werden.\r\n");
             // 
@@ -92,7 +92,7 @@
             this.txt_info_kauf.Location = new System.Drawing.Point(9, 39);
             this.txt_info_kauf.Name = "txt_info_kauf";
             this.txt_info_kauf.Size = new System.Drawing.Size(248, 111);
-            this.txt_info_kauf.TabIndex = 5;
+            this.txt_info_kauf.TabIndex = 8;
             this.txt_info_kauf.Text = "";
             this.tti_new_auftrag.SetToolTip(this.txt_info_kauf, "Notizen für den kaufmänischen Bereich.");
             // 
@@ -101,7 +101,7 @@
             this.txt_auftrag_nr.Location = new System.Drawing.Point(113, 30);
             this.txt_auftrag_nr.Name = "txt_auftrag_nr";
             this.txt_auftrag_nr.Size = new System.Drawing.Size(144, 20);
-            this.txt_auftrag_nr.TabIndex = 9;
+            this.txt_auftrag_nr.TabIndex = 1;
             this.tti_new_auftrag.SetToolTip(this.txt_auftrag_nr, "Nummder des Auftrags, wenn nicht vorhanden kann dieser nachgetragen werden.");
             // 
             // label2
@@ -128,7 +128,7 @@
             this.cbx_verant.Location = new System.Drawing.Point(113, 109);
             this.cbx_verant.Name = "cbx_verant";
             this.cbx_verant.Size = new System.Drawing.Size(144, 21);
-            this.cbx_verant.TabIndex = 16;
+            this.cbx_verant.TabIndex = 4;
             this.tti_new_auftrag.SetToolTip(this.cbx_verant, "Liste aller verfügbaren Verantwortlichen");
             // 
             // cbx_tech
@@ -137,7 +137,7 @@
             this.cbx_tech.Location = new System.Drawing.Point(113, 136);
             this.cbx_tech.Name = "cbx_tech";
             this.cbx_tech.Size = new System.Drawing.Size(144, 21);
-            this.cbx_tech.TabIndex = 17;
+            this.cbx_tech.TabIndex = 5;
             this.tti_new_auftrag.SetToolTip(this.cbx_tech, "Liste aller verfügbaren Techniker.");
             // 
             // btn_new_auf_save
@@ -145,7 +145,7 @@
             this.btn_new_auf_save.Location = new System.Drawing.Point(628, 362);
             this.btn_new_auf_save.Name = "btn_new_auf_save";
             this.btn_new_auf_save.Size = new System.Drawing.Size(192, 23);
-            this.btn_new_auf_save.TabIndex = 19;
+            this.btn_new_auf_save.TabIndex = 15;
             this.btn_new_auf_save.Text = "Speichern";
             this.btn_new_auf_save.UseVisualStyleBackColor = true;
             this.btn_new_auf_save.Click += new System.EventHandler(this.Btn_new_auf_save_Click);
@@ -188,7 +188,7 @@
             this.cBx_seller.Location = new System.Drawing.Point(113, 82);
             this.cBx_seller.Name = "cBx_seller";
             this.cBx_seller.Size = new System.Drawing.Size(144, 21);
-            this.cBx_seller.TabIndex = 24;
+            this.cBx_seller.TabIndex = 3;
             this.tti_new_auftrag.SetToolTip(this.cBx_seller, "Liste aller verfügbaren Verkäufer.");
             // 
             // Projektbezeichnung
@@ -205,7 +205,7 @@
             this.txt_auf_proj_ken.Location = new System.Drawing.Point(113, 56);
             this.txt_auf_proj_ken.Name = "txt_auf_proj_ken";
             this.txt_auf_proj_ken.Size = new System.Drawing.Size(144, 20);
-            this.txt_auf_proj_ken.TabIndex = 21;
+            this.txt_auf_proj_ken.TabIndex = 2;
             this.tti_new_auftrag.SetToolTip(this.txt_auf_proj_ken, "Bezeichnung des Projekts, wenn nicht vorhanden kann dieser nachgetragen werden.");
             // 
             // label8
@@ -240,7 +240,7 @@
             this.txt_info_tech.Location = new System.Drawing.Point(9, 180);
             this.txt_info_tech.Name = "txt_info_tech";
             this.txt_info_tech.Size = new System.Drawing.Size(248, 111);
-            this.txt_info_tech.TabIndex = 24;
+            this.txt_info_tech.TabIndex = 9;
             this.txt_info_tech.Text = "";
             this.tti_new_auftrag.SetToolTip(this.txt_info_tech, "Notizen für den technischen Bereich.");
             // 
@@ -299,20 +299,13 @@
             this.btn_add_segel.Location = new System.Drawing.Point(170, 136);
             this.btn_add_segel.Name = "btn_add_segel";
             this.btn_add_segel.Size = new System.Drawing.Size(87, 23);
-            this.btn_add_segel.TabIndex = 29;
+            this.btn_add_segel.TabIndex = 14;
             this.btn_add_segel.Text = "Hinzufügen";
             this.btn_add_segel.UseVisualStyleBackColor = true;
             this.btn_add_segel.Click += new System.EventHandler(this.btn_add_segel_Click);
             // 
             // lBx_segel
-            // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 87);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(76, 13);
-            this.label11.TabIndex = 27;
-            this.label11.Text = "Stoff Hersteller";
             this.lBx_segel.FormattingEnabled = true;
             this.lBx_segel.Location = new System.Drawing.Point(6, 172);
             this.lBx_segel.Name = "lBx_segel";
@@ -320,13 +313,22 @@
             this.lBx_segel.TabIndex = 28;
             // 
             // label11
-            //
+            // 
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(6, 87);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(76, 13);
             this.label11.TabIndex = 27;
             this.label11.Text = "Stoff Hersteller";
+            // 
+            // cBx_stoff_hersteller
+            // 
+            this.cBx_stoff_hersteller.FormattingEnabled = true;
+            this.cBx_stoff_hersteller.Location = new System.Drawing.Point(88, 84);
+            this.cBx_stoff_hersteller.Name = "cBx_stoff_hersteller";
+            this.cBx_stoff_hersteller.Size = new System.Drawing.Size(169, 21);
+            this.cBx_stoff_hersteller.TabIndex = 12;
+            this.cBx_stoff_hersteller.SelectedIndexChanged += new System.EventHandler(this.cBx_stoff_hersteller_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -355,22 +357,13 @@
             this.label5.TabIndex = 23;
             this.label5.Text = "Segel Name";
             // 
-
-            // label5
+            // cBx_stoff_kennung
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 33);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 13);
-            this.label5.TabIndex = 23;
-            this.label5.Text = "Segel Name";
-            // 
-            // tBx_segel_name
-            // 
-            this.tBx_segel_name.Location = new System.Drawing.Point(87, 30);
-            this.tBx_segel_name.Name = "tBx_segel_name";
-            this.tBx_segel_name.Size = new System.Drawing.Size(170, 20);
-            this.tBx_segel_name.TabIndex = 0;
+            this.cBx_stoff_kennung.FormattingEnabled = true;
+            this.cBx_stoff_kennung.Location = new System.Drawing.Point(88, 109);
+            this.cBx_stoff_kennung.Name = "cBx_stoff_kennung";
+            this.cBx_stoff_kennung.Size = new System.Drawing.Size(169, 21);
+            this.cBx_stoff_kennung.TabIndex = 13;
             // 
             // cBx_segelform
             // 
@@ -378,24 +371,14 @@
             this.cBx_segelform.Location = new System.Drawing.Point(88, 57);
             this.cBx_segelform.Name = "cBx_segelform";
             this.cBx_segelform.Size = new System.Drawing.Size(169, 21);
-            this.cBx_segelform.TabIndex = 1;
+            this.cBx_segelform.TabIndex = 11;
             // 
-            // cBx_stoff_kennung
+            // tBx_segel_name
             // 
-            this.cBx_stoff_kennung.FormattingEnabled = true;
-            this.cBx_stoff_kennung.Location = new System.Drawing.Point(88, 109);
-            this.cBx_stoff_kennung.Name = "cBx_stoff_kennung";
-            this.cBx_stoff_kennung.Size = new System.Drawing.Size(169, 21);
-            this.cBx_stoff_kennung.TabIndex = 2;
-            // 
-            // cBx_stoff_hersteller
-            // 
-            this.cBx_stoff_hersteller.FormattingEnabled = true;
-            this.cBx_stoff_hersteller.Location = new System.Drawing.Point(88, 84);
-            this.cBx_stoff_hersteller.Name = "cBx_stoff_hersteller";
-            this.cBx_stoff_hersteller.Size = new System.Drawing.Size(169, 21);
-            this.cBx_stoff_hersteller.TabIndex = 26;
-            this.cBx_stoff_hersteller.SelectedIndexChanged += new System.EventHandler(this.cBx_stoff_hersteller_SelectedIndexChanged);
+            this.tBx_segel_name.Location = new System.Drawing.Point(87, 30);
+            this.tBx_segel_name.Name = "tBx_segel_name";
+            this.tBx_segel_name.Size = new System.Drawing.Size(170, 20);
+            this.tBx_segel_name.TabIndex = 10;
             // 
             // UC_New_auftrag
             // 
