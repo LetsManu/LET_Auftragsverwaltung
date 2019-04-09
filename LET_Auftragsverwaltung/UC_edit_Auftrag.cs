@@ -685,10 +685,16 @@ namespace LET_Auftragsverwaltung
                         s_ID = Convert.ToInt32(sql_reader[0].ToString());
                         sql_reader.Close();
 
-                        SQL_methods.SQL_exec(string.Format(
+                       /* SQL_methods.SQL_exec(string.Format(
                             "UPDATE teile_sonder SET Lieferdatum = '{0}', Bestelldatum = '{1}' WHERE T_S_ID = {2}",
                             dtp_sond_lief.Value.ToString("yyyy-MM-dd"),
-                            dtp_sond_best.Value.ToString("yyyy-MM-dd"), s_ID));
+                            dtp_sond_best.Value.ToString("yyyy-MM-dd"), s_ID));*/
+
+                        SQL_methods.SQL_exec(string.Format(
+                            "INSERT INTO teile_sonder (T_S_ID,Lieferdatum,Bestelldatum) VALUES({2},'{0}','{1}') ON DUPLICATE KEY UPDATE Lieferdatum = '{0}', Bestelldatum = '{1}';",
+                            dtp_sond_lief.Value.ToString("yyyy-MM-dd"),
+                            dtp_sond_best.Value.ToString("yyyy-MM-dd"), 
+                            s_ID));
                     }
                     else
                     {
