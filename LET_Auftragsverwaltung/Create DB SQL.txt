@@ -1,0 +1,446 @@
+﻿-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server Version:               10.1.30-MariaDB - mariadb.org binary distribution
+-- Server Betriebssystem:        Win32
+-- HeidiSQL Version:             10.1.0.5464
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
+-- Exportiere Datenbank Struktur für auftrags
+CREATE DATABASE IF NOT EXISTS `auftrags` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `auftrags`;
+
+-- Exportiere Struktur von Tabelle auftrags.ab_az
+CREATE TABLE IF NOT EXISTS `ab_az` (
+  `A_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `V_Date` date DEFAULT NULL,
+  `V_Notiz` longtext,
+  `V_Best` tinyint(1) NOT NULL DEFAULT '0',
+  `B_Date` date DEFAULT NULL,
+  `B_Notiz` longtext,
+  `B_Best` tinyint(1) NOT NULL DEFAULT '0',
+  `S_Date` date DEFAULT NULL,
+  `S_Notiz` longtext,
+  `S_Best` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`A_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=latin1;
+
+-- Exportiere Daten aus Tabelle auftrags.ab_az: ~62 rows (ungefähr)
+DELETE FROM `ab_az`;
+/*!40000 ALTER TABLE `ab_az` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ab_az` ENABLE KEYS */;
+
+-- Exportiere Struktur von Tabelle auftrags.adressen
+CREATE TABLE IF NOT EXISTS `adressen` (
+  `Adr_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Land` varchar(255) CHARACTER SET utf8 COLLATE utf8_german2_ci NOT NULL,
+  `PLZ` varchar(255) CHARACTER SET utf8 COLLATE utf8_german2_ci NOT NULL,
+  `Ort` varchar(255) CHARACTER SET utf8 COLLATE utf8_german2_ci NOT NULL,
+  `Hausnummer` varchar(255) NOT NULL,
+  `Strasse` varchar(255) NOT NULL,
+  PRIMARY KEY (`Adr_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+
+-- Exportiere Daten aus Tabelle auftrags.adressen: ~22 rows (ungefähr)
+DELETE FROM `adressen`;
+/*!40000 ALTER TABLE `adressen` DISABLE KEYS */;
+INSERT INTO `adressen` (`Adr_ID`, `Land`, `PLZ`, `Ort`, `Hausnummer`, `Strasse`) VALUES
+	(2, 'Austria', '4850', 'Timelkam', '6', 'Strasse'),
+	(3, 'Austria', '4850', 'Timelkam', '41', 'Kalchofen'),
+	(4, 'Austria', '4840', 'Vöcklabruck', '48', 'Dörfl2'),
+	(12, 'Österreich', '4850', 'Timelkam', '41', 'Kalchofen'),
+	(13, 'Österreich', '4850-A', 'Timelkam', '6a', 'Straß'),
+	(14, 'Hand & Nagel', '4458887', 'Lulatsch', '1.2', 'Strees'),
+	(15, 'Österreich', '4840', 'VB', '1', 'Land'),
+	(16, 't', 't', 'tt', 't', 't'),
+	(17, 'Test', 'Test', 'Test', 'Test', 'Test'),
+	(18, 't', 't', 't', 't', 'T'),
+	(19, '', '', '', '', ''),
+	(20, 't', 't', 't', 't', 't'),
+	(21, 't', 't', 'tt', 't', 't'),
+	(22, 't', 'tt', 't', 't', 't'),
+	(23, 't', 't', 'ttt', 't', 't'),
+	(24, 'wohnt', 'wo', 'der', 'Plan', 'keinen'),
+	(25, 'Österreich', '4850', 'Timelkam', '6', 'Strass'),
+	(26, '', '', '', '', ''),
+	(27, 'tdfgd', 'tdf', 'tdf', 'tdf', 'dsf'),
+	(28, 'test', 'test', 'test', 'test', 'test'),
+	(29, 'test', 'test', 'test', 'test', 'teset'),
+	(30, '', '', '', '', '');
+/*!40000 ALTER TABLE `adressen` ENABLE KEYS */;
+
+-- Exportiere Struktur von Tabelle auftrags.auftraege
+CREATE TABLE IF NOT EXISTS `auftraege` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Auftrags_NR` varchar(255) CHARACTER SET utf8 COLLATE utf8_german2_ci NOT NULL,
+  `Fertigungsstatus` int(30) NOT NULL,
+  `Erstelldatum` date NOT NULL,
+  `AB_AZ` int(11) DEFAULT NULL,
+  `Schlussrechnung` date DEFAULT NULL,
+  `Projektverantwortlicher` int(11) NOT NULL,
+  `Planer_Techniker` int(11) NOT NULL,
+  `Projektbezeichnung` varchar(255) CHARACTER SET utf8 COLLATE utf8_german2_ci NOT NULL,
+  `Schatten` int(11) NOT NULL,
+  `Montage_Datum` date NOT NULL,
+  `Notitz_Kauf` text NOT NULL,
+  `Notitz_Tech` text NOT NULL,
+  `deaktiviert` tinyint(1) NOT NULL DEFAULT '0',
+  `Verkäufer` int(11) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
+
+-- Exportiere Daten aus Tabelle auftrags.auftraege: ~11 rows (ungefähr)
+DELETE FROM `auftraege`;
+/*!40000 ALTER TABLE `auftraege` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auftraege` ENABLE KEYS */;
+
+-- Exportiere Struktur von Tabelle auftrags.auftraege_auftragsart
+CREATE TABLE IF NOT EXISTS `auftraege_auftragsart` (
+  `ID` int(11) NOT NULL,
+  `Art_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Exportiere Daten aus Tabelle auftrags.auftraege_auftragsart: ~34 rows (ungefähr)
+DELETE FROM `auftraege_auftragsart`;
+/*!40000 ALTER TABLE `auftraege_auftragsart` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auftraege_auftragsart` ENABLE KEYS */;
+
+-- Exportiere Struktur von Tabelle auftrags.auftraege_segel
+CREATE TABLE IF NOT EXISTS `auftraege_segel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_auftrag` int(11) NOT NULL,
+  `id_segel` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+-- Exportiere Daten aus Tabelle auftrags.auftraege_segel: ~7 rows (ungefähr)
+DELETE FROM `auftraege_segel`;
+/*!40000 ALTER TABLE `auftraege_segel` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auftraege_segel` ENABLE KEYS */;
+
+-- Exportiere Struktur von Tabelle auftrags.auftragsart
+CREATE TABLE IF NOT EXISTS `auftragsart` (
+  `Art_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Art` varchar(255) CHARACTER SET utf8 COLLATE utf8_german2_ci NOT NULL,
+  `deaktiviert` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`Art_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+-- Exportiere Daten aus Tabelle auftrags.auftragsart: ~14 rows (ungefähr)
+DELETE FROM `auftragsart`;
+/*!40000 ALTER TABLE `auftragsart` DISABLE KEYS */;
+INSERT INTO `auftragsart` (`Art_ID`, `Art`, `deaktiviert`) VALUES
+	(1, 'DSS', 1),
+	(2, 'DS', 1),
+	(3, 'TS', 1);
+/*!40000 ALTER TABLE `auftragsart` ENABLE KEYS */;
+
+-- Exportiere Struktur von Tabelle auftrags.chronologie
+CREATE TABLE IF NOT EXISTS `chronologie` (
+  `C_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Text` longtext NOT NULL,
+  `Wichtigkeit` int(11) NOT NULL,
+  PRIMARY KEY (`C_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Exportiere Daten aus Tabelle auftrags.chronologie: ~0 rows (ungefähr)
+DELETE FROM `chronologie`;
+/*!40000 ALTER TABLE `chronologie` DISABLE KEYS */;
+/*!40000 ALTER TABLE `chronologie` ENABLE KEYS */;
+
+-- Exportiere Struktur von Tabelle auftrags.fertigungsstatus
+CREATE TABLE IF NOT EXISTS `fertigungsstatus` (
+  `F_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Status` varchar(255) NOT NULL,
+  `deaktiviert` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`F_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+-- Exportiere Daten aus Tabelle auftrags.fertigungsstatus: ~7 rows (ungefähr)
+DELETE FROM `fertigungsstatus`;
+/*!40000 ALTER TABLE `fertigungsstatus` DISABLE KEYS */;
+INSERT INTO `fertigungsstatus` (`F_ID`, `Status`, `deaktiviert`) VALUES
+	(1, 'Montage', 0),
+	(2, 'Fertigung', 0),
+	(3, 'Schatten', 0),
+	(4, 'Plannung', 0),
+	(5, 'Pause', 0),
+	(6, 'Neu', 0);
+/*!40000 ALTER TABLE `fertigungsstatus` ENABLE KEYS */;
+
+-- Exportiere Struktur von Tabelle auftrags.funktion
+CREATE TABLE IF NOT EXISTS `funktion` (
+  `Funktion_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Funktion` varchar(255) CHARACTER SET utf8 COLLATE utf8_german2_ci NOT NULL,
+  `deaktiviert` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`Funktion_ID`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+-- Exportiere Daten aus Tabelle auftrags.funktion: ~7 rows (ungefähr)
+DELETE FROM `funktion`;
+/*!40000 ALTER TABLE `funktion` DISABLE KEYS */;
+INSERT INTO `funktion` (`Funktion_ID`, `Funktion`, `deaktiviert`) VALUES
+	(1, 'Planer', 0),
+	(2, 'Techniker', 0),
+	(4, 'Händler', 0),
+	(7, 'Verkäufer', 0);
+/*!40000 ALTER TABLE `funktion` ENABLE KEYS */;
+
+-- Exportiere Struktur von Tabelle auftrags.lieferant
+CREATE TABLE IF NOT EXISTS `lieferant` (
+  `L_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Lieferant` text NOT NULL,
+  `Adr_ID` int(11) NOT NULL,
+  `deaktiviert` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`L_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+-- Exportiere Daten aus Tabelle auftrags.lieferant: ~7 rows (ungefähr)
+DELETE FROM `lieferant`;
+/*!40000 ALTER TABLE `lieferant` DISABLE KEYS */;
+INSERT INTO `lieferant` (`L_ID`, `Lieferant`, `Adr_ID`, `deaktiviert`) VALUES
+	(2, 'Lieferando', 17, 0),
+	(3, 'Zalando', 18, 0),
+	(5, 'Limmert', 19, 0);
+/*!40000 ALTER TABLE `lieferant` ENABLE KEYS */;
+
+-- Exportiere Struktur von Tabelle auftrags.login
+CREATE TABLE IF NOT EXISTS `login` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Login_Name` int(11) NOT NULL,
+  `Password` int(11) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Exportiere Daten aus Tabelle auftrags.login: ~0 rows (ungefähr)
+DELETE FROM `login`;
+/*!40000 ALTER TABLE `login` DISABLE KEYS */;
+/*!40000 ALTER TABLE `login` ENABLE KEYS */;
+
+-- Exportiere Struktur von Tabelle auftrags.personal
+CREATE TABLE IF NOT EXISTS `personal` (
+  `P_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Vorname` varchar(255) NOT NULL,
+  `Nachname` varchar(255) NOT NULL,
+  `Adr_ID` int(11) NOT NULL,
+  `Funktion_ID` int(11) NOT NULL,
+  `deaktiviert` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`P_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+-- Exportiere Daten aus Tabelle auftrags.personal: ~13 rows (ungefähr)
+DELETE FROM `personal`;
+/*!40000 ALTER TABLE `personal` DISABLE KEYS */;
+INSERT INTO `personal` (`P_ID`, `Vorname`, `Nachname`, `Adr_ID`, `Funktion_ID`, `deaktiviert`) VALUES
+	(1, 'Manu', 'Whiteböckle', 3, 1, 1),
+	(2, 'Felix', 'Lerchne', 2, 1, 0),
+	(3, 'Tobas', 'Hattinger', 4, 1, 0),
+	(4, 'Manuel', 'Weißböck', 12, 1, 0),
+	(5, 'Felix', 'Lerchner', 13, 9, 1),
+	(6, 'Manuel ', 'Müller', 14, 9, 1),
+	(10, 'Norbert', 'Pfänder', 24, 0, 0),
+	(11, 'Franz', 'Lerchner', 25, 0, 0),
+	(13, 'Lorenz', 'Nullmayr', 19, 0, 0);
+/*!40000 ALTER TABLE `personal` ENABLE KEYS */;
+
+-- Exportiere Struktur von Tabelle auftrags.personal_funktion
+CREATE TABLE IF NOT EXISTS `personal_funktion` (
+  `P_ID` int(11) NOT NULL,
+  `Funktion_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Exportiere Daten aus Tabelle auftrags.personal_funktion: ~11 rows (ungefähr)
+DELETE FROM `personal_funktion`;
+/*!40000 ALTER TABLE `personal_funktion` DISABLE KEYS */;
+INSERT INTO `personal_funktion` (`P_ID`, `Funktion_ID`) VALUES
+	(3, 2),
+	(4, 1),
+	(4, 2),
+	(3, 1),
+	(10, 2),
+	(10, 1),
+	(11, 4),
+	(2, 2),
+	(2, 1),
+	(2, 4),
+	(13, 7);
+/*!40000 ALTER TABLE `personal_funktion` ENABLE KEYS */;
+
+-- Exportiere Struktur von Tabelle auftrags.schatten
+CREATE TABLE IF NOT EXISTS `schatten` (
+  `S_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Schattendatum` date DEFAULT NULL,
+  `P_ID` int(11) DEFAULT NULL,
+  `Notiz` text CHARACTER SET utf8 COLLATE utf8_german2_ci,
+  PRIMARY KEY (`S_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=latin1;
+
+-- Exportiere Daten aus Tabelle auftrags.schatten: ~65 rows (ungefähr)
+DELETE FROM `schatten`;
+/*!40000 ALTER TABLE `schatten` DISABLE KEYS */;
+/*!40000 ALTER TABLE `schatten` ENABLE KEYS */;
+
+-- Exportiere Struktur von Tabelle auftrags.segel
+CREATE TABLE IF NOT EXISTS `segel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `form` varchar(255) NOT NULL,
+  `stoff_hersteller` int(11) NOT NULL,
+  `stoff_kennung` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+
+-- Exportiere Daten aus Tabelle auftrags.segel: ~19 rows (ungefähr)
+DELETE FROM `segel`;
+/*!40000 ALTER TABLE `segel` DISABLE KEYS */;
+INSERT INTO `segel` (`id`, `name`, `form`, `stoff_hersteller`, `stoff_kennung`) VALUES
+	(1, 'name', 'fomr', 0, 0),
+	(2, 'name', 'fomr', 0, 0),
+	(3, 'testname', 'testform', 2, 3),
+	(4, 'testname2', '2', 2, 14),
+	(5, 'segel name nummero 3 ', 'segelform nummero 3 ', 5, 17),
+	(6, 'n4', 'f4', 5, 17),
+	(7, 'n5', 'f5', 5, 17),
+	(8, 'n6', 'f6', 5, 17),
+	(9, 'n7', 'f7', 2, 12),
+	(10, 'n10', 'f10', 2, 13),
+	(11, 'n11', 'f11', 2, 23),
+	(12, 'n13', 'f12', 5, 17),
+	(13, 'Balkon rechts', 'TS', 5, 17),
+	(14, 'Balkon mitte', 'DDS', 5, 17),
+	(15, 'test name', 'test form', 2, 3),
+	(16, 'test name lol', 'test form lol', 2, 3),
+	(17, 'hasllo tets ', 'loloige form', 2, 3),
+	(18, 'heidi testlers', 'lologes form', 2, 3),
+	(19, 'test', 'ss', 2, 3);
+/*!40000 ALTER TABLE `segel` ENABLE KEYS */;
+
+-- Exportiere Struktur von Tabelle auftrags.stoff
+CREATE TABLE IF NOT EXISTS `stoff` (
+  `ST_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Stoff` text NOT NULL,
+  `Bild` varchar(255) NOT NULL,
+  `deaktiviert` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ST_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+
+-- Exportiere Daten aus Tabelle auftrags.stoff: ~24 rows (ungefähr)
+DELETE FROM `stoff`;
+/*!40000 ALTER TABLE `stoff` DISABLE KEYS */;
+INSERT INTO `stoff` (`ST_ID`, `Stoff`, `Bild`, `deaktiviert`) VALUES
+	(1, 'Watermax', '', 0),
+	(2, 'Watermax 2', '', 0),
+	(3, 'Weathermax 3', '', 0),
+	(4, 'Weathermax 4', '', 0),
+	(5, 'Weathermax 5', '', 1),
+	(6, 'please', 'esistiertnicht.png', 1),
+	(7, 'd', '', 1),
+	(8, 'd', '', 1),
+	(9, 'd', '', 1),
+	(10, 'd', '', 1),
+	(11, 'Test1', 'test pfad', 1),
+	(12, 'skuzgjdfg', 'courses-icon-15343.png', 0),
+	(13, 'LiL', 'IMG_3702.PNG', 0),
+	(14, 'Lieferando Stoff 1', 'IMG_3587.JPG', 0),
+	(15, 'Hallo Lieferandolore', 'IMG_3255.PNG', 0),
+	(16, 'Limmert Stoff', 'IMG_3440.PNG', 0),
+	(17, 'W 0112-512', 'Logo_transperent1.png', 0),
+	(18, '#0004', 'IMG_E0020.JPG', 0),
+	(19, '#0004', 'BGBP9309.JPG', 0),
+	(20, '#0004', 'ASGV4864.JPG', 0),
+	(21, '#0004', 'HARL1458.JPG', 0),
+	(22, '#0004', 'ATQK4150.JPG', 0),
+	(23, '#0006', 'BXJQ5877.JPG', 0),
+	(24, '#0007', 'HUEE1071.JPG', 0);
+/*!40000 ALTER TABLE `stoff` ENABLE KEYS */;
+
+-- Exportiere Struktur von Tabelle auftrags.stoff_lieferant
+CREATE TABLE IF NOT EXISTS `stoff_lieferant` (
+  `ST_ID` int(11) NOT NULL,
+  `L_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Exportiere Daten aus Tabelle auftrags.stoff_lieferant: ~14 rows (ungefähr)
+DELETE FROM `stoff_lieferant`;
+/*!40000 ALTER TABLE `stoff_lieferant` DISABLE KEYS */;
+INSERT INTO `stoff_lieferant` (`ST_ID`, `L_ID`) VALUES
+	(0, 2),
+	(3, 2),
+	(14, 2),
+	(15, 2),
+	(16, 5),
+	(1, 2),
+	(13, 2),
+	(4, 2),
+	(2, 2),
+	(12, 2),
+	(17, 5),
+	(22, 2),
+	(23, 2),
+	(24, 2);
+/*!40000 ALTER TABLE `stoff_lieferant` ENABLE KEYS */;
+
+-- Exportiere Struktur von Tabelle auftrags.teile
+CREATE TABLE IF NOT EXISTS `teile` (
+  `ID` int(11) NOT NULL,
+  `T_St_ID` int(11) NOT NULL,
+  `T_S_ID` int(11) NOT NULL,
+  `T_P_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Exportiere Daten aus Tabelle auftrags.teile: ~28 rows (ungefähr)
+DELETE FROM `teile`;
+/*!40000 ALTER TABLE `teile` DISABLE KEYS */;
+/*!40000 ALTER TABLE `teile` ENABLE KEYS */;
+
+-- Exportiere Struktur von Tabelle auftrags.teile_persenning
+CREATE TABLE IF NOT EXISTS `teile_persenning` (
+  `T_P_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Lieferdatum` date NOT NULL,
+  `Bestelldatum` date NOT NULL,
+  `L_ID` int(11) NOT NULL,
+  PRIMARY KEY (`T_P_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+-- Exportiere Daten aus Tabelle auftrags.teile_persenning: ~0 rows (ungefähr)
+DELETE FROM `teile_persenning`;
+/*!40000 ALTER TABLE `teile_persenning` DISABLE KEYS */;
+/*!40000 ALTER TABLE `teile_persenning` ENABLE KEYS */;
+
+-- Exportiere Struktur von Tabelle auftrags.teile_sonder
+CREATE TABLE IF NOT EXISTS `teile_sonder` (
+  `T_S_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Lieferdatum` date NOT NULL,
+  `Bestelldatum` date NOT NULL,
+  `L_ID` int(11) NOT NULL,
+  PRIMARY KEY (`T_S_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+-- Exportiere Daten aus Tabelle auftrags.teile_sonder: ~0 rows (ungefähr)
+DELETE FROM `teile_sonder`;
+/*!40000 ALTER TABLE `teile_sonder` DISABLE KEYS */;
+/*!40000 ALTER TABLE `teile_sonder` ENABLE KEYS */;
+
+-- Exportiere Struktur von Tabelle auftrags.teile_stoff
+CREATE TABLE IF NOT EXISTS `teile_stoff` (
+  `T_ST_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ST_ID` int(11) NOT NULL,
+  `Lieferdatum` date NOT NULL,
+  `Bestelldatum` date NOT NULL,
+  PRIMARY KEY (`T_ST_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
+
+-- Exportiere Daten aus Tabelle auftrags.teile_stoff: ~0 rows (ungefähr)
+DELETE FROM `teile_stoff`;
+/*!40000 ALTER TABLE `teile_stoff` DISABLE KEYS */;
+/*!40000 ALTER TABLE `teile_stoff` ENABLE KEYS */;
+
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
