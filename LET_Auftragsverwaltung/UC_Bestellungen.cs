@@ -15,6 +15,7 @@ namespace LET_Auftragsverwaltung
         public UC_Bestellungen()
         {
             InitializeComponent();
+            MessageBox.Show("File UC_Bestellungen.cs, now you know what this file should do");
         }
     }
 }
