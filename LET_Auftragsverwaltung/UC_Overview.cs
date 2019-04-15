@@ -19,7 +19,7 @@ namespace LET_Auftragsverwaltung
         LinkedList<Auftrag_Data> data = new LinkedList<Auftrag_Data>();
         private static bool reload = true;
 
-        public UC_Overview( )
+        public UC_Overview()
         {
             //BrightIdeasSoftware.TreeListView.IgnoreMissingAspects = true;
             InitializeComponent();
@@ -37,7 +37,7 @@ namespace LET_Auftragsverwaltung
         {
             if (sender != null)
             {
-                Form Form_EDIT = new Form_Edit_Auftrag(( ( sender as ObjectListView ).SelectedItem.RowObject as Auftrag_Data ).ID);
+                Form Form_EDIT = new Form_Edit_Auftrag_new(((sender as ObjectListView).SelectedItem.RowObject as Auftrag_Data).ID);
                 Form_EDIT.Show();
             }
         }
@@ -75,7 +75,7 @@ namespace LET_Auftragsverwaltung
 
 
 
-        public static void Update_Overview( )
+        public static void Update_Overview()
         {
             reload = true;
         }
@@ -97,7 +97,7 @@ namespace LET_Auftragsverwaltung
                     oLV_Overview.Items.Remove(result);
                 }
                 oLV_Overview.Update();*/
-                
+
 
                 //oLV_Overview.UseCellFormatEvents = true;
                 foreach (var result in oLV_Overview.AllColumns)
@@ -125,7 +125,7 @@ namespace LET_Auftragsverwaltung
                     reader = cmd.ExecuteReader();
                     reader.Read();
                     Auftrag_Data data = new Auftrag_Data();
-                    data.ID = ( int ) ( reader["ID"] == DBNull.Value ? null : reader["ID"] );
+                    data.ID = (int)(reader["ID"] == DBNull.Value ? null : reader["ID"]);
                     data.Auftrags_Nr = DB_to_string(reader["Auftrags Nr."]);
                     data.Fertigungsstatus = DB_to_string(reader["Status"]);
 
@@ -183,11 +183,11 @@ namespace LET_Auftragsverwaltung
             }
             else
             {
-                return ( string ) db_Data;
+                return (string)db_Data;
             }
         }
 
-        public void Print_OLV( )
+        public void Print_OLV()
         {
 
 
