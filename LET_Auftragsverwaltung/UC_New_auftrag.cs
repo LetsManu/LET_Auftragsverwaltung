@@ -37,8 +37,8 @@ namespace LET_Auftragsverwaltung
             UC_New_auftrag_fill_cbx_verant();
             UC_New_auftrag_fill_cbx_tech();
             UC_New_auftrag_fill_cbx_lief();
+            UC_New_auftrag_fill_cbx_seller();
             //UC_New_auftrag_fill_cbx_auf();
-            //UC_New_auftrag_fill_cbx_lief();
             date_erstell.Value = DateTime.Today;
             date_mont.Value = DateTime.Today.AddDays(28);
         }
@@ -70,28 +70,28 @@ namespace LET_Auftragsverwaltung
             }
         }
 
-        private void UC_New_auftrag_fill_cbx_stoff( )
+        private void UC_New_auftrag_fill_cbx_seller( )
         {
             if (!this.DesignMode)
             {
                 try
                 {
 
-                    DataTable dtPer = SQL_methods.Fill_Box("SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 9");
+                    DataTable dtPer = SQL_methods.Fill_Box("SELECT DISTINCT CONCAT(p.`Nachname`, ' ', p.`Vorname`) AS 'Name', p.P_ID FROM personal p LEFT JOIN personal_funktion pf ON p.P_ID = pf.P_ID WHERE pf.Funktion_ID = 7");
 
-                    cbx_verant.DataSource = dtPer;
-                    cbx_verant.ValueMember = "P_ID";
-                    cbx_verant.DisplayMember = "Name";
+                    cBx_seller.DataSource = dtPer;
+                    cBx_seller.ValueMember = "P_ID";
+                    cBx_seller.DisplayMember = "Name";
 
 
-                    if (cbx_verant.Items.Count > 0)
+                    if (cBx_seller.Items.Count > 0)
                     {
-                        cbx_verant.SelectedIndex = 0;
+                        cBx_seller.SelectedIndex = 0;
                     }
                 }
                 catch (Exception f)
                 {
-                    MessageBox.Show("Fehler in der SQL Abfrage(Neue Auftrag: Fill CBX Stoff): \n\n" + f.Message,
+                    MessageBox.Show("Fehler in der SQL Abfrage(Neue Auftrag: Fill CBX Seller): \n\n" + f.Message,
                         "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }

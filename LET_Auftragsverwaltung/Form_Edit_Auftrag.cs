@@ -25,14 +25,19 @@ namespace LET_Auftragsverwaltung
 
                 this.BringToFront();
 
-                SQL_methods.Open();
-                string sql = "SELECT concat(concat(auftraege.Auftrags_NR, ', '), auftraege.Projektbezeichnung) AS title FROM auftraege WHERE auftraege.id = " + id;
-                OdbcCommand cmd = new OdbcCommand(sql, DB.Connection);
-                OdbcDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    this.Text = Convert.ToString(reader[0]);
-                }
+                Load_title();
+            }
+        }
+
+        public void Load_title()
+        {
+            SQL_methods.Open();
+            string sql = "SELECT CONCAT(CONCAT(CONCAT(fertigungsstatus.Status, ' | '), auftraege.Projektbezeichnung, ' | '), auftraege.Auftrags_NR) AS title FROM auftraege LEFT JOIN fertigungsstatus ON auftraege.Fertigungsstatus = fertigungsstatus.F_ID WHERE auftraege.id = " + id;
+            OdbcCommand cmd = new OdbcCommand(sql, DB.Connection);
+            OdbcDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                this.Text = Convert.ToString(reader[0]);
             }
         }
 

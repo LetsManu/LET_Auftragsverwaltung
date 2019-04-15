@@ -398,6 +398,8 @@ namespace LET_Auftragsverwaltung
             {
                 try
                 {
+                    lBx_segel.Items.Clear();
+
                     SQL_methods.SQL_exec(string.Format(
                         "UPDATE auftraege SET Auftrags_NR = '{0}', Fertigungsstatus = {1}, Projektverantwortlicher = {2}, Planer_Techniker = {3}, Projektbezeichnung = '{4}', Montage_Datum  = '{5}', Notitz_Kauf = '{6}', Notitz_Tech = '{7}', Erstelldatum = '{8}', Verkäufer = {9} WHERE ID = {10}",
                         txt_auftrag_nr.Text, 
@@ -655,6 +657,7 @@ namespace LET_Auftragsverwaltung
         }
         private void btn_sond_save_Click(object sender, EventArgs e)
         {
+
             if (!this.DesignMode)
             {
                 try
