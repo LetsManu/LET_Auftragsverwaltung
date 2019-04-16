@@ -42,6 +42,19 @@ namespace LET_Auftragsverwaltung
 
         }
 
+        /// <summary>
+        /// Fürht den SQL-Befehl aus und gibt das Object der Anfrage zurück. Es wird kein Con.Open benötigt!
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        static public object SQL_scalar(string sql)
+        {
+            Open();
+            var cmd = new OdbcCommand(sql, Connection);
+
+            return cmd.ExecuteScalar();
+        }
+
 
         /// <summary>
         /// Used to open the Connection, without needing to close it.
