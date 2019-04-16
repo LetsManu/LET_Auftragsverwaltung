@@ -29,7 +29,12 @@ namespace LET_Auftragsverwaltung
         public UC_New_auftrag()
         {
             InitializeComponent();
-            date_mont.Format = DateTimePickerFormat.Short;
+
+            date_erstell.Format = DateTimePickerFormat.Custom;
+            date_mont.Format = DateTimePickerFormat.Custom;
+
+            date_erstell.CustomFormat = Parameter.Date_Format;
+            date_mont.CustomFormat = Parameter.Date_Format;
         }
 
         private void UC_New_auftrag_Load(object sender, EventArgs e)
