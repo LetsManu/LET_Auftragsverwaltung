@@ -203,6 +203,7 @@
     <Compile Include="CS_FTP.cs" />
     <Compile Include="CS_Global.cs" />
     <Compile Include="CS_Named_Pipes.cs" />
+    <Compile Include="CS_Parameter.cs" />
     <Compile Include="CS_Segel.cs" />
     <Compile Include="CS_SQL_methods.cs" />
     <Compile Include="CS_System_Info.cs" />
