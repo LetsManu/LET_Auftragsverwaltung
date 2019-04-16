@@ -100,6 +100,7 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.tmr_break = new System.Windows.Forms.Timer(this.components);
+            this.tmr_250ms = new System.Windows.Forms.Timer(this.components);
             this.tabControl1.SuspendLayout();
             this.tab_Allgemein.SuspendLayout();
             this.Auftraginfos.SuspendLayout();
@@ -806,17 +807,23 @@
             // 
             // tmr_break
             // 
-            this.tmr_break.Interval = 2000;
+            this.tmr_break.Interval = 5000;
             this.tmr_break.Tick += new System.EventHandler(this.Tmr_break_Tick);
             // 
-            // Form_Edit_Auftrag_new
+            // tmr_250ms
+            // 
+            this.tmr_250ms.Enabled = true;
+            this.tmr_250ms.Interval = 250;
+            this.tmr_250ms.Tick += new System.EventHandler(this.Tmr_250ms_Tick);
+            // 
+            // Form_Edit_Auftrag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(951, 392);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form_Edit_Auftrag_new";
+            this.Name = "Form_Edit_Auftrag";
             this.Text = "Form_Edit_Auftrag_new";
             this.Load += new System.EventHandler(this.Form_Edit_Auftrag_new_Load);
             this.tabControl1.ResumeLayout(false);
@@ -911,5 +918,6 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Timer tmr_break;
+        private System.Windows.Forms.Timer tmr_250ms;
     }
 }

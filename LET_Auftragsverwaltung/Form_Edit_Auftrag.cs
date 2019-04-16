@@ -16,6 +16,8 @@ namespace LET_Auftragsverwaltung
         private int id = 0;
         private int a_id = 0;
         private bool is_startup = false;    //used for some cbx's. so their selectedindex Methode does not get triggered (or rather the code which would get executed)
+        public static bool check_state = false;
+
         private OdbcConnection Connection
         {
             get
@@ -45,7 +47,7 @@ namespace LET_Auftragsverwaltung
             UC_Kauf_Text_Auf();
             UC_Kauf_Text_Anz();
             UC_Kauf_Text_Schluss();
-            txt_check_if_requested();
+            Check_bestaetigungs_state();
             Load_title();
         }
 
@@ -68,6 +70,14 @@ namespace LET_Auftragsverwaltung
         {
             string sql = "SELECT CONCAT(CONCAT(CONCAT(fertigungsstatus.Status, ' | '), auftraege.Projektbezeichnung, ' | '), auftraege.Auftrags_NR) AS title FROM auftraege LEFT JOIN fertigungsstatus ON auftraege.Fertigungsstatus = fertigungsstatus.F_ID WHERE auftraege.id = " + id;
             this.Text = SQL_methods.SQL_scalar(sql).ToString();
+        }
+
+        private void Tmr_250ms_Tick(object sender, EventArgs e)
+        {
+            if (check_state)
+            {
+                Check_bestaetigungs_state();
+            }
         }
 
         #region Allgemein Tab
@@ -538,7 +548,7 @@ namespace LET_Auftragsverwaltung
 
                     Email.Send_Mail("chaftalie@icloud.com", "[LET] Auftragsbestätigung: " + bez, "TestTest"); //TODO (SUBJEKT: [LET] AUftragsbestätigung: ProjektBet) (BODY: Mehr Infot ID ect..)
 
-                    txt_check_if_requested();
+                    Check_bestaetigungs_state();
 
 
                     btn_save_kauf_Auftragsbestaetigung.Enabled = false;
@@ -568,7 +578,7 @@ namespace LET_Auftragsverwaltung
 
                     Email.Send_Mail("chaftalie@icloud.com", "[LET] Anzahlungsrechnung: " + bez, "TestTest"); //TODO (SUBJEKT: [LET] AUftragsbestätigung: ProjektBet) (BODY: Mehr Infot ID ect..)
 
-                    txt_check_if_requested();
+                    Check_bestaetigungs_state();
 
 
                     btn_save_kauf_Anzahlung.Enabled = false;
@@ -598,7 +608,7 @@ namespace LET_Auftragsverwaltung
 
                     Email.Send_Mail("chaftalie@icloud.com", "[LET] Schlussrechnung: " + bez, "TestTest"); //TODO (SUBJEKT: [LET] AUftragsbestätigung: ProjektBet) (BODY: Mehr Infot ID ect..)
 
-                    txt_check_if_requested();
+                    Check_bestaetigungs_state();
 
 
                     btn_save_kauf_Schlussrechnung.Enabled = false;
@@ -702,11 +712,11 @@ namespace LET_Auftragsverwaltung
                         UC_Kauf_Date_Auf_set();
                     }
                 }
-                txt_check_if_requested();
+                Check_bestaetigungs_state();
             }
         }
 
-        public void txt_check_if_requested()
+        public void Check_bestaetigungs_state()
         {
             if (!this.DesignMode)
             {
@@ -828,7 +838,7 @@ namespace LET_Auftragsverwaltung
                         UC_Kauf_Date_Anz_set();
                     }
                 }
-                txt_check_if_requested();
+                Check_bestaetigungs_state();
             }
         }
 
@@ -864,7 +874,7 @@ namespace LET_Auftragsverwaltung
                         UC_Kauf_Date_Schluss_set();
                     }
                 }
-                txt_check_if_requested();
+                Check_bestaetigungs_state();
             }
         }
 
@@ -970,5 +980,7 @@ namespace LET_Auftragsverwaltung
         }
 
         #endregion
+
+
     }
 }
