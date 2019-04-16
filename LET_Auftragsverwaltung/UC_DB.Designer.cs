@@ -1,6 +1,6 @@
 ﻿namespace LET_Auftragsverwaltung
 {
-    partial class UC_Parameter
+    partial class UC_DB
     {
         /// <summary> 
         /// Erforderliche Designervariable.

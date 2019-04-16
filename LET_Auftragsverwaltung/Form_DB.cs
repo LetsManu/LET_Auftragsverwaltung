@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace LET_Auftragsverwaltung
 {
-    public partial class Form_Parameter : Form
+    public partial class Form_DB : Form
     {
-        public Form_Parameter()
+        public Form_DB()
         {
             InitializeComponent();
         }

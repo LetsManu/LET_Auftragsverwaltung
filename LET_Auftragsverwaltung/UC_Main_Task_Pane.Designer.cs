@@ -30,157 +30,57 @@
         {
             this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.aufträgeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.neuerEintragToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.neuerEintragToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportÜbersichtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.neuerAuftragToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eDITAUFTRAGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.parameterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hilfeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.soonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.uC_Connect_Show1 = new LET_Auftragsverwaltung.UC_Connect_Show();
+            this.TSMI_Uebersicht = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMI_new_Auftrag = new System.Windows.Forms.ToolStripMenuItem();
             this.tti_main_pane = new System.Windows.Forms.ToolTip(this.components);
+            this.TSMI_DB = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aufträgeToolStripMenuItem,
-            this.neuerEintragToolStripMenuItem,
-            this.parameterToolStripMenuItem,
-            this.hilfeToolStripMenuItem,
-            this.hilfeToolStripMenuItem1,
-            this.testToolStripMenuItem});
+            this.TSMI_Uebersicht,
+            this.TSMI_new_Auftrag,
+            this.TSMI_DB});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(430, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // aufträgeToolStripMenuItem
+            // TSMI_Uebersicht
             // 
-            this.aufträgeToolStripMenuItem.Name = "aufträgeToolStripMenuItem";
-            this.aufträgeToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.aufträgeToolStripMenuItem.Text = "Übersicht";
-            this.aufträgeToolStripMenuItem.ToolTipText = "Öffnet die Übersicht aller Auftrage.\r\nBearbeitung der Aufträge ist hier möglich.\r" +
+            this.TSMI_Uebersicht.Name = "TSMI_Uebersicht";
+            this.TSMI_Uebersicht.Size = new System.Drawing.Size(69, 20);
+            this.TSMI_Uebersicht.Text = "Übersicht";
+            this.TSMI_Uebersicht.ToolTipText = "Öffnet die Übersicht aller Auftrage.\r\nBearbeitung der Aufträge ist hier möglich.\r" +
     "\n";
-            this.aufträgeToolStripMenuItem.Click += new System.EventHandler(this.TSMI_Overview_Click);
+            this.TSMI_Uebersicht.Click += new System.EventHandler(this.TSMI_Overview_Click);
             // 
-            // neuerEintragToolStripMenuItem
+            // TSMI_new_Auftrag
             // 
-            this.neuerEintragToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.neuerEintragToolStripMenuItem1,
-            this.exportÜbersichtToolStripMenuItem,
-            this.neuerAuftragToolStripMenuItem,
-            this.eDITAUFTRAGToolStripMenuItem});
-            this.neuerEintragToolStripMenuItem.Name = "neuerEintragToolStripMenuItem";
-            this.neuerEintragToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
-            this.neuerEintragToolStripMenuItem.Text = "Datei";
-            this.neuerEintragToolStripMenuItem.ToolTipText = "Datebank änderung\r\nEintragung eines neuen Auftrags\r\nExport von Tabellen\r\n";
+            this.TSMI_new_Auftrag.Name = "TSMI_new_Auftrag";
+            this.TSMI_new_Auftrag.Size = new System.Drawing.Size(142, 20);
+            this.TSMI_new_Auftrag.Text = "Neuen Auftrag anlegen";
+            this.TSMI_new_Auftrag.ToolTipText = "Datebank änderung\r\nEintragung eines neuen Auftrags\r\nExport von Tabellen\r\n";
+            this.TSMI_new_Auftrag.Click += new System.EventHandler(this.TSMI_new_Auftrag_Click);
             // 
-            // neuerEintragToolStripMenuItem1
+            // TSMI_DB
             // 
-            this.neuerEintragToolStripMenuItem1.Name = "neuerEintragToolStripMenuItem1";
-            this.neuerEintragToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.neuerEintragToolStripMenuItem1.Text = "Datenbank";
-            this.neuerEintragToolStripMenuItem1.Click += new System.EventHandler(this.TSMI_Parameter_Click);
-            // 
-            // exportÜbersichtToolStripMenuItem
-            // 
-            this.exportÜbersichtToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.excelToolStripMenuItem,
-            this.pDFToolStripMenuItem});
-            this.exportÜbersichtToolStripMenuItem.Name = "exportÜbersichtToolStripMenuItem";
-            this.exportÜbersichtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.exportÜbersichtToolStripMenuItem.Text = "Export Übersicht";
-            // 
-            // excelToolStripMenuItem
-            // 
-            this.excelToolStripMenuItem.Name = "excelToolStripMenuItem";
-            this.excelToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.excelToolStripMenuItem.Text = "Excel";
-            // 
-            // pDFToolStripMenuItem
-            // 
-            this.pDFToolStripMenuItem.Name = "pDFToolStripMenuItem";
-            this.pDFToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.pDFToolStripMenuItem.Text = "PDF";
-            // 
-            // neuerAuftragToolStripMenuItem
-            // 
-            this.neuerAuftragToolStripMenuItem.Name = "neuerAuftragToolStripMenuItem";
-            this.neuerAuftragToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.neuerAuftragToolStripMenuItem.Text = "Neuer Auftrag";
-            this.neuerAuftragToolStripMenuItem.Click += new System.EventHandler(this.TSMI_new_Auftrag_Click);
-            // 
-            // eDITAUFTRAGToolStripMenuItem
-            // 
-            this.eDITAUFTRAGToolStripMenuItem.Name = "eDITAUFTRAGToolStripMenuItem";
-            this.eDITAUFTRAGToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.eDITAUFTRAGToolStripMenuItem.Text = "EDIT AUFTRAG";
-            this.eDITAUFTRAGToolStripMenuItem.Click += new System.EventHandler(this.eDITAUFTRAGToolStripMenuItem_Click);
-            // 
-            // parameterToolStripMenuItem
-            // 
-            this.parameterToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.parameterToolStripMenuItem.Name = "parameterToolStripMenuItem";
-            this.parameterToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
-            this.parameterToolStripMenuItem.Text = "Parameter";
-            // 
-            // hilfeToolStripMenuItem
-            // 
-            this.hilfeToolStripMenuItem.Name = "hilfeToolStripMenuItem";
-            this.hilfeToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
-            this.hilfeToolStripMenuItem.Text = "Fenster";
-            // 
-            // hilfeToolStripMenuItem1
-            // 
-            this.hilfeToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.soonToolStripMenuItem});
-            this.hilfeToolStripMenuItem1.Name = "hilfeToolStripMenuItem1";
-            this.hilfeToolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
-            this.hilfeToolStripMenuItem1.Text = "Hilfe";
-            // 
-            // soonToolStripMenuItem
-            // 
-            this.soonToolStripMenuItem.Name = "soonToolStripMenuItem";
-            this.soonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.soonToolStripMenuItem.Text = "soon";
-            // 
-            // testToolStripMenuItem
-            // 
-            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
-            this.testToolStripMenuItem.Text = "test";
-            this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
-            // 
-            // uC_Connect_Show1
-            // 
-            this.uC_Connect_Show1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uC_Connect_Show1.BackColor = System.Drawing.Color.White;
-            this.uC_Connect_Show1.Location = new System.Drawing.Point(0, 524);
-            this.uC_Connect_Show1.Name = "uC_Connect_Show1";
-            this.uC_Connect_Show1.Size = new System.Drawing.Size(430, 45);
-            this.uC_Connect_Show1.TabIndex = 2;
-            this.tti_main_pane.SetToolTip(this.uC_Connect_Show1, "Anzeige des Status der Verbindung \r\nzum Dateiserver und zur Datebank");
+            this.TSMI_DB.Name = "TSMI_DB";
+            this.TSMI_DB.Size = new System.Drawing.Size(109, 20);
+            this.TSMI_DB.Text = "Datenbankpflege";
+            this.TSMI_DB.Click += new System.EventHandler(this.TSMI_DB_Click);
             // 
             // UC_Main_Task_Pane
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.Controls.Add(this.uC_Connect_Show1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "UC_Main_Task_Pane";
             this.Size = new System.Drawing.Size(430, 569);
-            this.Enter += new System.EventHandler(this.UC_Main_Task_Pane_Enter);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -191,20 +91,9 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem aufträgeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem parameterToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem neuerEintragToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem neuerEintragToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem exportÜbersichtToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem excelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pDFToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem soonToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem neuerAuftragToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem eDITAUFTRAGToolStripMenuItem;
-        private UC_Connect_Show uC_Connect_Show1;
+        private System.Windows.Forms.ToolStripMenuItem TSMI_Uebersicht;
+        private System.Windows.Forms.ToolStripMenuItem TSMI_new_Auftrag;
         private System.Windows.Forms.ToolTip tti_main_pane;
+        private System.Windows.Forms.ToolStripMenuItem TSMI_DB;
     }
 }

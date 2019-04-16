@@ -1,6 +1,6 @@
 ﻿namespace LET_Auftragsverwaltung
 {
-    partial class Form_Parameter
+    partial class Form_DB
     {
         /// <summary>
         /// Required designer variable.
@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Parameter));
-            this.uC_Parameter1 = new LET_Auftragsverwaltung.UC_Parameter();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_DB));
+            this.uC_Parameter1 = new LET_Auftragsverwaltung.UC_DB();
             this.SuspendLayout();
             // 
             // uC_Parameter1
@@ -54,6 +54,6 @@
 
         #endregion
 
-        private UC_Parameter uC_Parameter1;
+        private UC_DB uC_Parameter1;
     }
 }

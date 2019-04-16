@@ -238,11 +238,11 @@
     <Compile Include="Form_Overview.Designer.cs">
       <DependentUpon>Form_Overview.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form_Parameter.cs">
+    <Compile Include="Form_DB.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form_Parameter.Designer.cs">
-      <DependentUpon>Form_Parameter.cs</DependentUpon>
+    <Compile Include="Form_DB.Designer.cs">
+      <DependentUpon>Form_DB.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -295,11 +295,11 @@
     <Compile Include="UC_Overview.Designer.cs">
       <DependentUpon>UC_Overview.cs</DependentUpon>
     </Compile>
-    <Compile Include="UC_Parameter.cs">
+    <Compile Include="UC_DB.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UC_Parameter.Designer.cs">
-      <DependentUpon>UC_Parameter.cs</DependentUpon>
+    <Compile Include="UC_DB.Designer.cs">
+      <DependentUpon>UC_DB.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -316,8 +316,8 @@
     <EmbeddedResource Include="Form_Overview.resx">
       <DependentUpon>Form_Overview.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form_Parameter.resx">
-      <DependentUpon>Form_Parameter.cs</DependentUpon>
+    <EmbeddedResource Include="Form_DB.resx">
+      <DependentUpon>Form_DB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -353,8 +353,8 @@
     <EmbeddedResource Include="UC_Overview.resx">
       <DependentUpon>UC_Overview.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UC_Parameter.resx">
-      <DependentUpon>UC_Parameter.cs</DependentUpon>
+    <EmbeddedResource Include="UC_DB.resx">
+      <DependentUpon>UC_DB.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="LET_Auftragsverwaltung_1_TemporaryKey.pfx" />

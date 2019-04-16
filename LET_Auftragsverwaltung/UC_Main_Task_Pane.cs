@@ -15,19 +15,10 @@ namespace LET_Auftragsverwaltung
         public UC_Main_Task_Pane( )
         {
             InitializeComponent();
-            UC_Connect_Show.tmr_timed = true;
-        }
-
-        private void TSMI_Parameter_Click(object sender, EventArgs e)
-        {
-            UC_Connect_Show.tmr_timed = false;
-            Form form_Parameter_ = new Form_Parameter();
-            form_Parameter_.Show();
         }
 
         private void TSMI_Overview_Click(object sender, EventArgs e)
         {
-            UC_Connect_Show.tmr_timed = false;
             if (Form_Overview.isopen)
             {
                 Form_Overview.tofront = true;
@@ -40,33 +31,18 @@ namespace LET_Auftragsverwaltung
             }
         }
 
+
+
+        private void TSMI_DB_Click(object sender, EventArgs e)
+        {
+            Form form_DB = new Form_DB();
+            form_DB.Show();
+        }
+
         private void TSMI_new_Auftrag_Click(object sender, EventArgs e)
         {
-            UC_Connect_Show.tmr_timed = false;
             Form form_new_Auftrag = new Form_New_Auftrag();
             form_new_Auftrag.Show();
-        }
-
-        private void eDITAUFTRAGToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pbx_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void UC_Main_Task_Pane_Enter(object sender, EventArgs e)
-        {
-            UC_Connect_Show.tmr_timed = true;
-        }
-
-        private void testToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            UC_Connect_Show.tmr_timed = false;
-            Form form_test_weim = new Form_test_weim();
-            form_test_weim.Show();
         }
     }
 }
