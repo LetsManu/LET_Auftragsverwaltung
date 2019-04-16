@@ -37,7 +37,7 @@ namespace LET_Auftragsverwaltung
         {
             if (sender != null)
             {
-                Form Form_EDIT = new Form_Edit_Auftrag_new(((sender as ObjectListView).SelectedItem.RowObject as Auftrag_Data).ID);
+                Form Form_EDIT = new Form_Edit_Auftrag(((sender as ObjectListView).SelectedItem.RowObject as Auftrag_Data).ID);
                 Form_EDIT.Show();
             }
         }

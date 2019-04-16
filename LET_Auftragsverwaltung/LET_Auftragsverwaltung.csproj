@@ -225,12 +225,6 @@
     <Compile Include="Form_Edit_Auftrag.Designer.cs">
       <DependentUpon>Form_Edit_Auftrag.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form_Edit_Auftrag_new.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form_Edit_Auftrag_new.Designer.cs">
-      <DependentUpon>Form_Edit_Auftrag_new.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form_New_Auftrag.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -294,18 +288,6 @@
     <Compile Include="UC_Connect_Show.Designer.cs">
       <DependentUpon>UC_Connect_Show.cs</DependentUpon>
     </Compile>
-    <Compile Include="UC_edit_Auftrag.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UC_edit_Auftrag.Designer.cs">
-      <DependentUpon>UC_edit_Auftrag.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UC_edit_Kauf.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UC_edit_Kauf.Designer.cs">
-      <DependentUpon>UC_edit_Kauf.cs</DependentUpon>
-    </Compile>
     <Compile Include="UC_Main_Task_Pane.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -338,9 +320,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Edit_Auftrag.resx">
       <DependentUpon>Form_Edit_Auftrag.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form_Edit_Auftrag_new.resx">
-      <DependentUpon>Form_Edit_Auftrag_new.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_New_Auftrag.resx">
       <DependentUpon>Form_New_Auftrag.cs</DependentUpon>
@@ -381,12 +360,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UC_Connect_Show.resx">
       <DependentUpon>UC_Connect_Show.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UC_edit_Auftrag.resx">
-      <DependentUpon>UC_edit_Auftrag.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UC_edit_Kauf.resx">
-      <DependentUpon>UC_edit_Kauf.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UC_Main_Task_Pane.resx">
       <DependentUpon>UC_Main_Task_Pane.cs</DependentUpon>
