@@ -29,20 +29,14 @@ namespace LET_Auftragsverwaltung
             id = id_;
             InitializeComponent();
 
-            date_erstell.Format = DateTimePickerFormat.Custom;
-            date_kauf_edit_Anzahlung.Format = DateTimePickerFormat.Custom;
-            date_kauf_edit_Auftragsbestaetigng.Format = DateTimePickerFormat.Custom;
-            date_kauf_edit_Schlussrechnung.Format = DateTimePickerFormat.Custom;
-            date_mont.Format = DateTimePickerFormat.Custom;
-
-            Format_all_datetimepicker("ddd dd/MM/yyyy");
+            Format_all_datetimepicker(Parameter.Date_Format);
 
             lbl_kauf_Anzahlung_bestaetigt.Visible = false;
             lbl_kauf_Auftrag_bestaetigt.Visible = false;
             lbl_kauf_Schlussrechnung_bestaetigt.Visible = false;
 
             Get_a_id();
-            UC_Kauf_Fill_cbx_kauf_edit_auf();
+            UC_Kauf_Fill_cbx_kauf_edit_auf();       //TODO Rename all these Methodes pls, that naming sheme is not readable.
             UC_Kauf_Fill_cbx_kauf_edit_anz();
             UC_Kauf_Fill_cbx_kauf_edit_schluss();
             UC_Kauf_Date_Auf_set();
@@ -57,7 +51,13 @@ namespace LET_Auftragsverwaltung
 
         private void Format_all_datetimepicker(string format)
         {
-            date_erstell.CustomFormat = format;               //TODO outsource to parameter class
+            date_erstell.Format = DateTimePickerFormat.Custom;
+            date_kauf_edit_Anzahlung.Format = DateTimePickerFormat.Custom;
+            date_kauf_edit_Auftragsbestaetigng.Format = DateTimePickerFormat.Custom;
+            date_kauf_edit_Schlussrechnung.Format = DateTimePickerFormat.Custom;
+            date_mont.Format = DateTimePickerFormat.Custom;
+
+            date_erstell.CustomFormat = format;              
             date_kauf_edit_Anzahlung.CustomFormat = format;
             date_kauf_edit_Auftragsbestaetigng.CustomFormat = format;
             date_kauf_edit_Schlussrechnung.CustomFormat = format;
