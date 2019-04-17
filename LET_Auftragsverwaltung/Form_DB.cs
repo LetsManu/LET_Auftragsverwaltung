@@ -14,20 +14,25 @@ namespace LET_Auftragsverwaltung
 {
     public partial class Form_DB : Form
     {
+        private bool is_startup = false;
         private OdbcConnection Connection => DB.Connection;
         public Form_DB()
         {
+            is_startup = true;
             InitializeComponent();
+            is_startup = false;
         }
 
         private void Form_DB_Load(object sender, EventArgs e)
         {
+            is_startup = true;
             UC_Parameter_lbx_pers_fill();
             UC_Parameter_lbx_lief_fill();
             UC_Parameter_lbx_pers_funk_fill();
-            UC_Parameter_lbx_stoff_fill();
             UC_Parameter_cbx_stoff_lief_fill();
             UC_Parameter_cbx_funk_fill();
+            is_startup = false;
+            UC_Parameter_lbx_stoff_fill();
         }
 
         #region Fill Methods
@@ -128,33 +133,32 @@ namespace LET_Auftragsverwaltung
 
         private void UC_Parameter_lbx_stoff_fill()
         {
-            if (!DesignMode)
+            if (!DesignMode && !is_startup)
             {
-                //   try
-                // {
-
-                var dt = SQL_methods.Fill_Box("SELECT CONCAT(CONCAT(stoff.ID,', '),stoff.name) AS Stoff,stoff.ST_ID,stoff_lieferant.L_ID FROM stoff LEFT JOIN stoff_lieferant ON stoff.ST_ID = stoff_lieferant.ST_ID WHERE deaktiviert<>true");
-
-
-                var tmp = dt.AsEnumerable().Where(x => x.Field<int>("L_ID") == Convert.ToInt32(cBx_stoff_lief_3.SelectedValue));
-                if (tmp.Count() > 0)
+                try
                 {
-                    lBx_stoff.DataSource = tmp.CopyToDataTable();
-                    btn_stoff_delete.Enabled = true;
-                }
-                else
-                {
-                    lBx_stoff.DataSource = new List<string>(new string[]{ "Diesem Lieferanten sind keine Stoffe zugewiesen" });
-                    btn_stoff_delete.Enabled = false;
-                }
-                lBx_stoff.ValueMember = "ST_ID";
-                lBx_stoff.DisplayMember = "Stoff";
 
-                //}
-                //catch (Exception f)
-                //{
-                //   MessageBox.Show("Fehler in der SQL Abfrage(Stoff Fill): \n\n" + f.Message + "\n\n" + f.Data.Values, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                // }
+                    var dt = SQL_methods.Fill_Box("SELECT CONCAT(CONCAT(stoff.ID,', '),stoff.name) AS Stoff,stoff.ST_ID,stoff_lieferant.L_ID FROM stoff LEFT JOIN stoff_lieferant ON stoff.ST_ID = stoff_lieferant.ST_ID WHERE deaktiviert<>true");
+
+
+                    var tmp = dt.AsEnumerable().Where(x => x.Field<int>("L_ID") == Convert.ToInt32(cBx_stoff_lief_3.SelectedValue));
+                    if (tmp.Count() > 0)
+                    {
+                        lBx_stoff.DataSource = tmp.CopyToDataTable();
+                        btn_stoff_delete.Enabled = true;
+                        lBx_stoff.ValueMember = "ST_ID";
+                        lBx_stoff.DisplayMember = "Stoff";
+                    }
+                    else
+                    {
+                        lBx_stoff.DataSource = new List<string>(new string[] { "Diesem Lieferanten sind keine Stoffe zugewiesen" });
+                        btn_stoff_delete.Enabled = false;
+                    }
+                }
+                catch (Exception f)
+                {
+                    MessageBox.Show("Fehler in der SQL Abfrage(Stoff Fill): \n\n" + f.Message + "\n\n" + f.Data.Values, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -188,94 +192,103 @@ namespace LET_Auftragsverwaltung
         {
             if (!DesignMode)
             {
-                try
+                if (!string.IsNullOrEmpty(tBx_pers_Nachname.Text) && !string.IsNullOrEmpty(tBx_pers_Vorname.Text))
                 {
-                    SQL_methods.SQL_exec(string.Format(
-                        "INSERT INTO adressen (Land, PLZ, Ort, Hausnummer, Strasse ) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')",
-                        tbx_pers_Land.Text, tBx_pers_plz.Text, tBx_pers_Ort.Text, tBx_pers_strnum.Text,
-                        tBx_pers_str.Text));
+                    try
+                    {
+                        SQL_methods.SQL_exec(string.Format(
+                            "INSERT INTO adressen (Land, PLZ, Ort, Hausnummer, Strasse ) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')",
+                            tbx_pers_Land.Text, tBx_pers_plz.Text, tBx_pers_Ort.Text, tBx_pers_strnum.Text,
+                            tBx_pers_str.Text));
 
-                    var sql2 = string.Format(
-                        "SELECT Adr_ID FROM adressen WHERE Land='{0}' AND PLZ='{1}' AND Ort='{2}' AND Hausnummer='{3}' AND Strasse='{4}' LIMIT 1",
-                        tbx_pers_Land.Text, tBx_pers_plz.Text, tBx_pers_Ort.Text, tBx_pers_strnum.Text, tBx_pers_str.Text);
-                    SQL_methods.Open();
-                    var cmd_read = new OdbcCommand(sql2, Connection);
-                    var sqlReader = cmd_read.ExecuteReader();
+                        var sql2 = string.Format(
+                            "SELECT Adr_ID FROM adressen WHERE Land='{0}' AND PLZ='{1}' AND Ort='{2}' AND Hausnummer='{3}' AND Strasse='{4}' LIMIT 1",
+                            tbx_pers_Land.Text, tBx_pers_plz.Text, tBx_pers_Ort.Text, tBx_pers_strnum.Text, tBx_pers_str.Text);
+                        SQL_methods.Open();
+                        var cmd_read = new OdbcCommand(sql2, Connection);
+                        var sqlReader = cmd_read.ExecuteReader();
 
-                    sqlReader.Read();
+                        sqlReader.Read();
 
-                    var adr_id = sqlReader.GetInt32(0);
+                        var adr_id = sqlReader.GetInt32(0);
 
-                    SQL_methods.SQL_exec(string.Format("INSERT INTO personal (Vorname, Nachname, Adr_ID) VALUES ('{0}', '{1}', {2})",
-                        tBx_pers_Vorname.Text, tBx_pers_Nachname.Text, adr_id));
-                    MessageBox.Show("Person wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    UC_Parameter_lbx_pers_fill();
+                        SQL_methods.SQL_exec(string.Format("INSERT INTO personal (Vorname, Nachname, Adr_ID) VALUES ('{0}', '{1}', {2})",
+                            tBx_pers_Vorname.Text, tBx_pers_Nachname.Text, adr_id));
+                        MessageBox.Show("Person wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        UC_Parameter_lbx_pers_fill();
+                    }
+                    catch (Exception f)
+                    {
+                        MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+
+
+                    tBx_pers_Vorname.Text = "";
+                    tBx_pers_Nachname.Text = "";
+                    tBx_pers_strnum.Text = "";
+                    tbx_pers_Land.Text = "";
+                    tBx_pers_Ort.Text = "";
+                    tBx_pers_str.Text = "";
+                    tBx_pers_plz.Text = "";
+
                 }
-                catch (Exception f)
+                else
                 {
-                    MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                    MessageBox.Show("Vor- und Nachname sind Pflichtfelder", "Warnung", MessageBoxButtons.OK);
                 }
-
-
-                tBx_pers_Vorname.Text = "";
-                tBx_pers_Nachname.Text = "";
-                tBx_pers_strnum.Text = "";
-                tbx_pers_Land.Text = "";
-                tBx_pers_Ort.Text = "";
-                tBx_pers_str.Text = "";
-                tBx_pers_plz.Text = "";
-
-
             }
         }
 
         private void Btn_pers_edit_Click(object sender, EventArgs e)
         {
             if (!DesignMode)
-                try
+                if (!string.IsNullOrEmpty(tBx_pers_Nachname.Text) || !string.IsNullOrEmpty(tBx_pers_Vorname.Text))
                 {
+                    try
+                    {
 
-                    SQL_methods.SQL_exec(string.Format("UPDATE personal SET Vorname= '{0}', Nachname = '{1}' WHERE P_ID = {2}",
-                        tBx_pers_Vorname.Text, tBx_pers_Nachname.Text, lbx_Personen.SelectedValue));
-
-
-                    var sql2 = string.Format("SELECT Adr_ID FROM personal WHERE P_ID = {0}",
-                        lbx_Personen.SelectedValue);
-                    SQL_methods.Open();
-                    var cmd_read = new OdbcCommand(sql2, Connection);
-                    var sqlReader = cmd_read.ExecuteReader();
-
-                    sqlReader.Read();
-
-                    var adr_id = sqlReader.GetInt32(0);
+                        SQL_methods.SQL_exec(string.Format("UPDATE personal SET Vorname= '{0}', Nachname = '{1}' WHERE P_ID = {2}",
+                            tBx_pers_Vorname.Text, tBx_pers_Nachname.Text, lbx_Personen.SelectedValue));
 
 
+                        var sql2 = string.Format("SELECT Adr_ID FROM personal WHERE P_ID = {0}",
+                            lbx_Personen.SelectedValue);
+                        SQL_methods.Open();
+                        var cmd_read = new OdbcCommand(sql2, Connection);
+                        var sqlReader = cmd_read.ExecuteReader();
 
-                    SQL_methods.SQL_exec(string.Format(
-                        "UPDATE adressen SET Land = '{0}', PLZ = '{1}', Ort = '{2}', Hausnummer = '{3}', Strasse = '{4}' WHERE Adr_ID = {5}",
-                        tbx_pers_Land.Text, tBx_pers_plz.Text, tBx_pers_Ort.Text, tBx_pers_strnum.Text,
-                        tBx_pers_str.Text,
-                        adr_id));
-                }
-                catch (Exception f)
-                {
+                        sqlReader.Read();
 
-                    MessageBox.Show("Fehler in der SQL Abfrage(Personal Update): \n\n" + f.Message, "Fehler",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    tBx_pers_Vorname.Text = "";
-                    tBx_pers_Nachname.Text = "";
-                    tbx_pers_Land.Text = "";
-                    tBx_pers_plz.Text = "";
-                    tBx_pers_Ort.Text = "";
-                    tBx_pers_strnum.Text = "";
-                    tBx_pers_str.Text = "";
+                        var adr_id = sqlReader.GetInt32(0);
 
-                    UC_Parameter_lbx_pers_fill();
+
+
+                        SQL_methods.SQL_exec(string.Format(
+                            "UPDATE adressen SET Land = '{0}', PLZ = '{1}', Ort = '{2}', Hausnummer = '{3}', Strasse = '{4}' WHERE Adr_ID = {5}",
+                            tbx_pers_Land.Text, tBx_pers_plz.Text, tBx_pers_Ort.Text, tBx_pers_strnum.Text,
+                            tBx_pers_str.Text,
+                            adr_id));
+                    }
+                    catch (Exception f)
+                    {
+
+                        MessageBox.Show("Fehler in der SQL Abfrage(Personal Update): \n\n" + f.Message, "Fehler",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        tBx_pers_Vorname.Text = "";
+                        tBx_pers_Nachname.Text = "";
+                        tbx_pers_Land.Text = "";
+                        tBx_pers_plz.Text = "";
+                        tBx_pers_Ort.Text = "";
+                        tBx_pers_strnum.Text = "";
+                        tBx_pers_str.Text = "";
+
+                        UC_Parameter_lbx_pers_fill();
+                    }
                 }
         }
 
@@ -375,97 +388,103 @@ namespace LET_Auftragsverwaltung
         {
             if (!DesignMode)
             {
-                try
+                if (!string.IsNullOrEmpty(tBx_lief_Kennung.Text))
                 {
+                    try
+                    {
 
-                    SQL_methods.SQL_exec(string.Format(
-                        "INSERT INTO adressen (Land, PLZ, Ort, Hausnummer, Strasse ) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')",
-                        tBx_lief_Land.Text, tBx_lief_plz.Text, tBx_lief_Ort.Text, tBx_lief_strnum.Text,
-                        tBx_lief_str.Text));
+                        SQL_methods.SQL_exec(string.Format(
+                            "INSERT INTO adressen (Land, PLZ, Ort, Hausnummer, Strasse ) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')",
+                            tBx_lief_Land.Text, tBx_lief_plz.Text, tBx_lief_Ort.Text, tBx_lief_strnum.Text,
+                            tBx_lief_str.Text));
 
-                    var sql = string.Format(
-                        "SELECT Adr_ID FROM adressen WHERE Land='{0}' AND PLZ='{1}' AND Ort='{2}' AND Hausnummer='{3}' AND Strasse='{4}' LIMIT 1",
-                        tBx_lief_Land.Text, tBx_lief_plz.Text, tBx_lief_Ort.Text, tBx_lief_strnum.Text,
-                        tBx_lief_str.Text);
-                    SQL_methods.Open();
-                    var cmd_read = new OdbcCommand(sql, Connection);
-                    var sqlReader = cmd_read.ExecuteReader();
+                        var sql = string.Format(
+                            "SELECT Adr_ID FROM adressen WHERE Land='{0}' AND PLZ='{1}' AND Ort='{2}' AND Hausnummer='{3}' AND Strasse='{4}' LIMIT 1",
+                            tBx_lief_Land.Text, tBx_lief_plz.Text, tBx_lief_Ort.Text, tBx_lief_strnum.Text,
+                            tBx_lief_str.Text);
+                        SQL_methods.Open();
+                        var cmd_read = new OdbcCommand(sql, Connection);
+                        var sqlReader = cmd_read.ExecuteReader();
 
-                    sqlReader.Read();
+                        sqlReader.Read();
 
-                    var adr_id = sqlReader.GetInt32(0);
+                        var adr_id = sqlReader.GetInt32(0);
 
 
 
-                    SQL_methods.SQL_exec(string.Format("INSERT INTO Lieferant (Lieferant, Adr_ID ) VALUES ('{0}', {1})",
-                        tBx_lief_Kennung.Text, adr_id));
+                        SQL_methods.SQL_exec(string.Format("INSERT INTO Lieferant (Lieferant, Adr_ID ) VALUES ('{0}', {1})",
+                            tBx_lief_Kennung.Text, adr_id));
 
-                    MessageBox.Show("Lieferant wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Lieferant wurde gespeichert", "Speicherung erfolgreich", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception f)
+                    {
+                        MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+
+
+                    tBx_lief_Kennung.Text = "";
+                    tBx_lief_strnum.Text = "";
+                    tBx_lief_Land.Text = "";
+                    tBx_lief_Ort.Text = "";
+                    tBx_lief_plz.Text = "";
+                    tBx_lief_str.Text = "";
+
+                    UC_Parameter_lbx_lief_fill();
+
+                    UC_Parameter_cbx_stoff_lief_fill();
                 }
-                catch (Exception f)
-                {
-                    MessageBox.Show("Fehler in der SQL Abfrage: \n\n" + f.Message, "Fehler", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-
-
-                tBx_lief_Kennung.Text = "";
-                tBx_lief_strnum.Text = "";
-                tBx_lief_Land.Text = "";
-                tBx_lief_Ort.Text = "";
-                tBx_lief_plz.Text = "";
-                tBx_lief_str.Text = "";
-
-                UC_Parameter_lbx_lief_fill();
-
-                UC_Parameter_cbx_stoff_lief_fill();
             }
         }
 
         private void Btn_lief_edit_Click(object sender, EventArgs e)
         {
             if (!DesignMode)
-                try
+                if (!string.IsNullOrEmpty(tBx_lief_Kennung.Text))
                 {
-                    SQL_methods.SQL_exec(string.Format(
-                        "UPDATE lieferant SET lieferant= '{0}' WHERE L_ID = {1}",
-                        tBx_lief_Kennung.Text, lbx_Lieferanten.SelectedValue));
+                    try
+                    {
+                        SQL_methods.SQL_exec(string.Format(
+                            "UPDATE lieferant SET lieferant= '{0}' WHERE L_ID = {1}",
+                            tBx_lief_Kennung.Text, lbx_Lieferanten.SelectedValue));
 
-                    SQL_methods.Open();
-                    var sql2 = string.Format("SELECT Adr_ID FROM lieferant WHERE L_ID = {0}",
-                        lbx_Lieferanten.SelectedValue);
-                    var cmd_read = new OdbcCommand(sql2, Connection);
-                    var sqlReader = cmd_read.ExecuteReader();
+                        SQL_methods.Open();
+                        var sql2 = string.Format("SELECT Adr_ID FROM lieferant WHERE L_ID = {0}",
+                            lbx_Lieferanten.SelectedValue);
+                        var cmd_read = new OdbcCommand(sql2, Connection);
+                        var sqlReader = cmd_read.ExecuteReader();
 
-                    sqlReader.Read();
+                        sqlReader.Read();
 
-                    var adr_id = sqlReader.GetInt32(0);
+                        var adr_id = sqlReader.GetInt32(0);
 
 
 
-                    SQL_methods.SQL_exec(string.Format(
-                        "UPDATE adressen SET Land = '{0}', PLZ = '{1}', Ort = '{2}', Hausnummer = '{3}', Strasse = '{4}' WHERE Adr_ID = {5}",
-                        tBx_lief_Land.Text, tBx_lief_plz.Text, tBx_lief_Ort.Text, tBx_lief_strnum.Text,
-                        tBx_lief_str.Text,
-                        adr_id));
-                }
-                catch (Exception f)
-                {
+                        SQL_methods.SQL_exec(string.Format(
+                            "UPDATE adressen SET Land = '{0}', PLZ = '{1}', Ort = '{2}', Hausnummer = '{3}', Strasse = '{4}' WHERE Adr_ID = {5}",
+                            tBx_lief_Land.Text, tBx_lief_plz.Text, tBx_lief_Ort.Text, tBx_lief_strnum.Text,
+                            tBx_lief_str.Text,
+                            adr_id));
+                    }
+                    catch (Exception f)
+                    {
 
-                    MessageBox.Show("Fehler in der SQL Abfrage(Lieferant Update): \n\n" + f.Message, "Fehler",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    tBx_lief_Kennung.Text = "";
-                    tBx_lief_Land.Text = "";
-                    tBx_lief_plz.Text = "";
-                    tBx_lief_Ort.Text = "";
-                    tBx_lief_strnum.Text = "";
-                    tBx_lief_str.Text = "";
+                        MessageBox.Show("Fehler in der SQL Abfrage(Lieferant Update): \n\n" + f.Message, "Fehler",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        tBx_lief_Kennung.Text = "";
+                        tBx_lief_Land.Text = "";
+                        tBx_lief_plz.Text = "";
+                        tBx_lief_Ort.Text = "";
+                        tBx_lief_strnum.Text = "";
+                        tBx_lief_str.Text = "";
 
-                    UC_Parameter_lbx_lief_fill();
+                        UC_Parameter_lbx_lief_fill();
+                    }
                 }
         }
 

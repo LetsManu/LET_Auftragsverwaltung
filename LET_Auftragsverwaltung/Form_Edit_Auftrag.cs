@@ -84,13 +84,13 @@ namespace LET_Auftragsverwaltung
 
         private void UC_Edit_Auftrag_fill_segel()
         {
-            string sql = "SELECT segel.name AS name, segel.form AS form, stoff.Stoff AS stoff, lieferant.Lieferant AS lieferant, segel.id AS id FROM auftraege_segel INNER JOIN segel ON auftraege_segel.id_segel = segel.id INNER JOIN stoff ON segel.stoff_kennung = stoff.ST_ID INNER JOIN stoff_lieferant ON stoff.ST_ID = stoff_lieferant.ST_ID INNER JOIN lieferant ON stoff_lieferant.L_ID = lieferant.L_ID WHERE auftraege_segel.id_auftrag = " + id;
+            string sql = "SELECT segel.name AS name, segel.form AS form, CONCAT(CONCAT(stoff.ID,', '),stoff.name) AS Stoff, lieferant.Lieferant AS lieferant, segel.id AS id FROM auftraege_segel INNER JOIN segel ON auftraege_segel.id_segel = segel.id INNER JOIN stoff ON segel.stoff_kennung = stoff.ST_ID INNER JOIN stoff_lieferant ON stoff.ST_ID = stoff_lieferant.ST_ID INNER JOIN lieferant ON stoff_lieferant.L_ID = lieferant.L_ID WHERE auftraege_segel.id_auftrag = " + id;
             OdbcCommand cmd = new OdbcCommand(sql, Connection);
             SQL_methods.Open();
             OdbcDataReader sqlReader = cmd.ExecuteReader();
             while (sqlReader.Read())
             {
-                Segel segel = new Segel((string)sqlReader["name"], (string)sqlReader["form"], (string)sqlReader["stoff"], (string)sqlReader["lieferant"], (int)sqlReader["id"]);
+                Segel segel = new Segel((string)sqlReader["name"], (string)sqlReader["form"], (string)sqlReader["Stoff"], (string)sqlReader["lieferant"], (int)sqlReader["id"]);
                 lBx_segel.Items.Add(segel);
             }
         }
@@ -250,7 +250,7 @@ namespace LET_Auftragsverwaltung
                     try
                     {
                         DataTable dtStoff = SQL_methods.Fill_Box(string.Format(
-                            "SELECT stoff.ST_ID,stoff.`Stoff` FROM stoff INNER JOIN stoff_lieferant ON stoff.ST_ID = stoff_lieferant.ST_ID WHERE stoff_lieferant.L_ID = {0}",
+                            "SELECT stoff.ST_ID,CONCAT(CONCAT(stoff.ID,', '),stoff.name) AS Stoff FROM stoff INNER JOIN stoff_lieferant ON stoff.ST_ID = stoff_lieferant.ST_ID WHERE stoff_lieferant.L_ID = {0}",
                             cBx_stoff_hersteller.SelectedValue));
 
                         cBx_stoff_kennung.DataSource = dtStoff;

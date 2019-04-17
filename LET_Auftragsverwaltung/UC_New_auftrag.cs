@@ -425,7 +425,7 @@ namespace LET_Auftragsverwaltung
                     try
                     {
                         DataTable dtStoff = SQL_methods.Fill_Box(string.Format(
-                            "SELECT stoff.ST_ID,stoff.`Stoff` FROM stoff INNER JOIN stoff_lieferant ON stoff.ST_ID = stoff_lieferant.ST_ID WHERE stoff_lieferant.L_ID = {0}",
+                            "SELECT stoff.ST_ID,CONCAT(CONCAT(stoff.ID,', '),stoff.name) AS Stoff FROM stoff INNER JOIN stoff_lieferant ON stoff.ST_ID = stoff_lieferant.ST_ID WHERE stoff_lieferant.L_ID = {0}",
                             cBx_stoff_hersteller.SelectedValue));
 
                         cBx_stoff_kennung.DataSource = dtStoff;
