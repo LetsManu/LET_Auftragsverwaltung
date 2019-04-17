@@ -243,7 +243,7 @@ namespace LET_Auftragsverwaltung
         private void Btn_pers_edit_Click(object sender, EventArgs e)
         {
             if (!DesignMode)
-                if (!string.IsNullOrEmpty(tBx_pers_Nachname.Text) || !string.IsNullOrEmpty(tBx_pers_Vorname.Text))
+                if (!string.IsNullOrEmpty(tBx_pers_Nachname.Text) && !string.IsNullOrEmpty(tBx_pers_Vorname.Text))
                 {
                     try
                     {
