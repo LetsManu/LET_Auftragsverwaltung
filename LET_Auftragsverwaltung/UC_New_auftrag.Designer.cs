@@ -368,6 +368,10 @@
             // cBx_segelform
             // 
             this.cBx_segelform.FormattingEnabled = true;
+            this.cBx_segelform.Items.AddRange(new object[] {
+            "Doppelsonnensegel",
+            "Dreiecksonnensegel",
+            "Trapezsonnensegel"});
             this.cBx_segelform.Location = new System.Drawing.Point(88, 57);
             this.cBx_segelform.Name = "cBx_segelform";
             this.cBx_segelform.Size = new System.Drawing.Size(169, 21);
