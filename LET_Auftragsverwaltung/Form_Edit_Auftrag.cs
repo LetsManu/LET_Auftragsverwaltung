@@ -653,7 +653,7 @@ namespace LET_Auftragsverwaltung
         {
             if (!this.DesignMode)
             {
-                Form_Best f_best = new Form_Best(id);
+                Form_Best f_best = new Form_Best(a_id);
                 f_best.Show();
             }
         }
@@ -737,6 +737,7 @@ namespace LET_Auftragsverwaltung
                 if (check)
                 {
                     lbl_kauf_Auftrag_bestaetigt.Visible = true;
+                    gBx_Auftragsbestaetigung.Enabled = false;
                 }
 
                 sql = string.Format("SELECT B_Best FROM ab_az WHERE A_ID = " + a_id);
@@ -751,6 +752,7 @@ namespace LET_Auftragsverwaltung
                 if (check)
                 {
                     lbl_kauf_Anzahlung_bestaetigt.Visible = true;
+                    gBx_Anzahlung.Enabled = false;
                 }
 
                 sql = string.Format("SELECT S_Best FROM ab_az WHERE A_ID = " + a_id);
@@ -764,6 +766,7 @@ namespace LET_Auftragsverwaltung
                 if (check)
                 {
                     lbl_kauf_Schlussrechnung_bestaetigt.Visible = true;
+                    gBx_Schlussrechnung.Enabled = false;
                 }
 
             }

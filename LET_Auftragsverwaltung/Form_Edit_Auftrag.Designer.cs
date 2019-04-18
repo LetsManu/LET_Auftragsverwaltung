@@ -69,7 +69,7 @@
             this.btn_save_infos = new System.Windows.Forms.Button();
             this.tab_kauf = new System.Windows.Forms.TabPage();
             this.btn_bestaetigungsmanager = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.gBx_Schlussrechnung = new System.Windows.Forms.GroupBox();
             this.btn_date_kauf_edit_Schlussrechnung = new System.Windows.Forms.Button();
             this.lbl_kauf_Schlussrechnung_bestaetigt = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -79,7 +79,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.cbx_kauf_edit_Schlussrechnung = new System.Windows.Forms.ComboBox();
             this.date_kauf_edit_Schlussrechnung = new System.Windows.Forms.DateTimePicker();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.gBx_Anzahlung = new System.Windows.Forms.GroupBox();
             this.btn_date_kauf_edit_Anzahlung = new System.Windows.Forms.Button();
             this.lbl_kauf_Anzahlung_bestaetigt = new System.Windows.Forms.Label();
             this.btn_save_kauf_Anzahlung = new System.Windows.Forms.Button();
@@ -89,7 +89,7 @@
             this.date_kauf_edit_Anzahlung = new System.Windows.Forms.DateTimePicker();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.gBx_Auftragsbestaetigung = new System.Windows.Forms.GroupBox();
             this.btn_date_kauf_edit_Auftragsbestaetigung = new System.Windows.Forms.Button();
             this.lbl_kauf_Auftrag_bestaetigt = new System.Windows.Forms.Label();
             this.btn_save_kauf_Auftragsbestaetigung = new System.Windows.Forms.Button();
@@ -108,9 +108,9 @@
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tab_kauf.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox6.SuspendLayout();
+            this.gBx_Schlussrechnung.SuspendLayout();
+            this.gBx_Anzahlung.SuspendLayout();
+            this.gBx_Auftragsbestaetigung.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -482,9 +482,9 @@
             // tab_kauf
             // 
             this.tab_kauf.Controls.Add(this.btn_bestaetigungsmanager);
-            this.tab_kauf.Controls.Add(this.groupBox4);
-            this.tab_kauf.Controls.Add(this.groupBox5);
-            this.tab_kauf.Controls.Add(this.groupBox6);
+            this.tab_kauf.Controls.Add(this.gBx_Schlussrechnung);
+            this.tab_kauf.Controls.Add(this.gBx_Anzahlung);
+            this.tab_kauf.Controls.Add(this.gBx_Auftragsbestaetigung);
             this.tab_kauf.Location = new System.Drawing.Point(4, 22);
             this.tab_kauf.Name = "tab_kauf";
             this.tab_kauf.Size = new System.Drawing.Size(942, 361);
@@ -502,23 +502,23 @@
             this.btn_bestaetigungsmanager.UseVisualStyleBackColor = true;
             this.btn_bestaetigungsmanager.Click += new System.EventHandler(this.Btn_best_Click);
             // 
-            // groupBox4
+            // gBx_Schlussrechnung
             // 
-            this.groupBox4.Controls.Add(this.btn_date_kauf_edit_Schlussrechnung);
-            this.groupBox4.Controls.Add(this.lbl_kauf_Schlussrechnung_bestaetigt);
-            this.groupBox4.Controls.Add(this.label14);
-            this.groupBox4.Controls.Add(this.btn_save_kauf_Schlussrechnung);
-            this.groupBox4.Controls.Add(this.label15);
-            this.groupBox4.Controls.Add(this.tBx_kauf_edit_Schlussrechnung);
-            this.groupBox4.Controls.Add(this.label16);
-            this.groupBox4.Controls.Add(this.cbx_kauf_edit_Schlussrechnung);
-            this.groupBox4.Controls.Add(this.date_kauf_edit_Schlussrechnung);
-            this.groupBox4.Location = new System.Drawing.Point(627, 3);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(309, 327);
-            this.groupBox4.TabIndex = 8;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Schlussrechnung";
+            this.gBx_Schlussrechnung.Controls.Add(this.btn_date_kauf_edit_Schlussrechnung);
+            this.gBx_Schlussrechnung.Controls.Add(this.lbl_kauf_Schlussrechnung_bestaetigt);
+            this.gBx_Schlussrechnung.Controls.Add(this.label14);
+            this.gBx_Schlussrechnung.Controls.Add(this.btn_save_kauf_Schlussrechnung);
+            this.gBx_Schlussrechnung.Controls.Add(this.label15);
+            this.gBx_Schlussrechnung.Controls.Add(this.tBx_kauf_edit_Schlussrechnung);
+            this.gBx_Schlussrechnung.Controls.Add(this.label16);
+            this.gBx_Schlussrechnung.Controls.Add(this.cbx_kauf_edit_Schlussrechnung);
+            this.gBx_Schlussrechnung.Controls.Add(this.date_kauf_edit_Schlussrechnung);
+            this.gBx_Schlussrechnung.Location = new System.Drawing.Point(627, 3);
+            this.gBx_Schlussrechnung.Name = "gBx_Schlussrechnung";
+            this.gBx_Schlussrechnung.Size = new System.Drawing.Size(309, 327);
+            this.gBx_Schlussrechnung.TabIndex = 8;
+            this.gBx_Schlussrechnung.TabStop = false;
+            this.gBx_Schlussrechnung.Text = "Schlussrechnung";
             // 
             // btn_date_kauf_edit_Schlussrechnung
             // 
@@ -604,23 +604,23 @@
             this.date_kauf_edit_Schlussrechnung.CloseUp += new System.EventHandler(this.Date_kauf_edit_schluss_CloseUp);
             this.date_kauf_edit_Schlussrechnung.ValueChanged += new System.EventHandler(this.Date_kauf_edit_schluss_ValueChanged);
             // 
-            // groupBox5
+            // gBx_Anzahlung
             // 
-            this.groupBox5.Controls.Add(this.btn_date_kauf_edit_Anzahlung);
-            this.groupBox5.Controls.Add(this.lbl_kauf_Anzahlung_bestaetigt);
-            this.groupBox5.Controls.Add(this.btn_save_kauf_Anzahlung);
-            this.groupBox5.Controls.Add(this.tBx_kauf_edit_Anzahlung);
-            this.groupBox5.Controls.Add(this.cbx_kauf_edit_Anzahlung);
-            this.groupBox5.Controls.Add(this.label17);
-            this.groupBox5.Controls.Add(this.date_kauf_edit_Anzahlung);
-            this.groupBox5.Controls.Add(this.label21);
-            this.groupBox5.Controls.Add(this.label22);
-            this.groupBox5.Location = new System.Drawing.Point(317, 3);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(309, 327);
-            this.groupBox5.TabIndex = 9;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Anzahlungsrechnung";
+            this.gBx_Anzahlung.Controls.Add(this.btn_date_kauf_edit_Anzahlung);
+            this.gBx_Anzahlung.Controls.Add(this.lbl_kauf_Anzahlung_bestaetigt);
+            this.gBx_Anzahlung.Controls.Add(this.btn_save_kauf_Anzahlung);
+            this.gBx_Anzahlung.Controls.Add(this.tBx_kauf_edit_Anzahlung);
+            this.gBx_Anzahlung.Controls.Add(this.cbx_kauf_edit_Anzahlung);
+            this.gBx_Anzahlung.Controls.Add(this.label17);
+            this.gBx_Anzahlung.Controls.Add(this.date_kauf_edit_Anzahlung);
+            this.gBx_Anzahlung.Controls.Add(this.label21);
+            this.gBx_Anzahlung.Controls.Add(this.label22);
+            this.gBx_Anzahlung.Location = new System.Drawing.Point(317, 3);
+            this.gBx_Anzahlung.Name = "gBx_Anzahlung";
+            this.gBx_Anzahlung.Size = new System.Drawing.Size(309, 327);
+            this.gBx_Anzahlung.TabIndex = 9;
+            this.gBx_Anzahlung.TabStop = false;
+            this.gBx_Anzahlung.Text = "Anzahlungsrechnung";
             // 
             // btn_date_kauf_edit_Anzahlung
             // 
@@ -706,23 +706,23 @@
             this.label22.TabIndex = 8;
             this.label22.Text = "Rechnungs-Datum";
             // 
-            // groupBox6
+            // gBx_Auftragsbestaetigung
             // 
-            this.groupBox6.Controls.Add(this.btn_date_kauf_edit_Auftragsbestaetigung);
-            this.groupBox6.Controls.Add(this.lbl_kauf_Auftrag_bestaetigt);
-            this.groupBox6.Controls.Add(this.btn_save_kauf_Auftragsbestaetigung);
-            this.groupBox6.Controls.Add(this.tBx_kauf_edit_Auftragsbestaetigung);
-            this.groupBox6.Controls.Add(this.cbx_kauf_edit_Auftragsbestaetigung);
-            this.groupBox6.Controls.Add(this.date_kauf_edit_Auftragsbestaetigng);
-            this.groupBox6.Controls.Add(this.label23);
-            this.groupBox6.Controls.Add(this.label24);
-            this.groupBox6.Controls.Add(this.label25);
-            this.groupBox6.Location = new System.Drawing.Point(7, 3);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(309, 327);
-            this.groupBox6.TabIndex = 7;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Auftragsbestätigung";
+            this.gBx_Auftragsbestaetigung.Controls.Add(this.btn_date_kauf_edit_Auftragsbestaetigung);
+            this.gBx_Auftragsbestaetigung.Controls.Add(this.lbl_kauf_Auftrag_bestaetigt);
+            this.gBx_Auftragsbestaetigung.Controls.Add(this.btn_save_kauf_Auftragsbestaetigung);
+            this.gBx_Auftragsbestaetigung.Controls.Add(this.tBx_kauf_edit_Auftragsbestaetigung);
+            this.gBx_Auftragsbestaetigung.Controls.Add(this.cbx_kauf_edit_Auftragsbestaetigung);
+            this.gBx_Auftragsbestaetigung.Controls.Add(this.date_kauf_edit_Auftragsbestaetigng);
+            this.gBx_Auftragsbestaetigung.Controls.Add(this.label23);
+            this.gBx_Auftragsbestaetigung.Controls.Add(this.label24);
+            this.gBx_Auftragsbestaetigung.Controls.Add(this.label25);
+            this.gBx_Auftragsbestaetigung.Location = new System.Drawing.Point(7, 3);
+            this.gBx_Auftragsbestaetigung.Name = "gBx_Auftragsbestaetigung";
+            this.gBx_Auftragsbestaetigung.Size = new System.Drawing.Size(309, 327);
+            this.gBx_Auftragsbestaetigung.TabIndex = 7;
+            this.gBx_Auftragsbestaetigung.TabStop = false;
+            this.gBx_Auftragsbestaetigung.Text = "Auftragsbestätigung";
             // 
             // btn_date_kauf_edit_Auftragsbestaetigung
             // 
@@ -840,12 +840,12 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.tab_kauf.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
+            this.gBx_Schlussrechnung.ResumeLayout(false);
+            this.gBx_Schlussrechnung.PerformLayout();
+            this.gBx_Anzahlung.ResumeLayout(false);
+            this.gBx_Anzahlung.PerformLayout();
+            this.gBx_Auftragsbestaetigung.ResumeLayout(false);
+            this.gBx_Auftragsbestaetigung.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -891,7 +891,7 @@
         private System.Windows.Forms.Button btn_save_infos;
         private System.Windows.Forms.TabPage tab_kauf;
         private System.Windows.Forms.Button btn_bestaetigungsmanager;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox gBx_Schlussrechnung;
         private System.Windows.Forms.Button btn_date_kauf_edit_Schlussrechnung;
         private System.Windows.Forms.Label lbl_kauf_Schlussrechnung_bestaetigt;
         private System.Windows.Forms.Label label14;
@@ -901,7 +901,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox cbx_kauf_edit_Schlussrechnung;
         private System.Windows.Forms.DateTimePicker date_kauf_edit_Schlussrechnung;
-        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox gBx_Anzahlung;
         private System.Windows.Forms.Button btn_date_kauf_edit_Anzahlung;
         private System.Windows.Forms.Label lbl_kauf_Anzahlung_bestaetigt;
         private System.Windows.Forms.Button btn_save_kauf_Anzahlung;
@@ -911,7 +911,7 @@
         private System.Windows.Forms.DateTimePicker date_kauf_edit_Anzahlung;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox gBx_Auftragsbestaetigung;
         private System.Windows.Forms.Button btn_date_kauf_edit_Auftragsbestaetigung;
         private System.Windows.Forms.Label lbl_kauf_Auftrag_bestaetigt;
         private System.Windows.Forms.Button btn_save_kauf_Auftragsbestaetigung;
