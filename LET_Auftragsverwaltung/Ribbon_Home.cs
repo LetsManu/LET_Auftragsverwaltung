@@ -14,10 +14,9 @@ namespace LET_Auftragsverwaltung
 {
     public partial class Ribbon_Home
     {
+
         public static int ID = 0;
         public static bool open_edit_auftrag = false;
-        private UC_Main_Task_Pane uC_Main_Task_Pane;
-        private Microsoft.Office.Tools.CustomTaskPane CTP_Main;
 
         private void Ribbon_Home_Load(object sender, RibbonUIEventArgs e)
         {
@@ -26,7 +25,6 @@ namespace LET_Auftragsverwaltung
 
         private void btn_open_Main_Click(object sender, RibbonControlEventArgs e)
         {
-            
         }
 
         private void tmr_100_Tick(object sender, EventArgs e)

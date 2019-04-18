@@ -1,61 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Data.Odbc;
 using System.Linq;
 using System.Management;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace LET_Auftragsverwaltung
 
 //TODO konfigurieren datei machen
 {
-    class DB
+    public static class DB
     {
         private static OdbcConnection connection = null;
-        private static readonly bool Is_this_mb = "M80-AC016500071" == System_Info.GetMotherBoardID();
-
-        public static OdbcConnection Connection => connection ?? (connection = new OdbcConnection(Connectionstring));
-
-        private static string Login_name => "root";
-
-        private static string Connectionstring => $"Driver={"MySQL ODBC 5.3 Unicode Driver"};Server={Server_IP};Port={Port};Database={Database};User={Login_name};Password={Login_pw};Option=3;";
-
-        private static string Database
+        public static OdbcConnection Connection
         {
             get
             {
-                if (Is_this_mb) return "auftrags";
-                else return "auftrags";
+                if (!String.IsNullOrEmpty(Database_Name) && !String.IsNullOrEmpty(Database_IP) && !String.IsNullOrEmpty(Database_Port) && !String.IsNullOrEmpty(Database_Login_Name))
+                {
+                    return connection ?? (connection = new OdbcConnection(Connectionstring));
+                }
+                else
+                {
+                    throw new NoNullAllowedException("Database login Data is not complete");
+                }
             }
         }
 
-        private static string Login_pw
+        private static string Database_Name;
+        private static string Database_IP;
+        private static string Database_Port;
+        private static string Database_Login_Name;
+        private static string Database_Login_Password;
+
+        public static void Give_login_Data_pls_thx(string name, string ip, string port, string login_name, string login_password)
         {
-            get
-            {
-                if (Is_this_mb) return "";
-                else return "cola0815";
-            }
+            Database_Name = name;
+            Database_IP = ip;
+            Database_Port = port;
+            Database_Login_Name = login_name;
+            Database_Login_Password = login_password;
         }
 
-        private static string Server_IP
-        {
-            get
-            {
-                if (Is_this_mb) return "localhost";
-                else return "81.10.155.134";
-            }
-        }
-
-        private static string Port
-        {
-            get
-            {
-                if (Is_this_mb) return "3306";
-                else return "1337";             
-            }
-        }
+        private static string Connectionstring => $"Driver={"MySQL ODBC 5.3 Unicode Driver"};Server={Database_IP};Port={Database_Port};Database={Database_Name};User={Database_Login_Name};Password={Database_Login_Password};Option=3;";
     }
 }

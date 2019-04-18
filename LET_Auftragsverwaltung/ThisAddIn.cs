@@ -20,12 +20,25 @@ namespace LET_Auftragsverwaltung
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
-            uC_Main_Task_Pane = new UC_Main_Task_Pane();
-            CTP_Main = this.CustomTaskPanes.Add(uC_Main_Task_Pane, "Aufträge:");
-            CTP_Main.Visible = true;
-            CTP_Main.Width = 400;
+            DB.Give_login_Data_pls_thx(Properties.Settings.Default.Database_Name, Properties.Settings.Default.Database_IP, Properties.Settings.Default.Database_Port, Properties.Settings.Default.Database_Login_Name, Properties.Settings.Default.Database_Login_Password);
+            try
+            {
+                SQL_methods.Open();
 
-            Named_Pipes.Start();
+
+                uC_Main_Task_Pane = new UC_Main_Task_Pane();
+                CTP_Main = this.CustomTaskPanes.Add(uC_Main_Task_Pane, "Aufträge:");
+                CTP_Main.Visible = true;
+                CTP_Main.Width = 400;
+
+                Named_Pipes.Start();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Connection to DB failed:" + exception.Message, "Warnung", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Form_parameter from_param = new Form_parameter();
+                from_param.Show();
+            }
         }
 
         public void UC_Main_Task_Pane_Send(string betreff, string subjekt)

@@ -1,5 +1,21 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LET_Auftragsverwaltung.Properties" GeneratedClassName="Settings">
   <Profiles />
-  <Settings />
+  <Settings>
+    <Setting Name="Database_Name" Type="System.String" Scope="User">
+      <Value Profile="(Default)">auftrags</Value>
+    </Setting>
+    <Setting Name="Database_IP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.16.158</Value>
+    </Setting>
+    <Setting Name="Database_Port" Type="System.String" Scope="User">
+      <Value Profile="(Default)">3306</Value>
+    </Setting>
+    <Setting Name="Database_Login_Name" Type="System.String" Scope="User">
+      <Value Profile="(Default)">auftragsverwaltung</Value>
+    </Setting>
+    <Setting Name="Database_Login_Password" Type="System.String" Scope="User">
+      <Value Profile="(Default)">aSd89+=pÜ</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
