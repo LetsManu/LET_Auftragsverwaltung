@@ -29,6 +29,14 @@ namespace LET_Auftragsverwaltung
             oLV_Overview.Sort(oLV_Cl_Fertigungsstatus);
 
             oLV_Overview.SelectedColumnTint = Color.FromArgb(45, 248, 131, 121);
+
+            foreach (OLVColumn result in oLV_Overview.Columns)
+            {
+                var headerstyle = new HeaderFormatStyle();
+                headerstyle.SetBackColor(Color.FromArgb(255, 255, 255, 255));
+                result.HeaderFormatStyle = headerstyle;
+                result.MinimumWidth = 30;
+            }
         }
 
         private void TSMI_Overview_Click(object sender, EventArgs e)
@@ -103,11 +111,7 @@ namespace LET_Auftragsverwaltung
 
 
                 //oLV_Overview.UseCellFormatEvents = true;
-                foreach (var result in oLV_Overview.AllColumns)
-                {
-                    result.MinimumWidth = 30;
-                    result.Width = 100;
-                }
+  
 
                 SQL_methods.Open();
 

@@ -280,7 +280,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 23);
+            this.label1.Location = new System.Drawing.Point(6, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 13);
             this.label1.TabIndex = 25;
@@ -289,7 +289,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 158);
+            this.label4.Location = new System.Drawing.Point(6, 156);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 13);
             this.label4.TabIndex = 26;
@@ -339,6 +339,7 @@
             // 
             // cbx_seller_edit
             // 
+            this.cbx_seller_edit.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbx_seller_edit.FormattingEnabled = true;
             this.cbx_seller_edit.Location = new System.Drawing.Point(124, 129);
             this.cbx_seller_edit.Name = "cbx_seller_edit";
@@ -365,6 +366,7 @@
             // 
             // cbx_auftragsstatus
             // 
+            this.cbx_auftragsstatus.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbx_auftragsstatus.FormattingEnabled = true;
             this.cbx_auftragsstatus.Location = new System.Drawing.Point(124, 208);
             this.cbx_auftragsstatus.Name = "cbx_auftragsstatus";
@@ -451,6 +453,7 @@
             // 
             // cbx_tech
             // 
+            this.cbx_tech.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbx_tech.FormattingEnabled = true;
             this.cbx_tech.Location = new System.Drawing.Point(124, 102);
             this.cbx_tech.Name = "cbx_tech";
@@ -459,6 +462,7 @@
             // 
             // cbx_verant
             // 
+            this.cbx_verant.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbx_verant.FormattingEnabled = true;
             this.cbx_verant.Location = new System.Drawing.Point(124, 75);
             this.cbx_verant.Name = "cbx_verant";

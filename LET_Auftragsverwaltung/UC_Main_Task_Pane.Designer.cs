@@ -88,6 +88,8 @@
             this.oLV_Overview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.oLV_Overview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.oLV_Overview.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.oLV_Overview.CellEditUseWholeCell = false;
             this.oLV_Overview.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.oLV_Cl_Fertigungsstatus,
@@ -111,8 +113,9 @@
             // oLV_Cl_Projektbezeichnung
             // 
             this.oLV_Cl_Projektbezeichnung.AspectName = "Projektbezeichnung";
+            this.oLV_Cl_Projektbezeichnung.MaximumWidth = 200;
             this.oLV_Cl_Projektbezeichnung.Text = "Projektbezeichnung";
-            this.oLV_Cl_Projektbezeichnung.Width = 238;
+            this.oLV_Cl_Projektbezeichnung.Width = 194;
             // 
             // oLV_Cl_Auftrags_Nr
             // 

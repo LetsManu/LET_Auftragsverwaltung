@@ -21,14 +21,24 @@ namespace LET_Auftragsverwaltung
 
         public UC_Overview()
         {
-            //BrightIdeasSoftware.TreeListView.IgnoreMissingAspects = true;
             InitializeComponent();
-
             oLV_Overview.FullRowSelect = true;
 
-            oLV_Overview.SelectedRowDecoration = new TintedColumnDecoration(oLV_Cl_Planner_Name);
+            oLV_Overview.SelectedRowDecoration = new TintedColumnDecoration(oLV_Cl_Fertigungsstatus);
 
+            oLV_Overview.TintSortColumn = true;
+            oLV_Overview.SelectedColumn = oLV_Cl_Fertigungsstatus;
+            oLV_Overview.Sort(oLV_Cl_Fertigungsstatus);
 
+            oLV_Overview.SelectedColumnTint = Color.FromArgb(45, 248, 131, 121);
+
+            foreach (OLVColumn result in oLV_Overview.Columns)
+            {
+                var headerstyle = new HeaderFormatStyle();
+                headerstyle.SetBackColor(Color.FromArgb(255, 255, 255, 255));
+                result.HeaderFormatStyle = headerstyle;
+                result.MinimumWidth = 30;
+            }
         }
 
         private OdbcConnection Connection => DB.Connection;
@@ -138,12 +148,6 @@ namespace LET_Auftragsverwaltung
                 }
 
                 oLV_Overview.SetObjects(data);
-
-                oLV_Overview.TintSortColumn = true;
-                oLV_Overview.SelectedColumn = oLV_Cl_Projektverantwortlicher_Name;
-                oLV_Overview.Sort(oLV_Cl_Projektverantwortlicher_Name);
-
-                oLV_Overview.SelectedColumnTint = Color.FromArgb(45, 248, 131, 121);
             }
         }
 
