@@ -120,36 +120,20 @@ namespace LET_Auftragsverwaltung
                 
                 foreach (var auftrag_ID in auftraege_ID)
                 {
-                    sql = $"SELECT auftraege.`ID`, auftraege.`Auftrags_NR` AS \"Auftrags Nr.\", auftraege.Erstelldatum, fertigungsstatus.`Status`, CONCAT(p1.`Nachname`, \" \", p1.`Vorname`) AS \"Planner\", teile_stoff.`Lieferdatum` AS \"Stoff Lieferdatum\", teile_Stoff.Bestelldatum AS \"Stoff Bestelldatum\", CONCAT(CONCAT(stoff.ID, ', '), stoff.name) AS Stoff, teile_persenning.`Lieferdatum` AS \"Persenning Lieferdatum\", teile_persenning.`Bestelldatum` AS \"Persenning Bestelldatum\", teile_sonder.`Lieferdatum` AS \"Sonderteile Lieferdatum\", teile_sonder.`Bestelldatum` AS \"Sonderteile Bestelldatum\", ab_az.`V_Date` AS \"Anzahlung anfordern\", ab_az.`B_Date` AS \"Anzahlung bestätigt\", auftraege.`Schlussrechnung` AS \"Schlussrechnung ausgestellt am\", CONCAT(p2.`Nachname`, \" \", p2.`Vorname`) AS \"Projektverantwortlicher\", auftraege.`Projektbezeichnung`, GROUP_CONCAT(CONCAT(auftragsart.`Art`, ' ')) AS \"Auftrags Art\", schatten.`Schattendatum` AS \"Schatten fertig\" FROM auftraege LEFT JOIN personal p1 ON auftraege.`Planer_Techniker` = p1.`P_ID` LEFT JOIN personal p2 ON auftraege.`Projektverantwortlicher` = p2.`P_ID` LEFT JOIN fertigungsstatus ON auftraege.`Fertigungsstatus` = fertigungsstatus.`F_ID` LEFT JOIN teile ON auftraege.`ID` = teile.`T_St_ID` LEFT JOIN teile_stoff ON teile_stoff.`T_ST_ID` = teile.`T_St_ID` LEFT JOIN stoff ON teile_stoff.`ST_ID` = stoff.`St_ID` LEFT JOIN teile_persenning ON teile.`T_P_ID` = teile_persenning.`T_P_ID` LEFT JOIN teile_sonder ON teile.`T_S_ID` = teile_sonder.`T_S_ID` LEFT JOIN ab_az ON auftraege.`AB_AZ` = ab_az.`A_ID` LEFT JOIN auftraege_auftragsart ON auftraege.`ID` = auftraege_auftragsart.`ID` LEFT JOIN auftragsart ON auftraege_auftragsart.`Art_ID` = auftragsart.`Art_ID` LEFT JOIN schatten ON auftraege.`Schatten` = schatten.`S_ID` WHERE auftraege.ID = '{auftrag_ID}' AND auftraege.`deaktiviert` = false ";
+                    sql = $"SELECT auftraege.id, fertigungsstatus.`Status`, auftraege.`Projektbezeichnung`, auftraege.`Auftrags_NR`, CONCAT(p1.`Nachname`, ' ', p1.`Vorname`) AS 'Projektverantwortlicher', CONCAT(p2.`Nachname`, ' ', p2.`Vorname`) AS 'Planner', CONCAT(p3.`Nachname`, ' ', p3.`Vorname`) AS 'Verkaeufer',auftraege.Erstelldatum,auftraege.Montage_Datum FROM auftraege LEFT JOIN fertigungsstatus ON auftraege.`Fertigungsstatus` = fertigungsstatus.`F_ID` LEFT JOIN personal p1 ON auftraege.`Projektverantwortlicher` = p1.`P_ID` LEFT JOIN personal p2 ON auftraege.`Planer_Techniker` = p2.`P_ID` LEFT JOIN personal p3 ON auftraege.`Verkäufer` = p3.`P_ID` WHERE auftraege.id =" + auftrag_ID;           
                     cmd = new OdbcCommand(sql, Connection);
                     reader = cmd.ExecuteReader();
                     reader.Read();
                     Auftrag_Data data = new Auftrag_Data();
                     data.ID = (int)(reader["ID"] == DBNull.Value ? null : reader["ID"]);
-                    data.Auftrags_Nr = DB_to_string(reader["Auftrags Nr."]);
                     data.Fertigungsstatus = DB_to_string(reader["Status"]);
-
-                    data.Erstell_Datum = DB_Date_to_string(reader["Erstelldatum"]);
-                    data.Anzahlung_Datum = DB_Date_to_string(reader["Anzahlung anfordern"]);
-                    data.AZ_bestaetigt_Datum = DB_Date_to_string(reader["Anzahlung bestätigt"]);
-
-                    data.Schlussrechnung_Date = DB_Date_to_string(reader["Schlussrechnung ausgestellt am"]);
+                    data.Projektbezeichnung = DB_to_string(reader["Projektbezeichnung"]);
+                    data.Auftrags_Nr = DB_to_string(reader["Auftrags_NR"]);
                     data.Projektverantwortlicher_Name = DB_to_string(reader["Projektverantwortlicher"]);
                     data.Planner_Name = DB_to_string(reader["Planner"]);
-                    data.Projektbezeichnung = DB_to_string(reader["Projektbezeichnung"]);
-                    data.Auftrags_Art = DB_to_string(reader["Auftrags Art"]);
-                    data.Stoff_Kennzahl = DB_to_string(reader["Stoff"]);
-                    data.Schatten_Datum = DB_Date_to_string(reader["Schatten fertig"]);
-                    data.Stoff_bestell_Datum = DB_Date_to_string(reader["Stoff Bestelldatum"]);
-                    data.Stoff_liefer_Datum = DB_Date_to_string(reader["Stoff Lieferdatum"]);
-                    //data.Stoff_Lieferant = DB_to_string( reader["Stoff Lieferant"] );
-                    data.Sonderteile_bestell_Datum = DB_Date_to_string(reader["Sonderteile Bestelldatum"]);
-                    data.Sonderteile_liefer_Datum = DB_Date_to_string(reader["Sonderteile Lieferdatum"]);
-                    //data.Sonderteile_Lieferant = DB_to_string(reader["Sonderteile Lieferant"] );
-                    data.Persenning_bestell_Datum = DB_Date_to_string(reader["Persenning Bestelldatum"]);
-                    data.Persenning_liefer_Datum = DB_Date_to_string(reader["Persenning Lieferdatum"]);
-                    //data.Persenning_Lieferant = DB_to_string(reader["Persenning Lieferant"]);
-                    //data.Montage_Datum = Convert.ToDateTime(reader[""];
+                    data.Verkäufer_Name = DB_to_string(reader["Verkaeufer"]);
+                    data.Erstell_datum = DB_Date_to_string(reader["Erstelldatum"]);
+                    data.Montage_Datum = DB_Date_to_string(reader["Montage_Datum"]);
                     this.data.AddLast(data);
                 }
 
