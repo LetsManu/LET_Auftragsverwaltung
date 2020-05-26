@@ -11,7 +11,7 @@ namespace LET_Auftragsverwaltung
 {
     public partial class UC_DB : UserControl
     {
-        private readonly string[] extensions = {"PNG", "JPG", "TIFF", "GIF"};
+        private readonly string[] extensions = {"PNG", "JPG", "TIFF", "GIF"}; //Try to get hound to work
         private readonly string server = "ftp://localhost/";
 
         private string File_Path_FTP = "";
